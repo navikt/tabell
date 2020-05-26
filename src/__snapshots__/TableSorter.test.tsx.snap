@@ -1,0 +1,1235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableSorter Renders 1`] = `
+<TableSorter
+  animatable={true}
+  columns={
+    Array [
+      Object {
+        "id": "string",
+        "label": "ui:string",
+        "type": "string",
+      },
+      Object {
+        "id": "date",
+        "label": "ui:date",
+        "type": "date",
+      },
+      Object {
+        "id": "object",
+        "label": "ui:variant",
+        "needle": [Function],
+        "renderCell": [Function],
+        "type": "object",
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "date": 2020-01-31T23:00:00.000Z,
+        "key": "01",
+        "object": Object {
+          "label": "Object 01",
+        },
+        "string": "String 01",
+      },
+      Object {
+        "date": 2020-02-01T23:00:00.000Z,
+        "key": "02",
+        "object": Object {
+          "label": "Object 02",
+        },
+        "string": "String 02",
+      },
+      Object {
+        "date": 2020-02-02T23:00:00.000Z,
+        "key": "03",
+        "object": Object {
+          "label": "Object 03",
+        },
+        "string": "String 03",
+      },
+      Object {
+        "date": 2020-02-03T23:00:00.000Z,
+        "key": "04",
+        "object": Object {
+          "label": "Object 04",
+        },
+        "string": "String 04",
+      },
+      Object {
+        "date": 2020-02-04T23:00:00.000Z,
+        "key": "05",
+        "object": Object {
+          "label": "Object 05",
+        },
+        "string": "String 05",
+      },
+      Object {
+        "date": 2020-02-05T23:00:00.000Z,
+        "key": "06",
+        "object": Object {
+          "label": "Object 06",
+        },
+        "string": "String 06",
+      },
+      Object {
+        "date": 2020-02-06T23:00:00.000Z,
+        "key": "07",
+        "object": Object {
+          "label": "Object 07",
+        },
+        "string": "String 07",
+      },
+      Object {
+        "date": 2020-02-07T23:00:00.000Z,
+        "key": "08",
+        "object": Object {
+          "label": "Object 08",
+        },
+        "string": "String 08",
+      },
+      Object {
+        "date": 2020-02-08T23:00:00.000Z,
+        "key": "09",
+        "object": Object {
+          "label": "Object 09",
+        },
+        "string": "String 09",
+      },
+      Object {
+        "date": 2020-02-09T23:00:00.000Z,
+        "key": "10",
+        "object": Object {
+          "label": "Object 10",
+        },
+        "string": "String 10",
+      },
+      Object {
+        "date": 2020-02-10T23:00:00.000Z,
+        "key": "11",
+        "object": Object {
+          "label": "Object 11",
+        },
+        "string": "String 11",
+      },
+    ]
+  }
+  itemsPerPage={5}
+  labels={
+    Object {
+      "string": Object {
+        "string 01": "Tooltip for string 01",
+        "string 02": "Tooltip for string 02",
+        "string 03": "Tooltip for string 03",
+        "string 04": "Tooltip for string 04",
+        "string 05": "Tooltip for string 05",
+        "string 06": "Tooltip for string 06",
+        "string 07": "Tooltip for string 07",
+        "string 08": "Tooltip for string 08",
+        "string 09": "Tooltip for string 09",
+        "string 10": "Tooltip for string 10",
+        "string 11": "Tooltip for string 11",
+      },
+    }
+  }
+  loading={false}
+  onRowSelectChange={[MockFunction]}
+  pagination={true}
+  searchable={true}
+  selectable={true}
+  sortable={true}
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "black": "#000000",
+        "border-radius-base": "4px",
+        "border-radius-large": "6px",
+        "border-radius-small": "2px",
+        "container-desktop": "(940px + @grid-gutter-width)",
+        "container-large-desktop": "(1140px + @grid-gutter-width)",
+        "container-lg": "(1140px + @grid-gutter-width)",
+        "container-md": "(940px + @grid-gutter-width)",
+        "container-sm": "(720px + @grid-gutter-width)",
+        "container-tablet": "(720px + @grid-gutter-width)",
+        "fokusFarge": "mix(@navBla,#3E3832,40%)",
+        "grayBackground": "#E9E7E7",
+        "grayIcon": "#B7B1A9",
+        "grayInactive": "#78706A",
+        "grayModia": "#333333",
+        "grid-columns": "12",
+        "grid-float-breakpoint": "768px",
+        "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
+        "grid-gutter-width": "16px",
+        "line-height-large": "1.3333333",
+        "line-height-small": "1.5",
+        "main-background-color": "#FFFFFF",
+        "main-background-other-color": "#E9E7E7",
+        "main-disabled-color": "#B7B1A9",
+        "main-error-color": "#BA3A26",
+        "main-focus-color": "mix(@navBla,#3E3832,40%)",
+        "main-font-color": "#3E3832",
+        "main-hover-color": "#66CBEC",
+        "main-interactive-color": "#0067C5",
+        "main-success-color": "#06893A",
+        "main-warning-color": "#FF9100",
+        "navBla": "#0067C5",
+        "navBlaDarken20": "mix(@navBla,#3E3832,80%)",
+        "navBlaDarken40": "mix(@navBla,#3E3832,60%)",
+        "navBlaDarken60": "mix(@navBla,#3E3832,40%)",
+        "navBlaDarken80": "mix(@navBla,#3E3832,20%)",
+        "navBlaLighten20": "mix(@navBla,#fff, 80%)",
+        "navBlaLighten40": "mix(@navBla,#fff, 60%)",
+        "navBlaLighten60": "mix(@navBla,#fff, 40%)",
+        "navBlaLighten80": "mix(@navBla,#fff, 20%)",
+        "navDypBla": "#005B82",
+        "navDypBlaDarken20": "mix(@navDypBla,#3E3832,80%)",
+        "navDypBlaDarken40": "mix(@navDypBla,#3E3832,60%)",
+        "navDypBlaDarken60": "mix(@navDypBla,#3E3832,40%)",
+        "navDypBlaDarken80": "mix(@navDypBla,#3E3832,20%)",
+        "navDypBlaLighten20": "mix(@navDypBla,#fff, 80%)",
+        "navDypBlaLighten40": "mix(@navDypBla,#fff, 60%)",
+        "navDypBlaLighten60": "mix(@navDypBla,#fff, 40%)",
+        "navDypBlaLighten80": "mix(@navDypBla,#fff, 20%)",
+        "navGra20": "#C6C2BF",
+        "navGra40": "#B7B1A9",
+        "navGra60": "#78706A",
+        "navGra80": "#59514B",
+        "navGronn": "#06893A",
+        "navGronnDarken20": "mix(@navGronn,#3E3832,80%)",
+        "navGronnDarken40": "mix(@navGronn,#3E3832,60%)",
+        "navGronnDarken60": "mix(@navGronn,#3E3832,40%)",
+        "navGronnDarken80": "mix(@navGronn,#3E3832,20%)",
+        "navGronnLighten20": "mix(@navGronn,#fff, 80%)",
+        "navGronnLighten40": "mix(@navGronn,#fff, 60%)",
+        "navGronnLighten60": "mix(@navGronn,#fff, 40%)",
+        "navGronnLighten80": "mix(@navGronn,#fff, 20%)",
+        "navLilla": "#634689",
+        "navLillaDarken20": "mix(@navLilla,#3E3832,80%)",
+        "navLillaDarken40": "mix(@navLilla,#3E3832,60%)",
+        "navLillaDarken60": "mix(@navLilla,#3E3832,40%)",
+        "navLillaDarken80": "mix(@navLilla,#3E3832,20%)",
+        "navLillaLighten20": "mix(@navLilla,#fff,80%)",
+        "navLillaLighten40": "mix(@navLilla,#fff,60%)",
+        "navLillaLighten60": "mix(@navLilla,#fff,40%)",
+        "navLillaLighten80": "mix(@navLilla,#fff,20%)",
+        "navLimeGronn": "#A2AD00",
+        "navLimeGronnDarken20": "mix(@navLimeGronn,#3E3832,80%)",
+        "navLimeGronnDarken40": "mix(@navLimeGronn,#3E3832,60%)",
+        "navLimeGronnDarken60": "mix(@navLimeGronn,#3E3832,40%)",
+        "navLimeGronnDarken80": "mix(@navLimeGronn,#3E3832,20%)",
+        "navLimeGronnLighten20": "mix(@navLimeGronn,#fff,80%)",
+        "navLimeGronnLighten40": "mix(@navLimeGronn,#fff,60%)",
+        "navLimeGronnLighten60": "mix(@navLimeGronn,#fff,40%)",
+        "navLimeGronnLighten80": "mix(@navLimeGronn,#fff,20%)",
+        "navLysBla": "#66CBEC",
+        "navLysBlaDarken20": "mix(@navLysBla,#3E3832,80%)",
+        "navLysBlaDarken40": "mix(@navLysBla,#3E3832,60%)",
+        "navLysBlaDarken60": "mix(@navLysBla,#3E3832,40%)",
+        "navLysBlaDarken80": "mix(@navLysBla,#3E3832,20%)",
+        "navLysBlaLighten20": "mix(@navLysBla,#fff,80%)",
+        "navLysBlaLighten40": "mix(@navLysBla,#fff,60%)",
+        "navLysBlaLighten60": "mix(@navLysBla,#fff,40%)",
+        "navLysBlaLighten80": "mix(@navLysBla,#fff,20%)",
+        "navLysGra": "#E9E7E7",
+        "navMorkGra": "#3E3832",
+        "navOransje": "#FF9100",
+        "navOransjeDarken20": "mix(@navOransje,#3E3832,80%)",
+        "navOransjeDarken40": "mix(@navOransje,#3E3832,60%)",
+        "navOransjeDarken60": "mix(@navOransje,#3E3832,40%)",
+        "navOransjeDarken80": "mix(@navOransje,#3E3832,20%)",
+        "navOransjeLighten20": "mix(@navOransje,#fff,80%)",
+        "navOransjeLighten40": "mix(@navOransje,#fff,60%)",
+        "navOransjeLighten60": "mix(@navOransje,#fff,40%)",
+        "navOransjeLighten80": "mix(@navOransje,#fff,20%)",
+        "navRod": "#C30000",
+        "navRodDarken20": "mix(@navRod,#3E3832,80%)",
+        "navRodDarken40": "mix(@navRod,#3E3832,60%)",
+        "navRodDarken60": "mix(@navRod,#3E3832,40%)",
+        "navRodDarken80": "mix(@navRod,#3E3832,20%)",
+        "navRodLighten20": "mix(@navRod,#fff,80%)",
+        "navRodLighten40": "mix(@navRod,#fff,60%)",
+        "navRodLighten60": "mix(@navRod,#fff,40%)",
+        "navRodLighten80": "mix(@navRod,#fff,20%)",
+        "orangeFocus": "#FFBD66",
+        "orangeFocusDarken20": "mix(@orangeFocus,#3E3832,80%)",
+        "orangeFocusDarken40": "mix(@orangeFocus,#3E3832,60%)",
+        "orangeFocusDarken60": "mix(@orangeFocus,#3E3832,40%)",
+        "orangeFocusDarken80": "mix(@orangeFocus,#3E3832,20%)",
+        "orangeFocusLighten20": "mix(@orangeFocus,#fff,80%)",
+        "orangeFocusLighten40": "mix(@orangeFocus,#fff,60%)",
+        "orangeFocusLighten60": "mix(@orangeFocus,#fff,40%)",
+        "orangeFocusLighten80": "mix(@orangeFocus,#fff,20%)",
+        "padding-base-horizontal": "12px",
+        "padding-base-vertical": "6px",
+        "padding-large-horizontal": "16px",
+        "padding-large-vertical": "10px",
+        "padding-small-horizontal": "10px",
+        "padding-small-vertical": "5px",
+        "padding-xs-horizontal": "5px",
+        "padding-xs-vertical": "1px",
+        "pension-orange": "rgb(255, 167, 51)",
+        "pension-orange-alpha": "rgba(255, 167, 51, 0.5)",
+        "pension-orange-alpha-80": "rgba(255, 167, 51, 0.8)",
+        "pinkErrorBg": "#F3E3E3",
+        "redError": "#BA3A26",
+        "redErrorDarken20": "mix(@redError,#3E3832,80%)",
+        "redErrorDarken40": "mix(@redError,#3E3832,60%)",
+        "redErrorDarken60": "mix(@redError,#3E3832,40%)",
+        "redErrorDarken80": "mix(@redError,#3E3832,20%)",
+        "redErrorLighten20": "mix(@redError,#fff,80%)",
+        "redErrorLighten40": "mix(@redError,#fff,60%)",
+        "redErrorLighten60": "mix(@redError,#fff,40%)",
+        "redErrorLighten80": "mix(@redError,#fff,20%)",
+        "screen-desktop": "992px",
+        "screen-lg": "1200px",
+        "screen-lg-desktop": "1200px",
+        "screen-lg-min": "1200px",
+        "screen-md": "992px",
+        "screen-md-max": "(@screen-lg-min - 1)",
+        "screen-md-min": "992px",
+        "screen-sm": "768px",
+        "screen-sm-max": "(@screen-md-min - 1)",
+        "screen-sm-min": "768px",
+        "screen-tablet": "768px",
+        "screen-xs-max": "(@screen-sm-min - 1)",
+        "type": "theme",
+        "white": "#FFFFFF",
+      }
+    }
+  >
+    <styled.div
+      className="tabell"
+    >
+      <div
+        className="sc-AxiKw eDSzvf tabell"
+      >
+        <div
+          className="c-tableSorter__content"
+        >
+          <table
+            cellSpacing="0"
+            className="c-tableSorter__table w-100"
+          >
+            <thead>
+              <tr
+                className="c-tableSorter__header"
+              >
+                <th
+                  style={
+                    Object {
+                      "width": 1,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                      }
+                    }
+                  >
+                    <Checkbox
+                      checked={false}
+                      className="c-tableSorter__checkAll-checkbox d-flex mr-2"
+                      id="c-tableSorter__checkAll-checkbox-id"
+                      label="Velg alle"
+                      onChange={[Function]}
+                    >
+                      <div
+                        className="skjemaelement c-tableSorter__checkAll-checkbox d-flex mr-2"
+                      >
+                        <input
+                          aria-invalid={false}
+                          checked={false}
+                          className="skjemaelement__input checkboks"
+                          id="c-tableSorter__checkAll-checkbox-id"
+                          onChange={[Function]}
+                          type="checkbox"
+                        />
+                        <label
+                          className="skjemaelement__label"
+                          htmlFor="c-tableSorter__checkAll-checkbox-id"
+                        >
+                          Velg alle
+                        </label>
+                      </div>
+                    </Checkbox>
+                    <View
+                      className="c-tableSorter___seefilters-icon"
+                      id="c-tableSorter__seefilters-icon-id"
+                      onClick={[Function]}
+                      size={24}
+                    >
+                      <svg
+                        className="c-tableSorter___seefilters-icon"
+                        enableBackground="new 0 0 24 24"
+                        id="c-tableSorter__seefilters-icon-id"
+                        onClick={[Function]}
+                        size={24}
+                        version="1.1"
+                        viewBox="0 0 24 24"
+                        x="0px"
+                        xmlSpace="preserve"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        y="0px"
+                      >
+                        <g>
+                          <path
+                            d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
+                          />
+                          <path
+                            d="M23.853,23.146l-2.461-2.461l-0.713-0.714c0.581-0.734,0.932-1.659,0.932-2.666c0-2.374-1.932-4.306-4.305-4.306 c-2.375,0-4.307,1.932-4.307,4.306s1.932,4.305,4.307,4.305c1.007,0,1.932-0.35,2.666-0.932l0.713,0.713l2.461,2.462 C23.243,23.951,23.372,24,23.499,24c0.129,0,0.256-0.049,0.354-0.146C24.048,23.659,24.048,23.342,23.853,23.146z M17.306,20.61 c-1.823,0-3.307-1.482-3.307-3.305c0-1.823,1.483-3.306,3.307-3.306c1.822,0,3.305,1.482,3.305,3.306 C20.61,19.128,19.128,20.61,17.306,20.61z"
+                          />
+                        </g>
+                      </svg>
+                    </View>
+                  </div>
+                </th>
+                <th
+                  aria-sort="none"
+                  className="header none"
+                  key="string"
+                  role="columnheader"
+                >
+                  <Lenke
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="lenke"
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      ui:string
+                    </a>
+                  </Lenke>
+                </th>
+                <th
+                  aria-sort="none"
+                  className="header none"
+                  key="date"
+                  role="columnheader"
+                >
+                  <Lenke
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="lenke"
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      ui:date
+                    </a>
+                  </Lenke>
+                </th>
+                <th
+                  aria-sort="none"
+                  className="header none"
+                  key="object"
+                  role="columnheader"
+                >
+                  <Lenke
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="lenke"
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      ui:variant
+                    </a>
+                  </Lenke>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                aria-selected={false}
+                className="slideAnimate"
+                key="01"
+                style={
+                  Object {
+                    "animationDelay": "0s",
+                  }
+                }
+              >
+                <td>
+                  <Checkbox
+                    checked={false}
+                    className="c-tableSorter__row-checkbox"
+                    id="c-tableSorter__row-checkbox-id-01"
+                    label="Velg 01"
+                    onChange={[Function]}
+                  >
+                    <div
+                      className="skjemaelement c-tableSorter__row-checkbox"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input checkboks"
+                        id="c-tableSorter__row-checkbox-id-01"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="c-tableSorter__row-checkbox-id-01"
+                      >
+                        Velg 01
+                      </label>
+                    </div>
+                  </Checkbox>
+                </td>
+                <td
+                  className=""
+                  key="0"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        <span>
+                          String 01
+                        </span>
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="1"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        2/1/2020
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="2"
+                >
+                  <span>
+                    Object 01
+                  </span>
+                </td>
+              </tr>
+              <tr
+                aria-selected={false}
+                className="slideAnimate"
+                key="02"
+                style={
+                  Object {
+                    "animationDelay": "0.04s",
+                  }
+                }
+              >
+                <td>
+                  <Checkbox
+                    checked={false}
+                    className="c-tableSorter__row-checkbox"
+                    id="c-tableSorter__row-checkbox-id-02"
+                    label="Velg 02"
+                    onChange={[Function]}
+                  >
+                    <div
+                      className="skjemaelement c-tableSorter__row-checkbox"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input checkboks"
+                        id="c-tableSorter__row-checkbox-id-02"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="c-tableSorter__row-checkbox-id-02"
+                      >
+                        Velg 02
+                      </label>
+                    </div>
+                  </Checkbox>
+                </td>
+                <td
+                  className=""
+                  key="0"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        <span>
+                          String 02
+                        </span>
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="1"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        2/2/2020
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="2"
+                >
+                  <span>
+                    Object 02
+                  </span>
+                </td>
+              </tr>
+              <tr
+                aria-selected={false}
+                className="slideAnimate"
+                key="03"
+                style={
+                  Object {
+                    "animationDelay": "0.08s",
+                  }
+                }
+              >
+                <td>
+                  <Checkbox
+                    checked={false}
+                    className="c-tableSorter__row-checkbox"
+                    id="c-tableSorter__row-checkbox-id-03"
+                    label="Velg 03"
+                    onChange={[Function]}
+                  >
+                    <div
+                      className="skjemaelement c-tableSorter__row-checkbox"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input checkboks"
+                        id="c-tableSorter__row-checkbox-id-03"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="c-tableSorter__row-checkbox-id-03"
+                      >
+                        Velg 03
+                      </label>
+                    </div>
+                  </Checkbox>
+                </td>
+                <td
+                  className=""
+                  key="0"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        <span>
+                          String 03
+                        </span>
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="1"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        2/3/2020
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="2"
+                >
+                  <span>
+                    Object 03
+                  </span>
+                </td>
+              </tr>
+              <tr
+                aria-selected={false}
+                className="slideAnimate"
+                key="04"
+                style={
+                  Object {
+                    "animationDelay": "0.12s",
+                  }
+                }
+              >
+                <td>
+                  <Checkbox
+                    checked={false}
+                    className="c-tableSorter__row-checkbox"
+                    id="c-tableSorter__row-checkbox-id-04"
+                    label="Velg 04"
+                    onChange={[Function]}
+                  >
+                    <div
+                      className="skjemaelement c-tableSorter__row-checkbox"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input checkboks"
+                        id="c-tableSorter__row-checkbox-id-04"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="c-tableSorter__row-checkbox-id-04"
+                      >
+                        Velg 04
+                      </label>
+                    </div>
+                  </Checkbox>
+                </td>
+                <td
+                  className=""
+                  key="0"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        <span>
+                          String 04
+                        </span>
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="1"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        2/4/2020
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="2"
+                >
+                  <span>
+                    Object 04
+                  </span>
+                </td>
+              </tr>
+              <tr
+                aria-selected={false}
+                className="slideAnimate"
+                key="05"
+                style={
+                  Object {
+                    "animationDelay": "0.16s",
+                  }
+                }
+              >
+                <td>
+                  <Checkbox
+                    checked={false}
+                    className="c-tableSorter__row-checkbox"
+                    id="c-tableSorter__row-checkbox-id-05"
+                    label="Velg 05"
+                    onChange={[Function]}
+                  >
+                    <div
+                      className="skjemaelement c-tableSorter__row-checkbox"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input checkboks"
+                        id="c-tableSorter__row-checkbox-id-05"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="c-tableSorter__row-checkbox-id-05"
+                      >
+                        Velg 05
+                      </label>
+                    </div>
+                  </Checkbox>
+                </td>
+                <td
+                  className=""
+                  key="0"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        <span>
+                          String 05
+                        </span>
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="1"
+                >
+                  <Normaltekst>
+                    <TypografiBase
+                      type="normaltekst"
+                    >
+                      <p
+                        className="typo-normal"
+                      >
+                        2/5/2020
+                      </p>
+                    </TypografiBase>
+                  </Normaltekst>
+                </td>
+                <td
+                  className=""
+                  key="2"
+                >
+                  <span>
+                    Object 05
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <A
+            highContrast={false}
+            initialPage={1}
+            itemsPerPage={5}
+            numberOfItems={11}
+            onChange={[Function]}
+          >
+            <styled.div
+              className=""
+            >
+              <div
+                className="sc-AxjAm eZXXkv"
+              >
+                <ThemeProvider
+                  theme={
+                    Object {
+                      "black": "#000000",
+                      "border-radius-base": "4px",
+                      "border-radius-large": "6px",
+                      "border-radius-small": "2px",
+                      "container-desktop": "(940px + @grid-gutter-width)",
+                      "container-large-desktop": "(1140px + @grid-gutter-width)",
+                      "container-lg": "(1140px + @grid-gutter-width)",
+                      "container-md": "(940px + @grid-gutter-width)",
+                      "container-sm": "(720px + @grid-gutter-width)",
+                      "container-tablet": "(720px + @grid-gutter-width)",
+                      "fokusFarge": "mix(@navBla,#3E3832,40%)",
+                      "grayBackground": "#E9E7E7",
+                      "grayIcon": "#B7B1A9",
+                      "grayInactive": "#78706A",
+                      "grayModia": "#333333",
+                      "grid-columns": "12",
+                      "grid-float-breakpoint": "768px",
+                      "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
+                      "grid-gutter-width": "16px",
+                      "line-height-large": "1.3333333",
+                      "line-height-small": "1.5",
+                      "main-background-color": "#FFFFFF",
+                      "main-background-other-color": "#E9E7E7",
+                      "main-disabled-color": "#B7B1A9",
+                      "main-error-color": "#BA3A26",
+                      "main-focus-color": "mix(@navBla,#3E3832,40%)",
+                      "main-font-color": "#3E3832",
+                      "main-hover-color": "#66CBEC",
+                      "main-interactive-color": "#0067C5",
+                      "main-success-color": "#06893A",
+                      "main-warning-color": "#FF9100",
+                      "navBla": "#0067C5",
+                      "navBlaDarken20": "mix(@navBla,#3E3832,80%)",
+                      "navBlaDarken40": "mix(@navBla,#3E3832,60%)",
+                      "navBlaDarken60": "mix(@navBla,#3E3832,40%)",
+                      "navBlaDarken80": "mix(@navBla,#3E3832,20%)",
+                      "navBlaLighten20": "mix(@navBla,#fff, 80%)",
+                      "navBlaLighten40": "mix(@navBla,#fff, 60%)",
+                      "navBlaLighten60": "mix(@navBla,#fff, 40%)",
+                      "navBlaLighten80": "mix(@navBla,#fff, 20%)",
+                      "navDypBla": "#005B82",
+                      "navDypBlaDarken20": "mix(@navDypBla,#3E3832,80%)",
+                      "navDypBlaDarken40": "mix(@navDypBla,#3E3832,60%)",
+                      "navDypBlaDarken60": "mix(@navDypBla,#3E3832,40%)",
+                      "navDypBlaDarken80": "mix(@navDypBla,#3E3832,20%)",
+                      "navDypBlaLighten20": "mix(@navDypBla,#fff, 80%)",
+                      "navDypBlaLighten40": "mix(@navDypBla,#fff, 60%)",
+                      "navDypBlaLighten60": "mix(@navDypBla,#fff, 40%)",
+                      "navDypBlaLighten80": "mix(@navDypBla,#fff, 20%)",
+                      "navGra20": "#C6C2BF",
+                      "navGra40": "#B7B1A9",
+                      "navGra60": "#78706A",
+                      "navGra80": "#59514B",
+                      "navGronn": "#06893A",
+                      "navGronnDarken20": "mix(@navGronn,#3E3832,80%)",
+                      "navGronnDarken40": "mix(@navGronn,#3E3832,60%)",
+                      "navGronnDarken60": "mix(@navGronn,#3E3832,40%)",
+                      "navGronnDarken80": "mix(@navGronn,#3E3832,20%)",
+                      "navGronnLighten20": "mix(@navGronn,#fff, 80%)",
+                      "navGronnLighten40": "mix(@navGronn,#fff, 60%)",
+                      "navGronnLighten60": "mix(@navGronn,#fff, 40%)",
+                      "navGronnLighten80": "mix(@navGronn,#fff, 20%)",
+                      "navLilla": "#634689",
+                      "navLillaDarken20": "mix(@navLilla,#3E3832,80%)",
+                      "navLillaDarken40": "mix(@navLilla,#3E3832,60%)",
+                      "navLillaDarken60": "mix(@navLilla,#3E3832,40%)",
+                      "navLillaDarken80": "mix(@navLilla,#3E3832,20%)",
+                      "navLillaLighten20": "mix(@navLilla,#fff,80%)",
+                      "navLillaLighten40": "mix(@navLilla,#fff,60%)",
+                      "navLillaLighten60": "mix(@navLilla,#fff,40%)",
+                      "navLillaLighten80": "mix(@navLilla,#fff,20%)",
+                      "navLimeGronn": "#A2AD00",
+                      "navLimeGronnDarken20": "mix(@navLimeGronn,#3E3832,80%)",
+                      "navLimeGronnDarken40": "mix(@navLimeGronn,#3E3832,60%)",
+                      "navLimeGronnDarken60": "mix(@navLimeGronn,#3E3832,40%)",
+                      "navLimeGronnDarken80": "mix(@navLimeGronn,#3E3832,20%)",
+                      "navLimeGronnLighten20": "mix(@navLimeGronn,#fff,80%)",
+                      "navLimeGronnLighten40": "mix(@navLimeGronn,#fff,60%)",
+                      "navLimeGronnLighten60": "mix(@navLimeGronn,#fff,40%)",
+                      "navLimeGronnLighten80": "mix(@navLimeGronn,#fff,20%)",
+                      "navLysBla": "#66CBEC",
+                      "navLysBlaDarken20": "mix(@navLysBla,#3E3832,80%)",
+                      "navLysBlaDarken40": "mix(@navLysBla,#3E3832,60%)",
+                      "navLysBlaDarken60": "mix(@navLysBla,#3E3832,40%)",
+                      "navLysBlaDarken80": "mix(@navLysBla,#3E3832,20%)",
+                      "navLysBlaLighten20": "mix(@navLysBla,#fff,80%)",
+                      "navLysBlaLighten40": "mix(@navLysBla,#fff,60%)",
+                      "navLysBlaLighten60": "mix(@navLysBla,#fff,40%)",
+                      "navLysBlaLighten80": "mix(@navLysBla,#fff,20%)",
+                      "navLysGra": "#E9E7E7",
+                      "navMorkGra": "#3E3832",
+                      "navOransje": "#FF9100",
+                      "navOransjeDarken20": "mix(@navOransje,#3E3832,80%)",
+                      "navOransjeDarken40": "mix(@navOransje,#3E3832,60%)",
+                      "navOransjeDarken60": "mix(@navOransje,#3E3832,40%)",
+                      "navOransjeDarken80": "mix(@navOransje,#3E3832,20%)",
+                      "navOransjeLighten20": "mix(@navOransje,#fff,80%)",
+                      "navOransjeLighten40": "mix(@navOransje,#fff,60%)",
+                      "navOransjeLighten60": "mix(@navOransje,#fff,40%)",
+                      "navOransjeLighten80": "mix(@navOransje,#fff,20%)",
+                      "navRod": "#C30000",
+                      "navRodDarken20": "mix(@navRod,#3E3832,80%)",
+                      "navRodDarken40": "mix(@navRod,#3E3832,60%)",
+                      "navRodDarken60": "mix(@navRod,#3E3832,40%)",
+                      "navRodDarken80": "mix(@navRod,#3E3832,20%)",
+                      "navRodLighten20": "mix(@navRod,#fff,80%)",
+                      "navRodLighten40": "mix(@navRod,#fff,60%)",
+                      "navRodLighten60": "mix(@navRod,#fff,40%)",
+                      "navRodLighten80": "mix(@navRod,#fff,20%)",
+                      "orangeFocus": "#FFBD66",
+                      "orangeFocusDarken20": "mix(@orangeFocus,#3E3832,80%)",
+                      "orangeFocusDarken40": "mix(@orangeFocus,#3E3832,60%)",
+                      "orangeFocusDarken60": "mix(@orangeFocus,#3E3832,40%)",
+                      "orangeFocusDarken80": "mix(@orangeFocus,#3E3832,20%)",
+                      "orangeFocusLighten20": "mix(@orangeFocus,#fff,80%)",
+                      "orangeFocusLighten40": "mix(@orangeFocus,#fff,60%)",
+                      "orangeFocusLighten60": "mix(@orangeFocus,#fff,40%)",
+                      "orangeFocusLighten80": "mix(@orangeFocus,#fff,20%)",
+                      "padding-base-horizontal": "12px",
+                      "padding-base-vertical": "6px",
+                      "padding-large-horizontal": "16px",
+                      "padding-large-vertical": "10px",
+                      "padding-small-horizontal": "10px",
+                      "padding-small-vertical": "5px",
+                      "padding-xs-horizontal": "5px",
+                      "padding-xs-vertical": "1px",
+                      "pension-orange": "rgb(255, 167, 51)",
+                      "pension-orange-alpha": "rgba(255, 167, 51, 0.5)",
+                      "pension-orange-alpha-80": "rgba(255, 167, 51, 0.8)",
+                      "pinkErrorBg": "#F3E3E3",
+                      "redError": "#BA3A26",
+                      "redErrorDarken20": "mix(@redError,#3E3832,80%)",
+                      "redErrorDarken40": "mix(@redError,#3E3832,60%)",
+                      "redErrorDarken60": "mix(@redError,#3E3832,40%)",
+                      "redErrorDarken80": "mix(@redError,#3E3832,20%)",
+                      "redErrorLighten20": "mix(@redError,#fff,80%)",
+                      "redErrorLighten40": "mix(@redError,#fff,60%)",
+                      "redErrorLighten60": "mix(@redError,#fff,40%)",
+                      "redErrorLighten80": "mix(@redError,#fff,20%)",
+                      "screen-desktop": "992px",
+                      "screen-lg": "1200px",
+                      "screen-lg-desktop": "1200px",
+                      "screen-lg-min": "1200px",
+                      "screen-md": "992px",
+                      "screen-md-max": "(@screen-lg-min - 1)",
+                      "screen-md-min": "992px",
+                      "screen-sm": "768px",
+                      "screen-sm-max": "(@screen-md-min - 1)",
+                      "screen-sm-min": "768px",
+                      "screen-tablet": "768px",
+                      "screen-xs-max": "(@screen-sm-min - 1)",
+                      "type": "theme",
+                      "white": "#FFFFFF",
+                    }
+                  }
+                >
+                  <div>
+                    <Styled(n)
+                      className="c-pagination__prev-button"
+                      disabled={true}
+                      kompakt={true}
+                      onClick={[Function]}
+                    >
+                      <n
+                        className="sc-AxirZ cODrin c-pagination__prev-button"
+                        disabled={true}
+                        kompakt={true}
+                        onClick={[Function]}
+                      >
+                        <n
+                          autoDisableVedSpinner={false}
+                          className="sc-AxirZ cODrin c-pagination__prev-button"
+                          disabled={true}
+                          htmlType="submit"
+                          inaktivKlasseVedDisabled={false}
+                          kompakt={true}
+                          mini={false}
+                          onClick={[Function]}
+                          spinner={false}
+                          type="flat"
+                        >
+                          <button
+                            className="knapp sc-AxirZ cODrin c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="submit"
+                          >
+                            ◄
+                          </button>
+                        </n>
+                      </n>
+                    </Styled(n)>
+                  </div>
+                  <div
+                    key="1"
+                  >
+                    <Styled(n)
+                      className="c-pagination__page-button"
+                      disabled={true}
+                      key="1"
+                      kompakt={true}
+                      onClick={[Function]}
+                    >
+                      <n
+                        className="sc-AxirZ cODrin c-pagination__page-button"
+                        disabled={true}
+                        kompakt={true}
+                        onClick={[Function]}
+                      >
+                        <n
+                          autoDisableVedSpinner={false}
+                          className="sc-AxirZ cODrin c-pagination__page-button"
+                          disabled={true}
+                          htmlType="submit"
+                          inaktivKlasseVedDisabled={false}
+                          kompakt={true}
+                          mini={false}
+                          onClick={[Function]}
+                          spinner={false}
+                          type="flat"
+                        >
+                          <button
+                            className="knapp sc-AxirZ cODrin c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="submit"
+                          >
+                            1
+                          </button>
+                        </n>
+                      </n>
+                    </Styled(n)>
+                  </div>
+                  <div
+                    key="2"
+                  >
+                    <Styled(n)
+                      className="c-pagination__page-button"
+                      disabled={false}
+                      key="2"
+                      kompakt={true}
+                      onClick={[Function]}
+                    >
+                      <n
+                        className="sc-AxirZ cODrin c-pagination__page-button"
+                        disabled={false}
+                        kompakt={true}
+                        onClick={[Function]}
+                      >
+                        <n
+                          autoDisableVedSpinner={false}
+                          className="sc-AxirZ cODrin c-pagination__page-button"
+                          disabled={false}
+                          htmlType="submit"
+                          inaktivKlasseVedDisabled={false}
+                          kompakt={true}
+                          mini={false}
+                          onClick={[Function]}
+                          spinner={false}
+                          type="flat"
+                        >
+                          <button
+                            className="knapp sc-AxirZ cODrin c-pagination__page-button knapp--flat knapp--kompakt"
+                            disabled={false}
+                            onClick={[Function]}
+                            type="submit"
+                          >
+                            2
+                          </button>
+                        </n>
+                      </n>
+                    </Styled(n)>
+                  </div>
+                  <div
+                    key="3"
+                  >
+                    <Styled(n)
+                      className="c-pagination__page-button"
+                      disabled={false}
+                      key="3"
+                      kompakt={true}
+                      onClick={[Function]}
+                    >
+                      <n
+                        className="sc-AxirZ cODrin c-pagination__page-button"
+                        disabled={false}
+                        kompakt={true}
+                        onClick={[Function]}
+                      >
+                        <n
+                          autoDisableVedSpinner={false}
+                          className="sc-AxirZ cODrin c-pagination__page-button"
+                          disabled={false}
+                          htmlType="submit"
+                          inaktivKlasseVedDisabled={false}
+                          kompakt={true}
+                          mini={false}
+                          onClick={[Function]}
+                          spinner={false}
+                          type="flat"
+                        >
+                          <button
+                            className="knapp sc-AxirZ cODrin c-pagination__page-button knapp--flat knapp--kompakt"
+                            disabled={false}
+                            onClick={[Function]}
+                            type="submit"
+                          >
+                            3
+                          </button>
+                        </n>
+                      </n>
+                    </Styled(n)>
+                  </div>
+                  <div>
+                    <Styled(n)
+                      className="c-pagination__next-button"
+                      disabled={false}
+                      kompakt={true}
+                      onClick={[Function]}
+                    >
+                      <n
+                        className="sc-AxirZ cODrin c-pagination__next-button"
+                        disabled={false}
+                        kompakt={true}
+                        onClick={[Function]}
+                      >
+                        <n
+                          autoDisableVedSpinner={false}
+                          className="sc-AxirZ cODrin c-pagination__next-button"
+                          disabled={false}
+                          htmlType="submit"
+                          inaktivKlasseVedDisabled={false}
+                          kompakt={true}
+                          mini={false}
+                          onClick={[Function]}
+                          spinner={false}
+                          type="flat"
+                        >
+                          <button
+                            className="knapp sc-AxirZ cODrin c-pagination__next-button knapp--flat knapp--kompakt"
+                            disabled={false}
+                            onClick={[Function]}
+                            type="submit"
+                          >
+                            ►
+                          </button>
+                        </n>
+                      </n>
+                    </Styled(n)>
+                  </div>
+                </ThemeProvider>
+              </div>
+            </styled.div>
+          </A>
+        </div>
+      </div>
+    </styled.div>
+  </ThemeProvider>
+</TableSorter>
+`;

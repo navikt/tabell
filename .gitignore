@@ -1,0 +1,12 @@
+
+# IDEs and editors
+.idea
+
+# dependencies
+node_modules
+coverage
+
+# System Files
+.DS_Store
+Thumbs.db
+package.json___jb_old___

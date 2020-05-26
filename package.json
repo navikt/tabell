@@ -1,0 +1,133 @@
+{
+  "name": "tabell",
+  "description": "Tabell",
+  "main": "lib/index.js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "homepage": ".",
+  "dependencies": {
+    "@navikt/fnrvalidator": "^1.1.2",
+    "classnames": "^2.2.6",
+    "land-verktoy": "^1.0.0",
+    "lodash": "^4.17.15",
+    "lodash.throttle": "^4.1.1",
+    "nav-frontend-ikoner-assets": "^2.0.1",
+    "nav-frontend-lenker": "^1.0.35",
+    "nav-frontend-lenker-style": "^0.2.26",
+    "nav-frontend-paneler-style": "^0.3.19",
+    "nav-frontend-skjema": "^3.0.2",
+    "nav-frontend-skjema-style": "^2.0.7",
+    "nav-frontend-spinner": "^2.0.2",
+    "nav-frontend-spinner-style": "^0.2.5",
+    "nav-frontend-typografi": "^2.0.19",
+    "nav-frontend-typografi-style": "^1.0.20",
+    "nav-styled-component-theme": "^1.0.0",
+    "paginering": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "rc-tooltip": "^4.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0",
+    "svg-country-flags": "^1.2.7"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^25.2.3",
+    "@types/lodash": "^4.14.152",
+    "@types/prop-types": "^15.7.3",
+    "@types/rc-tooltip": "^3.7.3",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
+    "less": "^3.11.1",
+    "less-loader": "^6.1.0",
+    "less-plugin-npm-import": "^2.1.0",
+    "less-watch-compiler": "^1.14.6",
+    "npm-run-all": "^4.1.5",
+    "react-scripts": "^3.4.1",
+    "standardx": "^5.0.0",
+    "svg-url-loader": "^6.0.0",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.3",
+    "url-loader": "^4.1.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "build": " npm-run-all -p build:*",
+    "build:css": "less-watch-compiler --run-once --config less.json",
+    "dist": "rm -rf ./lib && webpack --config webpack.ts",
+    "lint": "standardx src/*.ts* src/*/*.ts*",
+    "lint:fix": "standardx src/*.ts* src/*/*.ts* --fix",
+    "npx": "npx npm-force-resolutions",
+    "test": "react-scripts test",
+    "test:ci": "react-scripts test --updateSnapshot --watchAll=false",
+    "test:coverage": "react-scripts test --coverage  --watchAll=false"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "resolutions": {
+    "yargs-parser": "18.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navikt/tabell.git"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "globals": [
+      "Blob",
+      "File",
+      "XMLHttpRequest",
+      "HTMLCanvasElement",
+      "FileReader",
+      "ReactDOM",
+      "WebSocket",
+      "act",
+      "fetch",
+      "describe",
+      "it",
+      "beforeAll",
+      "afterAll",
+      "beforeEach",
+      "afterEach",
+      "expect",
+      "shallow",
+      "mount",
+      "render",
+      "renderer",
+      "jest"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
+    "ignore": [
+      "build/**/*.js",
+      "public/**/*.js",
+      "node_modules/**/*.js",
+      "build/**/*.tsx",
+      "public/**/*.tsx",
+      "node_modules/**/*.tsx",
+      "src/**/*.snap"
+    ]
+  },
+  "types": "lib/index.d.ts"
+}
