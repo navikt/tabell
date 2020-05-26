@@ -10,10 +10,21 @@ import Spinner from 'nav-frontend-spinner'
 import View from './resources/View'
 import Pagination from 'paginering'
 import { Column, Item, Items, Sort, SortOrder, TableSorterProps } from './index.d'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeHighContrast } from 'nav-styled-component-theme'
 import './index.css'
 import 'rc-tooltip/assets/bootstrap_white.css'
+
+const slideInFromLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`
 
 export const TableSorterDiv = styled.div`
   display: block !important;
@@ -38,30 +49,14 @@ export const TableSorterDiv = styled.div`
 
   tbody {
     tr:nth-child(odd) {
-      background: ${({theme}: any) => theme.style === 'highContrastTheme' ? 'black' : 'white'};
+      background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? 'black' : 'white'};
     }
     tr:nth-child(even) {
-      background: ${({theme}: any) => theme.style === 'highContrastTheme' ? theme.navMorkGra : 'whitesmoke'};   
+      background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? theme.navMorkGra : 'whitesmoke'};   
    
     }
   }
-
-  &__content {
-    position: relative;
-  }
-
-  &__loading {
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.1);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  
   &__subcell {
     display: flex;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
@@ -82,16 +77,33 @@ export const TableSorterDiv = styled.div`
   tr.slideAnimate {
     opacity: 0;
     transform: translateX(-20px);
-    animation: slideInFromLeft 0.2s forwards;
+    animation: ${slideInFromLeft} 0.2s forwards;
   }
   
   .tabell__tr--valgt td {
-    background: ${({theme}: any) => theme.style === 'highContrastTheme' ? theme.navOransje : theme.navBla} !important;
-    color: ${({theme}: any) => theme['main-font-color']} !important;
+    background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? theme.navOransje : theme.navLysBla} !important;
+    color: ${({ theme }: any) => theme['main-font-color']} !important;
     * {
-        color:  ${({theme}: any) => theme['main-font-color']} !important;
+        color:  ${({ theme }: any) => theme['main-font-color']} !important;
       }
   }
+`
+export const ContentDiv = styled.div`
+  position: relative;
+`
+export const LoadingDiv = styled.div` 
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+export const WideTable = styled.table`
+  width: 100%;
 `
 
 const TableSorter: React.FC<TableSorterProps> = ({
@@ -298,13 +310,13 @@ const TableSorter: React.FC<TableSorterProps> = ({
   return (
     <ThemeProvider theme={_theme}>
       <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
-        <div className='c-tableSorter__content'>
+        <ContentDiv>
           {loading ? (
-            <div className='c-tableSorter__loading'>
+            <LoadingDiv>
               <Spinner type='XL' />
-            </div>
+            </LoadingDiv>
           ) : null}
-          <table cellSpacing='0' className='c-tableSorter__table w-100'>
+          <WideTable cellSpacing='0' className='c-tableSorter__table'>
             <thead>
               <tr className='c-tableSorter__header'>
                 <th style={{ width: 1 }}>
@@ -371,7 +383,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
               ) : null}
             </thead>
             <tbody>{tableRows}</tbody>
-          </table>
+          </WideTable>
           {pagination ? (
             <Pagination
               highContrast={highContrast}
@@ -381,7 +393,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
               onChange={(page) => setCurrentPage(page)}
             />
           ) : null}
-        </div>
+        </ContentDiv>
       </TableSorterDiv>
     </ThemeProvider>
   )
