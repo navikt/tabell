@@ -121,12 +121,12 @@ describe('TableSorter', () => {
 
   it('onCheckClicked triggered', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('.c-tableSorter__row-checkbox input').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
       ...item,
       selected: index === 0 ? true : undefined
     })))
-    wrapper.find('.c-tableSorter__row-checkbox input').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
       ...item,
       selected: index === 0 ? false : undefined

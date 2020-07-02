@@ -105,7 +105,14 @@ export const LoadingDiv = styled.div`
 export const WideTable = styled.table`
   width: 100%;
 `
-
+const PaginationDiv = styled.div`
+  display: flex; 
+  flex-direction: row-reverse;
+`
+const FilterIcon = styled.div`
+  margin-left: 0.25rem;
+  cursor: pointer;
+`
 const TableSorter: React.FC<TableSorterProps> = ({
   animatable = true,
   className,
@@ -121,7 +128,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
   onColumnSort,
   onRowSelectChange,
   pagination = true,
-  searchable = true, selectable = false,
+  searchable = true,
+  selectable = false,
   sortable = true,
   sort = { column: '', order: 'none' }
 }: TableSorterProps): JSX.Element => {
@@ -241,16 +249,16 @@ const TableSorter: React.FC<TableSorterProps> = ({
             'tabell__tr--valgt': selectable && item.selected
           })}
         >
-          {selectable ? (
-            <td>
+          <td>
+            {selectable && (
               <Checkbox
                 id={'c-tableSorter__row-checkbox-id-' + item.key}
-                className='c-tableSorter__row-checkbox'
+                data-testid={'c-tableSorter__row-checkbox-id-' + item.key}
                 label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
                   onCheckClicked(item)}
               />
-            </td>
-          ) : <td />}
+            )}
+          </td>
           {_columns.map((column, index2) => {
             const value: any = item[column.id]
             switch (column.type) {
@@ -305,10 +313,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
   const sortedItems = rawRows()
   const tableRows = rows(sortedItems)
 
-  const _theme = highContrast ? themeHighContrast : theme
-
   return (
-    <ThemeProvider theme={_theme}>
+    <ThemeProvider theme={highContrast ? themeHighContrast : theme}>
       <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
         <ContentDiv>
           {loading ? (
@@ -321,7 +327,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
               <tr className='c-tableSorter__header'>
                 <th style={{ width: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                    {selectable ? (
+                    {selectable && (
                       <Checkbox
                         label='Velg alle'
                         id='c-tableSorter__checkAll-checkbox-id'
@@ -329,14 +335,15 @@ const TableSorter: React.FC<TableSorterProps> = ({
                         checked={checkAll}
                         onChange={onCheckAllClicked}
                       />
-                    ) : null}
-                    {searchable ? (
-                      <View
-                        size={24}
-                        className='c-tableSorter___seefilters-icon'
-                        id='c-tableSorter__seefilters-icon-id'
-                        onClick={() => setSeeFilters(!seeFilters)}
-                      />) : null}
+                    )}
+                    {searchable && (
+                      <FilterIcon>
+                        <View
+                          className='c-tableSorter___seefilters-icon'
+                          id='c-tableSorter__seefilters-icon-id'
+                          onClick={() => setSeeFilters(!seeFilters)}
+                        />
+                      </FilterIcon>)}
                   </div>
                 </th>
                 {_columns.map((column) => {
@@ -384,15 +391,17 @@ const TableSorter: React.FC<TableSorterProps> = ({
             </thead>
             <tbody>{tableRows}</tbody>
           </WideTable>
-          {pagination ? (
-            <Pagination
-              highContrast={highContrast}
-              itemsPerPage={itemsPerPage}
-              initialPage={initialPage}
-              numberOfItems={sortedItems.length}
-              onChange={(page) => setCurrentPage(page)}
-            />
-          ) : null}
+          {pagination && (
+            <PaginationDiv>
+              <Pagination
+                highContrast={highContrast}
+                itemsPerPage={itemsPerPage}
+                initialPage={initialPage}
+                numberOfItems={sortedItems.length}
+                onChange={(page) => setCurrentPage(page)}
+              />
+            </PaginationDiv>
+          )}
         </ContentDiv>
       </TableSorterDiv>
     </ThemeProvider>

@@ -2,8 +2,15 @@ import React from 'react'
 
 const View = (props: any) => (
   <svg
-    version='1.1' id='Filled_Version' xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' x='0px'
-    y='0px' viewBox='0 0 24 24' enableBackground='new 0 0 24 24' xmlSpace='preserve' {...props}
+    version='1.1' id='Filled_Version'
+    xmlns='http://www.w3.org/2000/svg'
+    xmlnsXlink='http://www.w3.org/1999/xlink' x='0px'
+    y='0px'
+    viewBox='0 0 24 24'
+    enableBackground='new 0 0 24 24'
+    xmlSpace='preserve'
+    width={24} height={24}
+    {...props}
   >
     <g>
       <path d='M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11
