@@ -26,8 +26,20 @@ const slideInFromLeft = keyframes`
   }
 `
 
+export const HighContrastLink = styled(Lenke)`
+  display: flex;
+  align-items: center;
+  font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+  line-height: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+  color: ${({ theme }: any) => theme['main-interactive-color']} !important;
+`
+
 export const TableSorterDiv = styled.div`
   display: block !important;
+  * {
+    font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+    line-height: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+  }
   &.compact {
     td, th {
       padding: 0.35rem !important;
@@ -49,11 +61,10 @@ export const TableSorterDiv = styled.div`
 
   tbody {
     tr:nth-child(odd) {
-      background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? 'black' : 'white'};
+      background: ${({ theme }: any) => theme['main-background-color']};
     }
     tr:nth-child(even) {
-      background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? theme.navMorkGra : 'whitesmoke'};   
-   
+      background: ${({ theme }: any) => theme['main-background-other-color']};   
     }
   }
   
@@ -81,11 +92,11 @@ export const TableSorterDiv = styled.div`
   }
   
   .tabell__tr--valgt td {
-    background: ${({ theme }: any) => theme.type === 'themeHighContrast' ? theme.navOransje : theme.navLysBla} !important;
-    color: ${({ theme }: any) => theme['main-font-color']} !important;
+    background: ${({ theme }: any) => theme['main-interactive-color']} !important;
+    color: ${({ theme }: any) => theme['main-background-color']} !important;
     * {
-        color:  ${({ theme }: any) => theme['main-font-color']} !important;
-      }
+      color:  ${({ theme }: any) => theme['main-background-color']} !important;
+    }
   }
 `
 export const ContentDiv = styled.div`
@@ -356,15 +367,16 @@ const TableSorter: React.FC<TableSorterProps> = ({
                       className={classNames('header', { [sortClass(column)]: column.label !== '' })}
                     >
                       {sortable && column.label ? (
-                        <Lenke
-                          href='#' onClick={(e) => {
+                        <HighContrastLink
+                          href='#'
+                          onClick={(e) => {
                             e.preventDefault()
                             e.stopPropagation()
                             sortColumn(column)
                           }}
                         >
                           {column.label + (filterText ? ' (' + filterText + ')' : '')}
-                        </Lenke>
+                        </HighContrastLink>
                       ) : column.label + (filterText ? ' (' + filterText + ')' : '')}
                     </th>
                   )
