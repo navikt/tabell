@@ -24,6 +24,7 @@ exports[`TableSorter Renders 1`] = `
       },
     ]
   }
+  id="test"
   items={
     Array [
       Object {
@@ -339,25 +340,25 @@ exports[`TableSorter Renders 1`] = `
                       >
                         <Checkbox
                           checked={false}
-                          className="c-tableSorter__checkAll-checkbox d-flex mr-2"
-                          id="c-tableSorter__checkAll-checkbox-id"
+                          className="c-tableSorter__checkAll-checkbox"
+                          id="c-tableSorter__checkAll-checkbox-id-test"
                           label="Velg alle"
                           onChange={[Function]}
                         >
                           <div
-                            className="skjemaelement c-tableSorter__checkAll-checkbox d-flex mr-2"
+                            className="skjemaelement c-tableSorter__checkAll-checkbox"
                           >
                             <input
                               aria-invalid={false}
                               checked={false}
                               className="skjemaelement__input checkboks"
-                              id="c-tableSorter__checkAll-checkbox-id"
+                              id="c-tableSorter__checkAll-checkbox-id-test"
                               onChange={[Function]}
                               type="checkbox"
                             />
                             <label
                               className="skjemaelement__label"
-                              htmlFor="c-tableSorter__checkAll-checkbox-id"
+                              htmlFor="c-tableSorter__checkAll-checkbox-id-test"
                             >
                               Velg alle
                             </label>
@@ -365,7 +366,7 @@ exports[`TableSorter Renders 1`] = `
                         </Checkbox>
                         <styled.div>
                           <div
-                            className="sc-AxmLO lnOCZZ"
+                            className="sc-AxmLO fIphuD"
                           >
                             <View
                               className="c-tableSorter___seefilters-icon"
@@ -492,8 +493,8 @@ exports[`TableSorter Renders 1`] = `
                     <td>
                       <Checkbox
                         checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-01"
-                        id="c-tableSorter__row-checkbox-id-01"
+                        data-testid="c-tableSorter__row-checkbox-id-01-test"
+                        id="c-tableSorter__row-checkbox-id-01-test"
                         label="Velg 01"
                         onChange={[Function]}
                       >
@@ -504,14 +505,14 @@ exports[`TableSorter Renders 1`] = `
                             aria-invalid={false}
                             checked={false}
                             className="skjemaelement__input checkboks"
-                            data-testid="c-tableSorter__row-checkbox-id-01"
-                            id="c-tableSorter__row-checkbox-id-01"
+                            data-testid="c-tableSorter__row-checkbox-id-01-test"
+                            id="c-tableSorter__row-checkbox-id-01-test"
                             onChange={[Function]}
                             type="checkbox"
                           />
                           <label
                             className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-01"
+                            htmlFor="c-tableSorter__row-checkbox-id-01-test"
                           >
                             Velg 01
                           </label>
@@ -574,8 +575,8 @@ exports[`TableSorter Renders 1`] = `
                     <td>
                       <Checkbox
                         checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-02"
-                        id="c-tableSorter__row-checkbox-id-02"
+                        data-testid="c-tableSorter__row-checkbox-id-02-test"
+                        id="c-tableSorter__row-checkbox-id-02-test"
                         label="Velg 02"
                         onChange={[Function]}
                       >
@@ -586,14 +587,14 @@ exports[`TableSorter Renders 1`] = `
                             aria-invalid={false}
                             checked={false}
                             className="skjemaelement__input checkboks"
-                            data-testid="c-tableSorter__row-checkbox-id-02"
-                            id="c-tableSorter__row-checkbox-id-02"
+                            data-testid="c-tableSorter__row-checkbox-id-02-test"
+                            id="c-tableSorter__row-checkbox-id-02-test"
                             onChange={[Function]}
                             type="checkbox"
                           />
                           <label
                             className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-02"
+                            htmlFor="c-tableSorter__row-checkbox-id-02-test"
                           >
                             Velg 02
                           </label>
@@ -656,8 +657,8 @@ exports[`TableSorter Renders 1`] = `
                     <td>
                       <Checkbox
                         checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-03"
-                        id="c-tableSorter__row-checkbox-id-03"
+                        data-testid="c-tableSorter__row-checkbox-id-03-test"
+                        id="c-tableSorter__row-checkbox-id-03-test"
                         label="Velg 03"
                         onChange={[Function]}
                       >
@@ -668,14 +669,14 @@ exports[`TableSorter Renders 1`] = `
                             aria-invalid={false}
                             checked={false}
                             className="skjemaelement__input checkboks"
-                            data-testid="c-tableSorter__row-checkbox-id-03"
-                            id="c-tableSorter__row-checkbox-id-03"
+                            data-testid="c-tableSorter__row-checkbox-id-03-test"
+                            id="c-tableSorter__row-checkbox-id-03-test"
                             onChange={[Function]}
                             type="checkbox"
                           />
                           <label
                             className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-03"
+                            htmlFor="c-tableSorter__row-checkbox-id-03-test"
                           >
                             Velg 03
                           </label>
@@ -738,8 +739,8 @@ exports[`TableSorter Renders 1`] = `
                     <td>
                       <Checkbox
                         checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-04"
-                        id="c-tableSorter__row-checkbox-id-04"
+                        data-testid="c-tableSorter__row-checkbox-id-04-test"
+                        id="c-tableSorter__row-checkbox-id-04-test"
                         label="Velg 04"
                         onChange={[Function]}
                       >
@@ -750,14 +751,14 @@ exports[`TableSorter Renders 1`] = `
                             aria-invalid={false}
                             checked={false}
                             className="skjemaelement__input checkboks"
-                            data-testid="c-tableSorter__row-checkbox-id-04"
-                            id="c-tableSorter__row-checkbox-id-04"
+                            data-testid="c-tableSorter__row-checkbox-id-04-test"
+                            id="c-tableSorter__row-checkbox-id-04-test"
                             onChange={[Function]}
                             type="checkbox"
                           />
                           <label
                             className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-04"
+                            htmlFor="c-tableSorter__row-checkbox-id-04-test"
                           >
                             Velg 04
                           </label>
@@ -820,8 +821,8 @@ exports[`TableSorter Renders 1`] = `
                     <td>
                       <Checkbox
                         checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-05"
-                        id="c-tableSorter__row-checkbox-id-05"
+                        data-testid="c-tableSorter__row-checkbox-id-05-test"
+                        id="c-tableSorter__row-checkbox-id-05-test"
                         label="Velg 05"
                         onChange={[Function]}
                       >
@@ -832,14 +833,14 @@ exports[`TableSorter Renders 1`] = `
                             aria-invalid={false}
                             checked={false}
                             className="skjemaelement__input checkboks"
-                            data-testid="c-tableSorter__row-checkbox-id-05"
-                            id="c-tableSorter__row-checkbox-id-05"
+                            data-testid="c-tableSorter__row-checkbox-id-05-test"
+                            id="c-tableSorter__row-checkbox-id-05-test"
                             onChange={[Function]}
                             type="checkbox"
                           />
                           <label
                             className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-05"
+                            htmlFor="c-tableSorter__row-checkbox-id-05-test"
                           >
                             Velg 05
                           </label>

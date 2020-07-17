@@ -54,7 +54,8 @@ describe('TableSorter', () => {
     animatable: true,
     itemsPerPage: 5,
     onRowSelectChange: jest.fn(),
-    pagination: true
+    pagination: true,
+    id: 'test'
   }
 
   beforeEach(() => {
@@ -121,12 +122,12 @@ describe('TableSorter', () => {
 
   it('onCheckClicked triggered', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
       ...item,
       selected: index === 0 ? true : undefined
     })))
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
       ...item,
       selected: index === 0 ? false : undefined

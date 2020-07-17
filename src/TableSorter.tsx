@@ -12,6 +12,7 @@ import Pagination from 'paginering'
 import { Column, Item, Items, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeHighContrast } from 'nav-styled-component-theme'
+import md5 from 'md5'
 import './index.css'
 import 'rc-tooltip/assets/bootstrap_white.css'
 
@@ -121,7 +122,7 @@ const PaginationDiv = styled.div`
   flex-direction: row-reverse;
 `
 const FilterIcon = styled.div`
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
   cursor: pointer;
 `
 const TableSorter: React.FC<TableSorterProps> = ({
@@ -132,6 +133,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   columns = [],
   highContrast = false,
   initialPage = 1,
+  id,
   items = [],
   itemsPerPage = 10,
   labels = {},
@@ -145,6 +147,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   sort = { column: '', order: 'none' }
 }: TableSorterProps): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
+  const [_id] = useState<string>(id || md5('' + new Date().getTime()))
   const [_items, setItems] = useState<Items>(items)
   const [_columns, setColumns] = useState<Array<Column>>(columns)
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
@@ -263,8 +266,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
           <td>
             {selectable && (
               <Checkbox
-                id={'c-tableSorter__row-checkbox-id-' + item.key}
-                data-testid={'c-tableSorter__row-checkbox-id-' + item.key}
+                id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
+                data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
                 label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
                   onCheckClicked(item)}
               />
@@ -341,8 +344,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
                     {selectable && (
                       <Checkbox
                         label='Velg alle'
-                        id='c-tableSorter__checkAll-checkbox-id'
-                        className='c-tableSorter__checkAll-checkbox d-flex mr-2'
+                        id={'c-tableSorter__checkAll-checkbox-id-' + _id}
+                        className='c-tableSorter__checkAll-checkbox'
                         checked={checkAll}
                         onChange={onCheckAllClicked}
                       />
