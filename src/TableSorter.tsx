@@ -411,7 +411,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
               <Pagination
                 highContrast={highContrast}
                 itemsPerPage={itemsPerPage}
-                initialPage={initialPage}
+                currentPage={currentPage}
                 numberOfItems={sortedItems.length}
                 onChange={(page) => setCurrentPage(page)}
               />
