@@ -1,6 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TableSorter Renders 1`] = `
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+tabell.g1[id="c12"] {
+  content: "c13,";
+}
+
+.c15 {
+  color: #0067C5;
+  background-color: transparent;
+}
+
+.c15:hover:not(:disabled) {
+  color: #0067C5;
+  border-color: #0067C5;
+}
+
+.c15:disabled {
+  background-color: #B7B1A9;
+  color: #3E3832;
+  border: none;
+}
+
+tabell.g2[id="c14"] {
+  content: "c15,";
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: inherit;
+  line-height: inherit;
+  color: #0067C5 !important;
+}
+
+tabell.g3[id="c8"] {
+  content: "c9,";
+}
+
+.c1 {
+  display: block !important;
+}
+
+.c1 * {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.c1.compact td,
+.c1.compact th {
+  padding: 0.35rem !important;
+}
+
+.c1.compact th a {
+  margin: 0rem !important;
+  padding: 0rem !important;
+  padding-right: 0.7rem !important;
+}
+
+.c1.compact th a:before,
+.c1.compact th a:after {
+  right: 0rem !important;
+}
+
+.c1.compact .c-tableSorter__filter .skjemaelement__input {
+  padding: 0.25rem !important;
+}
+
+.c1 tbody tr:nth-child(odd) {
+  background: #FFFFFF;
+}
+
+.c1 tbody tr:nth-child(even) {
+  background: #E9E7E7;
+}
+
+.c1__subcell {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.c1___seefilters-icon {
+  cursor: pointer;
+}
+
+.c1__pagination {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c1 .header {
+  cursor: pointer;
+}
+
+.c1 tr.slideAnimate {
+  opacity: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+  -webkit-animation: kvcTlm 0.2s forwards;
+  animation: kvcTlm 0.2s forwards;
+}
+
+.c1 .tabell__tr--valgt td {
+  background: #0067C5 !important;
+  color: #FFFFFF !important;
+}
+
+.c1 .tabell__tr--valgt td * {
+  color: #FFFFFF !important;
+}
+
+tabell.g4[id="c0"] {
+  content: "c1,";
+}
+
+.c3 {
+  position: relative;
+}
+
+tabell.g5[id="c2"] {
+  content: "c3,";
+}
+
+.c5 {
+  width: 100%;
+}
+
+tabell.g7[id="c4"] {
+  content: "c5,";
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+tabell.g8[id="c10"] {
+  content: "c11,";
+}
+
+.c7 {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+tabell.g9[id="c6"] {
+  content: "c7,";
+}
+
 <TableSorter
   animatable={true}
   columns={
@@ -145,6 +319,7 @@ exports[`TableSorter Renders 1`] = `
   <ThemeProvider
     theme={
       Object {
+        "alternative-background-color": "#E9E7E7",
         "black": "#000000",
         "border-radius-base": "4px",
         "border-radius-large": "6px",
@@ -164,15 +339,18 @@ exports[`TableSorter Renders 1`] = `
         "grid-float-breakpoint": "768px",
         "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
         "grid-gutter-width": "16px",
+        "inverted-font-color": "#FFFFFF",
         "line-height-large": "1.3333333",
         "line-height-small": "1.5",
+        "main-active-color": "#a3dff3",
         "main-background-color": "#FFFFFF",
-        "main-background-other-color": "#E9E7E7",
+        "main-border-color": "#78706A",
+        "main-border-radius": "4px",
         "main-disabled-color": "#B7B1A9",
         "main-error-color": "#BA3A26",
         "main-focus-color": "#254a6c",
         "main-font-color": "#3E3832",
-        "main-hover-color": "#66CBEC",
+        "main-hover-color": "#e0f4fb",
         "main-interactive-color": "#0067C5",
         "main-success-color": "#06893A",
         "main-warning-color": "#FF9100",
@@ -271,9 +449,6 @@ exports[`TableSorter Renders 1`] = `
         "padding-small-vertical": "5px",
         "padding-xs-horizontal": "5px",
         "padding-xs-vertical": "1px",
-        "pension-orange": "rgb(255, 167, 51)",
-        "pension-orange-alpha": "rgba(255, 167, 51, 0.5)",
-        "pension-orange-alpha-80": "rgba(255, 167, 51, 0.8)",
         "pinkErrorBg": "#F3E3E3",
         "redError": "#BA3A26",
         "redErrorDarken20": "#a13928",
@@ -305,11 +480,11 @@ exports[`TableSorter Renders 1`] = `
       className="tabell"
     >
       <div
-        className="sc-AxhCb ejg tabell"
+        className="c0 c1 tabell"
       >
         <styled.div>
           <div
-            className="sc-AxhUy hPxmXL"
+            className="c2 c3"
           >
             <styled.table
               cellSpacing="0"
@@ -317,7 +492,7 @@ exports[`TableSorter Renders 1`] = `
             >
               <table
                 cellSpacing="0"
-                className="sc-AxheI bWJbzc c-tableSorter__table"
+                className="c4 c5 c-tableSorter__table"
               >
                 <thead>
                   <tr
@@ -366,7 +541,7 @@ exports[`TableSorter Renders 1`] = `
                         </Checkbox>
                         <styled.div>
                           <div
-                            className="sc-AxmLO fIphuD"
+                            className="c6 c7"
                           >
                             <View
                               className="c-tableSorter___seefilters-icon"
@@ -413,12 +588,12 @@ exports[`TableSorter Renders 1`] = `
                         onClick={[Function]}
                       >
                         <Lenke
-                          className="sc-AxiKw wVNWB"
+                          className="c8 c9"
                           href="#"
                           onClick={[Function]}
                         >
                           <a
-                            className="lenke sc-AxiKw wVNWB"
+                            className="lenke c8 c9"
                             href="#"
                             onClick={[Function]}
                           >
@@ -438,12 +613,12 @@ exports[`TableSorter Renders 1`] = `
                         onClick={[Function]}
                       >
                         <Lenke
-                          className="sc-AxiKw wVNWB"
+                          className="c8 c9"
                           href="#"
                           onClick={[Function]}
                         >
                           <a
-                            className="lenke sc-AxiKw wVNWB"
+                            className="lenke c8 c9"
                             href="#"
                             onClick={[Function]}
                           >
@@ -463,12 +638,12 @@ exports[`TableSorter Renders 1`] = `
                         onClick={[Function]}
                       >
                         <Lenke
-                          className="sc-AxiKw wVNWB"
+                          className="c8 c9"
                           href="#"
                           onClick={[Function]}
                         >
                           <a
-                            className="lenke sc-AxiKw wVNWB"
+                            className="lenke c8 c9"
                             href="#"
                             onClick={[Function]}
                           >
@@ -895,7 +1070,7 @@ exports[`TableSorter Renders 1`] = `
             </styled.table>
             <styled.div>
               <div
-                className="sc-Axmtr evdzQn"
+                className="c10 c11"
               >
                 <b
                   currentPage={1}
@@ -907,6 +1082,7 @@ exports[`TableSorter Renders 1`] = `
                   <ThemeProvider
                     theme={
                       Object {
+                        "alternative-background-color": "#E9E7E7",
                         "black": "#000000",
                         "border-radius-base": "4px",
                         "border-radius-large": "6px",
@@ -926,15 +1102,18 @@ exports[`TableSorter Renders 1`] = `
                         "grid-float-breakpoint": "768px",
                         "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
                         "grid-gutter-width": "16px",
+                        "inverted-font-color": "#FFFFFF",
                         "line-height-large": "1.3333333",
                         "line-height-small": "1.5",
+                        "main-active-color": "#a3dff3",
                         "main-background-color": "#FFFFFF",
-                        "main-background-other-color": "#E9E7E7",
+                        "main-border-color": "#78706A",
+                        "main-border-radius": "4px",
                         "main-disabled-color": "#B7B1A9",
                         "main-error-color": "#BA3A26",
                         "main-focus-color": "#254a6c",
                         "main-font-color": "#3E3832",
-                        "main-hover-color": "#66CBEC",
+                        "main-hover-color": "#e0f4fb",
                         "main-interactive-color": "#0067C5",
                         "main-success-color": "#06893A",
                         "main-warning-color": "#FF9100",
@@ -1033,9 +1212,6 @@ exports[`TableSorter Renders 1`] = `
                         "padding-small-vertical": "5px",
                         "padding-xs-horizontal": "5px",
                         "padding-xs-vertical": "1px",
-                        "pension-orange": "rgb(255, 167, 51)",
-                        "pension-orange-alpha": "rgba(255, 167, 51, 0.5)",
-                        "pension-orange-alpha-80": "rgba(255, 167, 51, 0.8)",
                         "pinkErrorBg": "#F3E3E3",
                         "redError": "#BA3A26",
                         "redErrorDarken20": "#a13928",
@@ -1067,7 +1243,7 @@ exports[`TableSorter Renders 1`] = `
                       className=""
                     >
                       <div
-                        className="sc-AxjAm eZXXkv"
+                        className="c12 c13"
                       >
                         <Styled(r)
                           className="c-pagination__prev-button"
@@ -1077,14 +1253,14 @@ exports[`TableSorter Renders 1`] = `
                           onClick={[Function]}
                         >
                           <r
-                            className="sc-AxirZ liJMjh c-pagination__prev-button"
+                            className="c14 c15 c-pagination__prev-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="sc-AxirZ liJMjh c-pagination__prev-button"
+                              className="c14 c15 c-pagination__prev-button"
                               disabled={true}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1095,7 +1271,7 @@ exports[`TableSorter Renders 1`] = `
                               type="flat"
                             >
                               <button
-                                className="knapp sc-AxirZ liJMjh c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
+                                className="knapp c14 c15 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
                                 disabled={true}
                                 onClick={[Function]}
                                 type="submit"
@@ -1113,14 +1289,14 @@ exports[`TableSorter Renders 1`] = `
                           onClick={[Function]}
                         >
                           <r
-                            className="sc-AxirZ liJMjh c-pagination__page-button"
+                            className="c14 c15 c-pagination__page-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="sc-AxirZ liJMjh c-pagination__page-button"
+                              className="c14 c15 c-pagination__page-button"
                               disabled={true}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1131,7 +1307,7 @@ exports[`TableSorter Renders 1`] = `
                               type="flat"
                             >
                               <button
-                                className="knapp sc-AxirZ liJMjh c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
                                 disabled={true}
                                 onClick={[Function]}
                                 type="submit"
@@ -1149,14 +1325,14 @@ exports[`TableSorter Renders 1`] = `
                           onClick={[Function]}
                         >
                           <r
-                            className="sc-AxirZ liJMjh c-pagination__page-button"
+                            className="c14 c15 c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="sc-AxirZ liJMjh c-pagination__page-button"
+                              className="c14 c15 c-pagination__page-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1167,7 +1343,7 @@ exports[`TableSorter Renders 1`] = `
                               type="flat"
                             >
                               <button
-                                className="knapp sc-AxirZ liJMjh c-pagination__page-button knapp--flat knapp--kompakt"
+                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"
@@ -1185,14 +1361,14 @@ exports[`TableSorter Renders 1`] = `
                           onClick={[Function]}
                         >
                           <r
-                            className="sc-AxirZ liJMjh c-pagination__page-button"
+                            className="c14 c15 c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="sc-AxirZ liJMjh c-pagination__page-button"
+                              className="c14 c15 c-pagination__page-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1203,7 +1379,7 @@ exports[`TableSorter Renders 1`] = `
                               type="flat"
                             >
                               <button
-                                className="knapp sc-AxirZ liJMjh c-pagination__page-button knapp--flat knapp--kompakt"
+                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"
@@ -1221,14 +1397,14 @@ exports[`TableSorter Renders 1`] = `
                           onClick={[Function]}
                         >
                           <r
-                            className="sc-AxirZ liJMjh c-pagination__next-button"
+                            className="c14 c15 c-pagination__next-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="sc-AxirZ liJMjh c-pagination__next-button"
+                              className="c14 c15 c-pagination__next-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1239,7 +1415,7 @@ exports[`TableSorter Renders 1`] = `
                               type="flat"
                             >
                               <button
-                                className="knapp sc-AxirZ liJMjh c-pagination__next-button knapp--flat knapp--kompakt"
+                                className="knapp c14 c15 c-pagination__next-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"

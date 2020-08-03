@@ -11,7 +11,7 @@ import View from './resources/View'
 import Pagination from 'paginering'
 import { Column, Item, Items, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
-import { theme, themeHighContrast } from 'nav-styled-component-theme'
+import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
 import md5 from 'md5'
 import './index.css'
 import 'rc-tooltip/assets/bootstrap_white.css'
@@ -30,9 +30,9 @@ const slideInFromLeft = keyframes`
 export const HighContrastLink = styled(Lenke)`
   display: flex;
   align-items: center;
-  font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
-  line-height: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
-  color: ${({ theme }: any) => theme['main-interactive-color']} !important;
+  font-size: ${({ theme }) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+  line-height: ${({ theme }) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
+  color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
 `
 
 export const TableSorterDiv = styled.div`
@@ -62,10 +62,10 @@ export const TableSorterDiv = styled.div`
 
   tbody {
     tr:nth-child(odd) {
-      background: ${({ theme }: any) => theme['main-background-color']};
+      background: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
     }
     tr:nth-child(even) {
-      background: ${({ theme }: any) => theme['main-background-other-color']};   
+      background: ${({ theme }) => theme[themeKeys.ALTERNATIVE_BACKGROUND_COLOR]};   
     }
   }
   
@@ -93,10 +93,10 @@ export const TableSorterDiv = styled.div`
   }
   
   .tabell__tr--valgt td {
-    background: ${({ theme }: any) => theme['main-interactive-color']} !important;
-    color: ${({ theme }: any) => theme['main-background-color']} !important;
+    background: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+    color: ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
     * {
-      color:  ${({ theme }: any) => theme['main-background-color']} !important;
+      color:  ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
     }
   }
 `
