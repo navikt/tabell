@@ -3,6 +3,7 @@ import React from 'react'
 export interface Item {
   key: string
   selected ?: boolean
+  disabled ?: boolean
   [k: string]: any
 }
 

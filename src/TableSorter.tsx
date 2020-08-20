@@ -99,6 +99,14 @@ export const TableSorterDiv = styled.div`
       color:  ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
     }
   }
+  
+   .tabell__tr--disabled td {
+    background: ${({ theme }: any) => theme[themeKeys.MAIN_DISABLED_COLOR]} !important;
+    color: ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
+    * {
+      color:  ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
+    }
+  }
 `
 export const ContentDiv = styled.div`
   position: relative;
@@ -193,7 +201,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   const onCheckAllClicked = (): void => {
     const newItems: Items = _items.map(item => ({
       ...item,
-      selected: !checkAll
+      selected: item.disabled ? false : !checkAll
     }))
 
     if (_.isFunction(onRowSelectChange)) {
@@ -260,13 +268,15 @@ const TableSorter: React.FC<TableSorterProps> = ({
           style={{ animationDelay: (0.04 * index) + 's' }}
           className={classNames({
             slideAnimate: animatable,
-            'tabell__tr--valgt': selectable && item.selected
+            'tabell__tr--valgt': selectable && item.selected,
+            'tabell__tr--disabled': item.disabled
           })}
         >
           <td>
             {selectable && (
               <Checkbox
                 id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
+                disabled={item.disabled || false}
                 data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
                 label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
                   onCheckClicked(item)}

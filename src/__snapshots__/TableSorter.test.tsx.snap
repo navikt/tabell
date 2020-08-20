@@ -132,6 +132,15 @@ tabell.g3[id="c8"] {
   color: #FFFFFF !important;
 }
 
+.c1 .tabell__tr--disabled td {
+  background: #B7B1A9 !important;
+  color: #FFFFFF !important;
+}
+
+.c1 .tabell__tr--disabled td * {
+  color: #FFFFFF !important;
+}
+
 tabell.g4[id="c0"] {
   content: "c1,";
 }
@@ -669,6 +678,7 @@ tabell.g9[id="c6"] {
                       <Checkbox
                         checked={false}
                         data-testid="c-tableSorter__row-checkbox-id-01-test"
+                        disabled={false}
                         id="c-tableSorter__row-checkbox-id-01-test"
                         label="Velg 01"
                         onChange={[Function]}
@@ -681,6 +691,7 @@ tabell.g9[id="c6"] {
                             checked={false}
                             className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-01-test"
+                            disabled={false}
                             id="c-tableSorter__row-checkbox-id-01-test"
                             onChange={[Function]}
                             type="checkbox"
@@ -751,6 +762,7 @@ tabell.g9[id="c6"] {
                       <Checkbox
                         checked={false}
                         data-testid="c-tableSorter__row-checkbox-id-02-test"
+                        disabled={false}
                         id="c-tableSorter__row-checkbox-id-02-test"
                         label="Velg 02"
                         onChange={[Function]}
@@ -763,6 +775,7 @@ tabell.g9[id="c6"] {
                             checked={false}
                             className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-02-test"
+                            disabled={false}
                             id="c-tableSorter__row-checkbox-id-02-test"
                             onChange={[Function]}
                             type="checkbox"
@@ -833,6 +846,7 @@ tabell.g9[id="c6"] {
                       <Checkbox
                         checked={false}
                         data-testid="c-tableSorter__row-checkbox-id-03-test"
+                        disabled={false}
                         id="c-tableSorter__row-checkbox-id-03-test"
                         label="Velg 03"
                         onChange={[Function]}
@@ -845,6 +859,7 @@ tabell.g9[id="c6"] {
                             checked={false}
                             className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-03-test"
+                            disabled={false}
                             id="c-tableSorter__row-checkbox-id-03-test"
                             onChange={[Function]}
                             type="checkbox"
@@ -915,6 +930,7 @@ tabell.g9[id="c6"] {
                       <Checkbox
                         checked={false}
                         data-testid="c-tableSorter__row-checkbox-id-04-test"
+                        disabled={false}
                         id="c-tableSorter__row-checkbox-id-04-test"
                         label="Velg 04"
                         onChange={[Function]}
@@ -927,6 +943,7 @@ tabell.g9[id="c6"] {
                             checked={false}
                             className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-04-test"
+                            disabled={false}
                             id="c-tableSorter__row-checkbox-id-04-test"
                             onChange={[Function]}
                             type="checkbox"
@@ -997,6 +1014,7 @@ tabell.g9[id="c6"] {
                       <Checkbox
                         checked={false}
                         data-testid="c-tableSorter__row-checkbox-id-05-test"
+                        disabled={false}
                         id="c-tableSorter__row-checkbox-id-05-test"
                         label="Velg 05"
                         onChange={[Function]}
@@ -1009,6 +1027,7 @@ tabell.g9[id="c6"] {
                             checked={false}
                             className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-05-test"
+                            disabled={false}
                             id="c-tableSorter__row-checkbox-id-05-test"
                             onChange={[Function]}
                             type="checkbox"
