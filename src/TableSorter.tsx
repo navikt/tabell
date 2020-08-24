@@ -216,8 +216,9 @@ const TableSorter: React.FC<TableSorterProps> = ({
       ...item,
       selected: _.isEqual(changedItem, item) ? !item.selected : item.selected
     }))
+    const onlySelectedItems = newItems.filter(item => item.selected)
     if (_.isFunction(onRowSelectChange)) {
-      onRowSelectChange(newItems)
+      onRowSelectChange(onlySelectedItems)
     }
     setItems(newItems)
   }

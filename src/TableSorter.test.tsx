@@ -120,18 +120,28 @@ describe('TableSorter', () => {
     })))
   })
 
-  it('onCheckClicked triggered', () => {
+  it('onCheckClicked triggered to select and deselect', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
-    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
-      ...item,
-      selected: index === 0 ? true : undefined
-    })))
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
+      [{key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}}]
+    )
     wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
-    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item, index) => ({
-      ...item,
-      selected: index === 0 ? false : undefined
-    })))
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
+  })
+
+  it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
+    expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', {target: {checked: true}})
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
+      {key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}}
+    ])
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', {target: {checked: true}})
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
+      {key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}},
+      {key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: {label: 'Object 02'}}
+    ])
   })
 
   it('handleFilterTextChange()', () => {
