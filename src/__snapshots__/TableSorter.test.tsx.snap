@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TableSorter Renders 1`] = `
-.c13 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,28 +12,28 @@ exports[`TableSorter Renders 1`] = `
   align-items: baseline;
 }
 
-tabell.g1[id="c12"] {
-  content: "c13,";
+tabell.g1[id="c14"] {
+  content: "c15,";
 }
 
-.c15 {
+.c17 {
   color: #0067C5;
   background-color: transparent;
 }
 
-.c15:hover:not(:disabled) {
+.c17:hover:not(:disabled) {
   color: #0067C5;
   border-color: #0067C5;
 }
 
-.c15:disabled {
+.c17:disabled {
   background-color: #B7B1A9;
   color: #3E3832;
   border: none;
 }
 
-tabell.g2[id="c14"] {
-  content: "c15,";
+tabell.g2[id="c16"] {
+  content: "c17,";
 }
 
 .c9 {
@@ -141,7 +141,7 @@ tabell.g3[id="c8"] {
   color: #FFFFFF !important;
 }
 
-tabell.g4[id="c0"] {
+tabell.g5[id="c0"] {
   content: "c1,";
 }
 
@@ -149,7 +149,7 @@ tabell.g4[id="c0"] {
   position: relative;
 }
 
-tabell.g5[id="c2"] {
+tabell.g6[id="c2"] {
   content: "c3,";
 }
 
@@ -157,11 +157,11 @@ tabell.g5[id="c2"] {
   width: 100%;
 }
 
-tabell.g7[id="c4"] {
+tabell.g8[id="c4"] {
   content: "c5,";
 }
 
-.c11 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -171,8 +171,8 @@ tabell.g7[id="c4"] {
   flex-direction: row-reverse;
 }
 
-tabell.g8[id="c10"] {
-  content: "c11,";
+tabell.g9[id="c12"] {
+  content: "c13,";
 }
 
 .c7 {
@@ -180,8 +180,23 @@ tabell.g8[id="c10"] {
   cursor: pointer;
 }
 
-tabell.g9[id="c6"] {
+tabell.g10[id="c6"] {
   content: "c7,";
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+tabell.g11[id="c10"] {
+  content: "c11,";
 }
 
 <TableSorter
@@ -217,6 +232,7 @@ tabell.g9[id="c6"] {
           "label": "Object 01",
         },
         "string": "String 01",
+        "visible": true,
       },
       Object {
         "date": 2020-02-01T23:00:00.000Z,
@@ -225,6 +241,7 @@ tabell.g9[id="c6"] {
           "label": "Object 02",
         },
         "string": "String 02",
+        "visible": true,
       },
       Object {
         "date": 2020-02-02T23:00:00.000Z,
@@ -233,6 +250,7 @@ tabell.g9[id="c6"] {
           "label": "Object 03",
         },
         "string": "String 03",
+        "visible": true,
       },
       Object {
         "date": 2020-02-03T23:00:00.000Z,
@@ -241,6 +259,7 @@ tabell.g9[id="c6"] {
           "label": "Object 04",
         },
         "string": "String 04",
+        "visible": true,
       },
       Object {
         "date": 2020-02-04T23:00:00.000Z,
@@ -249,6 +268,7 @@ tabell.g9[id="c6"] {
           "label": "Object 05",
         },
         "string": "String 05",
+        "visible": true,
       },
       Object {
         "date": 2020-02-05T23:00:00.000Z,
@@ -257,6 +277,7 @@ tabell.g9[id="c6"] {
           "label": "Object 06",
         },
         "string": "String 06",
+        "visible": true,
       },
       Object {
         "date": 2020-02-06T23:00:00.000Z,
@@ -265,6 +286,7 @@ tabell.g9[id="c6"] {
           "label": "Object 07",
         },
         "string": "String 07",
+        "visible": true,
       },
       Object {
         "date": 2020-02-07T23:00:00.000Z,
@@ -273,6 +295,7 @@ tabell.g9[id="c6"] {
           "label": "Object 08",
         },
         "string": "String 08",
+        "visible": true,
       },
       Object {
         "date": 2020-02-08T23:00:00.000Z,
@@ -281,6 +304,7 @@ tabell.g9[id="c6"] {
           "label": "Object 09",
         },
         "string": "String 09",
+        "visible": true,
       },
       Object {
         "date": 2020-02-09T23:00:00.000Z,
@@ -289,6 +313,7 @@ tabell.g9[id="c6"] {
           "label": "Object 10",
         },
         "string": "String 10",
+        "visible": true,
       },
       Object {
         "date": 2020-02-10T23:00:00.000Z,
@@ -297,6 +322,7 @@ tabell.g9[id="c6"] {
           "label": "Object 11",
         },
         "string": "String 11",
+        "visible": true,
       },
     ]
   }
@@ -325,7 +351,7 @@ tabell.g9[id="c6"] {
   selectable={true}
   sortable={true}
 >
-  <ThemeProvider
+  <Component
     theme={
       Object {
         "alternative-background-color": "#E9E7E7",
@@ -675,35 +701,41 @@ tabell.g9[id="c6"] {
                     }
                   >
                     <td>
-                      <Checkbox
-                        checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-01-test"
-                        disabled={false}
-                        id="c-tableSorter__row-checkbox-id-01-test"
-                        label="Velg 01"
-                        onChange={[Function]}
-                      >
+                      <styled.div>
                         <div
-                          className="skjemaelement"
+                          className="c10 c11"
                         >
-                          <input
-                            aria-invalid={false}
+                          <Checkbox
                             checked={false}
-                            className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-01-test"
                             disabled={false}
                             id="c-tableSorter__row-checkbox-id-01-test"
+                            label="Velg 01"
                             onChange={[Function]}
-                            type="checkbox"
-                          />
-                          <label
-                            className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-01-test"
                           >
-                            Velg 01
-                          </label>
+                            <div
+                              className="skjemaelement"
+                            >
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                data-testid="c-tableSorter__row-checkbox-id-01-test"
+                                disabled={false}
+                                id="c-tableSorter__row-checkbox-id-01-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__row-checkbox-id-01-test"
+                              >
+                                Velg 01
+                              </label>
+                            </div>
+                          </Checkbox>
                         </div>
-                      </Checkbox>
+                      </styled.div>
                     </td>
                     <td
                       className=""
@@ -759,35 +791,41 @@ tabell.g9[id="c6"] {
                     }
                   >
                     <td>
-                      <Checkbox
-                        checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-02-test"
-                        disabled={false}
-                        id="c-tableSorter__row-checkbox-id-02-test"
-                        label="Velg 02"
-                        onChange={[Function]}
-                      >
+                      <styled.div>
                         <div
-                          className="skjemaelement"
+                          className="c10 c11"
                         >
-                          <input
-                            aria-invalid={false}
+                          <Checkbox
                             checked={false}
-                            className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-02-test"
                             disabled={false}
                             id="c-tableSorter__row-checkbox-id-02-test"
+                            label="Velg 02"
                             onChange={[Function]}
-                            type="checkbox"
-                          />
-                          <label
-                            className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-02-test"
                           >
-                            Velg 02
-                          </label>
+                            <div
+                              className="skjemaelement"
+                            >
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                data-testid="c-tableSorter__row-checkbox-id-02-test"
+                                disabled={false}
+                                id="c-tableSorter__row-checkbox-id-02-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__row-checkbox-id-02-test"
+                              >
+                                Velg 02
+                              </label>
+                            </div>
+                          </Checkbox>
                         </div>
-                      </Checkbox>
+                      </styled.div>
                     </td>
                     <td
                       className=""
@@ -843,35 +881,41 @@ tabell.g9[id="c6"] {
                     }
                   >
                     <td>
-                      <Checkbox
-                        checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-03-test"
-                        disabled={false}
-                        id="c-tableSorter__row-checkbox-id-03-test"
-                        label="Velg 03"
-                        onChange={[Function]}
-                      >
+                      <styled.div>
                         <div
-                          className="skjemaelement"
+                          className="c10 c11"
                         >
-                          <input
-                            aria-invalid={false}
+                          <Checkbox
                             checked={false}
-                            className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-03-test"
                             disabled={false}
                             id="c-tableSorter__row-checkbox-id-03-test"
+                            label="Velg 03"
                             onChange={[Function]}
-                            type="checkbox"
-                          />
-                          <label
-                            className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-03-test"
                           >
-                            Velg 03
-                          </label>
+                            <div
+                              className="skjemaelement"
+                            >
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                data-testid="c-tableSorter__row-checkbox-id-03-test"
+                                disabled={false}
+                                id="c-tableSorter__row-checkbox-id-03-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__row-checkbox-id-03-test"
+                              >
+                                Velg 03
+                              </label>
+                            </div>
+                          </Checkbox>
                         </div>
-                      </Checkbox>
+                      </styled.div>
                     </td>
                     <td
                       className=""
@@ -927,35 +971,41 @@ tabell.g9[id="c6"] {
                     }
                   >
                     <td>
-                      <Checkbox
-                        checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-04-test"
-                        disabled={false}
-                        id="c-tableSorter__row-checkbox-id-04-test"
-                        label="Velg 04"
-                        onChange={[Function]}
-                      >
+                      <styled.div>
                         <div
-                          className="skjemaelement"
+                          className="c10 c11"
                         >
-                          <input
-                            aria-invalid={false}
+                          <Checkbox
                             checked={false}
-                            className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-04-test"
                             disabled={false}
                             id="c-tableSorter__row-checkbox-id-04-test"
+                            label="Velg 04"
                             onChange={[Function]}
-                            type="checkbox"
-                          />
-                          <label
-                            className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-04-test"
                           >
-                            Velg 04
-                          </label>
+                            <div
+                              className="skjemaelement"
+                            >
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                data-testid="c-tableSorter__row-checkbox-id-04-test"
+                                disabled={false}
+                                id="c-tableSorter__row-checkbox-id-04-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__row-checkbox-id-04-test"
+                              >
+                                Velg 04
+                              </label>
+                            </div>
+                          </Checkbox>
                         </div>
-                      </Checkbox>
+                      </styled.div>
                     </td>
                     <td
                       className=""
@@ -1011,35 +1061,41 @@ tabell.g9[id="c6"] {
                     }
                   >
                     <td>
-                      <Checkbox
-                        checked={false}
-                        data-testid="c-tableSorter__row-checkbox-id-05-test"
-                        disabled={false}
-                        id="c-tableSorter__row-checkbox-id-05-test"
-                        label="Velg 05"
-                        onChange={[Function]}
-                      >
+                      <styled.div>
                         <div
-                          className="skjemaelement"
+                          className="c10 c11"
                         >
-                          <input
-                            aria-invalid={false}
+                          <Checkbox
                             checked={false}
-                            className="skjemaelement__input checkboks"
                             data-testid="c-tableSorter__row-checkbox-id-05-test"
                             disabled={false}
                             id="c-tableSorter__row-checkbox-id-05-test"
+                            label="Velg 05"
                             onChange={[Function]}
-                            type="checkbox"
-                          />
-                          <label
-                            className="skjemaelement__label"
-                            htmlFor="c-tableSorter__row-checkbox-id-05-test"
                           >
-                            Velg 05
-                          </label>
+                            <div
+                              className="skjemaelement"
+                            >
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                data-testid="c-tableSorter__row-checkbox-id-05-test"
+                                disabled={false}
+                                id="c-tableSorter__row-checkbox-id-05-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__row-checkbox-id-05-test"
+                              >
+                                Velg 05
+                              </label>
+                            </div>
+                          </Checkbox>
                         </div>
-                      </Checkbox>
+                      </styled.div>
                     </td>
                     <td
                       className=""
@@ -1089,7 +1145,7 @@ tabell.g9[id="c6"] {
             </styled.table>
             <styled.div>
               <div
-                className="c10 c11"
+                className="c12 c13"
               >
                 <b
                   currentPage={1}
@@ -1098,7 +1154,7 @@ tabell.g9[id="c6"] {
                   numberOfItems={11}
                   onChange={[Function]}
                 >
-                  <ThemeProvider
+                  <Component
                     theme={
                       Object {
                         "alternative-background-color": "#E9E7E7",
@@ -1262,7 +1318,7 @@ tabell.g9[id="c6"] {
                       className=""
                     >
                       <div
-                        className="c12 c13"
+                        className="c14 c15"
                       >
                         <Styled(r)
                           className="c-pagination__prev-button"
@@ -1272,14 +1328,14 @@ tabell.g9[id="c6"] {
                           onClick={[Function]}
                         >
                           <r
-                            className="c14 c15 c-pagination__prev-button"
+                            className="c16 c17 c-pagination__prev-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="c14 c15 c-pagination__prev-button"
+                              className="c16 c17 c-pagination__prev-button"
                               disabled={true}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1290,7 +1346,7 @@ tabell.g9[id="c6"] {
                               type="flat"
                             >
                               <button
-                                className="knapp c14 c15 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
+                                className="knapp c16 c17 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
                                 disabled={true}
                                 onClick={[Function]}
                                 type="submit"
@@ -1308,14 +1364,14 @@ tabell.g9[id="c6"] {
                           onClick={[Function]}
                         >
                           <r
-                            className="c14 c15 c-pagination__page-button"
+                            className="c16 c17 c-pagination__page-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="c14 c15 c-pagination__page-button"
+                              className="c16 c17 c-pagination__page-button"
                               disabled={true}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1326,7 +1382,7 @@ tabell.g9[id="c6"] {
                               type="flat"
                             >
                               <button
-                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
                                 disabled={true}
                                 onClick={[Function]}
                                 type="submit"
@@ -1344,14 +1400,14 @@ tabell.g9[id="c6"] {
                           onClick={[Function]}
                         >
                           <r
-                            className="c14 c15 c-pagination__page-button"
+                            className="c16 c17 c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="c14 c15 c-pagination__page-button"
+                              className="c16 c17 c-pagination__page-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1362,7 +1418,7 @@ tabell.g9[id="c6"] {
                               type="flat"
                             >
                               <button
-                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--kompakt"
+                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"
@@ -1380,14 +1436,14 @@ tabell.g9[id="c6"] {
                           onClick={[Function]}
                         >
                           <r
-                            className="c14 c15 c-pagination__page-button"
+                            className="c16 c17 c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="c14 c15 c-pagination__page-button"
+                              className="c16 c17 c-pagination__page-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1398,7 +1454,7 @@ tabell.g9[id="c6"] {
                               type="flat"
                             >
                               <button
-                                className="knapp c14 c15 c-pagination__page-button knapp--flat knapp--kompakt"
+                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"
@@ -1416,14 +1472,14 @@ tabell.g9[id="c6"] {
                           onClick={[Function]}
                         >
                           <r
-                            className="c14 c15 c-pagination__next-button"
+                            className="c16 c17 c-pagination__next-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
                               autoDisableVedSpinner={false}
-                              className="c14 c15 c-pagination__next-button"
+                              className="c16 c17 c-pagination__next-button"
                               disabled={false}
                               htmlType="submit"
                               inaktivKlasseVedDisabled={false}
@@ -1434,7 +1490,7 @@ tabell.g9[id="c6"] {
                               type="flat"
                             >
                               <button
-                                className="knapp c14 c15 c-pagination__next-button knapp--flat knapp--kompakt"
+                                className="knapp c16 c17 c-pagination__next-button knapp--flat knapp--kompakt"
                                 disabled={false}
                                 onClick={[Function]}
                                 type="submit"
@@ -1446,7 +1502,7 @@ tabell.g9[id="c6"] {
                         </Styled(r)>
                       </div>
                     </styled.div>
-                  </ThemeProvider>
+                  </Component>
                 </b>
               </div>
             </styled.div>
@@ -1454,6 +1510,6 @@ tabell.g9[id="c6"] {
         </styled.div>
       </div>
     </styled.div>
-  </ThemeProvider>
+  </Component>
 </TableSorter>
 `;

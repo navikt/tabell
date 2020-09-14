@@ -124,7 +124,7 @@ describe('TableSorter', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
-      [{key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}}]
+      [{ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }]
     )
     wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
@@ -133,14 +133,14 @@ describe('TableSorter', () => {
   it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', {target: {checked: true}})
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-      {key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}}
+      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }
     ])
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', {target: {checked: true}})
+    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-      {key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: {label: 'Object 01'}},
-      {key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: {label: 'Object 02'}}
+      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true },
+      { key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, visible: true }
     ])
   })
 

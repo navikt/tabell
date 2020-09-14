@@ -9,6 +9,7 @@ import { Normaltekst } from 'nav-frontend-typografi'
 import Spinner from 'nav-frontend-spinner'
 import View from './resources/View'
 import Pagination from 'paginering'
+import { Flatknapp } from 'nav-frontend-knapper'
 import { Column, Item, Items, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
@@ -34,7 +35,14 @@ export const HighContrastLink = styled(Lenke)`
   line-height: ${({ theme }) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
   color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
 `
-
+export const HighContrastKnapp = styled(Flatknapp)`
+  background-color: ${({ theme }) => theme.type === 'themeHighContrast' ? theme.black : 'inherit'};
+  color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
+    color: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
+  }
+`
 export const TableSorterDiv = styled.div`
   display: block !important;
   * {
@@ -133,6 +141,10 @@ const FilterIcon = styled.div`
   margin-left: 0.5rem;
   cursor: pointer;
 `
+const FlexDiv = styled.div`
+  display: flex; 
+  align-items: center;
+`
 const TableSorter: React.FC<TableSorterProps> = ({
   animatable = true,
   className,
@@ -156,7 +168,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
 }: TableSorterProps): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
   const [_id] = useState<string>(id || md5('' + new Date().getTime()))
-  const [_items, setItems] = useState<Items>(items)
+  const [_items, setItems] = useState<Items |undefined>(undefined)
   const [_columns, setColumns] = useState<Array<Column>>(columns)
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
@@ -174,12 +186,37 @@ const TableSorter: React.FC<TableSorterProps> = ({
     none: 'none'
   }
 
+  const preProcess = (items: Items): Items => {
+    const openSubrows = {} as any
+
+    return items.map(item => {
+      if (item.hasSubrows) {
+        if (!Object.prototype.hasOwnProperty.call(item, 'openSubrows')) {
+          item.openSubrows = false
+        }
+        openSubrows[item.key] = item.openSubrows
+      }
+      if (!Object.prototype.hasOwnProperty.call(item, 'visible')) {
+        if (item.parentKey) {
+          item.visible = openSubrows[item.parentKey].openSubrows
+        } else {
+          item.visible = true
+        }
+      }
+      return item
+    })
+  }
+
+  const _setItems = (items: Items) => {
+    setItems(preProcess(items))
+  }
+
   useEffect(() => {
     if (!_.isEqual(
       items.map((e, i) => e.key || i),
-      _items.map((e, i) => e.key || i)
+      _items?.map((e, i) => e.key || i)
     )) {
-      setItems(items)
+      _setItems(items)
     }
   }, [items, _items])
 
@@ -199,28 +236,46 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const onCheckAllClicked = (): void => {
-    const newItems: Items = _items.map(item => ({
+    const newItems: Items = _items ? items.map(item => ({
       ...item,
       selected: item.disabled ? false : !checkAll
-    }))
+    })) : []
 
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(newItems)
     }
     setCheckAll(!checkAll)
-    setItems(newItems)
+    _setItems(newItems)
+  }
+
+  const toggleSubRowOpen = (changedItem: Item) => {
+    const newItems: Items = _items!.map(item => {
+      if (changedItem.key === item.key) {
+        item.openSubrows = !item.openSubrows
+      }
+      if (changedItem.key === item.parentKey) {
+        item.visible = !item.visible
+      }
+      return item
+    })
+    _setItems(newItems)
   }
 
   const onCheckClicked = (changedItem: Item) => {
-    const newItems: Items = _items.map(item => ({
-      ...item,
-      selected: _.isEqual(changedItem, item) ? !item.selected : item.selected
-    }))
+    const newItems: Items = _items!.map(item => {
+      if (item.key === changedItem.key) {
+        item.selected = !item.selected
+      }
+      if (changedItem.hasSubrows && item.parentKey === changedItem.key) {
+        item.selected = changedItem.selected
+      }
+      return item
+    })
     const onlySelectedItems = newItems.filter(item => item.selected)
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(onlySelectedItems)
     }
-    setItems(newItems)
+    _setItems(newItems)
   }
 
   const rawRows: () => Items = () => {
@@ -257,73 +312,91 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const rows = (items: Items) => {
-    return items.filter((item, index) => {
-      return pagination
-        ? ((currentPage - 1) * itemsPerPage <= index && index < (currentPage * itemsPerPage))
-        : true
-    }).map((item, index) => {
-      return (
-        <tr
-          key={item.key || index}
-          aria-selected={selectable && item.selected === true}
-          style={{ animationDelay: (0.04 * index) + 's' }}
-          className={classNames({
-            slideAnimate: animatable,
-            'tabell__tr--valgt': selectable && item.selected,
-            'tabell__tr--disabled': item.disabled
-          })}
-        >
-          <td>
-            {selectable && (
-              <Checkbox
-                id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
-                disabled={item.disabled || false}
-                data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
-                label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
-                  onCheckClicked(item)}
-              />
-            )}
-          </td>
-          {_columns.map((column, index2) => {
-            const value: any = item[column.id]
-            switch (column.type) {
-              case 'date':
-                return (
-                  <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
-                    {_.isFunction(column.renderCell)
-                      ? column.renderCell(item, value, context)
-                      : <Normaltekst>{_.isFunction(value.toLocaleDateString) ? value.toLocaleDateString() : value.toString()}</Normaltekst>}
-                  </td>
-                )
-              case 'object':
-                return (
-                  <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
-                    {_.isFunction(column.renderCell)
-                      ? column.renderCell(item, value, context)
-                      : <Normaltekst>JSON.stringify(value)</Normaltekst>}
-                  </td>
-                )
-              default:
-                return (
-                  <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
-                    {_.isFunction(column.renderCell)
-                      ? column.renderCell(item, value, context)
-                      : (
-                        <Normaltekst>
-                          {labels[column.id] && labels[column.id][value] ? (
-                            <Tooltip placement='top' trigger={['hover']} overlay={<span>{labels[column.id][value]}</span>}>
-                              <span>{value}</span>
-                            </Tooltip>
-                          ) : <span>{value}</span>}
-                        </Normaltekst>
-                      )}
-                  </td>
-                )
-            }
-          })}
-        </tr>
-      )
-    })
+    return items
+      .filter(item => item.visible)
+      .filter((item, index) => {
+        return pagination
+          ? ((currentPage - 1) * itemsPerPage <= index && index < (currentPage * itemsPerPage))
+          : true
+      }).map((item, index) => {
+        return (
+          <tr
+            key={item.key || index}
+            aria-selected={selectable && item.selected === true}
+            style={{ animationDelay: (0.04 * index) + 's' }}
+            className={classNames({
+              slideAnimate: animatable,
+              'tabell__tr--valgt': selectable && item.selected,
+              'tabell__tr--disabled': item.disabled
+            })}
+          >
+            <td>
+              <FlexDiv>
+                {item.parentKey && (
+                  <div style={{ marginRight: '2rem' }}>&nbsp;</div>
+                )}
+                {selectable && (
+                  <Checkbox
+                    id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
+                    disabled={item.disabled || false}
+                    data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
+                    label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
+                      onCheckClicked(item)}
+                  />
+                )}
+                {item.hasSubrows && (
+                  <HighContrastKnapp
+                    mini kompakt onClick={(e) => {
+                      e.stopPropagation()
+                      e.preventDefault()
+                      toggleSubRowOpen(item)
+                    }}
+                  >
+                    {item.openSubrows ? '▼' : '►'}
+                  </HighContrastKnapp>
+                )}
+              </FlexDiv>
+            </td>
+            {_columns.map((column, index2) => {
+              const value: any = item[column.id]
+              switch (column.type) {
+                case 'date':
+                  return (
+                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                      {_.isFunction(column.renderCell)
+                        ? column.renderCell(item, value, context)
+                        : <Normaltekst>{_.isFunction(value.toLocaleDateString) ? value.toLocaleDateString() : value.toString()}</Normaltekst>}
+                    </td>
+                  )
+                case 'object':
+                  return (
+                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                      {_.isFunction(column.renderCell)
+                        ? column.renderCell(item, value, context)
+                        : <Normaltekst>JSON.stringify(value)</Normaltekst>}
+                    </td>
+                  )
+                default:
+                  return (
+                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                      {_.isFunction(column.renderCell)
+                        ? column.renderCell(item, value, context)
+                        : (
+                          <Normaltekst>
+                            {labels[column.id] && labels[column.id][value] ? (
+                              <Tooltip placement='top' trigger={['hover']} overlay={<span>{labels[column.id][value]}</span>}>
+                                <span>{value}</span>
+                              </Tooltip>
+                            ) : <span>{value}</span>}
+                          </Normaltekst>
+                        )}
+                    </td>
+                  )
+              }
+            })}
+          </tr>
+        )
+      })
   }
 
   const handleFilterTextChange = (_column: Column, newValue: string): void => {

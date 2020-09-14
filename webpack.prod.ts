@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: {
-    index: './src/index.tsx'
+    index: './src/dist.ts'
   },
   output: {
     path: path.join(__dirname, 'lib'),

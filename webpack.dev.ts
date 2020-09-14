@@ -8,7 +8,7 @@ module.exports = {
     contentBase: './dist'
   },
   entry: {
-    index: './src/index.tsx'
+    index: './src/dist.ts'
   },
   output: {
     path: path.join(__dirname, 'lib'),
