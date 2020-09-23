@@ -25,6 +25,8 @@ export interface Sort {
   order: SortOrder
 }
 
+export type Labels = {[k in string]? : string}
+
 export interface TableSorterProps {
   animatable?: boolean
   className?: string
@@ -44,6 +46,7 @@ export interface TableSorterProps {
   searchable?: boolean
   selectable?: boolean
   sortable?: boolean
+  summary?: boolean
   sort?: Sort
 }
 

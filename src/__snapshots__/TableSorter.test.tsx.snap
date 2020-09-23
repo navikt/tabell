@@ -166,9 +166,17 @@ tabell.g8[id="c4"] {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 tabell.g9[id="c12"] {
@@ -1147,6 +1155,8 @@ tabell.g11[id="c10"] {
               <div
                 className="c12 c13"
               >
+                <div />
+                <div />
                 <b
                   currentPage={1}
                   highContrast={false}

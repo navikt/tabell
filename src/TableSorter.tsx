@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import _ from 'lodash'
 import PT from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Tooltip from 'rc-tooltip'
 import { Checkbox, Input } from 'nav-frontend-skjema'
 import Lenke from 'nav-frontend-lenker'
@@ -10,9 +10,10 @@ import Spinner from 'nav-frontend-spinner'
 import View from './resources/View'
 import Pagination from 'paginering'
 import { Flatknapp } from 'nav-frontend-knapper'
-import { Column, Item, Items, Sort, SortOrder, TableSorterProps } from './index.d'
+import { Column, Item, Items, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
+import defaultLabels from './TableSorter.labels'
 import md5 from 'md5'
 import './index.css'
 import 'rc-tooltip/assets/bootstrap_white.css'
@@ -133,9 +134,11 @@ export const LoadingDiv = styled.div`
 export const WideTable = styled.table`
   width: 100%;
 `
-const PaginationDiv = styled.div`
+const FooterDiv = styled.div`
   display: flex; 
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 const FilterIcon = styled.div`
   margin-left: 0.5rem;
@@ -164,6 +167,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   searchable = true,
   selectable = false,
   sortable = true,
+  summary = false,
   sort = { column: '', order: 'none' }
 }: TableSorterProps): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
@@ -173,6 +177,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(initialPage)
+  const _labels: Labels = { ...defaultLabels, ...labels }
 
   const sortOrder: {[k: string]: SortOrder} = {
     none: 'ascending',
@@ -207,9 +212,17 @@ const TableSorter: React.FC<TableSorterProps> = ({
     })
   }
 
-  const _setItems = (items: Items) => {
-    setItems(preProcess(items))
+  const renderPlaceholders = (template: any, values: any) => {
+    template = template.replace(/\{\{([^}]+)\}\}/g, (match: string) => {
+      match = match.slice(2, -2)
+      return values[match] || '{{' + match + '}}'
+    })
+    return template
   }
+
+  const _setItems = useCallback((items: Items) => {
+    setItems(preProcess(items))
+  }, [])
 
   useEffect(() => {
     if (!_.isEqual(
@@ -218,7 +231,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
     )) {
       _setItems(items)
     }
-  }, [items, _items])
+  }, [items, _setItems, _items])
 
   const sortColumn = (column: Column): void => {
     if (!sortable) { return }
@@ -311,6 +324,11 @@ const TableSorter: React.FC<TableSorterProps> = ({
     return sortedItems
   }
 
+  const numberOfSelectedRows = (items: Items): number => {
+    const selectedItems = items ? items.filter(item => item.visible && item.selected) : []
+    return selectedItems.length
+  }
+
   const rows = (items: Items) => {
     return items
       .filter(item => item.visible)
@@ -340,8 +358,9 @@ const TableSorter: React.FC<TableSorterProps> = ({
                     id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
                     disabled={item.disabled || false}
                     data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
-                    label={'Velg ' + item.key} checked={!!item.selected} onChange={() =>
-                      onCheckClicked(item)}
+                    label={'Velg ' + item.key} checked={!!item.selected} onChange={() => {
+                      onCheckClicked(item)
+                    }}
                   />
                 )}
                 {item.hasSubrows && (
@@ -383,8 +402,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
                         ? column.renderCell(item, value, context)
                         : (
                           <Normaltekst>
-                            {labels[column.id] && labels[column.id][value] ? (
-                              <Tooltip placement='top' trigger={['hover']} overlay={<span>{labels[column.id][value]}</span>}>
+                            {_labels[column.id] && _labels[column.id]![value] ? (
+                              <Tooltip placement='top' trigger={['hover']} overlay={<span>{_labels[column.id]![value]}</span>}>
                                 <span>{value}</span>
                               </Tooltip>
                             ) : <span>{value}</span>}
@@ -409,6 +428,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const sortedItems = rawRows()
+  const nrOfselectedRows = numberOfSelectedRows(sortedItems)
   const tableRows = rows(sortedItems)
 
   return (
@@ -490,8 +510,30 @@ const TableSorter: React.FC<TableSorterProps> = ({
             </thead>
             <tbody>{tableRows}</tbody>
           </WideTable>
-          {pagination && (
-            <PaginationDiv>
+          <FooterDiv>
+            {summary ? (
+              <>
+                <Normaltekst>
+                  {nrOfselectedRows === 0
+                    ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
+                    : renderPlaceholders(_labels.xSelectedItems, { type: _labels.type, x: nrOfselectedRows })}
+                </Normaltekst>
+                <Normaltekst>
+                  {renderPlaceholders(_labels.showXofYItems, {
+                    type: _labels.type,
+                    x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
+                      (currentPage * itemsPerPage > sortedItems.length ? sortedItems.length : currentPage * itemsPerPage)),
+                    y: sortedItems.length
+                  })}
+                </Normaltekst>
+              </>
+            ) : (
+              <>
+                <div />
+                <div />
+              </>
+            )}
+            {pagination ? (
               <Pagination
                 highContrast={highContrast}
                 itemsPerPage={itemsPerPage}
@@ -499,8 +541,10 @@ const TableSorter: React.FC<TableSorterProps> = ({
                 numberOfItems={sortedItems.length}
                 onChange={(page) => setCurrentPage(page)}
               />
-            </PaginationDiv>
-          )}
+            ) : (
+              <div />
+            )}
+          </FooterDiv>
         </ContentDiv>
       </TableSorterDiv>
     </ThemeProvider>
@@ -524,6 +568,7 @@ TableSorter.propTypes = {
   searchable: PT.bool,
   selectable: PT.bool,
   sortable: PT.bool,
+  summary: PT.bool,
   sort: PT.oneOf<Sort>([])
 }
 

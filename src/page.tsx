@@ -57,8 +57,12 @@ const Page = () => {
         animatable
         searchable
         selectable
+        summary
         sortable
         compact
+        labels={{
+          type: 'oranges'
+        }}
         columns={[
           { id: 'name', label: 'Name', type: 'string', filterText: '' },
           { id: 'date', label: 'Date', type: 'date', filterText: '' },
