@@ -10,7 +10,7 @@ import Spinner from 'nav-frontend-spinner'
 import View from './resources/View'
 import Pagination from 'paginering'
 import { Flatknapp } from 'nav-frontend-knapper'
-import { Column, Item, Items, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
+import { Column, Item, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
 import defaultLabels from './TableSorter.labels'
@@ -140,6 +140,8 @@ const FlexDiv = styled.div`
   display: flex; 
   align-items: center;
 `
+
+
 const TableSorter: React.FC<TableSorterProps> = ({
   animatable = true,
   className,
@@ -165,7 +167,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
 }: TableSorterProps): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
   const [_id] = useState<string>(id || md5('' + new Date().getTime()))
-  const [_items, setItems] = useState<Items |undefined>(undefined)
+  const [_items, setItems] = useState<Array<Item> |undefined>(undefined)
   const [_columns, setColumns] = useState<Array<Column>>(columns)
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
@@ -184,7 +186,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
     none: 'none'
   }
 
-  const preProcess = (items: Items): Items => {
+  const preProcess = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
 
     return items.map(item => {
@@ -213,13 +215,13 @@ const TableSorter: React.FC<TableSorterProps> = ({
     return template
   }
 
-  const _setItems = useCallback((items: Items) => {
+  const _setItems = useCallback((items: Array<CustomItem>) => {
     setItems(preProcess(items))
   }, [])
 
   useEffect(() => {
     if (!_.isEqual(
-      items.map((e, i) => e.key || i),
+      items.map((e: CustomItem, i: number) => e.key || i),
       _items?.map((e, i) => e.key || i)
     )) {
       _setItems(items)
@@ -242,20 +244,20 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const onCheckAllClicked = (): void => {
-    const newItems: Items = _items ? items.map(item => ({
+    const newItems: Array<CustomItem> = _items ? items.map((item: CustomItem) => ({
       ...item,
       selected: item.disabled ? false : !checkAll
     })) : []
 
     if (_.isFunction(onRowSelectChange)) {
-      onRowSelectChange(newItems)
+      onRowSelectChange(newItems.filter(item => item.selected && !item.hasSubrows))
     }
     setCheckAll(!checkAll)
     _setItems(newItems)
   }
 
-  const toggleSubRowOpen = (changedItem: Item) => {
-    const newItems: Items = _items!.map(item => {
+  const toggleSubRowOpen = (changedItem: CustomItem) => {
+    const newItems: Array<CustomItem> = _items!.map(item => {
       if (changedItem.key === item.key) {
         item.openSubrows = !item.openSubrows
       }
@@ -267,8 +269,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
     _setItems(newItems)
   }
 
-  const onCheckClicked = (changedItem: Item) => {
-    const newItems: Items = _items!.map(item => {
+  const onCheckClicked = (changedItem: CustomItem) => {
+    const newItems: Array<CustomItem> = _items!.map(item => {
       if (item.key === changedItem.key) {
         item.selected = !item.selected
       }
@@ -277,15 +279,14 @@ const TableSorter: React.FC<TableSorterProps> = ({
       }
       return item
     })
-    const onlySelectedItems = newItems.filter(item => item.selected && !item.hasSubrows)
     if (_.isFunction(onRowSelectChange)) {
-      onRowSelectChange(onlySelectedItems)
+      onRowSelectChange(newItems.filter(item => item.selected && !item.hasSubrows))
     }
     _setItems(newItems)
   }
 
-  const rawRows: () => Items = () => {
-    const filteredItems: Items = _.filter(_items, (item) => {
+  const rawRows: () => Array<CustomItem> = () => {
+    const filteredItems: Array<CustomItem> = _.filter(_items, (item: CustomItem) => {
       return _.every(_columns, (column) => {
         const filterText: string = _.isString(column.filterText) ? column.filterText.toLowerCase() : ''
         let regex
@@ -310,24 +311,24 @@ const TableSorter: React.FC<TableSorterProps> = ({
       })
     })
 
-    const sortedItems: Items = _.sortBy(filteredItems, _sort.column)
+    const sortedItems: Array<CustomItem> = _.sortBy(filteredItems, _sort.column)
     if (_sort.order === 'descending') {
       sortedItems.reverse()
     }
     return sortedItems
   }
 
-  const numberOfSelectedRows = (items: Items): number => {
-    const selectedItems = items ? items.filter(item => item.selected && !item.hasSubrows) : []
+  const numberOfSelectedRows = (items: Array<CustomItem>): number => {
+    const selectedItems = items ? items.filter((item: CustomItem) => item.selected && !item.hasSubrows) : []
     return selectedItems.length
   }
 
-  const numberOfVisibleItems = (items: Items): number => {
-    const visibleItems = items ? items.filter(item => item.visible && !item.hasSubrows) : []
+  const numberOfVisibleItems = (items: Array<CustomItem>): number => {
+    const visibleItems = items ? items.filter((item: CustomItem) => item.visible && !item.hasSubrows) : []
     return visibleItems.length
   }
 
-  const rows = (items: Items) => {
+  const rows = (items: Array<CustomItem>) => {
     return items
       .filter(item => item.visible)
       .filter((item, index) => {
@@ -379,15 +380,29 @@ const TableSorter: React.FC<TableSorterProps> = ({
               switch (column.type) {
                 case 'date':
                   return (
-                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                    <td
+                      key={index2} className={classNames({
+                        'tabell__td--sortert': sortable && _sort.column === column.id
+                      })}
+                    >
                       {_.isFunction(column.renderCell)
                         ? column.renderCell(item, value, context)
-                        : <Normaltekst>{_.isFunction(value.toLocaleDateString) ? value.toLocaleDateString() : value.toString()}</Normaltekst>}
+                        : (
+                          <Normaltekst>
+                            {_.isFunction(value.toLocaleDateString)
+                              ? value.toLocaleDateString()
+                              : value.toString()}
+                          </Normaltekst>
+                        )}
                     </td>
                   )
                 case 'object':
                   return (
-                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                    <td
+                      key={index2} className={classNames({
+                        'tabell__td--sortert': sortable && _sort.column === column.id
+                      })}
+                    >
                       {_.isFunction(column.renderCell)
                         ? column.renderCell(item, value, context)
                         : <Normaltekst>JSON.stringify(value)</Normaltekst>}
@@ -395,13 +410,23 @@ const TableSorter: React.FC<TableSorterProps> = ({
                   )
                 default:
                   return (
-                    <td key={index2} className={classNames({ 'tabell__td--sortert': sortable && _sort.column === column.id })}>
+                    <td
+                      key={index2} className={classNames({
+                        'tabell__td--sortert': sortable && _sort.column === column.id
+                      })}
+                    >
                       {_.isFunction(column.renderCell)
                         ? column.renderCell(item, value, context)
                         : (
                           <Normaltekst>
                             {_labels[column.id] && _labels[column.id]![value] ? (
-                              <Tooltip placement='top' trigger={['hover']} overlay={<span>{_labels[column.id]![value]}</span>}>
+                              <Tooltip
+                                placement='top'
+                                trigger={['hover']}
+                                overlay={
+                                  <span>{_labels[column.id]![value]}</span>
+                                }
+                              >
                                 <span>{value}</span>
                               </Tooltip>
                             ) : <span>{value}</span>}
@@ -514,18 +539,27 @@ const TableSorter: React.FC<TableSorterProps> = ({
             </tbody>
           </WideTable>
           <FooterDiv>
-            {summary ? (
+            {summary && !loading ? (
               <>
-                <Normaltekst>
-                  {nrOfselectedRows === 0
-                    ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
-                    : renderPlaceholders(_labels.xSelectedItems, { type: _labels.type, x: nrOfselectedRows })}
-                </Normaltekst>
+                {selectable ? (
+                  <Normaltekst>
+                    {nrOfselectedRows === 0
+                      ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
+                      : renderPlaceholders(_labels.xSelectedItems, {
+                        type: _labels.type,
+                        x: nrOfselectedRows
+                      })}
+                  </Normaltekst>
+                ) : (
+                  <div />
+                )}
                 <Normaltekst>
                   {renderPlaceholders(_labels.showXofYItems, {
                     type: _labels.type,
                     x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
-                      (currentPage * itemsPerPage > nrOfVisibleItems ? nrOfVisibleItems : currentPage * itemsPerPage)),
+                      (currentPage * itemsPerPage > nrOfVisibleItems
+                        ? nrOfVisibleItems
+                        : currentPage * itemsPerPage)),
                     y: nrOfVisibleItems
                   })}
                 </Normaltekst>
@@ -536,7 +570,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
                 <div />
               </>
             )}
-            {pagination ? (
+            {pagination && !loading ? (
               <Pagination
                 highContrast={highContrast}
                 itemsPerPage={itemsPerPage}
@@ -571,6 +605,7 @@ TableSorter.propTypes = {
   searchable: PT.bool,
   selectable: PT.bool,
   sortable: PT.bool,
+  striped: PT.bool,
   summary: PT.bool,
   sort: PT.oneOf<Sort>([])
 }

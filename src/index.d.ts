@@ -4,10 +4,10 @@ export interface Item {
   key: string
   selected ?: boolean
   disabled ?: boolean
+  visible ?: boolean
+  openSubrows ?: boolean
   [k: string]: any
 }
-
-export type Items = Array<Item>
 
 export interface Column {
   id: string
@@ -36,7 +36,7 @@ export interface TableSorterProps {
   highContrast ?: boolean
   initialPage?: number
   id?: string
-  items?: Items
+  items?: Array<Item>
   itemsPerPage ?: number
   labels?: any
   loading?: boolean

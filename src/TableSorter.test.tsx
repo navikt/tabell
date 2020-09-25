@@ -109,15 +109,13 @@ describe('TableSorter', () => {
   it('onCheckAllClicked triggered', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('.c-tableSorter__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: true } })
-    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map(item => ({
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item: Item) => ({
       ...item,
       selected: true
-    })))
+    })));
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('.c-tableSorter__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: false } })
-    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map(item => ({
-      ...item,
-      selected: false
-    })))
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
   })
 
   it('onCheckClicked triggered to select and deselect', () => {
