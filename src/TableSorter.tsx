@@ -69,7 +69,7 @@ export const TableSorterDiv = styled.div`
     }
   }
 
-  tbody {
+  tbody.striped {
     tr:nth-child(odd) {
       background: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
     }
@@ -101,15 +101,7 @@ export const TableSorterDiv = styled.div`
     animation: ${slideInFromLeft} 0.2s forwards;
   }
   
-  .tabell__tr--valgt td {
-    background: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
-    color: ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
-    * {
-      color:  ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
-    }
-  }
-  
-   .tabell__tr--disabled td {
+  .tabell__tr--disabled td {
     background: ${({ theme }: any) => theme[themeKeys.MAIN_DISABLED_COLOR]} !important;
     color: ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
     * {
@@ -167,6 +159,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
   searchable = true,
   selectable = false,
   sortable = true,
+  striped = true,
   summary = false,
   sort = { column: '', order: 'none' }
 }: TableSorterProps): JSX.Element => {
@@ -284,7 +277,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
       }
       return item
     })
-    const onlySelectedItems = newItems.filter(item => item.selected)
+    const onlySelectedItems = newItems.filter(item => item.selected && !item.hasSubrows)
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(onlySelectedItems)
     }
@@ -325,8 +318,13 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const numberOfSelectedRows = (items: Items): number => {
-    const selectedItems = items ? items.filter(item => item.visible && item.selected) : []
+    const selectedItems = items ? items.filter(item => item.selected && !item.hasSubrows) : []
     return selectedItems.length
+  }
+
+  const numberOfVisibleItems = (items: Items): number => {
+    const visibleItems = items ? items.filter(item => item.visible && !item.hasSubrows) : []
+    return visibleItems.length
   }
 
   const rows = (items: Items) => {
@@ -429,6 +427,7 @@ const TableSorter: React.FC<TableSorterProps> = ({
 
   const sortedItems = rawRows()
   const nrOfselectedRows = numberOfSelectedRows(sortedItems)
+  const nrOfVisibleItems = numberOfVisibleItems(sortedItems)
   const tableRows = rows(sortedItems)
 
   return (
@@ -508,7 +507,11 @@ const TableSorter: React.FC<TableSorterProps> = ({
                 </tr>
               ) : null}
             </thead>
-            <tbody>{tableRows}</tbody>
+            <tbody
+              className={classNames({ striped: striped })}
+            >
+              {tableRows}
+            </tbody>
           </WideTable>
           <FooterDiv>
             {summary ? (
@@ -522,8 +525,8 @@ const TableSorter: React.FC<TableSorterProps> = ({
                   {renderPlaceholders(_labels.showXofYItems, {
                     type: _labels.type,
                     x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
-                      (currentPage * itemsPerPage > sortedItems.length ? sortedItems.length : currentPage * itemsPerPage)),
-                    y: sortedItems.length
+                      (currentPage * itemsPerPage > nrOfVisibleItems ? nrOfVisibleItems : currentPage * itemsPerPage)),
+                    y: nrOfVisibleItems
                   })}
                 </Normaltekst>
               </>

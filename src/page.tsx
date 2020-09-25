@@ -59,6 +59,7 @@ const Page = () => {
         selectable
         summary
         sortable
+        striped={false}
         compact
         labels={{
           type: 'oranges'

@@ -83,11 +83,11 @@ tabell.g3[id="c8"] {
   padding: 0.25rem !important;
 }
 
-.c1 tbody tr:nth-child(odd) {
+.c1 tbody.striped tr:nth-child(odd) {
   background: #FFFFFF;
 }
 
-.c1 tbody tr:nth-child(even) {
+.c1 tbody.striped tr:nth-child(even) {
   background: #E9E7E7;
 }
 
@@ -121,15 +121,6 @@ tabell.g3[id="c8"] {
   transform: translateX(-20px);
   -webkit-animation: kvcTlm 0.2s forwards;
   animation: kvcTlm 0.2s forwards;
-}
-
-.c1 .tabell__tr--valgt td {
-  background: #0067C5 !important;
-  color: #FFFFFF !important;
-}
-
-.c1 .tabell__tr--valgt td * {
-  color: #FFFFFF !important;
 }
 
 .c1 .tabell__tr--disabled td {
@@ -697,7 +688,9 @@ tabell.g11[id="c10"] {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody
+                  className="striped"
+                >
                   <tr
                     aria-selected={false}
                     className="slideAnimate"

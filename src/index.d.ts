@@ -46,6 +46,7 @@ export interface TableSorterProps {
   searchable?: boolean
   selectable?: boolean
   sortable?: boolean
+  striped?: boolean
   summary?: boolean
   sort?: Sort
 }
