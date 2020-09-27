@@ -10,7 +10,7 @@ import Spinner from 'nav-frontend-spinner'
 import View from './resources/View'
 import Pagination from 'paginering'
 import { Flatknapp } from 'nav-frontend-knapper'
-import { Column, Item, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
+import { Column, Item, Context, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
 import defaultLabels from './TableSorter.labels'
@@ -141,7 +141,7 @@ const FlexDiv = styled.div`
   align-items: center;
 `
 
-const TableSorter = <CustomItem extends Item>({
+const TableSorter = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   animatable = true,
   className,
   compact = false,
@@ -163,11 +163,11 @@ const TableSorter = <CustomItem extends Item>({
   striped = true,
   summary = false,
   sort = { column: '', order: 'none' }
-}: TableSorterProps<CustomItem>): JSX.Element => {
+}: TableSorterProps<CustomItem, CustomContext>): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
   const [_id] = useState<string>(id || md5('' + new Date().getTime()))
   const [_items, setItems] = useState<Array<CustomItem> |undefined>(undefined)
-  const [_columns, setColumns] = useState<Array<Column>>(columns)
+  const [_columns, setColumns] = useState<Array<Column<CustomItem, CustomContext>>>(columns)
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(initialPage)
@@ -227,7 +227,7 @@ const TableSorter = <CustomItem extends Item>({
     }
   }, [items, _setItems, _items])
 
-  const sortColumn = (column: Column): void => {
+  const sortColumn = (column: Column<CustomItem, CustomContext>): void => {
     if (!sortable) { return }
     const newSortOrder = sortOrder[_sort.order]
     const newSort = { column: column.id, order: newSortOrder }
@@ -237,7 +237,7 @@ const TableSorter = <CustomItem extends Item>({
     }
   }
 
-  const sortClass = (column: Column): string => {
+  const sortClass = (column: Column<CustomItem, CustomContext>): string => {
     if (!sortable) { return '' }
     return _sort.column === column.id ? sortClasses[_sort.order] : 'none'
   }
@@ -440,7 +440,7 @@ const TableSorter = <CustomItem extends Item>({
       })
   }
 
-  const handleFilterTextChange = (_column: Column, newValue: string): void => {
+  const handleFilterTextChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
     setColumns(_columns.map((column) => {
       return _column.id === column.id ? {
         ...column,

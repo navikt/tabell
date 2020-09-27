@@ -9,13 +9,15 @@ export interface Item {
   [k: string]: any
 }
 
-export interface Column {
+export interface Context {}
+
+export interface Column<CustomItem extends Item = Item, CustomContent extends Context = Context> {
   id: string
   label: string
   type: string
   filterText?: string
-  needle?: (item: Item) => string
-  renderCell?: (item: Item, value: any, context: any) => JSX.Element
+  needle?: (item: CustomItem) => string
+  renderCell?: (item: CustomItem, value: any, context: CustomContent) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
@@ -27,21 +29,21 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps {
+export interface TableSorterProps <CustomItem extends Item = Item, CustomContent extends Context = Context> {
   animatable?: boolean
   className?: string
   compact?: boolean
-  context?: any
-  columns: Array<Column>
+  context?: C
+  columns: Array<Column<CustomItem, CustomContent>>
   highContrast ?: boolean
   initialPage?: number
   id?: string
-  items?: Array<Item>
+  items?: Array<CustomItem>
   itemsPerPage ?: number
   labels?: any
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
-  onRowSelectChange ?: (i: Items) => void
+  onRowSelectChange ?: (i: Array<CustomItem>) => void
   pagination?: boolean
   searchable?: boolean
   selectable?: boolean
@@ -51,6 +53,9 @@ export interface TableSorterProps {
   sort?: Sort
 }
 
-declare const TableSorter: React.FC<TableSorterProps>
+declare const TableSorter: <
+  CustomItem extends Item = Item,
+  CustomContent extends Context = Context
+>(props: TableSorterProps<CustomItem, CustomContent>) => JSX.Element
 
 export default TableSorter

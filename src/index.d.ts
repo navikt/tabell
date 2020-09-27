@@ -11,13 +11,13 @@ export interface Item {
 
 export interface Context {}
 
-export interface Column<T, C> {
+export interface Column<CustomItem extends Item = Item, CustomContent extends Context = Context> {
   id: string
   label: string
   type: string
   filterText?: string
-  needle?: (item: T) => string
-  renderCell?: (item: T, value: any, context: C) => JSX.Element
+  needle?: (item: CustomItem) => string
+  renderCell?: (item: CustomItem, value: any, context: CustomContent) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
@@ -29,21 +29,21 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps<T, C> {
+export interface TableSorterProps <CustomItem extends Item = Item, CustomContent extends Context = Context> {
   animatable?: boolean
   className?: string
   compact?: boolean
   context?: C
-  columns: Array<Column<T, C>>
+  columns: Array<Column<CustomItem, CustomContent>>
   highContrast ?: boolean
   initialPage?: number
   id?: string
-  items?: Array<T>
+  items?: Array<CustomItem>
   itemsPerPage ?: number
   labels?: any
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
-  onRowSelectChange ?: (i: Items) => void
+  onRowSelectChange ?: (i: Array<CustomItem>) => void
   pagination?: boolean
   searchable?: boolean
   selectable?: boolean
@@ -53,6 +53,9 @@ export interface TableSorterProps<T, C> {
   sort?: Sort
 }
 
-declare const TableSorter: <T, C>(props: TableSorterProps<T, C>) => JSX.Element
+declare const TableSorter: <
+  CustomItem extends Item = Item,
+  CustomContent extends Context = Context
+>(props: TableSorterProps<CustomItem, CustomContent>) => JSX.Element
 
 export default TableSorter
