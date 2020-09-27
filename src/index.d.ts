@@ -9,13 +9,15 @@ export interface Item {
   [k: string]: any
 }
 
-export interface Column {
+export interface Context {}
+
+export interface Column<T, C> {
   id: string
   label: string
   type: string
   filterText?: string
-  needle?: (item: Item) => string
-  renderCell?: (item: Item, value: any, context: any) => JSX.Element
+  needle?: (item: T) => string
+  renderCell?: (item: T, value: any, context: C) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
@@ -27,12 +29,12 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps<T> {
+export interface TableSorterProps<T, C> {
   animatable?: boolean
   className?: string
   compact?: boolean
-  context?: any
-  columns: Array<Column>
+  context?: C
+  columns: Array<Column<T, C>>
   highContrast ?: boolean
   initialPage?: number
   id?: string
@@ -51,6 +53,6 @@ export interface TableSorterProps<T> {
   sort?: Sort
 }
 
-declare const TableSorter: React.FC<TableSorterProps>
+declare const TableSorter: <T, C>(props: TableSorterProps<T, C>) => JSX.Element
 
 export default TableSorter
