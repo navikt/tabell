@@ -36,7 +36,7 @@ export interface TableSorterProps {
   highContrast ?: boolean
   initialPage?: number
   id?: string
-  items?: Items
+  items?: Array<Item>
   itemsPerPage ?: number
   labels?: any
   loading?: boolean

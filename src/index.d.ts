@@ -27,7 +27,7 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps {
+export interface TableSorterProps<T> {
   animatable?: boolean
   className?: string
   compact?: boolean
@@ -36,7 +36,7 @@ export interface TableSorterProps {
   highContrast ?: boolean
   initialPage?: number
   id?: string
-  items?: Array<Item>
+  items?: Array<T>
   itemsPerPage ?: number
   labels?: any
   loading?: boolean

@@ -141,8 +141,7 @@ const FlexDiv = styled.div`
   align-items: center;
 `
 
-
-const TableSorter: React.FC<TableSorterProps> = ({
+const TableSorter = <CustomItem extends Item>({
   animatable = true,
   className,
   compact = false,
@@ -164,10 +163,10 @@ const TableSorter: React.FC<TableSorterProps> = ({
   striped = true,
   summary = false,
   sort = { column: '', order: 'none' }
-}: TableSorterProps): JSX.Element => {
+}: TableSorterProps<CustomItem>): JSX.Element => {
   const [_sort, setSort] = useState<Sort>(sort)
   const [_id] = useState<string>(id || md5('' + new Date().getTime()))
-  const [_items, setItems] = useState<Array<Item> |undefined>(undefined)
+  const [_items, setItems] = useState<Array<CustomItem> |undefined>(undefined)
   const [_columns, setColumns] = useState<Array<Column>>(columns)
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
@@ -319,12 +318,12 @@ const TableSorter: React.FC<TableSorterProps> = ({
   }
 
   const numberOfSelectedRows = (items: Array<CustomItem>): number => {
-    const selectedItems = items ? items.filter((item: CustomItem) => item.selected && !item.hasSubrows) : []
+    const selectedItems = items ? _.filter(items, (item: CustomItem) => item.selected && !item.hasSubrows) : []
     return selectedItems.length
   }
 
   const numberOfVisibleItems = (items: Array<CustomItem>): number => {
-    const visibleItems = items ? items.filter((item: CustomItem) => item.visible && !item.hasSubrows) : []
+    const visibleItems = items ? _.filter(items, (item: CustomItem) => item.visible && !item.hasSubrows) : []
     return visibleItems.length
   }
 
@@ -459,11 +458,11 @@ const TableSorter: React.FC<TableSorterProps> = ({
     <ThemeProvider theme={highContrast ? themeHighContrast : theme}>
       <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
         <ContentDiv>
-          {loading ? (
+          {loading && (
             <LoadingDiv>
               <Spinner type='XL' />
             </LoadingDiv>
-          ) : null}
+          )}
           <WideTable cellSpacing='0' className='c-tableSorter__table'>
             <thead>
               <tr className='c-tableSorter__header'>
@@ -554,14 +553,16 @@ const TableSorter: React.FC<TableSorterProps> = ({
                   <div />
                 )}
                 <Normaltekst>
-                  {renderPlaceholders(_labels.showXofYItems, {
-                    type: _labels.type,
-                    x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
+                  {nrOfVisibleItems === 0
+                    ? renderPlaceholders(_labels.showNoItems, { type: _labels.type })
+                    : renderPlaceholders(_labels.showXofYItems, {
+                      type: _labels.type,
+                      x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
                       (currentPage * itemsPerPage > nrOfVisibleItems
                         ? nrOfVisibleItems
                         : currentPage * itemsPerPage)),
-                    y: nrOfVisibleItems
-                  })}
+                      y: nrOfVisibleItems
+                    })}
                 </Normaltekst>
               </>
             ) : (
