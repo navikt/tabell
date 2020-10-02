@@ -1281,7 +1281,7 @@ body .blokk-xl {
   font-weight: 400;
   position: absolute;
   width: 0;
-  height: 0;
+  height: 1px;
   opacity: 0;
 }
 .inputPanel__field:checked + .inputPanel__label:before {
@@ -1488,7 +1488,7 @@ body .blokk-xl {
 .skjemagruppe.inputPanelGruppe .skjemaelement,
 .skjemagruppe.radiogruppe .skjemaelement,
 .skjemagruppe.checkboxgruppe .skjemaelement {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .skjemagruppe.inputPanelGruppe legend,
 .skjemagruppe.radiogruppe legend,
@@ -1500,7 +1500,7 @@ body .blokk-xl {
   font-size: 1rem;
   line-height: 1.375rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .tabell {
   border-collapse: collapse;

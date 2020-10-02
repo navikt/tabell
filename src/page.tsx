@@ -66,7 +66,7 @@ const Page = () => {
         }}
         columns={[
           { id: 'name', label: 'Name', type: 'string', filterText: '' },
-          { id: 'date', label: 'Date', type: 'date', filterText: '' },
+          { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY' },
           {
             id: 'type',
             label: 'Occupation',
