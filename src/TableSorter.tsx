@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import _ from 'lodash'
+import moment from 'moment'
 import PT from 'prop-types'
 import React, { useCallback, useEffect, useState } from 'react'
 import Tooltip from 'rc-tooltip'
@@ -288,18 +289,19 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     const filteredItems: Array<CustomItem> = _.filter(_items, (item: CustomItem) => {
       return _.every(_columns, (column) => {
         const filterText: string = _.isString(column.filterText) ? column.filterText.toLowerCase() : ''
-        let regex
+        let regex, label
         try {
           regex = new RegExp(filterText)
         } catch (e) {
         }
         switch (column.type) {
           case 'date':
-            return regex
-              ? item[column.id].toLocaleDateString
-                ? item[column.id].toLocaleDateString().match(regex)
-                : item[column.id].toString().match(regex)
-              : true
+            if (column.dateFormat) {
+              label = moment(item[column.id]).format(column.dateFormat)
+            } else {
+              label = item[column.id].toLocaleDateString ? item[column.id].toLocaleDateString() : item[column.id].toString()
+            }
+            return regex ? label.match(regex) : true
           default:
             return regex
               ? (column.needle && _.isString(column.needle(item[column.id]))

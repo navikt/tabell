@@ -1359,114 +1359,123 @@ tabell.g11[id="c10"] {
                             </r>
                           </r>
                         </Styled(r)>
-                        <Styled(r)
-                          className="c-pagination__page-button"
-                          disabled={true}
-                          key="page_1"
-                          kompakt={true}
-                          onClick={[Function]}
+                        <div
+                          key="page_0"
                         >
-                          <r
-                            className="c16 c17 c-pagination__page-button"
+                          <Styled(r)
+                            className="c-pagination__page-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
-                              autoDisableVedSpinner={false}
                               className="c16 c17 c-pagination__page-button"
                               disabled={true}
-                              htmlType="submit"
-                              inaktivKlasseVedDisabled={false}
                               kompakt={true}
-                              mini={false}
                               onClick={[Function]}
-                              spinner={false}
-                              type="flat"
                             >
-                              <button
-                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                              <r
+                                autoDisableVedSpinner={false}
+                                className="c16 c17 c-pagination__page-button"
                                 disabled={true}
+                                htmlType="submit"
+                                inaktivKlasseVedDisabled={false}
+                                kompakt={true}
+                                mini={false}
                                 onClick={[Function]}
-                                type="submit"
+                                spinner={false}
+                                type="flat"
                               >
-                                1
-                              </button>
+                                <button
+                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                  disabled={true}
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  1
+                                </button>
+                              </r>
                             </r>
-                          </r>
-                        </Styled(r)>
-                        <Styled(r)
-                          className="c-pagination__page-button"
-                          disabled={false}
+                          </Styled(r)>
+                        </div>
+                        <div
+                          key="page_1"
+                        >
+                          <Styled(r)
+                            className="c-pagination__page-button"
+                            disabled={false}
+                            kompakt={true}
+                            onClick={[Function]}
+                          >
+                            <r
+                              className="c16 c17 c-pagination__page-button"
+                              disabled={false}
+                              kompakt={true}
+                              onClick={[Function]}
+                            >
+                              <r
+                                autoDisableVedSpinner={false}
+                                className="c16 c17 c-pagination__page-button"
+                                disabled={false}
+                                htmlType="submit"
+                                inaktivKlasseVedDisabled={false}
+                                kompakt={true}
+                                mini={false}
+                                onClick={[Function]}
+                                spinner={false}
+                                type="flat"
+                              >
+                                <button
+                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  2
+                                </button>
+                              </r>
+                            </r>
+                          </Styled(r)>
+                        </div>
+                        <div
                           key="page_2"
-                          kompakt={true}
-                          onClick={[Function]}
                         >
-                          <r
-                            className="c16 c17 c-pagination__page-button"
+                          <Styled(r)
+                            className="c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
                             <r
-                              autoDisableVedSpinner={false}
                               className="c16 c17 c-pagination__page-button"
                               disabled={false}
-                              htmlType="submit"
-                              inaktivKlasseVedDisabled={false}
                               kompakt={true}
-                              mini={false}
                               onClick={[Function]}
-                              spinner={false}
-                              type="flat"
                             >
-                              <button
-                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                              <r
+                                autoDisableVedSpinner={false}
+                                className="c16 c17 c-pagination__page-button"
                                 disabled={false}
+                                htmlType="submit"
+                                inaktivKlasseVedDisabled={false}
+                                kompakt={true}
+                                mini={false}
                                 onClick={[Function]}
-                                type="submit"
+                                spinner={false}
+                                type="flat"
                               >
-                                2
-                              </button>
+                                <button
+                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  3
+                                </button>
+                              </r>
                             </r>
-                          </r>
-                        </Styled(r)>
-                        <Styled(r)
-                          className="c-pagination__page-button"
-                          disabled={false}
-                          key="page_3"
-                          kompakt={true}
-                          onClick={[Function]}
-                        >
-                          <r
-                            className="c16 c17 c-pagination__page-button"
-                            disabled={false}
-                            kompakt={true}
-                            onClick={[Function]}
-                          >
-                            <r
-                              autoDisableVedSpinner={false}
-                              className="c16 c17 c-pagination__page-button"
-                              disabled={false}
-                              htmlType="submit"
-                              inaktivKlasseVedDisabled={false}
-                              kompakt={true}
-                              mini={false}
-                              onClick={[Function]}
-                              spinner={false}
-                              type="flat"
-                            >
-                              <button
-                                className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
-                                disabled={false}
-                                onClick={[Function]}
-                                type="submit"
-                              >
-                                3
-                              </button>
-                            </r>
-                          </r>
-                        </Styled(r)>
+                          </Styled(r)>
+                        </div>
                         <Styled(r)
                           className="c-pagination__next-button"
                           disabled={false}

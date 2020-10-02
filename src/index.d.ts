@@ -17,6 +17,7 @@ export interface Column<CustomItem extends Item = Item, CustomContent extends Co
   type: string
   filterText?: string
   needle?: (item: CustomItem) => string
+  dateFormat?: string
   renderCell?: (item: CustomItem, value: any, context: CustomContent) => JSX.Element
 }
 
