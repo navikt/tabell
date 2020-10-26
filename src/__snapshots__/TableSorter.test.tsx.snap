@@ -1323,20 +1323,20 @@ tabell.g11[id="c10"] {
                       <div
                         className="c14 c15"
                       >
-                        <Styled(r)
+                        <Styled(a)
                           className="c-pagination__prev-button"
                           disabled={true}
                           key="prev"
                           kompakt={true}
                           onClick={[Function]}
                         >
-                          <r
+                          <a
                             className="c16 c17 c-pagination__prev-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
-                            <r
+                            <f
                               autoDisableVedSpinner={false}
                               className="c16 c17 c-pagination__prev-button"
                               disabled={true}
@@ -1356,25 +1356,25 @@ tabell.g11[id="c10"] {
                               >
                                 ◄
                               </button>
-                            </r>
-                          </r>
-                        </Styled(r)>
+                            </f>
+                          </a>
+                        </Styled(a)>
                         <div
                           key="page_0"
                         >
-                          <Styled(r)
+                          <Styled(a)
                             className="c-pagination__page-button"
                             disabled={true}
                             kompakt={true}
                             onClick={[Function]}
                           >
-                            <r
+                            <a
                               className="c16 c17 c-pagination__page-button"
                               disabled={true}
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <r
+                              <f
                                 autoDisableVedSpinner={false}
                                 className="c16 c17 c-pagination__page-button"
                                 disabled={true}
@@ -1394,26 +1394,26 @@ tabell.g11[id="c10"] {
                                 >
                                   1
                                 </button>
-                              </r>
-                            </r>
-                          </Styled(r)>
+                              </f>
+                            </a>
+                          </Styled(a)>
                         </div>
                         <div
                           key="page_1"
                         >
-                          <Styled(r)
+                          <Styled(a)
                             className="c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
-                            <r
+                            <a
                               className="c16 c17 c-pagination__page-button"
                               disabled={false}
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <r
+                              <f
                                 autoDisableVedSpinner={false}
                                 className="c16 c17 c-pagination__page-button"
                                 disabled={false}
@@ -1433,26 +1433,26 @@ tabell.g11[id="c10"] {
                                 >
                                   2
                                 </button>
-                              </r>
-                            </r>
-                          </Styled(r)>
+                              </f>
+                            </a>
+                          </Styled(a)>
                         </div>
                         <div
                           key="page_2"
                         >
-                          <Styled(r)
+                          <Styled(a)
                             className="c-pagination__page-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
-                            <r
+                            <a
                               className="c16 c17 c-pagination__page-button"
                               disabled={false}
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <r
+                              <f
                                 autoDisableVedSpinner={false}
                                 className="c16 c17 c-pagination__page-button"
                                 disabled={false}
@@ -1472,24 +1472,24 @@ tabell.g11[id="c10"] {
                                 >
                                   3
                                 </button>
-                              </r>
-                            </r>
-                          </Styled(r)>
+                              </f>
+                            </a>
+                          </Styled(a)>
                         </div>
-                        <Styled(r)
+                        <Styled(a)
                           className="c-pagination__next-button"
                           disabled={false}
                           key="next"
                           kompakt={true}
                           onClick={[Function]}
                         >
-                          <r
+                          <a
                             className="c16 c17 c-pagination__next-button"
                             disabled={false}
                             kompakt={true}
                             onClick={[Function]}
                           >
-                            <r
+                            <f
                               autoDisableVedSpinner={false}
                               className="c16 c17 c-pagination__next-button"
                               disabled={false}
@@ -1509,9 +1509,9 @@ tabell.g11[id="c10"] {
                               >
                                 ►
                               </button>
-                            </r>
-                          </r>
-                        </Styled(r)>
+                            </f>
+                          </a>
+                        </Styled(a)>
                       </div>
                     </styled.div>
                   </Component>

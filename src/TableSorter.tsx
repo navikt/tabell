@@ -390,12 +390,11 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                         ? column.renderCell(item, value, context)
                         : (
                           <Normaltekst>
-                            {column.dateFormat ?
-                              moment(value).format(column.dateFormat)
-                              :_.isFunction(value.toLocaleDateString)
+                            {column.dateFormat
+                              ? moment(value).format(column.dateFormat)
+                              : _.isFunction(value.toLocaleDateString)
                                 ? value.toLocaleDateString()
-                                : value.toString()
-                            }
+                                : value.toString()}
                           </Normaltekst>
                         )}
                     </td>

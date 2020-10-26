@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface Item {
   key: string
   selected ?: boolean
@@ -11,14 +9,14 @@ export interface Item {
 
 export interface Context {}
 
-export interface Column<CustomItem extends Item = Item, CustomContent extends Context = Context> {
+export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   id: string
   label: string
   type: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string
-  renderCell?: (item: CustomItem, value: any, context: CustomContent) => JSX.Element
+  renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
@@ -30,12 +28,12 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps <CustomItem extends Item = Item, CustomContent extends Context = Context> {
+export interface TableSorterProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   animatable?: boolean
   className?: string
   compact?: boolean
-  context?: C
-  columns: Array<Column<CustomItem, CustomContent>>
+  context?: CustomContext
+  columns: Array<Column<CustomItem, CustomContext>>
   highContrast ?: boolean
   initialPage?: number
   id?: string
@@ -56,7 +54,7 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContent
 
 declare const TableSorter: <
   CustomItem extends Item = Item,
-  CustomContent extends Context = Context
->(props: TableSorterProps<CustomItem, CustomContent>) => JSX.Element
+  CustomContext extends Context = Context
+>(props: TableSorterProps<CustomItem, CustomContext>) => JSX.Element
 
 export default TableSorter

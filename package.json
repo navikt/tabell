@@ -2,17 +2,18 @@
   "name": "tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "build": " npm-run-all -p build:*",
     "build:css": "less-watch-compiler --run-once --config less.json",
-    "dist": "rm -rf ./lib && webpack --config webpack.prod.ts",
-    "dist:dev": "rm -rf ./lib && webpack --config webpack.dev.ts",
+    "dist": "rm -rf ./lib && webpack --config webpack.prod.js",
+    "dist:dev": "rm -rf ./lib && webpack --config webpack.dev.js",
     "lint": "standardx src/*.ts* src/*/*.ts*",
     "lint:fix": "standardx src/*.ts* src/*/*.ts* --fix",
     "npx": "npx npm-force-resolutions",
@@ -32,55 +33,54 @@
     "lodash": "^4.17.20",
     "lodash.throttle": "^4.1.1",
     "md5": "^2.3.0",
-    "moment": "^2.29.0",
-    "nav-frontend-ikoner-assets": "^2.0.3",
-    "nav-frontend-lenker": "^1.0.41",
-    "nav-frontend-lenker-style": "^0.2.29",
-    "nav-frontend-paneler-style": "^0.3.21",
-    "nav-frontend-skjema": "^3.0.20",
-    "nav-frontend-skjema-style": "^2.0.12",
-    "nav-frontend-spinner": "^2.0.5",
-    "nav-frontend-spinner-style": "^0.2.5",
-    "nav-frontend-tabell-style": "^0.2.23",
-    "nav-frontend-typografi": "^2.0.26",
-    "nav-frontend-typografi-style": "^1.0.22",
+    "moment": "^2.29.1",
+    "nav-frontend-ikoner-assets": "^2.0.8",
+    "nav-frontend-lenker": "^1.0.46",
+    "nav-frontend-lenker-style": "^0.2.33",
+    "nav-frontend-paneler-style": "^0.3.25",
+    "nav-frontend-skjema": "^3.0.27",
+    "nav-frontend-skjema-style": "^2.0.16",
+    "nav-frontend-spinner": "^2.0.10",
+    "nav-frontend-spinner-style": "^0.2.8",
+    "nav-frontend-tabell-style": "^0.2.27",
+    "nav-frontend-typografi": "^2.0.31",
+    "nav-frontend-typografi-style": "^1.0.26",
     "nav-styled-component-theme": "^1.0.7",
-    "paginering": "^1.0.5",
+    "paginering": "^1.0.6",
     "prop-types": "^15.7.2",
-    "rc-tooltip": "^4.2.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "styled-components": "^5.2.0",
-    "svg-country-flags": "^1.2.8"
+    "rc-tooltip": "^4.2.3"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
     "@types/enzyme": "^3.10.7",
-    "@types/enzyme-adapter-react-16": "^1.0.6",
-    "@types/jest": "^26.0.14",
-    "@types/lodash": "^4.14.161",
-    "@types/md5": "^2.2.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.1.1",
+    "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.162",
+    "@types/md5": "^2.2.1",
     "@types/prop-types": "^15.7.3",
     "@types/rc-tooltip": "^3.7.3",
-    "@types/react": "^16.9.50",
+    "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
-    "@types/styled-components": "^5.1.3",
-    "copy-webpack-plugin": "^6.1.1",
+    "@types/styled-components": "^5.1.4",
+    "copy-webpack-plugin": "^6.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
     "less": "^3.12.2",
-    "less-loader": "^7.0.1",
+    "less-loader": "^7.0.2",
     "less-plugin-npm-import": "^2.1.0",
     "less-watch-compiler": "^1.14.6",
     "npm-run-all": "^4.1.5",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.0",
     "standardx": "^5.0.0",
     "svg-url-loader": "^6.0.0",
-    "ts-loader": "^8.0.4",
+    "ts-loader": "^8.0.7",
     "typescript": "^4.0.3",
-    "url-loader": "^4.1.0",
-    "webpack-cli": "^3.3.12"
+    "url-loader": "^4.1.1",
+    "webpack-cli": "^4.1.0"
   },
   "jest": {
     "snapshotSerializers": [
@@ -95,7 +95,19 @@
     "url": "git+https://github.com/navikt/tabell.git"
   },
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "plugin:jsx-a11y/recommended"
+    ],
     "rules": {
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": "off",
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "error"
     }
@@ -122,7 +134,8 @@
       "mount",
       "render",
       "renderer",
-      "jest"
+      "jest",
+      "JSX"
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
