@@ -64,6 +64,10 @@ const Page = () => {
         labels={{
           type: 'oranges'
         }}
+        categories={[{
+          colSpan: 3,
+          label: 'title'
+        }]}
         columns={[
           { id: 'name', label: 'Name', type: 'string', filterText: '' },
           { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY' },

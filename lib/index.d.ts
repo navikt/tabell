@@ -7,6 +7,11 @@ export interface Item {
   [k: string]: any
 }
 
+export interface Category {
+  colSpan: number
+  label: string
+}
+
 export interface Context {}
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context> {
@@ -28,9 +33,12 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
+
+
 export interface TableSorterProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   animatable?: boolean
   className?: string
+  categories?: Array<Category>
   compact?: boolean
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>

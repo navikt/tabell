@@ -141,9 +141,13 @@ const FlexDiv = styled.div`
   display: flex; 
   align-items: center;
 `
+const CenterTh = styled.th`
+  text-align: center !important;
+`
 
 const TableSorter = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   animatable = true,
+  categories,
   className,
   compact = false,
   context,
@@ -244,10 +248,12 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   }
 
   const onCheckAllClicked = (): void => {
-    const newItems: Array<CustomItem> = _items ? items.map((item: CustomItem) => ({
-      ...item,
-      selected: item.disabled ? false : !checkAll
-    })) : []
+    const newItems: Array<CustomItem> = _items
+      ? items.map((item: CustomItem) => ({
+          ...item,
+          selected: item.disabled ? false : !checkAll
+        }))
+      : []
 
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(newItems.filter(item => item.selected && !item.hasSubrows))
@@ -305,9 +311,10 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
           default:
             return regex
               ? (column.needle && _.isString(column.needle(item[column.id]))
-                ? column.needle(item[column.id]).toLowerCase().match(regex)
-                : (_.isString(item[column.id]) ? item[column.id].toLowerCase().match(regex) : true)
-              ) : true
+                  ? column.needle(item[column.id]).toLowerCase().match(regex)
+                  : (_.isString(item[column.id]) ? item[column.id].toLowerCase().match(regex) : true)
+                )
+              : true
         }
       })
     })
@@ -396,7 +403,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                 ? value.toLocaleDateString()
                                 : value.toString()}
                           </Normaltekst>
-                        )}
+                          )}
                     </td>
                   )
                 case 'object':
@@ -422,19 +429,21 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                         ? column.renderCell(item, value, context)
                         : (
                           <Normaltekst>
-                            {_labels[column.id] && _labels[column.id]![value] ? (
-                              <Tooltip
-                                placement='top'
-                                trigger={['hover']}
-                                overlay={
-                                  <span>{_labels[column.id]![value]}</span>
-                                }
-                              >
-                                <span>{value}</span>
-                              </Tooltip>
-                            ) : <span>{value}</span>}
+                            {_labels[column.id] && _labels[column.id]![value]
+                              ? (
+                                <Tooltip
+                                  placement='top'
+                                  trigger={['hover']}
+                                  overlay={
+                                    <span>{_labels[column.id]![value]}</span>
+                                  }
+                                >
+                                  <span>{value}</span>
+                                </Tooltip>
+                                )
+                              : <span>{value}</span>}
                           </Normaltekst>
-                        )}
+                          )}
                     </td>
                   )
               }
@@ -446,10 +455,12 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
 
   const handleFilterTextChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
     setColumns(_columns.map((column) => {
-      return _column.id === column.id ? {
-        ...column,
-        filterText: newValue
-      } : column
+      return _column.id === column.id
+        ? {
+            ...column,
+            filterText: newValue
+          }
+        : column
     }))
   }
 
@@ -469,6 +480,12 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
           )}
           <WideTable cellSpacing='0' className='c-tableSorter__table'>
             <thead>
+              {categories && (
+                <tr>
+                  <th/>
+                  {categories.map(c => <CenterTh colSpan={c.colSpan}>{c.label}</CenterTh>)}
+                </tr>
+              )}
               <tr className='c-tableSorter__header'>
                 <th style={{ width: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -500,40 +517,44 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                       key={column.id}
                       className={classNames('header', { [sortClass(column)]: column.label !== '' })}
                     >
-                      {sortable && column.label ? (
-                        <HighContrastLink
-                          href='#'
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            sortColumn(column)
-                          }}
-                        >
-                          {column.label + (filterText ? ' (' + filterText + ')' : '')}
-                        </HighContrastLink>
-                      ) : column.label + (filterText ? ' (' + filterText + ')' : '')}
+                      {sortable && column.label
+                        ? (
+                          <HighContrastLink
+                            href='#'
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              sortColumn(column)
+                            }}
+                          >
+                            {column.label + (filterText ? ' (' + filterText + ')' : '')}
+                          </HighContrastLink>
+                          )
+                        : column.label + (filterText ? ' (' + filterText + ')' : '')}
                     </th>
                   )
                 })}
               </tr>
-              {seeFilters ? (
-                <tr className='c-tableSorter__filter'>
-                  <td />
-                  {_columns.map((column) => {
-                    return (
-                      <td key={column.id}>
-                        <Input
-                          id={'c-tableSorter__sort-' + column.id + '-input-id'}
-                          className='c-tableSorter__sort-input'
-                          label=''
-                          value={column.filterText || ''}
-                          onChange={(e) => handleFilterTextChange(column, e.target.value)}
-                        />
-                      </td>
-                    )
-                  })}
-                </tr>
-              ) : null}
+              {seeFilters
+                ? (
+                  <tr className='c-tableSorter__filter'>
+                    <td />
+                    {_columns.map((column) => {
+                      return (
+                        <td key={column.id}>
+                          <Input
+                            id={'c-tableSorter__sort-' + column.id + '-input-id'}
+                            className='c-tableSorter__sort-input'
+                            label=''
+                            value={column.filterText || ''}
+                            onChange={(e) => handleFilterTextChange(column, e.target.value)}
+                          />
+                        </td>
+                      )
+                    })}
+                  </tr>
+                  )
+                : null}
             </thead>
             <tbody
               className={classNames({ striped: striped })}
@@ -542,50 +563,56 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
             </tbody>
           </WideTable>
           <FooterDiv>
-            {summary && !loading ? (
-              <>
-                {selectable ? (
+            {summary && !loading
+              ? (
+                <>
+                  {selectable
+                    ? (
+                      <Normaltekst>
+                        {nrOfselectedRows === 0
+                          ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
+                          : renderPlaceholders(_labels.xSelectedItems, {
+                            type: _labels.type,
+                            x: nrOfselectedRows
+                          })}
+                      </Normaltekst>
+                      )
+                    : (
+                      <div />
+                      )}
                   <Normaltekst>
-                    {nrOfselectedRows === 0
-                      ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
-                      : renderPlaceholders(_labels.xSelectedItems, {
+                    {nrOfVisibleItems === 0
+                      ? renderPlaceholders(_labels.showNoItems, { type: _labels.type })
+                      : renderPlaceholders(_labels.showXofYItems, {
                         type: _labels.type,
-                        x: nrOfselectedRows
+                        x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
+                        (currentPage * itemsPerPage > nrOfVisibleItems
+                          ? nrOfVisibleItems
+                          : currentPage * itemsPerPage)),
+                        y: nrOfVisibleItems
                       })}
                   </Normaltekst>
-                ) : (
+                </>
+                )
+              : (
+                <>
                   <div />
+                  <div />
+                </>
                 )}
-                <Normaltekst>
-                  {nrOfVisibleItems === 0
-                    ? renderPlaceholders(_labels.showNoItems, { type: _labels.type })
-                    : renderPlaceholders(_labels.showXofYItems, {
-                      type: _labels.type,
-                      x: (((currentPage - 1) * itemsPerPage + 1) + '-' +
-                      (currentPage * itemsPerPage > nrOfVisibleItems
-                        ? nrOfVisibleItems
-                        : currentPage * itemsPerPage)),
-                      y: nrOfVisibleItems
-                    })}
-                </Normaltekst>
-              </>
-            ) : (
-              <>
+            {pagination && !loading
+              ? (
+                <Pagination
+                  highContrast={highContrast}
+                  itemsPerPage={itemsPerPage}
+                  currentPage={currentPage}
+                  numberOfItems={sortedItems.length}
+                  onChange={(page) => setCurrentPage(page)}
+                />
+                )
+              : (
                 <div />
-                <div />
-              </>
-            )}
-            {pagination && !loading ? (
-              <Pagination
-                highContrast={highContrast}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                numberOfItems={sortedItems.length}
-                onChange={(page) => setCurrentPage(page)}
-              />
-            ) : (
-              <div />
-            )}
+                )}
           </FooterDiv>
         </ContentDiv>
       </TableSorterDiv>
@@ -596,6 +623,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
 TableSorter.propTypes = {
   animatable: PT.bool,
   className: PT.string,
+  categories: PT.object,
   context: PT.object,
   columns: PT.array.isRequired,
   highContrast: PT.bool,
