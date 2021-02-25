@@ -1,12 +1,11 @@
-import { theme, themeHighContrast } from 'nav-styled-component-theme'
 import React, { useState } from 'react'
-import { ThemeProvider } from 'styled-components'
+import NavHighContrast from 'nav-hoykontrast'
 import TableSorter from './TableSorter'
 import './index.css'
 const Page = () => {
   const [highContrast, setHighContrast] = useState<boolean>(false)
   return (
-    <ThemeProvider theme={highContrast ? themeHighContrast : theme}>
+    <NavHighContrast highContrast={highContrast}>
       <a
         id='highcontrast-link-id'
         href='#highContrast'
@@ -80,7 +79,7 @@ const Page = () => {
           }
         ]}
       />
-    </ThemeProvider>
+    </NavHighContrast>
   )
 }
 

@@ -1402,15 +1402,22 @@ body .blokk-xl {
   background-color: #cde7d8;
   border-color: #cde7d8;
 }
+.bekreftCheckboksPanel--checked .bekreftCheckboksPanel__innhold .lenke:not(:focus) {
+  color: #3e3832;
+}
 .bekreftCheckboksPanel--checked .checkboks + .skjemaelement__label::before {
   transition: none;
   background-color: #06893a;
   border-color: #06893a;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMyAxMCI+ICAgIDxnPiAgICA8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNCwxMGMtMC40LDAtMC44LTAuMS0xLjEtMC40TDAuNCw3LjFDMC4xLDYuOCwwLDYuNCwwLDZzMC4yLTAuOCwwLjUtMS4xQzEsNC40LDIsNC40LDIuNSw0LjlMNCw2LjRsNi40LTYgICAgQzEwLjgsMC4xLDExLjEsMCwxMS41LDBjMC40LDAsMC44LDAuMiwxLDAuNWMwLjYsMC42LDAuNSwxLjYtMC4xLDIuMXYwTDUsOS42QzQuNyw5LjksNC40LDEwLDQsMTB6IE0xMS44LDEuOUwxMS44LDEuOSAgICBDMTEuOCwxLjksMTEuOCwxLjksMTEuOCwxLjl6IE0xMS4yLDEuMUMxMS4yLDEuMSwxMS4yLDEuMSwxMS4yLDEuMUwxMS4yLDEuMXoiLz4gICAgPC9nPjwvc3ZnPg==);
 }
+.bekreftCheckboksPanel--checked .checkboks + .skjemaelement__label:hover {
+  color: #3e3832;
+  text-decoration: underline;
+}
 .bekreftCheckboksPanel--checked .checkboks + .skjemaelement__label:hover::before {
-  background-color: #6ab889;
-  border-color: #6ab889;
+  background-color: #1c6937;
+  border-color: #1c6937;
 }
 .bekreftCheckboksPanel--checked .checkboks:focus + .skjemaelement__label::before {
   border-color: #254b6d;

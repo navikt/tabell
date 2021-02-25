@@ -8,12 +8,13 @@ import { Checkbox, Input } from 'nav-frontend-skjema'
 import Lenke from 'nav-frontend-lenker'
 import { Normaltekst } from 'nav-frontend-typografi'
 import Spinner from 'nav-frontend-spinner'
-import View from './resources/View'
+import NavHighContrast from 'nav-hoykontrast'
 import Pagination from 'paginering'
 import { Flatknapp } from 'nav-frontend-knapper'
 import { Column, Item, Context, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
-import styled, { keyframes, ThemeProvider } from 'styled-components'
-import { theme, themeKeys, themeHighContrast } from 'nav-styled-component-theme'
+import styled, { keyframes } from 'styled-components'
+import { themeKeys } from 'nav-styled-component-theme'
+import View from './resources/View'
 import defaultLabels from './TableSorter.labels'
 import md5 from 'md5'
 import './index.css'
@@ -470,7 +471,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   const tableRows = rows(sortedItems)
 
   return (
-    <ThemeProvider theme={highContrast ? themeHighContrast : theme}>
+    <NavHighContrast highContrast={highContrast}>
       <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
         <ContentDiv>
           {loading && (
@@ -482,8 +483,8 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
             <thead>
               {categories && (
                 <tr>
-                  <th/>
-                  {categories.map(c => <CenterTh colSpan={c.colSpan}>{c.label}</CenterTh>)}
+                  <th />
+                  {categories.map(c => <CenterTh key={c.label} colSpan={c.colSpan}>{c.label}</CenterTh>)}
                 </tr>
               )}
               <tr className='c-tableSorter__header'>
@@ -616,7 +617,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
           </FooterDiv>
         </ContentDiv>
       </TableSorterDiv>
-    </ThemeProvider>
+    </NavHighContrast>
   )
 }
 

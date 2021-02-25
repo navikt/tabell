@@ -33,8 +33,6 @@ export interface Sort {
 
 export type Labels = {[k in string]? : string}
 
-
-
 export interface TableSorterProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   animatable?: boolean
   className?: string
