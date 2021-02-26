@@ -12,27 +12,27 @@ exports[`TableSorter Renders 1`] = `
   align-items: baseline;
 }
 
-tabell.g1[id="c14"] {
+tabell.g53[id="c14"] {
   content: "c15,";
 }
 
 .c17 {
-  color: #0067C5;
+  color: #0067c5;
   background-color: transparent;
 }
 
 .c17:hover:not(:disabled) {
-  color: #0067C5;
-  border-color: #0067C5;
+  color: #0067c5;
+  border-color: #0067c5;
 }
 
 .c17:disabled {
-  background-color: #B7B1A9;
-  color: #3E3832;
+  background-color: #b7b1a9;
+  color: #3e3832;
   border: none;
 }
 
-tabell.g2[id="c16"] {
+tabell.g54[id="c16"] {
   content: "c17,";
 }
 
@@ -47,10 +47,10 @@ tabell.g2[id="c16"] {
   align-items: center;
   font-size: inherit;
   line-height: inherit;
-  color: #0067C5 !important;
+  color: #0067c5 !important;
 }
 
-tabell.g3[id="c8"] {
+tabell.g55[id="c8"] {
   content: "c9,";
 }
 
@@ -88,7 +88,7 @@ tabell.g3[id="c8"] {
 }
 
 .c1 tbody.striped tr:nth-child(even) {
-  background: #E9E7E7;
+  background: #e9e7e7;
 }
 
 .c1__subcell {
@@ -124,7 +124,7 @@ tabell.g3[id="c8"] {
 }
 
 .c1 .tabell__tr--disabled td {
-  background: #B7B1A9 !important;
+  background: #b7b1a9 !important;
   color: #FFFFFF !important;
 }
 
@@ -132,7 +132,7 @@ tabell.g3[id="c8"] {
   color: #FFFFFF !important;
 }
 
-tabell.g5[id="c0"] {
+tabell.g57[id="c0"] {
   content: "c1,";
 }
 
@@ -140,7 +140,7 @@ tabell.g5[id="c0"] {
   position: relative;
 }
 
-tabell.g6[id="c2"] {
+tabell.g58[id="c2"] {
   content: "c3,";
 }
 
@@ -148,7 +148,7 @@ tabell.g6[id="c2"] {
   width: 100%;
 }
 
-tabell.g8[id="c4"] {
+tabell.g60[id="c4"] {
   content: "c5,";
 }
 
@@ -170,7 +170,7 @@ tabell.g8[id="c4"] {
   align-items: center;
 }
 
-tabell.g9[id="c12"] {
+tabell.g61[id="c12"] {
   content: "c13,";
 }
 
@@ -179,7 +179,7 @@ tabell.g9[id="c12"] {
   cursor: pointer;
 }
 
-tabell.g10[id="c6"] {
+tabell.g62[id="c6"] {
   content: "c7,";
 }
 
@@ -194,7 +194,7 @@ tabell.g10[id="c6"] {
   align-items: center;
 }
 
-tabell.g11[id="c10"] {
+tabell.g63[id="c10"] {
   content: "c11,";
 }
 
@@ -350,1178 +350,1190 @@ tabell.g11[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <Component
-    theme={
-      Object {
-        "alternative-background-color": "#E9E7E7",
-        "black": "#000000",
-        "border-radius-base": "4px",
-        "border-radius-large": "6px",
-        "border-radius-small": "2px",
-        "container-desktop": "(940px + @grid-gutter-width)",
-        "container-large-desktop": "(1140px + @grid-gutter-width)",
-        "container-lg": "(1140px + @grid-gutter-width)",
-        "container-md": "(940px + @grid-gutter-width)",
-        "container-sm": "(720px + @grid-gutter-width)",
-        "container-tablet": "(720px + @grid-gutter-width)",
-        "fokusFarge": "#254a6c",
-        "grayBackground": "#E9E7E7",
-        "grayIcon": "#B7B1A9",
-        "grayInactive": "#78706A",
-        "grayModia": "#333333",
-        "grid-columns": "12",
-        "grid-float-breakpoint": "768px",
-        "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
-        "grid-gutter-width": "16px",
-        "inverted-font-color": "#FFFFFF",
-        "line-height-large": "1.3333333",
-        "line-height-small": "1.5",
-        "main-active-color": "#a3dff3",
-        "main-background-color": "#FFFFFF",
-        "main-border-color": "#78706A",
-        "main-border-radius": "4px",
-        "main-disabled-color": "#B7B1A9",
-        "main-error-color": "#BA3A26",
-        "main-focus-color": "#254a6c",
-        "main-font-color": "#3E3832",
-        "main-hover-color": "#e0f4fb",
-        "main-interactive-color": "#0067C5",
-        "main-success-color": "#06893A",
-        "main-warning-color": "#FF9100",
-        "navBla": "#0067C5",
-        "navBlaDarken20": "#0c5da7",
-        "navBlaDarken40": "#18548a",
-        "navBlaDarken60": "#254a6c",
-        "navBlaDarken80": "#31414f",
-        "navBlaLighten20": "#3385d0",
-        "navBlaLighten40": "#66a3dc",
-        "navBlaLighten60": "#99c2e7",
-        "navBlaLighten80": "#cce0f3",
-        "navDypBla": "#005B82",
-        "navDypBlaDarken20": "#0c5472",
-        "navDypBlaDarken40": "#184d62",
-        "navDypBlaDarken60": "#254652",
-        "navDypBlaDarken80": "#313f42",
-        "navDypBlaLighten20": "#337b9b",
-        "navDypBlaLighten40": "#669cb4",
-        "navDypBlaLighten60": "#99bdcd",
-        "navDypBlaLighten80": "#ccdee6",
-        "navGra20": "#C6C2BF",
-        "navGra40": "#B7B1A9",
-        "navGra60": "#78706A",
-        "navGra80": "#59514B",
-        "navGronn": "#06893A",
-        "navGronnDarken20": "#117838",
-        "navGronnDarken40": "#1c6836",
-        "navGronnDarken60": "#275835",
-        "navGronnDarken80": "#324833",
-        "navGronnLighten20": "#37a061",
-        "navGronnLighten40": "#69b888",
-        "navGronnLighten60": "#9bcfb0",
-        "navGronnLighten80": "#cde7d7",
-        "navLilla": "#634689",
-        "navLillaDarken20": "#5b4377",
-        "navLillaDarken40": "#544066",
-        "navLillaDarken60": "#4c3d54",
-        "navLillaDarken80": "#453a43",
-        "navLillaLighten20": "#826ba0",
-        "navLillaLighten40": "#a190b8",
-        "navLillaLighten60": "#c0b5cf",
-        "navLillaLighten80": "#dfdae7",
-        "navLimeGronn": "#A2AD00",
-        "navLimeGronnDarken20": "#8e950a",
-        "navLimeGronnDarken40": "#7a7e14",
-        "navLimeGronnDarken60": "#66661e",
-        "navLimeGronnDarken80": "#524f28",
-        "navLimeGronnLighten20": "#b4bd33",
-        "navLimeGronnLighten40": "#c7cd66",
-        "navLimeGronnLighten60": "#d9de99",
-        "navLimeGronnLighten80": "#eceecc",
-        "navLysBla": "#66CBEC",
-        "navLysBlaDarken20": "#5eadc6",
-        "navLysBlaDarken40": "#5690a1",
-        "navLysBlaDarken60": "#4e727c",
-        "navLysBlaDarken80": "#465557",
-        "navLysBlaLighten20": "#84d5ef",
-        "navLysBlaLighten40": "#a3dff3",
-        "navLysBlaLighten60": "#c1eaf7",
-        "navLysBlaLighten80": "#e0f4fb",
-        "navLysGra": "#E9E7E7",
-        "navMorkGra": "#3E3832",
-        "navOransje": "#FF9100",
-        "navOransjeDarken20": "#d87f0a",
-        "navOransjeDarken40": "#b16d14",
-        "navOransjeDarken60": "#8b5b1e",
-        "navOransjeDarken80": "#644928",
-        "navOransjeLighten20": "#ffa733",
-        "navOransjeLighten40": "#ffbd66",
-        "navOransjeLighten60": "#ffd399",
-        "navOransjeLighten80": "#ffe9cc",
-        "navRod": "#C30000",
-        "navRodDarken20": "#a80b0a",
-        "navRodDarken40": "#8d1614",
-        "navRodDarken60": "#73211e",
-        "navRodDarken80": "#582c28",
-        "navRodLighten20": "#cf3333",
-        "navRodLighten40": "#db6666",
-        "navRodLighten60": "#e79999",
-        "navRodLighten80": "#f3cccc",
-        "orangeFocus": "#FFBD66",
-        "orangeFocusDarken20": "#d8a25b",
-        "orangeFocusDarken40": "#b18751",
-        "orangeFocusDarken60": "#8b6d46",
-        "orangeFocusDarken80": "#64523c",
-        "orangeFocusLighten20": "#ffca84",
-        "orangeFocusLighten40": "#ffd7a3",
-        "orangeFocusLighten60": "#ffe4c1",
-        "orangeFocusLighten80": "#fff1e0",
-        "padding-base-horizontal": "12px",
-        "padding-base-vertical": "6px",
-        "padding-large-horizontal": "16px",
-        "padding-large-vertical": "10px",
-        "padding-small-horizontal": "10px",
-        "padding-small-vertical": "5px",
-        "padding-xs-horizontal": "5px",
-        "padding-xs-vertical": "1px",
-        "pinkErrorBg": "#F3E3E3",
-        "redError": "#BA3A26",
-        "redErrorDarken20": "#a13928",
-        "redErrorDarken40": "#88392a",
-        "redErrorDarken60": "#6f382d",
-        "redErrorDarken80": "#56382f",
-        "redErrorLighten20": "#c76151",
-        "redErrorLighten40": "#d5887c",
-        "redErrorLighten60": "#e3b0a8",
-        "redErrorLighten80": "#f1d7d3",
-        "screen-desktop": "992px",
-        "screen-lg": "1200px",
-        "screen-lg-desktop": "1200px",
-        "screen-lg-min": "1200px",
-        "screen-md": "992px",
-        "screen-md-max": "(@screen-lg-min - 1)",
-        "screen-md-min": "992px",
-        "screen-sm": "768px",
-        "screen-sm-max": "(@screen-md-min - 1)",
-        "screen-sm-min": "768px",
-        "screen-tablet": "768px",
-        "screen-xs-max": "(@screen-sm-min - 1)",
-        "type": "theme",
-        "white": "#FFFFFF",
-      }
-    }
+  <Ye
+    highContrast={false}
   >
-    <styled.div
-      className="tabell"
+    <Component
+      theme={
+        Object {
+          "alternative-background-color": "#e9e7e7",
+          "black": "#000000",
+          "border-radius-base": "4px",
+          "border-radius-large": "6px",
+          "border-radius-small": "2px",
+          "container-desktop": "(940px + @grid-gutter-width)",
+          "container-large-desktop": "(1140px + @grid-gutter-width)",
+          "container-lg": "(1140px + @grid-gutter-width)",
+          "container-md": "(940px + @grid-gutter-width)",
+          "container-sm": "(720px + @grid-gutter-width)",
+          "container-tablet": "(720px + @grid-gutter-width)",
+          "fokusFarge": "#01b19d",
+          "grayBackground": "#e9e7e7",
+          "grayIcon": "#b7b1a9",
+          "grayInactive": "#78706a",
+          "grayModia": "#333333",
+          "grid-columns": "12",
+          "grid-float-breakpoint": "768px",
+          "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
+          "grid-gutter-width": "16px",
+          "inverted-font-color": "#FFFFFF",
+          "line-height-large": "1.3333333",
+          "line-height-small": "1.5",
+          "main-active-color": "#43dfNaN",
+          "main-background-color": "#FFFFFF",
+          "main-border-color": "#78706a",
+          "main-border-radius": "4px",
+          "main-disabled-color": "#b7b1a9",
+          "main-error-color": "#ba3a26",
+          "main-focus-color": "#01b19d",
+          "main-font-color": "#3e3832",
+          "main-hover-color": "#20f4NaN",
+          "main-interactive-color": "#0067c5",
+          "main-success-color": "#06893a",
+          "main-warning-color": "#ff9100",
+          "navBakgrunn": "#ffffff",
+          "navBla": "#0067c5",
+          "navBlaDarken20": "#007fb7",
+          "navBlaDarken40": "#0198aa",
+          "navBlaDarken60": "#01b19d",
+          "navBlaDarken80": "#02ca90",
+          "navBlaLighten20": "#0385NaN",
+          "navBlaLighten40": "#06a3NaN",
+          "navBlaLighten60": "#09c2NaN",
+          "navBlaLighten80": "#0ce0NaN",
+          "navDypBla": "#005b82",
+          "navDypBlaDarken20": "#007682",
+          "navDypBlaDarken40": "#019182",
+          "navDypBlaDarken60": "#01ac82",
+          "navDypBlaDarken80": "#02c782",
+          "navDypBlaLighten20": "#037bNaN",
+          "navDypBlaLighten40": "#069cNaN",
+          "navDypBlaLighten60": "#09bdNaN",
+          "navDypBlaLighten80": "#0cdeNaN",
+          "navGra20": "#c6c2bf",
+          "navGra40": "#b7b1a9",
+          "navGra60": "#78706a",
+          "navGra80": "#59514b",
+          "navGraBakgrunn": "#f1f1f1",
+          "navGronn": "#06893a",
+          "navGronnDarken20": "#059b48",
+          "navGronnDarken40": "#04ad57",
+          "navGronnDarken60": "#04bf65",
+          "navGronnDarken80": "#03d174",
+          "navGronnLighten20": "#07a0NaN",
+          "navGronnLighten40": "#09b8NaN",
+          "navGronnLighten60": "#0bcfNaN",
+          "navGronnLighten80": "#0de7NaN",
+          "navLilla": "#634689",
+          "navLillaDarken20": "#4f6587",
+          "navLillaDarken40": "#3c8486",
+          "navLillaDarken60": "#29a485",
+          "navLillaDarken80": "#16c384",
+          "navLillaLighten20": "#526bNaN",
+          "navLillaLighten40": "#4190NaN",
+          "navLillaLighten60": "#30b5NaN",
+          "navLillaLighten80": "#1fdaNaN",
+          "navLimeGronn": "#a2ad00",
+          "navLimeGronnDarken20": "#82b71a",
+          "navLimeGronnDarken40": "#62c234",
+          "navLimeGronnDarken60": "#42cd4e",
+          "navLimeGronnDarken80": "#22d868",
+          "navLimeGronnLighten20": "#84bdNaN",
+          "navLimeGronnLighten40": "#67cdNaN",
+          "navLimeGronnLighten60": "#49deNaN",
+          "navLimeGronnLighten80": "#2ceeNaN",
+          "navLysBla": "#66cbec",
+          "navLysBlaDarken20": "#52cfd7",
+          "navLysBlaDarken40": "#3ed4c2",
+          "navLysBlaDarken60": "#2ad9ad",
+          "navLysBlaDarken80": "#16de98",
+          "navLysBlaLighten20": "#54d5NaN",
+          "navLysBlaLighten40": "#43dfNaN",
+          "navLysBlaLighten60": "#31eaNaN",
+          "navLysBlaLighten80": "#20f4NaN",
+          "navLysGra": "#e9e7e7",
+          "navMorkGra": "#3e3832",
+          "navOransje": "#ff9100",
+          "navOransjeDarken20": "#cca11a",
+          "navOransjeDarken40": "#9ab134",
+          "navOransjeDarken60": "#67c24e",
+          "navOransjeDarken80": "#35d268",
+          "navOransjeLighten20": "#cfa7NaN",
+          "navOransjeLighten40": "#9fbdNaN",
+          "navOransjeLighten60": "#6fd3NaN",
+          "navOransjeLighten80": "#3fe9NaN",
+          "navRod": "#c30000",
+          "navRodDarken20": "#9c2d1a",
+          "navRodDarken40": "#765a34",
+          "navRodDarken60": "#4f884e",
+          "navRodDarken80": "#29b568",
+          "navRodLighten20": "#9f33NaN",
+          "navRodLighten40": "#7b66NaN",
+          "navRodLighten60": "#5799NaN",
+          "navRodLighten80": "#33ccNaN",
+          "orangeFocus": "#ffbd66",
+          "orangeFocusDarken20": "#ccc46b",
+          "orangeFocusDarken40": "#9acc71",
+          "orangeFocusDarken60": "#67d377",
+          "orangeFocusDarken80": "#35db7d",
+          "orangeFocusLighten20": "#cfcaNaN",
+          "orangeFocusLighten40": "#9fd7NaN",
+          "orangeFocusLighten60": "#6fe4NaN",
+          "orangeFocusLighten80": "#3ff1NaN",
+          "padding-base-horizontal": "12px",
+          "padding-base-vertical": "6px",
+          "padding-large-horizontal": "16px",
+          "padding-large-vertical": "10px",
+          "padding-small-horizontal": "10px",
+          "padding-small-vertical": "5px",
+          "padding-xs-horizontal": "5px",
+          "padding-xs-vertical": "1px",
+          "pinkErrorBg": "#f3e3e3",
+          "redError": "#ba3a26",
+          "redErrorDarken20": "#955b38",
+          "redErrorDarken40": "#707d4b",
+          "redErrorDarken60": "#4c9f5d",
+          "redErrorDarken80": "#27c170",
+          "redErrorLighten20": "#9761NaN",
+          "redErrorLighten40": "#7588NaN",
+          "redErrorLighten60": "#53b0NaN",
+          "redErrorLighten80": "#31d7NaN",
+          "screen-desktop": "992px",
+          "screen-lg": "1200px",
+          "screen-lg-desktop": "1200px",
+          "screen-lg-min": "1200px",
+          "screen-md": "992px",
+          "screen-md-max": "(@screen-lg-min - 1)",
+          "screen-md-min": "992px",
+          "screen-sm": "768px",
+          "screen-sm-max": "(@screen-md-min - 1)",
+          "screen-sm-min": "768px",
+          "screen-tablet": "768px",
+          "screen-xs-max": "(@screen-sm-min - 1)",
+          "type": "theme",
+          "white": "#FFFFFF",
+        }
+      }
     >
-      <div
-        className="c0 c1 tabell"
+      <styled.div
+        className="tabell"
       >
-        <styled.div>
-          <div
-            className="c2 c3"
-          >
-            <styled.table
-              cellSpacing="0"
-              className="c-tableSorter__table"
+        <div
+          className="c0 c1 tabell"
+        >
+          <styled.div>
+            <div
+              className="c2 c3"
             >
-              <table
+              <styled.table
                 cellSpacing="0"
-                className="c4 c5 c-tableSorter__table"
+                className="c-tableSorter__table"
               >
-                <thead>
-                  <tr
-                    className="c-tableSorter__header"
-                  >
-                    <th
-                      style={
-                        Object {
-                          "width": 1,
-                        }
-                      }
+                <table
+                  cellSpacing="0"
+                  className="c4 c5 c-tableSorter__table"
+                >
+                  <thead>
+                    <tr
+                      className="c-tableSorter__header"
                     >
-                      <div
+                      <th
                         style={
                           Object {
-                            "alignItems": "center",
-                            "display": "flex",
+                            "width": 1,
                           }
                         }
                       >
-                        <Checkbox
-                          checked={false}
-                          className="c-tableSorter__checkAll-checkbox"
-                          id="c-tableSorter__checkAll-checkbox-id-test"
-                          label="Velg alle"
-                          onChange={[Function]}
+                        <div
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "display": "flex",
+                            }
+                          }
                         >
-                          <div
-                            className="skjemaelement c-tableSorter__checkAll-checkbox"
+                          <Checkbox
+                            checked={false}
+                            className="c-tableSorter__checkAll-checkbox"
+                            id="c-tableSorter__checkAll-checkbox-id-test"
+                            label="Velg alle"
+                            onChange={[Function]}
                           >
-                            <input
-                              aria-invalid={false}
-                              checked={false}
-                              className="skjemaelement__input checkboks"
-                              id="c-tableSorter__checkAll-checkbox-id-test"
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                            <label
-                              className="skjemaelement__label"
-                              htmlFor="c-tableSorter__checkAll-checkbox-id-test"
+                            <div
+                              className="skjemaelement c-tableSorter__checkAll-checkbox"
                             >
-                              Velg alle
-                            </label>
-                          </div>
-                        </Checkbox>
-                        <styled.div>
-                          <div
-                            className="c6 c7"
-                          >
-                            <View
-                              className="c-tableSorter___seefilters-icon"
-                              id="c-tableSorter__seefilters-icon-id"
-                              onClick={[Function]}
+                              <input
+                                aria-invalid={false}
+                                checked={false}
+                                className="skjemaelement__input checkboks"
+                                id="c-tableSorter__checkAll-checkbox-id-test"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <label
+                                className="skjemaelement__label"
+                                htmlFor="c-tableSorter__checkAll-checkbox-id-test"
+                              >
+                                Velg alle
+                              </label>
+                            </div>
+                          </Checkbox>
+                          <styled.div>
+                            <div
+                              className="c6 c7"
                             >
-                              <svg
+                              <View
                                 className="c-tableSorter___seefilters-icon"
-                                enableBackground="new 0 0 24 24"
-                                height={24}
                                 id="c-tableSorter__seefilters-icon-id"
                                 onClick={[Function]}
-                                version="1.1"
-                                viewBox="0 0 24 24"
-                                width={24}
-                                x="0px"
-                                xmlSpace="preserve"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlnsXlink="http://www.w3.org/1999/xlink"
-                                y="0px"
                               >
-                                <g>
-                                  <path
-                                    d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
-                                  />
-                                  <path
-                                    d="M23.853,23.146l-2.461-2.461l-0.713-0.714c0.581-0.734,0.932-1.659,0.932-2.666c0-2.374-1.932-4.306-4.305-4.306 c-2.375,0-4.307,1.932-4.307,4.306s1.932,4.305,4.307,4.305c1.007,0,1.932-0.35,2.666-0.932l0.713,0.713l2.461,2.462 C23.243,23.951,23.372,24,23.499,24c0.129,0,0.256-0.049,0.354-0.146C24.048,23.659,24.048,23.342,23.853,23.146z M17.306,20.61 c-1.823,0-3.307-1.482-3.307-3.305c0-1.823,1.483-3.306,3.307-3.306c1.822,0,3.305,1.482,3.305,3.306 C20.61,19.128,19.128,20.61,17.306,20.61z"
-                                  />
-                                </g>
-                              </svg>
-                            </View>
+                                <svg
+                                  className="c-tableSorter___seefilters-icon"
+                                  enableBackground="new 0 0 24 24"
+                                  height={24}
+                                  id="c-tableSorter__seefilters-icon-id"
+                                  onClick={[Function]}
+                                  version="1.1"
+                                  viewBox="0 0 24 24"
+                                  width={24}
+                                  x="0px"
+                                  xmlSpace="preserve"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                                  y="0px"
+                                >
+                                  <g>
+                                    <path
+                                      d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
+                                    />
+                                    <path
+                                      d="M23.853,23.146l-2.461-2.461l-0.713-0.714c0.581-0.734,0.932-1.659,0.932-2.666c0-2.374-1.932-4.306-4.305-4.306 c-2.375,0-4.307,1.932-4.307,4.306s1.932,4.305,4.307,4.305c1.007,0,1.932-0.35,2.666-0.932l0.713,0.713l2.461,2.462 C23.243,23.951,23.372,24,23.499,24c0.129,0,0.256-0.049,0.354-0.146C24.048,23.659,24.048,23.342,23.853,23.146z M17.306,20.61 c-1.823,0-3.307-1.482-3.307-3.305c0-1.823,1.483-3.306,3.307-3.306c1.822,0,3.305,1.482,3.305,3.306 C20.61,19.128,19.128,20.61,17.306,20.61z"
+                                    />
+                                  </g>
+                                </svg>
+                              </View>
+                            </div>
+                          </styled.div>
+                        </div>
+                      </th>
+                      <th
+                        aria-sort="none"
+                        className="header none"
+                        key="string"
+                        role="columnheader"
+                      >
+                        <Styled(Lenke)
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          <Lenke
+                            className="c8 c9"
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            <a
+                              className="lenke c8 c9"
+                              href="#"
+                              onClick={[Function]}
+                            >
+                              ui:string
+                            </a>
+                          </Lenke>
+                        </Styled(Lenke)>
+                      </th>
+                      <th
+                        aria-sort="none"
+                        className="header none"
+                        key="date"
+                        role="columnheader"
+                      >
+                        <Styled(Lenke)
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          <Lenke
+                            className="c8 c9"
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            <a
+                              className="lenke c8 c9"
+                              href="#"
+                              onClick={[Function]}
+                            >
+                              ui:date
+                            </a>
+                          </Lenke>
+                        </Styled(Lenke)>
+                      </th>
+                      <th
+                        aria-sort="none"
+                        className="header none"
+                        key="object"
+                        role="columnheader"
+                      >
+                        <Styled(Lenke)
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          <Lenke
+                            className="c8 c9"
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            <a
+                              className="lenke c8 c9"
+                              href="#"
+                              onClick={[Function]}
+                            >
+                              ui:variant
+                            </a>
+                          </Lenke>
+                        </Styled(Lenke)>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="striped"
+                  >
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      key="01"
+                      style={
+                        Object {
+                          "animationDelay": "0s",
+                        }
+                      }
+                    >
+                      <td>
+                        <styled.div>
+                          <div
+                            className="c10 c11"
+                          >
+                            <Checkbox
+                              checked={false}
+                              data-testid="c-tableSorter__row-checkbox-id-01-test"
+                              disabled={false}
+                              id="c-tableSorter__row-checkbox-id-01-test"
+                              label="Velg 01"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="skjemaelement"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  data-testid="c-tableSorter__row-checkbox-id-01-test"
+                                  disabled={false}
+                                  id="c-tableSorter__row-checkbox-id-01-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="c-tableSorter__row-checkbox-id-01-test"
+                                >
+                                  Velg 01
+                                </label>
+                              </div>
+                            </Checkbox>
                           </div>
                         </styled.div>
-                      </div>
-                    </th>
-                    <th
-                      aria-sort="none"
-                      className="header none"
-                      key="string"
-                      role="columnheader"
-                    >
-                      <Styled(Lenke)
-                        href="#"
-                        onClick={[Function]}
+                      </td>
+                      <td
+                        className=""
+                        key="0"
                       >
-                        <Lenke
-                          className="c8 c9"
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          <a
-                            className="lenke c8 c9"
-                            href="#"
-                            onClick={[Function]}
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
                           >
-                            ui:string
-                          </a>
-                        </Lenke>
-                      </Styled(Lenke)>
-                    </th>
-                    <th
-                      aria-sort="none"
-                      className="header none"
-                      key="date"
-                      role="columnheader"
-                    >
-                      <Styled(Lenke)
-                        href="#"
-                        onClick={[Function]}
+                            <p
+                              className="typo-normal"
+                            >
+                              <span>
+                                String 01
+                              </span>
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="1"
                       >
-                        <Lenke
-                          className="c8 c9"
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          <a
-                            className="lenke c8 c9"
-                            href="#"
-                            onClick={[Function]}
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
                           >
-                            ui:date
-                          </a>
-                        </Lenke>
-                      </Styled(Lenke)>
-                    </th>
-                    <th
-                      aria-sort="none"
-                      className="header none"
-                      key="object"
-                      role="columnheader"
-                    >
-                      <Styled(Lenke)
-                        href="#"
-                        onClick={[Function]}
+                            <p
+                              className="typo-normal"
+                            >
+                              2/1/2020
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="2"
                       >
-                        <Lenke
-                          className="c8 c9"
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          <a
-                            className="lenke c8 c9"
-                            href="#"
-                            onClick={[Function]}
+                        <span>
+                          Object 01
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      key="02"
+                      style={
+                        Object {
+                          "animationDelay": "0.04s",
+                        }
+                      }
+                    >
+                      <td>
+                        <styled.div>
+                          <div
+                            className="c10 c11"
                           >
-                            ui:variant
-                          </a>
-                        </Lenke>
-                      </Styled(Lenke)>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  className="striped"
+                            <Checkbox
+                              checked={false}
+                              data-testid="c-tableSorter__row-checkbox-id-02-test"
+                              disabled={false}
+                              id="c-tableSorter__row-checkbox-id-02-test"
+                              label="Velg 02"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="skjemaelement"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  data-testid="c-tableSorter__row-checkbox-id-02-test"
+                                  disabled={false}
+                                  id="c-tableSorter__row-checkbox-id-02-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="c-tableSorter__row-checkbox-id-02-test"
+                                >
+                                  Velg 02
+                                </label>
+                              </div>
+                            </Checkbox>
+                          </div>
+                        </styled.div>
+                      </td>
+                      <td
+                        className=""
+                        key="0"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              <span>
+                                String 02
+                              </span>
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="1"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              2/2/2020
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="2"
+                      >
+                        <span>
+                          Object 02
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      key="03"
+                      style={
+                        Object {
+                          "animationDelay": "0.08s",
+                        }
+                      }
+                    >
+                      <td>
+                        <styled.div>
+                          <div
+                            className="c10 c11"
+                          >
+                            <Checkbox
+                              checked={false}
+                              data-testid="c-tableSorter__row-checkbox-id-03-test"
+                              disabled={false}
+                              id="c-tableSorter__row-checkbox-id-03-test"
+                              label="Velg 03"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="skjemaelement"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  data-testid="c-tableSorter__row-checkbox-id-03-test"
+                                  disabled={false}
+                                  id="c-tableSorter__row-checkbox-id-03-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="c-tableSorter__row-checkbox-id-03-test"
+                                >
+                                  Velg 03
+                                </label>
+                              </div>
+                            </Checkbox>
+                          </div>
+                        </styled.div>
+                      </td>
+                      <td
+                        className=""
+                        key="0"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              <span>
+                                String 03
+                              </span>
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="1"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              2/3/2020
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="2"
+                      >
+                        <span>
+                          Object 03
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      key="04"
+                      style={
+                        Object {
+                          "animationDelay": "0.12s",
+                        }
+                      }
+                    >
+                      <td>
+                        <styled.div>
+                          <div
+                            className="c10 c11"
+                          >
+                            <Checkbox
+                              checked={false}
+                              data-testid="c-tableSorter__row-checkbox-id-04-test"
+                              disabled={false}
+                              id="c-tableSorter__row-checkbox-id-04-test"
+                              label="Velg 04"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="skjemaelement"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  data-testid="c-tableSorter__row-checkbox-id-04-test"
+                                  disabled={false}
+                                  id="c-tableSorter__row-checkbox-id-04-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="c-tableSorter__row-checkbox-id-04-test"
+                                >
+                                  Velg 04
+                                </label>
+                              </div>
+                            </Checkbox>
+                          </div>
+                        </styled.div>
+                      </td>
+                      <td
+                        className=""
+                        key="0"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              <span>
+                                String 04
+                              </span>
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="1"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              2/4/2020
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="2"
+                      >
+                        <span>
+                          Object 04
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      key="05"
+                      style={
+                        Object {
+                          "animationDelay": "0.16s",
+                        }
+                      }
+                    >
+                      <td>
+                        <styled.div>
+                          <div
+                            className="c10 c11"
+                          >
+                            <Checkbox
+                              checked={false}
+                              data-testid="c-tableSorter__row-checkbox-id-05-test"
+                              disabled={false}
+                              id="c-tableSorter__row-checkbox-id-05-test"
+                              label="Velg 05"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="skjemaelement"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  data-testid="c-tableSorter__row-checkbox-id-05-test"
+                                  disabled={false}
+                                  id="c-tableSorter__row-checkbox-id-05-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="c-tableSorter__row-checkbox-id-05-test"
+                                >
+                                  Velg 05
+                                </label>
+                              </div>
+                            </Checkbox>
+                          </div>
+                        </styled.div>
+                      </td>
+                      <td
+                        className=""
+                        key="0"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              <span>
+                                String 05
+                              </span>
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="1"
+                      >
+                        <Normaltekst>
+                          <TypografiBase
+                            type="normaltekst"
+                          >
+                            <p
+                              className="typo-normal"
+                            >
+                              2/5/2020
+                            </p>
+                          </TypografiBase>
+                        </Normaltekst>
+                      </td>
+                      <td
+                        className=""
+                        key="2"
+                      >
+                        <span>
+                          Object 05
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </styled.table>
+              <styled.div>
+                <div
+                  className="c12 c13"
                 >
-                  <tr
-                    aria-selected={false}
-                    className="slideAnimate"
-                    key="01"
-                    style={
-                      Object {
-                        "animationDelay": "0s",
-                      }
-                    }
+                  <div />
+                  <div />
+                  <k
+                    currentPage={1}
+                    highContrast={false}
+                    itemsPerPage={5}
+                    numberOfItems={11}
+                    onChange={[Function]}
                   >
-                    <td>
-                      <styled.div>
-                        <div
-                          className="c10 c11"
-                        >
-                          <Checkbox
-                            checked={false}
-                            data-testid="c-tableSorter__row-checkbox-id-01-test"
-                            disabled={false}
-                            id="c-tableSorter__row-checkbox-id-01-test"
-                            label="Velg 01"
-                            onChange={[Function]}
-                          >
-                            <div
-                              className="skjemaelement"
-                            >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                data-testid="c-tableSorter__row-checkbox-id-01-test"
-                                disabled={false}
-                                id="c-tableSorter__row-checkbox-id-01-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__row-checkbox-id-01-test"
-                              >
-                                Velg 01
-                              </label>
-                            </div>
-                          </Checkbox>
-                        </div>
-                      </styled.div>
-                    </td>
-                    <td
-                      className=""
-                      key="0"
+                    <Zn
+                      highContrast={false}
                     >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            <span>
-                              String 01
-                            </span>
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="1"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            2/1/2020
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="2"
-                    >
-                      <span>
-                        Object 01
-                      </span>
-                    </td>
-                  </tr>
-                  <tr
-                    aria-selected={false}
-                    className="slideAnimate"
-                    key="02"
-                    style={
-                      Object {
-                        "animationDelay": "0.04s",
-                      }
-                    }
-                  >
-                    <td>
-                      <styled.div>
-                        <div
-                          className="c10 c11"
-                        >
-                          <Checkbox
-                            checked={false}
-                            data-testid="c-tableSorter__row-checkbox-id-02-test"
-                            disabled={false}
-                            id="c-tableSorter__row-checkbox-id-02-test"
-                            label="Velg 02"
-                            onChange={[Function]}
-                          >
-                            <div
-                              className="skjemaelement"
-                            >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                data-testid="c-tableSorter__row-checkbox-id-02-test"
-                                disabled={false}
-                                id="c-tableSorter__row-checkbox-id-02-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__row-checkbox-id-02-test"
-                              >
-                                Velg 02
-                              </label>
-                            </div>
-                          </Checkbox>
-                        </div>
-                      </styled.div>
-                    </td>
-                    <td
-                      className=""
-                      key="0"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            <span>
-                              String 02
-                            </span>
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="1"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            2/2/2020
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="2"
-                    >
-                      <span>
-                        Object 02
-                      </span>
-                    </td>
-                  </tr>
-                  <tr
-                    aria-selected={false}
-                    className="slideAnimate"
-                    key="03"
-                    style={
-                      Object {
-                        "animationDelay": "0.08s",
-                      }
-                    }
-                  >
-                    <td>
-                      <styled.div>
-                        <div
-                          className="c10 c11"
-                        >
-                          <Checkbox
-                            checked={false}
-                            data-testid="c-tableSorter__row-checkbox-id-03-test"
-                            disabled={false}
-                            id="c-tableSorter__row-checkbox-id-03-test"
-                            label="Velg 03"
-                            onChange={[Function]}
-                          >
-                            <div
-                              className="skjemaelement"
-                            >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                data-testid="c-tableSorter__row-checkbox-id-03-test"
-                                disabled={false}
-                                id="c-tableSorter__row-checkbox-id-03-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__row-checkbox-id-03-test"
-                              >
-                                Velg 03
-                              </label>
-                            </div>
-                          </Checkbox>
-                        </div>
-                      </styled.div>
-                    </td>
-                    <td
-                      className=""
-                      key="0"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            <span>
-                              String 03
-                            </span>
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="1"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            2/3/2020
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="2"
-                    >
-                      <span>
-                        Object 03
-                      </span>
-                    </td>
-                  </tr>
-                  <tr
-                    aria-selected={false}
-                    className="slideAnimate"
-                    key="04"
-                    style={
-                      Object {
-                        "animationDelay": "0.12s",
-                      }
-                    }
-                  >
-                    <td>
-                      <styled.div>
-                        <div
-                          className="c10 c11"
-                        >
-                          <Checkbox
-                            checked={false}
-                            data-testid="c-tableSorter__row-checkbox-id-04-test"
-                            disabled={false}
-                            id="c-tableSorter__row-checkbox-id-04-test"
-                            label="Velg 04"
-                            onChange={[Function]}
-                          >
-                            <div
-                              className="skjemaelement"
-                            >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                data-testid="c-tableSorter__row-checkbox-id-04-test"
-                                disabled={false}
-                                id="c-tableSorter__row-checkbox-id-04-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__row-checkbox-id-04-test"
-                              >
-                                Velg 04
-                              </label>
-                            </div>
-                          </Checkbox>
-                        </div>
-                      </styled.div>
-                    </td>
-                    <td
-                      className=""
-                      key="0"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            <span>
-                              String 04
-                            </span>
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="1"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            2/4/2020
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="2"
-                    >
-                      <span>
-                        Object 04
-                      </span>
-                    </td>
-                  </tr>
-                  <tr
-                    aria-selected={false}
-                    className="slideAnimate"
-                    key="05"
-                    style={
-                      Object {
-                        "animationDelay": "0.16s",
-                      }
-                    }
-                  >
-                    <td>
-                      <styled.div>
-                        <div
-                          className="c10 c11"
-                        >
-                          <Checkbox
-                            checked={false}
-                            data-testid="c-tableSorter__row-checkbox-id-05-test"
-                            disabled={false}
-                            id="c-tableSorter__row-checkbox-id-05-test"
-                            label="Velg 05"
-                            onChange={[Function]}
-                          >
-                            <div
-                              className="skjemaelement"
-                            >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                data-testid="c-tableSorter__row-checkbox-id-05-test"
-                                disabled={false}
-                                id="c-tableSorter__row-checkbox-id-05-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__row-checkbox-id-05-test"
-                              >
-                                Velg 05
-                              </label>
-                            </div>
-                          </Checkbox>
-                        </div>
-                      </styled.div>
-                    </td>
-                    <td
-                      className=""
-                      key="0"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            <span>
-                              String 05
-                            </span>
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="1"
-                    >
-                      <Normaltekst>
-                        <TypografiBase
-                          type="normaltekst"
-                        >
-                          <p
-                            className="typo-normal"
-                          >
-                            2/5/2020
-                          </p>
-                        </TypografiBase>
-                      </Normaltekst>
-                    </td>
-                    <td
-                      className=""
-                      key="2"
-                    >
-                      <span>
-                        Object 05
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </styled.table>
-            <styled.div>
-              <div
-                className="c12 c13"
-              >
-                <div />
-                <div />
-                <b
-                  currentPage={1}
-                  highContrast={false}
-                  itemsPerPage={5}
-                  numberOfItems={11}
-                  onChange={[Function]}
-                >
-                  <Component
-                    theme={
-                      Object {
-                        "alternative-background-color": "#E9E7E7",
-                        "black": "#000000",
-                        "border-radius-base": "4px",
-                        "border-radius-large": "6px",
-                        "border-radius-small": "2px",
-                        "container-desktop": "(940px + @grid-gutter-width)",
-                        "container-large-desktop": "(1140px + @grid-gutter-width)",
-                        "container-lg": "(1140px + @grid-gutter-width)",
-                        "container-md": "(940px + @grid-gutter-width)",
-                        "container-sm": "(720px + @grid-gutter-width)",
-                        "container-tablet": "(720px + @grid-gutter-width)",
-                        "fokusFarge": "#254a6c",
-                        "grayBackground": "#E9E7E7",
-                        "grayIcon": "#B7B1A9",
-                        "grayInactive": "#78706A",
-                        "grayModia": "#333333",
-                        "grid-columns": "12",
-                        "grid-float-breakpoint": "768px",
-                        "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
-                        "grid-gutter-width": "16px",
-                        "inverted-font-color": "#FFFFFF",
-                        "line-height-large": "1.3333333",
-                        "line-height-small": "1.5",
-                        "main-active-color": "#a3dff3",
-                        "main-background-color": "#FFFFFF",
-                        "main-border-color": "#78706A",
-                        "main-border-radius": "4px",
-                        "main-disabled-color": "#B7B1A9",
-                        "main-error-color": "#BA3A26",
-                        "main-focus-color": "#254a6c",
-                        "main-font-color": "#3E3832",
-                        "main-hover-color": "#e0f4fb",
-                        "main-interactive-color": "#0067C5",
-                        "main-success-color": "#06893A",
-                        "main-warning-color": "#FF9100",
-                        "navBla": "#0067C5",
-                        "navBlaDarken20": "#0c5da7",
-                        "navBlaDarken40": "#18548a",
-                        "navBlaDarken60": "#254a6c",
-                        "navBlaDarken80": "#31414f",
-                        "navBlaLighten20": "#3385d0",
-                        "navBlaLighten40": "#66a3dc",
-                        "navBlaLighten60": "#99c2e7",
-                        "navBlaLighten80": "#cce0f3",
-                        "navDypBla": "#005B82",
-                        "navDypBlaDarken20": "#0c5472",
-                        "navDypBlaDarken40": "#184d62",
-                        "navDypBlaDarken60": "#254652",
-                        "navDypBlaDarken80": "#313f42",
-                        "navDypBlaLighten20": "#337b9b",
-                        "navDypBlaLighten40": "#669cb4",
-                        "navDypBlaLighten60": "#99bdcd",
-                        "navDypBlaLighten80": "#ccdee6",
-                        "navGra20": "#C6C2BF",
-                        "navGra40": "#B7B1A9",
-                        "navGra60": "#78706A",
-                        "navGra80": "#59514B",
-                        "navGronn": "#06893A",
-                        "navGronnDarken20": "#117838",
-                        "navGronnDarken40": "#1c6836",
-                        "navGronnDarken60": "#275835",
-                        "navGronnDarken80": "#324833",
-                        "navGronnLighten20": "#37a061",
-                        "navGronnLighten40": "#69b888",
-                        "navGronnLighten60": "#9bcfb0",
-                        "navGronnLighten80": "#cde7d7",
-                        "navLilla": "#634689",
-                        "navLillaDarken20": "#5b4377",
-                        "navLillaDarken40": "#544066",
-                        "navLillaDarken60": "#4c3d54",
-                        "navLillaDarken80": "#453a43",
-                        "navLillaLighten20": "#826ba0",
-                        "navLillaLighten40": "#a190b8",
-                        "navLillaLighten60": "#c0b5cf",
-                        "navLillaLighten80": "#dfdae7",
-                        "navLimeGronn": "#A2AD00",
-                        "navLimeGronnDarken20": "#8e950a",
-                        "navLimeGronnDarken40": "#7a7e14",
-                        "navLimeGronnDarken60": "#66661e",
-                        "navLimeGronnDarken80": "#524f28",
-                        "navLimeGronnLighten20": "#b4bd33",
-                        "navLimeGronnLighten40": "#c7cd66",
-                        "navLimeGronnLighten60": "#d9de99",
-                        "navLimeGronnLighten80": "#eceecc",
-                        "navLysBla": "#66CBEC",
-                        "navLysBlaDarken20": "#5eadc6",
-                        "navLysBlaDarken40": "#5690a1",
-                        "navLysBlaDarken60": "#4e727c",
-                        "navLysBlaDarken80": "#465557",
-                        "navLysBlaLighten20": "#84d5ef",
-                        "navLysBlaLighten40": "#a3dff3",
-                        "navLysBlaLighten60": "#c1eaf7",
-                        "navLysBlaLighten80": "#e0f4fb",
-                        "navLysGra": "#E9E7E7",
-                        "navMorkGra": "#3E3832",
-                        "navOransje": "#FF9100",
-                        "navOransjeDarken20": "#d87f0a",
-                        "navOransjeDarken40": "#b16d14",
-                        "navOransjeDarken60": "#8b5b1e",
-                        "navOransjeDarken80": "#644928",
-                        "navOransjeLighten20": "#ffa733",
-                        "navOransjeLighten40": "#ffbd66",
-                        "navOransjeLighten60": "#ffd399",
-                        "navOransjeLighten80": "#ffe9cc",
-                        "navRod": "#C30000",
-                        "navRodDarken20": "#a80b0a",
-                        "navRodDarken40": "#8d1614",
-                        "navRodDarken60": "#73211e",
-                        "navRodDarken80": "#582c28",
-                        "navRodLighten20": "#cf3333",
-                        "navRodLighten40": "#db6666",
-                        "navRodLighten60": "#e79999",
-                        "navRodLighten80": "#f3cccc",
-                        "orangeFocus": "#FFBD66",
-                        "orangeFocusDarken20": "#d8a25b",
-                        "orangeFocusDarken40": "#b18751",
-                        "orangeFocusDarken60": "#8b6d46",
-                        "orangeFocusDarken80": "#64523c",
-                        "orangeFocusLighten20": "#ffca84",
-                        "orangeFocusLighten40": "#ffd7a3",
-                        "orangeFocusLighten60": "#ffe4c1",
-                        "orangeFocusLighten80": "#fff1e0",
-                        "padding-base-horizontal": "12px",
-                        "padding-base-vertical": "6px",
-                        "padding-large-horizontal": "16px",
-                        "padding-large-vertical": "10px",
-                        "padding-small-horizontal": "10px",
-                        "padding-small-vertical": "5px",
-                        "padding-xs-horizontal": "5px",
-                        "padding-xs-vertical": "1px",
-                        "pinkErrorBg": "#F3E3E3",
-                        "redError": "#BA3A26",
-                        "redErrorDarken20": "#a13928",
-                        "redErrorDarken40": "#88392a",
-                        "redErrorDarken60": "#6f382d",
-                        "redErrorDarken80": "#56382f",
-                        "redErrorLighten20": "#c76151",
-                        "redErrorLighten40": "#d5887c",
-                        "redErrorLighten60": "#e3b0a8",
-                        "redErrorLighten80": "#f1d7d3",
-                        "screen-desktop": "992px",
-                        "screen-lg": "1200px",
-                        "screen-lg-desktop": "1200px",
-                        "screen-lg-min": "1200px",
-                        "screen-md": "992px",
-                        "screen-md-max": "(@screen-lg-min - 1)",
-                        "screen-md-min": "992px",
-                        "screen-sm": "768px",
-                        "screen-sm-max": "(@screen-md-min - 1)",
-                        "screen-sm-min": "768px",
-                        "screen-tablet": "768px",
-                        "screen-xs-max": "(@screen-sm-min - 1)",
-                        "type": "theme",
-                        "white": "#FFFFFF",
-                      }
-                    }
-                  >
-                    <styled.div
-                      className=""
-                    >
-                      <div
-                        className="c14 c15"
+                      <Component
+                        theme={
+                          Object {
+                            "alternative-background-color": "#e9e7e7",
+                            "black": "#000000",
+                            "border-radius-base": "4px",
+                            "border-radius-large": "6px",
+                            "border-radius-small": "2px",
+                            "container-desktop": "(940px + @grid-gutter-width)",
+                            "container-large-desktop": "(1140px + @grid-gutter-width)",
+                            "container-lg": "(1140px + @grid-gutter-width)",
+                            "container-md": "(940px + @grid-gutter-width)",
+                            "container-sm": "(720px + @grid-gutter-width)",
+                            "container-tablet": "(720px + @grid-gutter-width)",
+                            "fokusFarge": "#01b19d",
+                            "grayBackground": "#e9e7e7",
+                            "grayIcon": "#b7b1a9",
+                            "grayInactive": "#78706a",
+                            "grayModia": "#333333",
+                            "grid-columns": "12",
+                            "grid-float-breakpoint": "768px",
+                            "grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
+                            "grid-gutter-width": "16px",
+                            "inverted-font-color": "#FFFFFF",
+                            "line-height-large": "1.3333333",
+                            "line-height-small": "1.5",
+                            "main-active-color": "#43dfNaN",
+                            "main-background-color": "#FFFFFF",
+                            "main-border-color": "#78706a",
+                            "main-border-radius": "4px",
+                            "main-disabled-color": "#b7b1a9",
+                            "main-error-color": "#ba3a26",
+                            "main-focus-color": "#01b19d",
+                            "main-font-color": "#3e3832",
+                            "main-hover-color": "#20f4NaN",
+                            "main-interactive-color": "#0067c5",
+                            "main-success-color": "#06893a",
+                            "main-warning-color": "#ff9100",
+                            "navBakgrunn": "#ffffff",
+                            "navBla": "#0067c5",
+                            "navBlaDarken20": "#007fb7",
+                            "navBlaDarken40": "#0198aa",
+                            "navBlaDarken60": "#01b19d",
+                            "navBlaDarken80": "#02ca90",
+                            "navBlaLighten20": "#0385NaN",
+                            "navBlaLighten40": "#06a3NaN",
+                            "navBlaLighten60": "#09c2NaN",
+                            "navBlaLighten80": "#0ce0NaN",
+                            "navDypBla": "#005b82",
+                            "navDypBlaDarken20": "#007682",
+                            "navDypBlaDarken40": "#019182",
+                            "navDypBlaDarken60": "#01ac82",
+                            "navDypBlaDarken80": "#02c782",
+                            "navDypBlaLighten20": "#037bNaN",
+                            "navDypBlaLighten40": "#069cNaN",
+                            "navDypBlaLighten60": "#09bdNaN",
+                            "navDypBlaLighten80": "#0cdeNaN",
+                            "navGra20": "#c6c2bf",
+                            "navGra40": "#b7b1a9",
+                            "navGra60": "#78706a",
+                            "navGra80": "#59514b",
+                            "navGraBakgrunn": "#f1f1f1",
+                            "navGronn": "#06893a",
+                            "navGronnDarken20": "#059b48",
+                            "navGronnDarken40": "#04ad57",
+                            "navGronnDarken60": "#04bf65",
+                            "navGronnDarken80": "#03d174",
+                            "navGronnLighten20": "#07a0NaN",
+                            "navGronnLighten40": "#09b8NaN",
+                            "navGronnLighten60": "#0bcfNaN",
+                            "navGronnLighten80": "#0de7NaN",
+                            "navLilla": "#634689",
+                            "navLillaDarken20": "#4f6587",
+                            "navLillaDarken40": "#3c8486",
+                            "navLillaDarken60": "#29a485",
+                            "navLillaDarken80": "#16c384",
+                            "navLillaLighten20": "#526bNaN",
+                            "navLillaLighten40": "#4190NaN",
+                            "navLillaLighten60": "#30b5NaN",
+                            "navLillaLighten80": "#1fdaNaN",
+                            "navLimeGronn": "#a2ad00",
+                            "navLimeGronnDarken20": "#82b71a",
+                            "navLimeGronnDarken40": "#62c234",
+                            "navLimeGronnDarken60": "#42cd4e",
+                            "navLimeGronnDarken80": "#22d868",
+                            "navLimeGronnLighten20": "#84bdNaN",
+                            "navLimeGronnLighten40": "#67cdNaN",
+                            "navLimeGronnLighten60": "#49deNaN",
+                            "navLimeGronnLighten80": "#2ceeNaN",
+                            "navLysBla": "#66cbec",
+                            "navLysBlaDarken20": "#52cfd7",
+                            "navLysBlaDarken40": "#3ed4c2",
+                            "navLysBlaDarken60": "#2ad9ad",
+                            "navLysBlaDarken80": "#16de98",
+                            "navLysBlaLighten20": "#54d5NaN",
+                            "navLysBlaLighten40": "#43dfNaN",
+                            "navLysBlaLighten60": "#31eaNaN",
+                            "navLysBlaLighten80": "#20f4NaN",
+                            "navLysGra": "#e9e7e7",
+                            "navMorkGra": "#3e3832",
+                            "navOransje": "#ff9100",
+                            "navOransjeDarken20": "#cca11a",
+                            "navOransjeDarken40": "#9ab134",
+                            "navOransjeDarken60": "#67c24e",
+                            "navOransjeDarken80": "#35d268",
+                            "navOransjeLighten20": "#cfa7NaN",
+                            "navOransjeLighten40": "#9fbdNaN",
+                            "navOransjeLighten60": "#6fd3NaN",
+                            "navOransjeLighten80": "#3fe9NaN",
+                            "navRod": "#c30000",
+                            "navRodDarken20": "#9c2d1a",
+                            "navRodDarken40": "#765a34",
+                            "navRodDarken60": "#4f884e",
+                            "navRodDarken80": "#29b568",
+                            "navRodLighten20": "#9f33NaN",
+                            "navRodLighten40": "#7b66NaN",
+                            "navRodLighten60": "#5799NaN",
+                            "navRodLighten80": "#33ccNaN",
+                            "orangeFocus": "#ffbd66",
+                            "orangeFocusDarken20": "#ccc46b",
+                            "orangeFocusDarken40": "#9acc71",
+                            "orangeFocusDarken60": "#67d377",
+                            "orangeFocusDarken80": "#35db7d",
+                            "orangeFocusLighten20": "#cfcaNaN",
+                            "orangeFocusLighten40": "#9fd7NaN",
+                            "orangeFocusLighten60": "#6fe4NaN",
+                            "orangeFocusLighten80": "#3ff1NaN",
+                            "padding-base-horizontal": "12px",
+                            "padding-base-vertical": "6px",
+                            "padding-large-horizontal": "16px",
+                            "padding-large-vertical": "10px",
+                            "padding-small-horizontal": "10px",
+                            "padding-small-vertical": "5px",
+                            "padding-xs-horizontal": "5px",
+                            "padding-xs-vertical": "1px",
+                            "pinkErrorBg": "#f3e3e3",
+                            "redError": "#ba3a26",
+                            "redErrorDarken20": "#955b38",
+                            "redErrorDarken40": "#707d4b",
+                            "redErrorDarken60": "#4c9f5d",
+                            "redErrorDarken80": "#27c170",
+                            "redErrorLighten20": "#9761NaN",
+                            "redErrorLighten40": "#7588NaN",
+                            "redErrorLighten60": "#53b0NaN",
+                            "redErrorLighten80": "#31d7NaN",
+                            "screen-desktop": "992px",
+                            "screen-lg": "1200px",
+                            "screen-lg-desktop": "1200px",
+                            "screen-lg-min": "1200px",
+                            "screen-md": "992px",
+                            "screen-md-max": "(@screen-lg-min - 1)",
+                            "screen-md-min": "992px",
+                            "screen-sm": "768px",
+                            "screen-sm-max": "(@screen-md-min - 1)",
+                            "screen-sm-min": "768px",
+                            "screen-tablet": "768px",
+                            "screen-xs-max": "(@screen-sm-min - 1)",
+                            "type": "theme",
+                            "white": "#FFFFFF",
+                          }
+                        }
                       >
-                        <Styled(a)
-                          className="c-pagination__prev-button"
-                          disabled={true}
-                          key="prev"
-                          kompakt={true}
-                          onClick={[Function]}
+                        <styled.div
+                          className=""
                         >
-                          <a
-                            className="c16 c17 c-pagination__prev-button"
-                            disabled={true}
-                            kompakt={true}
-                            onClick={[Function]}
+                          <div
+                            className="c14 c15"
                           >
-                            <f
-                              autoDisableVedSpinner={false}
-                              className="c16 c17 c-pagination__prev-button"
+                            <Styled(a)
+                              className="c-pagination__prev-button"
                               disabled={true}
-                              htmlType="submit"
-                              inaktivKlasseVedDisabled={false}
-                              kompakt={true}
-                              mini={false}
-                              onClick={[Function]}
-                              spinner={false}
-                              type="flat"
-                            >
-                              <button
-                                className="knapp c16 c17 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
-                                disabled={true}
-                                onClick={[Function]}
-                                type="submit"
-                              >
-                                ◄
-                              </button>
-                            </f>
-                          </a>
-                        </Styled(a)>
-                        <div
-                          key="page_0"
-                        >
-                          <Styled(a)
-                            className="c-pagination__page-button"
-                            disabled={true}
-                            kompakt={true}
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="c16 c17 c-pagination__page-button"
-                              disabled={true}
+                              key="prev"
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <f
-                                autoDisableVedSpinner={false}
-                                className="c16 c17 c-pagination__page-button"
+                              <a
+                                className="c16 c17 c-pagination__prev-button"
                                 disabled={true}
-                                htmlType="submit"
-                                inaktivKlasseVedDisabled={false}
                                 kompakt={true}
-                                mini={false}
                                 onClick={[Function]}
-                                spinner={false}
-                                type="flat"
                               >
-                                <button
-                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                <u
+                                  autoDisableVedSpinner={false}
+                                  className="c16 c17 c-pagination__prev-button"
                                   disabled={true}
+                                  htmlType="submit"
+                                  inaktivKlasseVedDisabled={false}
+                                  kompakt={true}
+                                  mini={false}
                                   onClick={[Function]}
-                                  type="submit"
+                                  spinner={false}
+                                  type="flat"
                                 >
-                                  1
-                                </button>
-                              </f>
-                            </a>
-                          </Styled(a)>
-                        </div>
-                        <div
-                          key="page_1"
-                        >
-                          <Styled(a)
-                            className="c-pagination__page-button"
-                            disabled={false}
-                            kompakt={true}
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="c16 c17 c-pagination__page-button"
-                              disabled={false}
-                              kompakt={true}
-                              onClick={[Function]}
+                                  <button
+                                    className="knapp c16 c17 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
+                                    disabled={true}
+                                    onClick={[Function]}
+                                    type="submit"
+                                  >
+                                    ◄
+                                  </button>
+                                </u>
+                              </a>
+                            </Styled(a)>
+                            <div
+                              key="page_0"
                             >
-                              <f
-                                autoDisableVedSpinner={false}
-                                className="c16 c17 c-pagination__page-button"
-                                disabled={false}
-                                htmlType="submit"
-                                inaktivKlasseVedDisabled={false}
+                              <Styled(a)
+                                className="c-pagination__page-button"
+                                disabled={true}
                                 kompakt={true}
-                                mini={false}
                                 onClick={[Function]}
-                                spinner={false}
-                                type="flat"
                               >
-                                <button
-                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
-                                  disabled={false}
+                                <a
+                                  className="c16 c17 c-pagination__page-button"
+                                  disabled={true}
+                                  kompakt={true}
                                   onClick={[Function]}
-                                  type="submit"
                                 >
-                                  2
-                                </button>
-                              </f>
-                            </a>
-                          </Styled(a)>
-                        </div>
-                        <div
-                          key="page_2"
-                        >
-                          <Styled(a)
-                            className="c-pagination__page-button"
-                            disabled={false}
-                            kompakt={true}
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="c16 c17 c-pagination__page-button"
-                              disabled={false}
-                              kompakt={true}
-                              onClick={[Function]}
+                                  <u
+                                    autoDisableVedSpinner={false}
+                                    className="c16 c17 c-pagination__page-button"
+                                    disabled={true}
+                                    htmlType="submit"
+                                    inaktivKlasseVedDisabled={false}
+                                    kompakt={true}
+                                    mini={false}
+                                    onClick={[Function]}
+                                    spinner={false}
+                                    type="flat"
+                                  >
+                                    <button
+                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                      disabled={true}
+                                      onClick={[Function]}
+                                      type="submit"
+                                    >
+                                      1
+                                    </button>
+                                  </u>
+                                </a>
+                              </Styled(a)>
+                            </div>
+                            <div
+                              key="page_1"
                             >
-                              <f
-                                autoDisableVedSpinner={false}
-                                className="c16 c17 c-pagination__page-button"
+                              <Styled(a)
+                                className="c-pagination__page-button"
                                 disabled={false}
-                                htmlType="submit"
-                                inaktivKlasseVedDisabled={false}
                                 kompakt={true}
-                                mini={false}
                                 onClick={[Function]}
-                                spinner={false}
-                                type="flat"
                               >
-                                <button
-                                  className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                <a
+                                  className="c16 c17 c-pagination__page-button"
                                   disabled={false}
+                                  kompakt={true}
                                   onClick={[Function]}
-                                  type="submit"
                                 >
-                                  3
-                                </button>
-                              </f>
-                            </a>
-                          </Styled(a)>
-                        </div>
-                        <Styled(a)
-                          className="c-pagination__next-button"
-                          disabled={false}
-                          key="next"
-                          kompakt={true}
-                          onClick={[Function]}
-                        >
-                          <a
-                            className="c16 c17 c-pagination__next-button"
-                            disabled={false}
-                            kompakt={true}
-                            onClick={[Function]}
-                          >
-                            <f
-                              autoDisableVedSpinner={false}
-                              className="c16 c17 c-pagination__next-button"
-                              disabled={false}
-                              htmlType="submit"
-                              inaktivKlasseVedDisabled={false}
-                              kompakt={true}
-                              mini={false}
-                              onClick={[Function]}
-                              spinner={false}
-                              type="flat"
+                                  <u
+                                    autoDisableVedSpinner={false}
+                                    className="c16 c17 c-pagination__page-button"
+                                    disabled={false}
+                                    htmlType="submit"
+                                    inaktivKlasseVedDisabled={false}
+                                    kompakt={true}
+                                    mini={false}
+                                    onClick={[Function]}
+                                    spinner={false}
+                                    type="flat"
+                                  >
+                                    <button
+                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                      disabled={false}
+                                      onClick={[Function]}
+                                      type="submit"
+                                    >
+                                      2
+                                    </button>
+                                  </u>
+                                </a>
+                              </Styled(a)>
+                            </div>
+                            <div
+                              key="page_2"
                             >
-                              <button
-                                className="knapp c16 c17 c-pagination__next-button knapp--flat knapp--kompakt"
+                              <Styled(a)
+                                className="c-pagination__page-button"
                                 disabled={false}
+                                kompakt={true}
                                 onClick={[Function]}
-                                type="submit"
                               >
-                                ►
-                              </button>
-                            </f>
-                          </a>
-                        </Styled(a)>
-                      </div>
-                    </styled.div>
-                  </Component>
-                </b>
-              </div>
-            </styled.div>
-          </div>
-        </styled.div>
-      </div>
-    </styled.div>
-  </Component>
+                                <a
+                                  className="c16 c17 c-pagination__page-button"
+                                  disabled={false}
+                                  kompakt={true}
+                                  onClick={[Function]}
+                                >
+                                  <u
+                                    autoDisableVedSpinner={false}
+                                    className="c16 c17 c-pagination__page-button"
+                                    disabled={false}
+                                    htmlType="submit"
+                                    inaktivKlasseVedDisabled={false}
+                                    kompakt={true}
+                                    mini={false}
+                                    onClick={[Function]}
+                                    spinner={false}
+                                    type="flat"
+                                  >
+                                    <button
+                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                      disabled={false}
+                                      onClick={[Function]}
+                                      type="submit"
+                                    >
+                                      3
+                                    </button>
+                                  </u>
+                                </a>
+                              </Styled(a)>
+                            </div>
+                            <Styled(a)
+                              className="c-pagination__next-button"
+                              disabled={false}
+                              key="next"
+                              kompakt={true}
+                              onClick={[Function]}
+                            >
+                              <a
+                                className="c16 c17 c-pagination__next-button"
+                                disabled={false}
+                                kompakt={true}
+                                onClick={[Function]}
+                              >
+                                <u
+                                  autoDisableVedSpinner={false}
+                                  className="c16 c17 c-pagination__next-button"
+                                  disabled={false}
+                                  htmlType="submit"
+                                  inaktivKlasseVedDisabled={false}
+                                  kompakt={true}
+                                  mini={false}
+                                  onClick={[Function]}
+                                  spinner={false}
+                                  type="flat"
+                                >
+                                  <button
+                                    className="knapp c16 c17 c-pagination__next-button knapp--flat knapp--kompakt"
+                                    disabled={false}
+                                    onClick={[Function]}
+                                    type="submit"
+                                  >
+                                    ►
+                                  </button>
+                                </u>
+                              </a>
+                            </Styled(a)>
+                          </div>
+                        </styled.div>
+                      </Component>
+                    </Zn>
+                  </k>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+        </div>
+      </styled.div>
+    </Component>
+  </Ye>
 </TableSorter>
 `;

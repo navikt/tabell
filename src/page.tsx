@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import NavHighContrast from 'nav-hoykontrast'
 import TableSorter from './TableSorter'
-import './index.css'
+import 'nav-frontend-core/dist/main.css'
+import 'nav-frontend-lenker-style/dist/main.css'
+import 'nav-frontend-skjema-style/dist/main.css'
+import 'nav-frontend-tabell-style/dist/main.css'
+import 'nav-frontend-typografi-style/sdist/main.css'
+
 const Page = () => {
   const [highContrast, setHighContrast] = useState<boolean>(false)
   return (
