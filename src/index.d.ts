@@ -18,6 +18,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   id: string
   label: string
   type: string
+  editText?: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string
@@ -40,6 +41,7 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContext
   compact?: boolean
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
+  editable?: boolean
   highContrast ?: boolean
   initialPage?: number
   id?: string
@@ -48,6 +50,7 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContext
   labels?: any
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
+  onRowAdded ?: (ci: CustomItem) => void
   onRowSelectChange ?: (i: Array<CustomItem>) => void
   pagination?: boolean
   searchable?: boolean

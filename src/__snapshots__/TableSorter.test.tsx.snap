@@ -1,6 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TableSorter Renders 1`] = `
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: inherit;
+  line-height: inherit;
+  color: #0067c5 !important;
+}
+
+.c9 svg {
+  fill: #0067c5 !important;
+  stroke: #0067c5 !important;
+}
+
+tabell.g16[id="c8"] {
+  content: "c9,";
+}
+
 .c15 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -12,7 +35,7 @@ exports[`TableSorter Renders 1`] = `
   align-items: baseline;
 }
 
-tabell.g53[id="c14"] {
+tabell.g54[id="c14"] {
   content: "c15,";
 }
 
@@ -32,26 +55,8 @@ tabell.g53[id="c14"] {
   border: none;
 }
 
-tabell.g54[id="c16"] {
+tabell.g55[id="c16"] {
   content: "c17,";
-}
-
-.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: inherit;
-  line-height: inherit;
-  color: #0067c5 !important;
-}
-
-tabell.g55[id="c8"] {
-  content: "c9,";
 }
 
 .c1 {
@@ -84,11 +89,11 @@ tabell.g55[id="c8"] {
 }
 
 .c1 tbody.striped tr:nth-child(odd) {
-  background: #FFFFFF;
+  background: #f1f1f1;
 }
 
 .c1 tbody.striped tr:nth-child(even) {
-  background: #e9e7e7;
+  background: #FFFFFF;
 }
 
 .c1__subcell {
@@ -119,20 +124,20 @@ tabell.g55[id="c8"] {
   -webkit-transform: translateX(-20px);
   -ms-transform: translateX(-20px);
   transform: translateX(-20px);
-  -webkit-animation: kvcTlm 0.2s forwards;
-  animation: kvcTlm 0.2s forwards;
+  -webkit-animation: fSLHgq 0.2s forwards;
+  animation: fSLHgq 0.2s forwards;
 }
 
 .c1 .tabell__tr--disabled td {
-  background: #b7b1a9 !important;
-  color: #FFFFFF !important;
+  background: #78706a !important;
+  color: #f1f1f1 !important;
 }
 
 .c1 .tabell__tr--disabled td * {
-  color: #FFFFFF !important;
+  color: #f1f1f1 !important;
 }
 
-tabell.g57[id="c0"] {
+tabell.g56[id="c0"] {
   content: "c1,";
 }
 
@@ -140,7 +145,7 @@ tabell.g57[id="c0"] {
   position: relative;
 }
 
-tabell.g58[id="c2"] {
+tabell.g57[id="c2"] {
   content: "c3,";
 }
 
@@ -148,7 +153,7 @@ tabell.g58[id="c2"] {
   width: 100%;
 }
 
-tabell.g60[id="c4"] {
+tabell.g59[id="c4"] {
   content: "c5,";
 }
 
@@ -170,7 +175,7 @@ tabell.g60[id="c4"] {
   align-items: center;
 }
 
-tabell.g61[id="c12"] {
+tabell.g60[id="c12"] {
   content: "c13,";
 }
 
@@ -179,7 +184,7 @@ tabell.g61[id="c12"] {
   cursor: pointer;
 }
 
-tabell.g62[id="c6"] {
+tabell.g61[id="c6"] {
   content: "c7,";
 }
 
@@ -194,7 +199,7 @@ tabell.g62[id="c6"] {
   align-items: center;
 }
 
-tabell.g63[id="c10"] {
+tabell.g62[id="c10"] {
   content: "c11,";
 }
 
@@ -350,13 +355,13 @@ tabell.g63[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <Ye
+  <W
     highContrast={false}
   >
     <Component
       theme={
         Object {
-          "alternative-background-color": "#e9e7e7",
+          "alternative-background-color": "#FFFFFF",
           "black": "#000000",
           "border-radius-base": "4px",
           "border-radius-large": "6px",
@@ -367,7 +372,7 @@ tabell.g63[id="c10"] {
           "container-md": "(940px + @grid-gutter-width)",
           "container-sm": "(720px + @grid-gutter-width)",
           "container-tablet": "(720px + @grid-gutter-width)",
-          "fokusFarge": "#01b19d",
+          "fokusFarge": "#19548a",
           "grayBackground": "#e9e7e7",
           "grayIcon": "#b7b1a9",
           "grayInactive": "#78706a",
@@ -379,107 +384,108 @@ tabell.g63[id="c10"] {
           "inverted-font-color": "#FFFFFF",
           "line-height-large": "1.3333333",
           "line-height-small": "1.5",
-          "main-active-color": "#43dfNaN",
-          "main-background-color": "#FFFFFF",
+          "main-active-color": "#66a4dc",
+          "main-background-color": "#f1f1f1",
           "main-border-color": "#78706a",
           "main-border-radius": "4px",
-          "main-disabled-color": "#b7b1a9",
+          "main-border-width": "1px",
+          "main-disabled-color": "#78706a",
           "main-error-color": "#ba3a26",
-          "main-focus-color": "#01b19d",
+          "main-focus-color": "#19548a",
           "main-font-color": "#3e3832",
-          "main-hover-color": "#20f4NaN",
+          "main-hover-color": "#cce1f3",
           "main-interactive-color": "#0067c5",
           "main-success-color": "#06893a",
           "main-warning-color": "#ff9100",
           "navBakgrunn": "#ffffff",
           "navBla": "#0067c5",
-          "navBlaDarken20": "#007fb7",
-          "navBlaDarken40": "#0198aa",
-          "navBlaDarken60": "#01b19d",
-          "navBlaDarken80": "#02ca90",
-          "navBlaLighten20": "#0385NaN",
-          "navBlaLighten40": "#06a3NaN",
-          "navBlaLighten60": "#09c2NaN",
-          "navBlaLighten80": "#0ce0NaN",
+          "navBlaDarken20": "#32414f",
+          "navBlaDarken40": "#254b6d",
+          "navBlaDarken60": "#19548a",
+          "navBlaDarken80": "#0c5ea8",
+          "navBlaLighten20": "#cce1f3",
+          "navBlaLighten40": "#99c2e8",
+          "navBlaLighten60": "#66a4dc",
+          "navBlaLighten80": "#3385d1",
           "navDypBla": "#005b82",
-          "navDypBlaDarken20": "#007682",
-          "navDypBlaDarken40": "#019182",
-          "navDypBlaDarken60": "#01ac82",
-          "navDypBlaDarken80": "#02c782",
-          "navDypBlaLighten20": "#037bNaN",
-          "navDypBlaLighten40": "#069cNaN",
-          "navDypBlaLighten60": "#09bdNaN",
-          "navDypBlaLighten80": "#0cdeNaN",
+          "navDypBlaDarken20": "#323f42",
+          "navDypBlaDarken40": "#254652",
+          "navDypBlaDarken60": "#194d62",
+          "navDypBlaDarken80": "#0c5472",
+          "navDypBlaLighten20": "#ccdee6",
+          "navDypBlaLighten40": "#99bdcd",
+          "navDypBlaLighten60": "#669db4",
+          "navDypBlaLighten80": "#337c9b",
           "navGra20": "#c6c2bf",
           "navGra40": "#b7b1a9",
           "navGra60": "#78706a",
           "navGra80": "#59514b",
           "navGraBakgrunn": "#f1f1f1",
           "navGronn": "#06893a",
-          "navGronnDarken20": "#059b48",
-          "navGronnDarken40": "#04ad57",
-          "navGronnDarken60": "#04bf65",
-          "navGronnDarken80": "#03d174",
-          "navGronnLighten20": "#07a0NaN",
-          "navGronnLighten40": "#09b8NaN",
-          "navGronnLighten60": "#0bcfNaN",
-          "navGronnLighten80": "#0de7NaN",
+          "navGronnDarken20": "#334834",
+          "navGronnDarken40": "#285835",
+          "navGronnDarken60": "#1c6937",
+          "navGronnDarken80": "#117938",
+          "navGronnLighten20": "#cde7d8",
+          "navGronnLighten40": "#9bd0b0",
+          "navGronnLighten60": "#6ab889",
+          "navGronnLighten80": "#38a161",
           "navLilla": "#634689",
-          "navLillaDarken20": "#4f6587",
-          "navLillaDarken40": "#3c8486",
-          "navLillaDarken60": "#29a485",
-          "navLillaDarken80": "#16c384",
-          "navLillaLighten20": "#526bNaN",
-          "navLillaLighten40": "#4190NaN",
-          "navLillaLighten60": "#30b5NaN",
-          "navLillaLighten80": "#1fdaNaN",
+          "navLillaDarken20": "#453b43",
+          "navLillaDarken40": "#4d3e55",
+          "navLillaDarken60": "#544066",
+          "navLillaDarken80": "#5c4378",
+          "navLillaLighten20": "#e0dae7",
+          "navLillaLighten40": "#c1b5d0",
+          "navLillaLighten60": "#a190b8",
+          "navLillaLighten80": "#826ba1",
           "navLimeGronn": "#a2ad00",
-          "navLimeGronnDarken20": "#82b71a",
-          "navLimeGronnDarken40": "#62c234",
-          "navLimeGronnDarken60": "#42cd4e",
-          "navLimeGronnDarken80": "#22d868",
-          "navLimeGronnLighten20": "#84bdNaN",
-          "navLimeGronnLighten40": "#67cdNaN",
-          "navLimeGronnLighten60": "#49deNaN",
-          "navLimeGronnLighten80": "#2ceeNaN",
+          "navLimeGronnDarken20": "#524f28",
+          "navLimeGronnDarken40": "#66671e",
+          "navLimeGronnDarken60": "#7a7e14",
+          "navLimeGronnDarken80": "#8e960a",
+          "navLimeGronnLighten20": "#ecefcc",
+          "navLimeGronnLighten40": "#dade99",
+          "navLimeGronnLighten60": "#c7ce66",
+          "navLimeGronnLighten80": "#b5bd33",
           "navLysBla": "#66cbec",
-          "navLysBlaDarken20": "#52cfd7",
-          "navLysBlaDarken40": "#3ed4c2",
-          "navLysBlaDarken60": "#2ad9ad",
-          "navLysBlaDarken80": "#16de98",
-          "navLysBlaLighten20": "#54d5NaN",
-          "navLysBlaLighten40": "#43dfNaN",
-          "navLysBlaLighten60": "#31eaNaN",
-          "navLysBlaLighten80": "#20f4NaN",
+          "navLysBlaDarken20": "#465557",
+          "navLysBlaDarken40": "#4e737c",
+          "navLysBlaDarken60": "#5690a2",
+          "navLysBlaDarken80": "#5eaec7",
+          "navLysBlaLighten20": "#e0f5fb",
+          "navLysBlaLighten40": "#c2eaf7",
+          "navLysBlaLighten60": "#a3e0f4",
+          "navLysBlaLighten80": "#85d5f0",
           "navLysGra": "#e9e7e7",
           "navMorkGra": "#3e3832",
           "navOransje": "#ff9100",
-          "navOransjeDarken20": "#cca11a",
-          "navOransjeDarken40": "#9ab134",
-          "navOransjeDarken60": "#67c24e",
-          "navOransjeDarken80": "#35d268",
-          "navOransjeLighten20": "#cfa7NaN",
-          "navOransjeLighten40": "#9fbdNaN",
-          "navOransjeLighten60": "#6fd3NaN",
-          "navOransjeLighten80": "#3fe9NaN",
+          "navOransjeDarken20": "#654a28",
+          "navOransjeDarken40": "#8b5c1e",
+          "navOransjeDarken60": "#b26d14",
+          "navOransjeDarken80": "#d87f0a",
+          "navOransjeLighten20": "#ffe9cc",
+          "navOransjeLighten40": "#ffd399",
+          "navOransjeLighten60": "#ffbd66",
+          "navOransjeLighten80": "#ffa733",
           "navRod": "#c30000",
-          "navRodDarken20": "#9c2d1a",
-          "navRodDarken40": "#765a34",
-          "navRodDarken60": "#4f884e",
-          "navRodDarken80": "#29b568",
-          "navRodLighten20": "#9f33NaN",
-          "navRodLighten40": "#7b66NaN",
-          "navRodLighten60": "#5799NaN",
-          "navRodLighten80": "#33ccNaN",
+          "navRodDarken20": "#592d28",
+          "navRodDarken40": "#73221e",
+          "navRodDarken60": "#8e1614",
+          "navRodDarken80": "#a80b0a",
+          "navRodLighten20": "#f3cccc",
+          "navRodLighten40": "#e79999",
+          "navRodLighten60": "#db6666",
+          "navRodLighten80": "#cf3333",
           "orangeFocus": "#ffbd66",
-          "orangeFocusDarken20": "#ccc46b",
-          "orangeFocusDarken40": "#9acc71",
-          "orangeFocusDarken60": "#67d377",
-          "orangeFocusDarken80": "#35db7d",
-          "orangeFocusLighten20": "#cfcaNaN",
-          "orangeFocusLighten40": "#9fd7NaN",
-          "orangeFocusLighten60": "#6fe4NaN",
-          "orangeFocusLighten80": "#3ff1NaN",
+          "orangeFocusDarken20": "#65533c",
+          "orangeFocusDarken40": "#8b6d47",
+          "orangeFocusDarken60": "#b28851",
+          "orangeFocusDarken80": "#d8a25c",
+          "orangeFocusLighten20": "#fff2e0",
+          "orangeFocusLighten40": "#ffe5c2",
+          "orangeFocusLighten60": "#ffd7a3",
+          "orangeFocusLighten80": "#ffca85",
           "padding-base-horizontal": "12px",
           "padding-base-vertical": "6px",
           "padding-large-horizontal": "16px",
@@ -490,14 +496,14 @@ tabell.g63[id="c10"] {
           "padding-xs-vertical": "1px",
           "pinkErrorBg": "#f3e3e3",
           "redError": "#ba3a26",
-          "redErrorDarken20": "#955b38",
-          "redErrorDarken40": "#707d4b",
-          "redErrorDarken60": "#4c9f5d",
-          "redErrorDarken80": "#27c170",
-          "redErrorLighten20": "#9761NaN",
-          "redErrorLighten40": "#7588NaN",
-          "redErrorLighten60": "#53b0NaN",
-          "redErrorLighten80": "#31d7NaN",
+          "redErrorDarken20": "#573830",
+          "redErrorDarken40": "#70392d",
+          "redErrorDarken60": "#88392b",
+          "redErrorDarken80": "#a13a28",
+          "redErrorLighten20": "#f1d8d4",
+          "redErrorLighten40": "#e3b0a8",
+          "redErrorLighten60": "#d6897d",
+          "redErrorLighten80": "#c86151",
           "screen-desktop": "992px",
           "screen-lg": "1200px",
           "screen-lg-desktop": "1200px",
@@ -622,11 +628,11 @@ tabell.g63[id="c10"] {
                         key="string"
                         role="columnheader"
                       >
-                        <Styled(Lenke)
+                        <Styled(s)
                           href="#"
                           onClick={[Function]}
                         >
-                          <Lenke
+                          <s
                             className="c8 c9"
                             href="#"
                             onClick={[Function]}
@@ -638,8 +644,8 @@ tabell.g63[id="c10"] {
                             >
                               ui:string
                             </a>
-                          </Lenke>
-                        </Styled(Lenke)>
+                          </s>
+                        </Styled(s)>
                       </th>
                       <th
                         aria-sort="none"
@@ -647,11 +653,11 @@ tabell.g63[id="c10"] {
                         key="date"
                         role="columnheader"
                       >
-                        <Styled(Lenke)
+                        <Styled(s)
                           href="#"
                           onClick={[Function]}
                         >
-                          <Lenke
+                          <s
                             className="c8 c9"
                             href="#"
                             onClick={[Function]}
@@ -663,8 +669,8 @@ tabell.g63[id="c10"] {
                             >
                               ui:date
                             </a>
-                          </Lenke>
-                        </Styled(Lenke)>
+                          </s>
+                        </Styled(s)>
                       </th>
                       <th
                         aria-sort="none"
@@ -672,11 +678,11 @@ tabell.g63[id="c10"] {
                         key="object"
                         role="columnheader"
                       >
-                        <Styled(Lenke)
+                        <Styled(s)
                           href="#"
                           onClick={[Function]}
                         >
-                          <Lenke
+                          <s
                             className="c8 c9"
                             href="#"
                             onClick={[Function]}
@@ -688,8 +694,8 @@ tabell.g63[id="c10"] {
                             >
                               ui:variant
                             </a>
-                          </Lenke>
-                        </Styled(Lenke)>
+                          </s>
+                        </Styled(s)>
                       </th>
                     </tr>
                   </thead>
@@ -1534,6 +1540,6 @@ tabell.g63[id="c10"] {
         </div>
       </styled.div>
     </Component>
-  </Ye>
+  </W>
 </TableSorter>
 `;

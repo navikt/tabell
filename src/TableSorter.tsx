@@ -2,49 +2,21 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
-import { Flatknapp } from 'nav-frontend-knapper'
-import Lenke from 'nav-frontend-lenker'
-import { Checkbox, Input } from 'nav-frontend-skjema'
+import { Checkbox } from 'nav-frontend-skjema'
 import Spinner from 'nav-frontend-spinner'
 import { Normaltekst } from 'nav-frontend-typografi'
-import NavHighContrast, { themeKeys } from 'nav-hoykontrast'
+import NavHighContrast, { HighContrastInput, HighContrastLink, HighContrastKnapp, slideInFromLeft, themeKeys } from 'nav-hoykontrast'
 import Pagination from 'paginering'
 import PT from 'prop-types'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useCallback, useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import './index.css'
+import styled from 'styled-components'
 import { Column, Context, Item, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
 import View from './resources/View'
+import Tilsette from './resources/Tilsette'
 import defaultLabels from './TableSorter.labels'
 
-const slideInFromLeft = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-}
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`
-
-export const HighContrastLink = styled(Lenke)`
-  display: flex;
-  align-items: center;
-  font-size: ${({ theme }) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
-  line-height: ${({ theme }) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'};
-  color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
-`
-export const HighContrastKnapp = styled(Flatknapp)`
-  background-color: ${({ theme }) => theme.type === 'themeHighContrast' ? theme.black : 'inherit'};
-  color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
-    color: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
-  }
-`
 export const TableSorterDiv = styled.div`
   display: block !important;
   * {
@@ -99,7 +71,7 @@ export const TableSorterDiv = styled.div`
   tr.slideAnimate {
     opacity: 0;
     transform: translateX(-20px);
-    animation: ${slideInFromLeft} 0.2s forwards;
+    animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
   
   .tabell__tr--disabled td {
@@ -152,6 +124,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   compact = false,
   context,
   columns = [],
+  editable = false,
   highContrast = false,
   initialPage = 1,
   id,
@@ -160,6 +133,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   labels = {},
   loading = false,
   onColumnSort,
+  onRowAdded = undefined,
   onRowSelectChange,
   pagination = true,
   searchable = true,
@@ -372,7 +346,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                 )}
                 {item.hasSubrows && (
                   <HighContrastKnapp
-                    mini kompakt onClick={(e) => {
+                    mini kompakt onClick={(e: any) => {
                       e.stopPropagation()
                       e.preventDefault()
                       toggleSubRowOpen(item)
@@ -464,6 +438,40 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     }))
   }
 
+  const handleEditTextChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
+    setColumns(_columns.map((column) => {
+      return _column.id === column.id
+        ? {
+            ...column,
+            editText: newValue
+          }
+        : column
+    }))
+  }
+
+  const handleAdd = (): void => {
+    // @ts-ignore
+    const newData: Item = {}
+    const newColumns = _columns.map(c => {
+      newData[c.id] = c.editText
+      return {
+        ...c,
+        editText: undefined
+      }
+    })
+
+    newData.key = '' + new Date().getTime()
+    newData.selected = false
+    newData.disabled = false
+    newData.visible = true
+    newData.openSubrows = false
+
+    setColumns(newColumns)
+    if (_.isFunction(onRowAdded)) {
+      onRowAdded(newData as CustomItem)
+    }
+  }
+
   const sortedItems = rawRows()
   const nrOfselectedRows = numberOfSelectedRows(sortedItems)
   const nrOfVisibleItems = numberOfVisibleItems(sortedItems)
@@ -491,7 +499,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     {selectable && (
                       <Checkbox
-                        label='Velg alle'
+                        label={_labels.selectAll}
                         id={'c-tableSorter__checkAll-checkbox-id-' + _id}
                         className='c-tableSorter__checkAll-checkbox'
                         checked={checkAll}
@@ -521,7 +529,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                         ? (
                           <HighContrastLink
                             href='#'
-                            onClick={(e) => {
+                            onClick={(e: any) => {
                               e.preventDefault()
                               e.stopPropagation()
                               sortColumn(column)
@@ -535,26 +543,60 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                   )
                 })}
               </tr>
-              {seeFilters
-                ? (
-                  <tr className='c-tableSorter__filter'>
-                    <td />
-                    {_columns.map((column) => {
+              {seeFilters && (
+                <tr className='c-tableSorter__filter'>
+                  <td />
+                  {_columns.map((column) => {
+                    return (
+                      <td key={column.id}>
+                        <HighContrastInput
+                          className='c-tableSorter__sort-input'
+                          id={'c-tableSorter__sort-' + column.id + '-input-id'}
+                          label=''
+                          value={column.filterText || ''}
+                          onChange={(e: any) => handleFilterTextChange(column, e.target.value)}
+                        />
+                      </td>
+                    )
+                  })}
+                </tr>
+              )}
+              {editable && (
+                <tr className='c-tableSorter__filter'>
+                  <td />
+                  {_columns.map((column) => {
+                    if (column.type !== 'buttons') {
                       return (
                         <td key={column.id}>
-                          <Input
-                            id={'c-tableSorter__sort-' + column.id + '-input-id'}
-                            className='c-tableSorter__sort-input'
+                          <HighContrastInput
+                            id={'c-tableSorter__edit-' + column.id + '-input-id'}
+                            className='c-tableSorter__edit-input'
                             label=''
-                            value={column.filterText || ''}
-                            onChange={(e) => handleFilterTextChange(column, e.target.value)}
+                            value={column.editText || ''}
+                            onChange={(e: any) => handleEditTextChange(column, e.target.value)}
                           />
                         </td>
                       )
-                    })}
-                  </tr>
-                  )
-                : null}
+                    } else {
+                      return (
+                        <td key={column.id}>
+                          <HighContrastKnapp
+                            kompakt
+                            mini
+                            onClick={(e: any) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              handleAdd()
+                            }}
+                          >
+                            <Tilsette />
+                          </HighContrastKnapp>
+                        </td>
+                      )
+                    }
+                  })}
+                </tr>
+              )}
             </thead>
             <tbody
               className={classNames({ striped: striped })}
