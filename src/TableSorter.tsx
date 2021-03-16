@@ -42,6 +42,9 @@ export const TableSorterDiv = styled.div`
     }
   }
 
+  thead th.noborder {
+     border-bottom: none !important;
+  }
   tbody.striped {
     tr:nth-child(odd) {
       background: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
@@ -490,8 +493,10 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
             <thead>
               {categories && (
                 <tr>
-                  <th />
-                  {categories.map(c => <CenterTh key={c.label} colSpan={c.colSpan}>{c.label}</CenterTh>)}
+                  <th className='noborder' />
+                  {categories.map(c => <CenterTh key={c.label} colSpan={c.colSpan} className={classNames({ noborder: c.border === false })}>
+                    {c.label}
+                  </CenterTh>)}
                 </tr>
               )}
               <tr className='c-tableSorter__header'>
@@ -566,17 +571,23 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                   <td />
                   {_columns.map((column) => {
                     if (column.type !== 'buttons') {
-                      return (
-                        <td key={column.id}>
-                          <HighContrastInput
-                            id={'c-tableSorter__edit-' + column.id + '-input-id'}
-                            className='c-tableSorter__edit-input'
-                            label=''
-                            value={column.editText || ''}
-                            onChange={(e: any) => handleEditTextChange(column, e.target.value)}
-                          />
-                        </td>
-                      )
+                      if (column.renderEditable) {
+                        return column.renderEditable(
+                          (e: any) => handleEditTextChange(column, e.value)
+                        )
+                      } else {
+                        return (
+                          <td key={column.id}>
+                            <HighContrastInput
+                              id={'c-tableSorter__edit-' + column.id + '-input-id'}
+                              className='c-tableSorter__edit-input'
+                              label=''
+                              value={column.editText || ''}
+                              onChange={(e: any) => handleEditTextChange(column, e.target.value)}
+                            />
+                          </td>
+                        )
+                      }
                     } else {
                       return (
                         <td key={column.id}>

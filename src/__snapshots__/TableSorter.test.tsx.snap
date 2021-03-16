@@ -35,7 +35,7 @@ tabell.g16[id="c8"] {
   align-items: baseline;
 }
 
-tabell.g54[id="c14"] {
+tabell.g55[id="c14"] {
   content: "c15,";
 }
 
@@ -55,7 +55,7 @@ tabell.g54[id="c14"] {
   border: none;
 }
 
-tabell.g55[id="c16"] {
+tabell.g56[id="c16"] {
   content: "c17,";
 }
 
@@ -86,6 +86,10 @@ tabell.g55[id="c16"] {
 
 .c1.compact .c-tableSorter__filter .skjemaelement__input {
   padding: 0.25rem !important;
+}
+
+.c1 thead th.noborder {
+  border-bottom: none !important;
 }
 
 .c1 tbody.striped tr:nth-child(odd) {
@@ -137,7 +141,7 @@ tabell.g55[id="c16"] {
   color: #f1f1f1 !important;
 }
 
-tabell.g56[id="c0"] {
+tabell.g57[id="c0"] {
   content: "c1,";
 }
 
@@ -145,7 +149,7 @@ tabell.g56[id="c0"] {
   position: relative;
 }
 
-tabell.g57[id="c2"] {
+tabell.g58[id="c2"] {
   content: "c3,";
 }
 
@@ -153,7 +157,7 @@ tabell.g57[id="c2"] {
   width: 100%;
 }
 
-tabell.g59[id="c4"] {
+tabell.g60[id="c4"] {
   content: "c5,";
 }
 
@@ -175,7 +179,7 @@ tabell.g59[id="c4"] {
   align-items: center;
 }
 
-tabell.g60[id="c12"] {
+tabell.g61[id="c12"] {
   content: "c13,";
 }
 
@@ -184,7 +188,7 @@ tabell.g60[id="c12"] {
   cursor: pointer;
 }
 
-tabell.g61[id="c6"] {
+tabell.g62[id="c6"] {
   content: "c7,";
 }
 
@@ -199,7 +203,7 @@ tabell.g61[id="c6"] {
   align-items: center;
 }
 
-tabell.g62[id="c10"] {
+tabell.g63[id="c10"] {
   content: "c11,";
 }
 
@@ -355,7 +359,7 @@ tabell.g62[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <W
+  <K
     highContrast={false}
   >
     <Component
@@ -1540,6 +1544,6 @@ tabell.g62[id="c10"] {
         </div>
       </styled.div>
     </Component>
-  </W>
+  </K>
 </TableSorter>
 `;

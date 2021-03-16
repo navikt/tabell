@@ -10,6 +10,7 @@ export interface Item {
 export interface Category {
   colSpan: number
   label: string
+  border ?: boolean
 }
 
 export interface Context {}
@@ -23,6 +24,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   needle?: (item: CustomItem) => string
   dateFormat?: string
   renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
+  renderEditable?: (callback: (e: any) => void) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
