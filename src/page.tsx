@@ -18,8 +18,8 @@ const Page = () => {
   const [highContrast, setHighContrast] = useState<boolean>(false)
 
   const renderEditable = ({
-      defaultValue,
-      onChange
+    defaultValue,
+    onChange
   }: RenderEditableOptions) => {
     return (
       <Select
@@ -120,8 +120,8 @@ const Page = () => {
             console.log('Adding ' + JSON.stringify(item))
           }}
           columns={[
-            { id: 'name', label: 'Name', type: 'string', filterText: '' },
-            { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY' },
+            { id: 'name', label: 'Name', type: 'string', filterText: '', editTextValidation: '.+' },
+            { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY', editTextValidation: '\\d{2}\\.\\d{2}\\.\\d{4}' },
             {
               id: 'type',
               label: 'Occupation',

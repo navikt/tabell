@@ -37,9 +37,14 @@ export const TableSorterDiv = styled.div`
       right: 0rem !important;
     }
 
-    .c-tableSorter__filter .skjemaelement__input {
+    .c-tableSorter__filter .skjemaelement__input,
+    .c-tableSorter__edit .skjemaelement__input {
       padding: 0.25rem !important;
     }
+  }
+
+  .c-tableSorter__edit {
+    vertical-align: top;
   }
 
   thead th.noborder {
@@ -453,13 +458,40 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   }
 
   const handleAdd = (): void => {
+    // first, let's validate
+    let validated: boolean = true
+    let validColumnText: boolean
+    let newColumns: Array<Column<CustomItem, CustomContext>> = []
+
+    newColumns = _columns.map((column) => {
+      if (column.editTextValidation) {
+        if (!column.editText) {
+          column.editText = ''
+        }
+        validColumnText = (column.editText.match(column.editTextValidation) !== null)
+      } else {
+        validColumnText = true
+      }
+      validated = validated && validColumnText
+      return {
+        ...column,
+        error: validColumnText ? undefined : _labels.error
+      }
+    })
+
+    if (!validated) {
+      setColumns(newColumns)
+      return
+    }
+
     // @ts-ignore
     const newData: Item = {}
-    const newColumns = _columns.map(c => {
+    newColumns = _columns.map(c => {
       newData[c.id] = c.editText
       return {
         ...c,
-        editText: undefined
+        editText: undefined,
+        error: undefined
       }
     })
 
@@ -494,9 +526,11 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
               {categories && (
                 <tr>
                   <th className='noborder' />
-                  {categories.map(c => <CenterTh key={c.label} colSpan={c.colSpan} className={classNames({ noborder: c.border === false })}>
-                    {c.label}
-                  </CenterTh>)}
+                  {categories.map(c => (
+                    <CenterTh key={c.label} colSpan={c.colSpan} className={classNames({ noborder: c.border === false })}>
+                      {c.label}
+                    </CenterTh>
+                  ))}
                 </tr>
               )}
               <tr className='c-tableSorter__header'>
@@ -567,27 +601,28 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                 </tr>
               )}
               {editable && (
-                <tr className='c-tableSorter__filter'>
+                <tr className='c-tableSorter__edit'>
                   <td />
                   {_columns.map((column) => {
                     if (column.type !== 'buttons') {
                       return (
                         <td key={column.id}>
                           {
-                            column.renderEditable ?
-                            column.renderEditable({
-                              defaultValue: column.editText,
-                              onChange: (e: string) => handleEditTextChange(column, e)
-                            }) :
-                            (
-                            <HighContrastInput
-                              id={'c-tableSorter__edit-' + column.id + '-input-id'}
-                              className='c-tableSorter__edit-input'
-                              label=''
-                              value={column.editText || ''}
-                              onChange={(e: any) => handleEditTextChange(column, e.target.value)}
-                            />
-                            )
+                            column.renderEditable
+                              ? column.renderEditable({
+                                  defaultValue: column.editText,
+                                  onChange: (e: string) => handleEditTextChange(column, e)
+                                })
+                              : (
+                                <HighContrastInput
+                                  id={'c-tableSorter__edit-' + column.id + '-input-id'}
+                                  className='c-tableSorter__edit-input'
+                                  label=''
+                                  value={column.editText || ''}
+                                  feil={column.error}
+                                  onChange={(e: any) => handleEditTextChange(column, e.target.value)}
+                                />
+                                )
                           }
                         </td>
                       )

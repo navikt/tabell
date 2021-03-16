@@ -84,8 +84,13 @@ tabell.g56[id="c16"] {
   right: 0rem !important;
 }
 
-.c1.compact .c-tableSorter__filter .skjemaelement__input {
+.c1.compact .c-tableSorter__filter .skjemaelement__input,
+.c1.compact .c-tableSorter__edit .skjemaelement__input {
   padding: 0.25rem !important;
+}
+
+.c1 .c-tableSorter__edit {
+  vertical-align: top;
 }
 
 .c1 thead th.noborder {

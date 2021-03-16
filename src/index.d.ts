@@ -25,6 +25,8 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   label: string
   type: string
   editText?: string
+  editTextValidation?: string
+  error ?: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string
