@@ -571,13 +571,15 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                   <td />
                   {_columns.map((column) => {
                     if (column.type !== 'buttons') {
-                      if (column.renderEditable) {
-                        return column.renderEditable(
-                          (e: any) => handleEditTextChange(column, e.value)
-                        )
-                      } else {
-                        return (
-                          <td key={column.id}>
+                      return (
+                        <td key={column.id}>
+                          {
+                            column.renderEditable ?
+                            column.renderEditable({
+                              defaultValue: column.editText,
+                              onChange: (e: string) => handleEditTextChange(column, e)
+                            }) :
+                            (
                             <HighContrastInput
                               id={'c-tableSorter__edit-' + column.id + '-input-id'}
                               className='c-tableSorter__edit-input'
@@ -585,9 +587,10 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                               value={column.editText || ''}
                               onChange={(e: any) => handleEditTextChange(column, e.target.value)}
                             />
-                          </td>
-                        )
-                      }
+                            )
+                          }
+                        </td>
+                      )
                     } else {
                       return (
                         <td key={column.id}>

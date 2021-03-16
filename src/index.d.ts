@@ -15,6 +15,11 @@ export interface Category {
 
 export interface Context {}
 
+export interface RenderEditableOptions {
+  defaultValue?: string
+  onChange: (e: string) => void
+}
+
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   id: string
   label: string
@@ -24,7 +29,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   needle?: (item: CustomItem) => string
   dateFormat?: string
   renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
-  renderEditable?: (callback: (e: any) => void) => JSX.Element
+  renderEditable?: (o: RenderEditableOptions) => JSX.Element
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'

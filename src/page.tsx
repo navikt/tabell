@@ -9,7 +9,7 @@ import 'nav-frontend-lenker-style/dist/main.css'
 import 'nav-frontend-skjema-style/dist/main.css'
 import 'nav-frontend-tabell-style/dist/main.css'
 import 'nav-frontend-typografi-style/dist/main.css'
-
+import { RenderEditableOptions } from './index.d'
 const MarginDiv = styled.div`
   margin: 1rem;
 `
@@ -17,12 +17,16 @@ const MarginDiv = styled.div`
 const Page = () => {
   const [highContrast, setHighContrast] = useState<boolean>(false)
 
-  const renderEditable = (callbackFunction: (e: any) => void) => {
+  const renderEditable = ({
+      defaultValue,
+      onChange
+  }: RenderEditableOptions) => {
     return (
       <Select
+        value={defaultValue}
         onChange={(e) => {
           console.log('onChange')
-          callbackFunction(e)
+          onChange(e.target.value)
         }}
       >
         <option>yes</option>
