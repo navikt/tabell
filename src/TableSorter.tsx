@@ -130,7 +130,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   categories,
   className,
   compact = false,
-  context,
+  context = {} as CustomContext,
   columns = [],
   editable = false,
   highContrast = false,
@@ -457,7 +457,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     }))
   }
 
-  const handleAdd = (): void => {
+  const handleAdd = (context: CustomContext): void => {
     // first, let's validate
     let validated: boolean = true
     let validColumnText: boolean
@@ -503,7 +503,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
 
     setColumns(newColumns)
     if (_.isFunction(onRowAdded)) {
-      onRowAdded(newData as CustomItem)
+      onRowAdded(newData as CustomItem, context)
     }
   }
 
@@ -611,6 +611,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                             column.renderEditable
                               ? column.renderEditable({
                                   defaultValue: column.editText,
+                                  feil: column.error,
                                   onChange: (e: string) => handleEditTextChange(column, e)
                                 })
                               : (
@@ -635,7 +636,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                             onClick={(e: any) => {
                               e.preventDefault()
                               e.stopPropagation()
-                              handleAdd()
+                              handleAdd(context)
                             }}
                           >
                             <Tilsette />

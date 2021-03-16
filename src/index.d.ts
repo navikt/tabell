@@ -17,6 +17,7 @@ export interface Context {}
 
 export interface RenderEditableOptions {
   defaultValue?: string
+  feil?: string
   onChange: (e: string) => void
 }
 
@@ -59,7 +60,7 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContext
   labels?: any
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
-  onRowAdded ?: (ci: CustomItem) => void
+  onRowAdded ?: (ci: CustomItem, c: CustomContext) => void
   onRowSelectChange ?: (i: Array<CustomItem>) => void
   pagination?: boolean
   searchable?: boolean
