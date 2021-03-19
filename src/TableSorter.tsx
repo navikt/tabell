@@ -634,6 +634,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   defaultValue: column.edit.text,
                                   feil: column.error,
                                   values: currentEditValues,
+                                  context: context,
                                   onChange: (e: string) => handleEditTextChange(column, e)
                                 })
                               : (

@@ -15,7 +15,8 @@ export interface Category {
 
 export interface Context {}
 
-export interface RenderEditableOptions {
+export interface RenderEditableOptions<CustomContext extends Context = Context> {
+  context: CustomContext
   defaultValue?: string
   feil?: string
   onChange: (e: string) => void,
