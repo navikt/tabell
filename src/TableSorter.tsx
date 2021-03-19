@@ -518,6 +518,15 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   const nrOfVisibleItems = numberOfVisibleItems(sortedItems)
   const tableRows = rows(sortedItems)
 
+  const currentEditValues = {} as any
+  if (editable) {
+    _columns.forEach(c => {
+      if (c.edit && c.edit.text) {
+        currentEditValues[c.id] = c.edit.text
+      }
+    })
+  }
+
   return (
     <NavHighContrast highContrast={highContrast}>
       <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
@@ -618,6 +627,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                               ? column.edit.render({
                                   defaultValue: column.edit.text,
                                   feil: column.error,
+                                  values: currentEditValues,
                                   onChange: (e: string) => handleEditTextChange(column, e)
                                 })
                               : (

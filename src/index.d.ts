@@ -18,7 +18,8 @@ export interface Context {}
 export interface RenderEditableOptions {
   defaultValue?: string
   feil?: string
-  onChange: (e: string) => void
+  onChange: (e: string) => void,
+  values: {[k in string]: any}
 }
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context> {
