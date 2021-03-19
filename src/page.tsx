@@ -129,8 +129,8 @@ const Page = () => {
             setItems(context.items.concat(item))
           }}
           columns={[
-            { id: 'name', label: 'Name', type: 'string', filterText: '', editTextValidation: '.+' },
-            { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY', editTextValidation: '\\d{2}\\.\\d{2}\\.\\d{4}' },
+            { id: 'name', label: 'Name', type: 'string', filterText: '', edit: { validation: '.+' } },
+            { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY', edit: { placeholder: 'DDMMÅÅÅÅ', validation: '\\d{2}\\.\\d{2}\\.\\d{4}' } },
             {
               id: 'type',
               label: 'Occupation',
@@ -138,7 +138,14 @@ const Page = () => {
               filterText: '',
               renderCell: (item: any, value: any) => <code>{value}</code>
             },
-            { id: 'employee', label: 'Employee', type: 'string', renderEditable: renderEditable, editTextValidation: '.+' },
+            {
+              id: 'employee',
+              label: 'Employee',
+              type: 'string',
+              edit: {
+                render: renderEditable, validation: '.+', validationMessage: 'validationMessage'
+              }
+            },
             {
               id: 'buttons',
               label: '',

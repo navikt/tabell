@@ -15,9 +15,23 @@ exports[`TableSorter Renders 1`] = `
   color: #0067c5 !important;
 }
 
+.c9:focus {
+  background-color: #19548a !important;
+  color: #FFFFFF !important;
+}
+
 .c9 svg {
   fill: #0067c5 !important;
   stroke: #0067c5 !important;
+}
+
+.c9 svg path {
+  stroke: #0067c5 !important;
+}
+
+.c9 svg:focus {
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 tabell.g16[id="c8"] {
@@ -35,7 +49,7 @@ tabell.g16[id="c8"] {
   align-items: baseline;
 }
 
-tabell.g55[id="c14"] {
+tabell.g56[id="c14"] {
   content: "c15,";
 }
 
@@ -55,7 +69,7 @@ tabell.g55[id="c14"] {
   border: none;
 }
 
-tabell.g56[id="c16"] {
+tabell.g57[id="c16"] {
   content: "c17,";
 }
 
@@ -138,7 +152,7 @@ tabell.g56[id="c16"] {
 }
 
 .c1 .tabell__tr--disabled td {
-  background: #78706a !important;
+  background: #b7b1a9 !important;
   color: #f1f1f1 !important;
 }
 
@@ -146,7 +160,7 @@ tabell.g56[id="c16"] {
   color: #f1f1f1 !important;
 }
 
-tabell.g57[id="c0"] {
+tabell.g58[id="c0"] {
   content: "c1,";
 }
 
@@ -154,7 +168,7 @@ tabell.g57[id="c0"] {
   position: relative;
 }
 
-tabell.g58[id="c2"] {
+tabell.g59[id="c2"] {
   content: "c3,";
 }
 
@@ -162,7 +176,7 @@ tabell.g58[id="c2"] {
   width: 100%;
 }
 
-tabell.g60[id="c4"] {
+tabell.g61[id="c4"] {
   content: "c5,";
 }
 
@@ -184,7 +198,7 @@ tabell.g60[id="c4"] {
   align-items: center;
 }
 
-tabell.g61[id="c12"] {
+tabell.g62[id="c12"] {
   content: "c13,";
 }
 
@@ -193,7 +207,7 @@ tabell.g61[id="c12"] {
   cursor: pointer;
 }
 
-tabell.g62[id="c6"] {
+tabell.g63[id="c6"] {
   content: "c7,";
 }
 
@@ -208,7 +222,7 @@ tabell.g62[id="c6"] {
   align-items: center;
 }
 
-tabell.g63[id="c10"] {
+tabell.g64[id="c10"] {
   content: "c11,";
 }
 
@@ -364,13 +378,14 @@ tabell.g63[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <K
+  <q
     highContrast={false}
   >
     <Component
       theme={
         Object {
           "alternative-background-color": "#FFFFFF",
+          "alternative-hover-color": "#cce1f3",
           "black": "#000000",
           "border-radius-base": "4px",
           "border-radius-large": "6px",
@@ -393,16 +408,16 @@ tabell.g63[id="c10"] {
           "inverted-font-color": "#FFFFFF",
           "line-height-large": "1.3333333",
           "line-height-small": "1.5",
-          "main-active-color": "#66a4dc",
+          "main-active-color": "#005b82",
           "main-background-color": "#f1f1f1",
           "main-border-color": "#78706a",
           "main-border-radius": "4px",
           "main-border-width": "1px",
-          "main-disabled-color": "#78706a",
+          "main-disabled-color": "#b7b1a9",
           "main-error-color": "#ba3a26",
           "main-focus-color": "#19548a",
           "main-font-color": "#3e3832",
-          "main-hover-color": "#cce1f3",
+          "main-hover-color": "#0074df",
           "main-interactive-color": "#0067c5",
           "main-success-color": "#06893a",
           "main-warning-color": "#ff9100",
@@ -1549,6 +1564,6 @@ tabell.g63[id="c10"] {
         </div>
       </styled.div>
     </Component>
-  </K>
+  </q>
 </TableSorter>
 `;

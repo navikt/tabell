@@ -25,14 +25,19 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   id: string
   label: string
   type: string
-  editText?: string
-  editTextValidation?: string
+  edit?: {
+    render?: (o: RenderEditableOptions) => JSX.Element
+    validation?: string,
+    validationMessage?: string,
+    placeholder?: string
+    text?: string
+  },
   error ?: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string
   renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
-  renderEditable?: (o: RenderEditableOptions) => JSX.Element
+
 }
 
 export type SortOrder = 'none' | 'ascending' | 'descending'
