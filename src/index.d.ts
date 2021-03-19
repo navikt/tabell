@@ -28,6 +28,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   type: string
   edit?: {
     render?: (o: RenderEditableOptions) => JSX.Element
+    transform?: (s: string) => string
     validation?: string,
     validationMessage?: string,
     placeholder?: string

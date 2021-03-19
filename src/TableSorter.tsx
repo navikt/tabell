@@ -490,7 +490,13 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     // @ts-ignore
     const newData: Item = {}
     newColumns = _columns.map(c => {
-      newData[c.id] = c.edit?.text
+      let text = c.edit?.text
+      if (text && _.isFunction(c.edit?.transform)) {
+        text = c.edit?.transform(text)
+      }
+      if (text) {
+        newData[c.id] = text
+      }
       return {
         ...c,
         edit: {
