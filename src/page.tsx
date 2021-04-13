@@ -52,15 +52,15 @@ const Page = () => {
   const renderEditable = ({
     defaultValue,
     feil,
-    onChange
+    setValue
   }: RenderEditableOptions) => {
     return (
       <Select
         value={defaultValue}
         feil={feil}
         onChange={(e) => {
-          console.log('onChange')
-          onChange(e.target.value)
+          console.log('setValue')
+          setValue(e.target.value)
         }}
       >
         <option />
