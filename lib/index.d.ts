@@ -19,7 +19,7 @@ export interface RenderEditableOptions<CustomContext extends Context = Context, 
   context: CustomContext
   defaultValue?: CustomType
   feil?: string
-  setValue: (value: string, columnId?: string) => void,
+  setValue: (value: CustomType, columnId?: string) => void,
   values: {[k in string]: any}
 }
 
