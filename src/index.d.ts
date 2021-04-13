@@ -15,11 +15,11 @@ export interface Category {
 
 export interface Context {}
 
-export interface RenderEditableOptions<CustomContext extends Context = Context> {
+export interface RenderEditableOptions<CustomContext extends Context = Context, CustomType = any> {
   context: CustomContext
-  defaultValue?: string
+  defaultValue?: CustomType
   feil?: string
-  onChange: (e: string) => void,
+  setValue: (value: string, columnId?: string) => void,
   values: {[k in string]: any}
 }
 

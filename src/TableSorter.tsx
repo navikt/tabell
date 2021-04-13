@@ -206,10 +206,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   }, [])
 
   useEffect(() => {
-    if (!_.isEqual(
-      items.map((e: CustomItem, i: number) => e.key || i),
-      _items?.map((e, i) => e.key || i)
-    )) {
+    if (!_.isEqual(items, _items)) {
       _setItems(items)
     }
   }, [items, _setItems, _items])
@@ -446,9 +443,9 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     }))
   }
 
-  const handleEditTextChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
+  const handleEditTextChange = (_columnId: string, newValue: string): void => {
     setColumns(_columns.map((column) => {
-      return _column.id === column.id
+      return _columnId === column.id
         ? {
             ...column,
             edit: {
@@ -533,9 +530,14 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     })
   }
 
+  const key = md5('' + JSON.stringify(_items))
+
   return (
     <NavHighContrast highContrast={highContrast}>
-      <TableSorterDiv className={classNames('tabell', { compact: compact }, className)}>
+      <TableSorterDiv
+        key={key}
+        className={classNames('tabell', { compact: compact }, className)}
+      >
         <ContentDiv>
           {loading && (
             <LoadingDiv>
@@ -635,7 +637,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   feil: column.error,
                                   values: currentEditValues,
                                   context: context,
-                                  onChange: (e: string) => handleEditTextChange(column, e)
+                                  setValue: (e: string, columnId = column.id) => handleEditTextChange(columnId, e)
                                 })
                               : (
                                 <HighContrastInput
@@ -645,7 +647,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   placeholder={column.edit?.placeholder}
                                   value={column.edit?.text || ''}
                                   feil={column.error}
-                                  onChange={(e: any) => handleEditTextChange(column, e.target.value)}
+                                  setValue={(e: any) => handleEditTextChange(column.id, e.target.value)}
                                 />
                                 )
                           }

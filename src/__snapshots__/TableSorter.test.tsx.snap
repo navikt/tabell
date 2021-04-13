@@ -378,7 +378,7 @@ tabell.g64[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <q
+  <J
     highContrast={false}
   >
     <Component
@@ -547,6 +547,7 @@ tabell.g64[id="c10"] {
     >
       <styled.div
         className="tabell"
+        key="83faec4280d060f0981395015c73b321"
       >
         <div
           className="c0 c1 tabell"
@@ -1564,6 +1565,6 @@ tabell.g64[id="c10"] {
         </div>
       </styled.div>
     </Component>
-  </q>
+  </J>
 </TableSorter>
 `;
