@@ -151,10 +151,19 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   summary = false,
   sort = { column: '', order: 'none' }
 }: TableSorterProps<CustomItem, CustomContext>): JSX.Element => {
+  const parseColumns = (columns: Array<Column<CustomItem, CustomContext>>): Array<Column<CustomItem, CustomContext>> => {
+    return columns.map(column => {
+      if (column.edit && !_.isNil(column.edit.defaultValue)) {
+        column.edit.value = column.edit.defaultValue
+      }
+      return column
+    })
+  }
+
   const [_sort, setSort] = useState<Sort>(sort)
   const [_id] = useState<string>(id || md5('' + new Date().getTime()))
   const [_items, setItems] = useState<Array<CustomItem> |undefined>(undefined)
-  const [_columns, setColumns] = useState<Array<Column<CustomItem, CustomContext>>>(columns)
+  const [_columns, setColumns] = useState<Array<Column<CustomItem, CustomContext>>>(parseColumns(columns))
   const [seeFilters, setSeeFilters] = useState<boolean>(false)
   const [checkAll, setCheckAll] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(initialPage)
@@ -325,7 +334,8 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
       }).map((item, index) => {
         return (
           <tr
-            key={item.key || index}
+            key={item.key}
+            id={item.key}
             aria-selected={selectable && item.selected === true}
             style={{ animationDelay: (0.04 * index) + 's' }}
             className={classNames({
@@ -453,7 +463,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
         ...column,
         edit: {
           ...column.edit,
-          text: entries[column.id]
+          value: entries[column.id]
         }
       }
     }))
@@ -467,10 +477,14 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
 
     newColumns = _columns.map((column) => {
       if (column.edit?.validation) {
-        if (!column.edit?.text) {
-          column.edit.text = ''
+        let valueToValidate = column.edit?.value
+        if (_.isNil(valueToValidate)) {
+          valueToValidate = ''
         }
-        validColumnText = (column.edit.text.match(column.edit.validation) !== null)
+        if (typeof valueToValidate !== 'string') {
+          valueToValidate = '' + valueToValidate
+        }
+        validColumnText = (valueToValidate.match(column.edit.validation) !== null)
       } else {
         validColumnText = true
       }
@@ -489,18 +503,16 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     // @ts-ignore
     const newData: Item = {}
     newColumns = _columns.map(c => {
-      let text = c.edit?.text
+      let text = c.edit?.value
       if (text && _.isFunction(c.edit?.transform)) {
         text = c.edit?.transform(text)
       }
-      if (text) {
-        newData[c.id] = text
-      }
+      newData[c.id] = text
       return {
         ...c,
         edit: {
           ...c.edit,
-          text: undefined
+          value: c.edit?.defaultValue
         },
         error: undefined
       }
@@ -524,10 +536,11 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
   const tableRows = rows(sortedItems)
 
   const currentEditValues = {} as any
+
   if (editable) {
     _columns.forEach(c => {
-      if (c.edit && c.edit.text) {
-        currentEditValues[c.id] = c.edit.text
+      if (c.edit) {
+        currentEditValues[c.id] = c.edit.value
       }
     })
   }
@@ -635,7 +648,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                           {
                             column.edit?.render
                               ? column.edit.render({
-                                  defaultValue: column.edit.text,
+                                  value: column.edit.value,
                                   feil: column.error,
                                   values: currentEditValues,
                                   context: context,
@@ -647,7 +660,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   className='c-tableSorter__edit-input'
                                   label=''
                                   placeholder={column.edit?.placeholder}
-                                  value={column.edit?.text || ''}
+                                  value={column.edit?.value ?? ''}
                                   feil={column.error}
                                   setValue={(e: React.ChangeEvent<HTMLInputElement>) => handleEditTextChange({
                                     [column.id]: e.target.value

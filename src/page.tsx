@@ -50,18 +50,18 @@ const Page = () => {
   ])
 
   const renderEmployeeEditable = ({
-    defaultValue,
+    value,
     feil,
     setValue
   }: RenderEditableOptions) => {
     return (
       <Select
-        value={defaultValue}
+        value={value}
         feil={feil}
         onChange={(e) => {
           console.log('setValue')
           setValue({
-            'employee': e.target.value
+            employee: e.target.value
           })
         }}
       >

@@ -17,23 +17,24 @@ export interface Context {}
 
 export interface RenderEditableOptions<CustomContext extends Context = Context, CustomType = any> {
   context: CustomContext
-  defaultValue?: CustomType
+  value?: CustomType
   feil?: string
   setValue: (entries: {[k in string]: any}) => void,
   values: {[k in string]: any}
 }
 
-export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context> {
+export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
   id: string
   label: string
   type: string
   edit?: {
     render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
-    transform?: (s: string) => string
+    transform?: (s: CustomType) => CustomType
     validation?: string,
     validationMessage?: string,
     placeholder?: string
-    text?: string
+    defaultValue?: CustomType
+    value?: CustomType
   },
   error ?: string
   filterText?: string

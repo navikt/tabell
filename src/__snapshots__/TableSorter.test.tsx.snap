@@ -730,6 +730,7 @@ tabell.g64[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
+                      id="01"
                       key="01"
                       style={
                         Object {
@@ -820,6 +821,7 @@ tabell.g64[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
+                      id="02"
                       key="02"
                       style={
                         Object {
@@ -910,6 +912,7 @@ tabell.g64[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
+                      id="03"
                       key="03"
                       style={
                         Object {
@@ -1000,6 +1003,7 @@ tabell.g64[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
+                      id="04"
                       key="04"
                       style={
                         Object {
@@ -1090,6 +1094,7 @@ tabell.g64[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
+                      id="05"
                       key="05"
                       style={
                         Object {
