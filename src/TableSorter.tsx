@@ -443,17 +443,19 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     }))
   }
 
-  const handleEditTextChange = (_columnId: string, newValue: any): void => {
+  const handleEditTextChange = (entries: {[k in string]: any}): void => {
+    const keys = Object.keys(entries)
     setColumns(_columns.map((column) => {
-      return _columnId === column.id
-        ? {
-            ...column,
-            edit: {
-              ...column.edit,
-              text: newValue
-            }
-          }
-        : column
+      if (!keys.includes(column.id)) {
+        return column
+      }
+      return {
+        ...column,
+        edit: {
+          ...column.edit,
+          text: entries[column.id]
+        }
+      }
     }))
   }
 
@@ -637,7 +639,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   feil: column.error,
                                   values: currentEditValues,
                                   context: context,
-                                  setValue: (e: any, columnId = column.id) => handleEditTextChange(columnId, e)
+                                  setValue: handleEditTextChange
                                 })
                               : (
                                 <HighContrastInput
@@ -647,7 +649,9 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                                   placeholder={column.edit?.placeholder}
                                   value={column.edit?.text || ''}
                                   feil={column.error}
-                                  setValue={(e: React.ChangeEvent<HTMLInputElement>) => handleEditTextChange(column.id, e.target.value)}
+                                  setValue={(e: React.ChangeEvent<HTMLInputElement>) => handleEditTextChange({
+                                    [column.id]: e.target.value
+                                  })}
                                 />
                                 )
                           }

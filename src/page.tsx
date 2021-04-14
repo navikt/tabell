@@ -49,7 +49,7 @@ const Page = () => {
     { key: '26', employee: 'ja', name: 'Ziggy', date: new Date(1929, 1, 14), type: 'Zoo keeper' }
   ])
 
-  const renderEditable = ({
+  const renderEmployeeEditable = ({
     defaultValue,
     feil,
     setValue
@@ -60,7 +60,9 @@ const Page = () => {
         feil={feil}
         onChange={(e) => {
           console.log('setValue')
-          setValue(e.target.value)
+          setValue({
+            'employee': e.target.value
+          })
         }}
       >
         <option />
@@ -143,7 +145,9 @@ const Page = () => {
               label: 'Employee',
               type: 'string',
               edit: {
-                render: renderEditable, validation: '.+', validationMessage: 'validationMessage'
+                render: renderEmployeeEditable,
+                validation: '.+',
+                validationMessage: 'validationMessage'
               }
             },
             {

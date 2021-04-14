@@ -19,7 +19,7 @@ export interface RenderEditableOptions<CustomContext extends Context = Context, 
   context: CustomContext
   defaultValue?: CustomType
   feil?: string
-  setValue: (value: CustomType, columnId?: string) => void,
+  setValue: (entries: {[k in string]: any}) => void,
   values: {[k in string]: any}
 }
 
@@ -28,7 +28,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   label: string
   type: string
   edit?: {
-    render?: (o: RenderEditableOptions) => JSX.Element
+    render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
     transform?: (s: string) => string
     validation?: string,
     validationMessage?: string,
