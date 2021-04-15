@@ -472,40 +472,37 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
 
   const handleAdd = (context: CustomContext): void => {
     // first, let's validate
-    let validated: boolean = true
-    let validColumnText: boolean
-    let validColumnMessage: string | undefined
+    let allValidated: boolean = true
     let newColumns: Array<Column<CustomItem, CustomContext>> = []
 
     newColumns = _columns.map((column) => {
-      if (column.edit?.validation) {
-        validColumnText = true
-        validColumnMessage = undefined
-        column.edit.validation.forEach(v => {
-          let valueToValidate = column.edit?.value
-          if (_.isNil(valueToValidate)) {
-            valueToValidate = ''
-          }
-          if (typeof valueToValidate !== 'string') {
-            valueToValidate = '' + valueToValidate
-          }
-          const thisIsValid = (valueToValidate.match(v.pattern) !== null)
-          validColumnText = validColumnText && thisIsValid
-          if (!thisIsValid && _.isNil(validColumnMessage)) {
-            validColumnMessage = v.message
-          }
-        })
-      } else {
-        validColumnText = true
-      }
-      validated = validated && validColumnText
+      let isColumnValid: boolean = true
+      let errorMessage: string | undefined
+
+      column.edit?.validation?.forEach(v => {
+        let valueToValidate = column.edit?.value
+        if (_.isNil(valueToValidate)) {
+          valueToValidate = ''
+        }
+        if (typeof valueToValidate !== 'string') {
+          valueToValidate = '' + valueToValidate
+        }
+        const isThisValid = (valueToValidate.match(v.pattern) !== null)
+        isColumnValid = isColumnValid && isThisValid
+        if (!isThisValid && _.isNil(errorMessage)) {
+          errorMessage = v.message
+        }
+      })
+
+      allValidated = allValidated && isColumnValid
+
       return {
         ...column,
-        error: (validColumnText ? undefined : validColumnMessage) ?? _labels.error
+        error: (isColumnValid ? undefined : (errorMessage ?? _labels.error))
       }
     })
 
-    if (!validated) {
+    if (!allValidated) {
       setColumns(newColumns)
       return
     }
