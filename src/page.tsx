@@ -131,8 +131,32 @@ const Page = () => {
             setItems(context.items.concat(item))
           }}
           columns={[
-            { id: 'name', label: 'Name', type: 'string', filterText: '', edit: { validation: '.+' } },
-            { id: 'date', label: 'Date', type: 'date', filterText: '', dateFormat: 'DD.MM.YYYY', edit: { placeholder: 'DDMMÅÅÅÅ', validation: '\\d{2}\\.\\d{2}\\.\\d{4}' } },
+            {
+              id: 'name',
+              label: 'Name',
+              type: 'string',
+              filterText: '',
+              edit: {
+                validation: [{
+                  pattern: '^.+$',
+                  message: 'validation message'
+                }]
+              }
+            },
+            {
+              id: 'date',
+              label: 'Date',
+              type: 'date',
+              filterText: '',
+              dateFormat: 'DD.MM.YYYY',
+              edit: {
+                placeholder: 'DDMMÅÅÅÅ',
+                validation: [{
+                  pattern: '^\\d{2}\\.\\d{2}\\.\\d{4}$',
+                  message: 'Must be a date'
+                }]
+              }
+            },
             {
               id: 'type',
               label: 'Occupation',
@@ -146,8 +170,10 @@ const Page = () => {
               type: 'string',
               edit: {
                 render: renderEmployeeEditable,
-                validation: '.+',
-                validationMessage: 'validationMessage'
+                validation: [{
+                  pattern: '^.+$',
+                  message: 'validationMessage'
+                }]
               }
             },
             {

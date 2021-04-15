@@ -30,8 +30,10 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   edit?: {
     render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
     transform?: (s: CustomType) => CustomType
-    validation?: string,
-    validationMessage?: string,
+    validation?: Array<{
+      message: string,
+      pattern: string
+    }>,
     placeholder?: string
     defaultValue?: CustomType
     value?: CustomType

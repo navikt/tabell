@@ -354,7 +354,8 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                     id={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
                     disabled={item.disabled || false}
                     data-testid={'c-tableSorter__row-checkbox-id-' + item.key + '-' + _id}
-                    label={'Velg ' + item.key} checked={!!item.selected} onChange={() => {
+                    label={`Velg ${item.key}`}
+                    checked={!!item.selected} onChange={() => {
                       onCheckClicked(item)
                     }}
                   />
@@ -473,25 +474,34 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
     // first, let's validate
     let validated: boolean = true
     let validColumnText: boolean
+    let validColumnMessage: string | undefined
     let newColumns: Array<Column<CustomItem, CustomContext>> = []
 
     newColumns = _columns.map((column) => {
       if (column.edit?.validation) {
-        let valueToValidate = column.edit?.value
-        if (_.isNil(valueToValidate)) {
-          valueToValidate = ''
-        }
-        if (typeof valueToValidate !== 'string') {
-          valueToValidate = '' + valueToValidate
-        }
-        validColumnText = (valueToValidate.match(column.edit.validation) !== null)
+        validColumnText = true
+        validColumnMessage = undefined
+        column.edit.validation.forEach(v => {
+          let valueToValidate = column.edit?.value
+          if (_.isNil(valueToValidate)) {
+            valueToValidate = ''
+          }
+          if (typeof valueToValidate !== 'string') {
+            valueToValidate = '' + valueToValidate
+          }
+          const thisIsValid = (valueToValidate.match(v.pattern) !== null)
+          validColumnText = validColumnText && thisIsValid
+          if (!thisIsValid && _.isNil(validColumnMessage)) {
+            validColumnMessage = v.message
+          }
+        })
       } else {
         validColumnText = true
       }
       validated = validated && validColumnText
       return {
         ...column,
-        error: validColumnText ? undefined : column.edit?.validationMessage || _labels.error
+        error: (validColumnText ? undefined : validColumnMessage) ?? _labels.error
       }
     })
 
