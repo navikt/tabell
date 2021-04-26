@@ -11,6 +11,7 @@ import PT from 'prop-types'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useCallback, useEffect, useState } from 'react'
+import { renderToString } from 'react-dom/server'
 import styled from 'styled-components'
 import { Column, Context, Item, Labels, Sort, SortOrder, TableSorterProps } from './index.d'
 import View from './resources/View'
@@ -296,13 +297,19 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
               label = item[column.id].toLocaleDateString ? item[column.id].toLocaleDateString() : item[column.id].toString()
             }
             return regex ? label.match(regex) : true
-          default:
-            return regex
-              ? (column.needle && _.isString(column.needle(item[column.id]))
-                  ? column.needle(item[column.id]).toLowerCase().match(regex)
-                  : (_.isString(item[column.id]) ? item[column.id].toLowerCase().match(regex) : true)
-                )
-              : true
+          default: {
+            let text: string
+            if (column.needle && _.isString(column.needle(item[column.id]))) {
+              text = column.needle(item[column.id]).toLowerCase()
+            } else {
+              if (_.isFunction(column.renderCell)) {
+                text = renderToString(column.renderCell(item, item[column.id], context) as JSX.Element).toLowerCase()
+              } else {
+                text = item[column.id].toString().toLowerCase()
+              }
+            }
+            return regex ? text.match(regex) : true
+          }
         }
       })
     })
