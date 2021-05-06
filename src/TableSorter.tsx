@@ -696,7 +696,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
                               handleAdd(context)
                             }}
                           >
-                            <Tilsette />
+                            <Tilsette title={_labels.addLabel} />
                           </HighContrastKnapp>
                         </td>
                       )

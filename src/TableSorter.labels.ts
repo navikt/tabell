@@ -7,6 +7,7 @@ export default {
   noSelectedItems: 'Ingen {{type}} valgt',
   selectAll: 'Velg alle',
   showNoItems: 'Ingen {{type}} vist',
-  showXofYItems: 'Viser {{x}} av {{y}} {{type}}'
+  showXofYItems: 'Viser {{x}} av {{y}} {{type}}',
+  addLabel: 'Lagre/legg til'
 
 } as Labels
