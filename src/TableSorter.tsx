@@ -305,7 +305,7 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
               if (_.isFunction(column.renderCell)) {
                 text = renderToString(column.renderCell(item, item[column.id], context) as JSX.Element).toLowerCase()
               } else {
-                text = item[column.id].toString().toLowerCase()
+                text = item[column.id]?.toString()?.toLowerCase() ?? ''
               }
             }
             return regex ? text.match(regex) : true
