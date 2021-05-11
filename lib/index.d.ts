@@ -31,6 +31,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
     render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
     transform?: (s: CustomType) => CustomType
     validation?: Array<{
+      mandatory?: boolean | ((c: CustomContext) => boolean)
       message: string,
       pattern: string
     }>,

@@ -494,10 +494,21 @@ const TableSorter = <CustomItem extends Item = Item, CustomContext extends Conte
         if (typeof valueToValidate !== 'string') {
           valueToValidate = '' + valueToValidate
         }
-        const isThisValid = (valueToValidate.match(v.pattern) !== null)
-        isColumnValid = isColumnValid && isThisValid
-        if (!isThisValid && _.isNil(errorMessage)) {
-          errorMessage = v.message
+        let mandatory: boolean = true
+        if (!_.isNil(v.mandatory)) {
+          if (_.isFunction(v.mandatory)) {
+            mandatory = v.mandatory(context)
+          } else {
+            mandatory = v.mandatory
+          }
+        }
+
+        if (mandatory) {
+          const isThisValid = (valueToValidate.match(v.pattern) !== null)
+          isColumnValid = isColumnValid && isThisValid
+          if (!isThisValid && _.isNil(errorMessage)) {
+            errorMessage = v.message
+          }
         }
       })
 
