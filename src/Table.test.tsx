@@ -1,11 +1,11 @@
 import { mount, ReactWrapper } from 'enzyme'
 import React from 'react'
-import TableSorter, { TableSorterDiv } from './TableSorter'
-import { Item, TableSorterProps } from './index.d'
+import Table, { TableDiv } from './Table'
+import { Item, TableProps } from './index.d'
 
-describe('TableSorter', () => {
+describe('Table', () => {
   let wrapper: ReactWrapper
-  const initialMockProps: TableSorterProps = {
+  const initialMockProps: TableProps = {
     columns: [
       { id: 'string', label: 'ui:string', type: 'string' },
       { id: 'date', label: 'ui:date', type: 'date' },
@@ -59,7 +59,7 @@ describe('TableSorter', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(<TableSorter {...initialMockProps} />)
+    wrapper = mount(<Table {...initialMockProps} />)
   })
 
   afterEach(() => {
@@ -72,12 +72,12 @@ describe('TableSorter', () => {
   })
 
   it('Renders: Not sortable', () => {
-    wrapper = mount(<TableSorter {...initialMockProps} sortable={false} />)
+    wrapper = mount(<Table {...initialMockProps} sortable={false} />)
     expect(wrapper.find('thead tr th').last().exists('a')).toBeFalsy()
   })
 
   it('Has proper HTML structure: loading', () => {
-    expect(wrapper.exists(TableSorterDiv)).toBeTruthy()
+    expect(wrapper.exists(TableDiv)).toBeTruthy()
   })
 
   it('UseEffect: new items', () => {
@@ -85,7 +85,7 @@ describe('TableSorter', () => {
       items: initialMockProps.items!.slice(initialMockProps.items!.length - 1)
     })
     wrapper.update()
-    expect(wrapper.exists(TableSorterDiv)).toBeTruthy()
+    expect(wrapper.exists(TableDiv)).toBeTruthy()
     expect(wrapper.find('tbody tr').length).toEqual(1)
   })
 
@@ -108,34 +108,34 @@ describe('TableSorter', () => {
 
   it('onCheckAllClicked triggered', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('.c-tableSorter__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: true } })
+    wrapper.find('.tabell__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item: Item) => ({
       ...item,
       selected: true
     })));
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('.c-tableSorter__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: false } })
+    wrapper.find('.tabell__checkAll-checkbox input').hostNodes().simulate('change', { target: { checked: false } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
   })
 
   it('onCheckClicked triggered to select and deselect', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
       [{ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }]
     )
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
   })
 
   it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
       { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }
     ])
-    wrapper.find('input[data-testid="c-tableSorter__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-testid="tabell__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
       { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true },
       { key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, visible: true }
@@ -144,9 +144,9 @@ describe('TableSorter', () => {
 
   it('handleFilterTextChange()', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('.c-tableSorter___seefilters-icon').hostNodes().simulate('click')
+    wrapper.find('.tabell___seefilters-icon').hostNodes().simulate('click')
     wrapper.update()
-    wrapper.find('.c-tableSorter__sort-input input').hostNodes().first().simulate('change', { target: { value: 'String 07' } })
+    wrapper.find('.tabell__sort-input input').hostNodes().first().simulate('change', { target: { value: 'String 07' } })
     wrapper.update()
     expect(wrapper.find('tbody tr').length).toEqual(1)
     expect(wrapper.find('tbody tr').render().text()).toEqual(['Velg 07', 'String 07', '2/7/2020', 'Object 07'].join(''))

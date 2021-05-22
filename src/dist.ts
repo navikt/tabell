@@ -1,3 +1,3 @@
-import TableSorter from './TableSorter'
+import Table from './Table'
 
-export default TableSorter
+export default Table

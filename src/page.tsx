@@ -1,23 +1,33 @@
-import { Select } from 'nav-frontend-skjema'
-import React, { useState } from 'react'
-import NavHighContrast, { HighContrastKnapp } from 'nav-hoykontrast'
-import styled from 'styled-components'
-import Trashcan from './resources/Trashcan'
-import TableSorter from './TableSorter'
-import _ from 'lodash'
+import classNames from 'classnames'
+import md5 from 'md5'
 import 'nav-frontend-core/dist/main.css'
 import 'nav-frontend-lenker-style/dist/main.css'
+import { Select } from 'nav-frontend-skjema'
 import 'nav-frontend-skjema-style/dist/main.css'
 import 'nav-frontend-tabell-style/dist/main.css'
 import 'nav-frontend-typografi-style/dist/main.css'
+import NavHighContrast from 'nav-hoykontrast'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { RenderEditableOptions } from './index.d'
+import Table from './Table'
+
 const MarginDiv = styled.div`
   margin: 1rem;
 `
 
+const PageDiv = styled.div`
+  padding: 2rem;
+  background-color: white;
+  color: black;
+  &.highContrast {
+    background-color: black;
+    color: white;
+  }
+`
 const Page = () => {
   const [highContrast, setHighContrast] = useState<boolean>(false)
-  const [_items, setItems] = useState<any>([
+  const items = [
     { key: '01', employee: 'ja', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true },
     { key: '02', employee: 'ja', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
     { key: '03', employee: 'ja', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
@@ -47,7 +57,7 @@ const Page = () => {
     { key: '24', employee: 'ja', name: 'Xavier', date: new Date(1932, 7, 5), type: 'XML developer' },
     { key: '25', employee: 'ja', name: 'Yvonne', date: new Date(1993, 2, 28), type: 'Yoga instructor' },
     { key: '26', employee: 'ja', name: 'Ziggy', date: new Date(1929, 1, 14), type: 'Zoo keeper' }
-  ])
+  ]
 
   const renderEmployeeEditable = ({
     value,
@@ -66,28 +76,14 @@ const Page = () => {
         }}
       >
         <option />
-        <option>yes</option>
-        <option>no</option>
+        <option>ja</option>
+        <option>nei</option>
       </Select>
     )
   }
 
-  const renderCell = (item: any, value: any, context: any) => (
-    <HighContrastKnapp
-      kompakt
-      mini
-      onClick={(e: any) => {
-        e.preventDefault()
-        e.stopPropagation()
-        console.log('Deleting ' + JSON.stringify(item))
-        const newItems = _.filter(context.items, i => i.key !== item.key)
-        setItems(newItems)
-      }}
-    >
-      <Trashcan />
-    </HighContrastKnapp>)
   return (
-    <NavHighContrast highContrast={highContrast}>
+    <>
       <a
         id='highcontrast-link-id'
         href='#highContrast'
@@ -99,93 +95,96 @@ const Page = () => {
       >
         high contrast
       </a>
-      <MarginDiv>
-        <TableSorter
-          items={_items}
-          highContrast={highContrast}
-          context={{ items: _items }}
-          itemsPerPage={20}
-          loading={false}
-          sort={{ column: 'name', order: 'ascending' }}
-          animatable
-          editable
-          searchable
-          selectable
-          summary
-          sortable
-          striped={false}
-          compact
-          labels={{
-            type: 'oranges'
-          }}
-          categories={[{
-            colSpan: 1,
-            label: '',
-            border: false
-          }, {
-            colSpan: 3,
-            label: 'title'
-          }]}
-          onRowAdded={(item: any, context: any) => {
-            console.log('Adding ' + JSON.stringify(item))
-            setItems(context.items.concat(item))
-          }}
-          columns={[
-            {
-              id: 'name',
-              label: 'Name',
-              type: 'string',
-              filterText: '',
-              edit: {
-                validation: [{
-                  pattern: '^.+$',
-                  message: 'validation message'
-                }]
-              }
-            },
-            {
-              id: 'date',
-              label: 'Date',
-              type: 'date',
-              filterText: '',
-              dateFormat: 'DD.MM.YYYY',
-              edit: {
-                placeholder: 'DDMMÅÅÅÅ',
-                validation: [{
-                  pattern: '^\\d{2}\\.\\d{2}\\.\\d{4}$',
-                  message: 'Must be a date'
-                }]
-              }
-            },
-            {
-              id: 'type',
-              label: 'Occupation',
-              type: 'string',
-              filterText: '',
-              renderCell: (item: any, value: any) => <code>{value}</code>
-            },
-            {
-              id: 'employee',
-              label: 'Employee',
-              type: 'string',
-              edit: {
-                render: renderEmployeeEditable,
-                validation: [{
-                  pattern: '^.+$',
-                  message: 'validationMessage'
-                }]
-              }
-            },
-            {
-              id: 'buttons',
-              label: '',
-              type: 'buttons',
-              renderCell: renderCell
-            }
-          ]}
-        />
-      </MarginDiv>
-    </NavHighContrast>
+      <NavHighContrast highContrast={highContrast}>
+        <PageDiv className={classNames({ highContrast: highContrast })}>
+          <MarginDiv>
+            <Table
+              key={md5(JSON.stringify(items))}
+              items={items}
+              highContrast={highContrast}
+              context={{ items: items }}
+              itemsPerPage={20}
+              loading={false}
+              sort={{ column: 'name', order: 'asc' }}
+              animatable
+              editable
+              searchable
+              selectable
+              summary
+              sortable
+              striped={false}
+              compact
+              labels={{
+                type: 'oranges'
+              }}
+              categories={[{
+                colSpan: 1,
+                label: '',
+                border: false
+              }, {
+                colSpan: 3,
+                label: 'title'
+              }]}
+              onRowsChanged={(items) => {
+                console.log('Rows changed: ' + JSON.stringify(items))
+              }}
+              columns={[
+                {
+                  id: 'name',
+                  label: 'Name',
+                  type: 'string',
+                  filterText: '',
+                  edit: {
+                    validation: [{
+                      test: '^.+$',
+                      message: 'validation message'
+                    }]
+                  }
+                },
+                {
+                  id: 'date',
+                  label: 'Date',
+                  type: 'date',
+                  filterText: '',
+                  dateFormat: 'DD.MM.YYYY',
+                  edit: {
+                    placeholder: 'DDMMÅÅÅÅ',
+                    validation: [{
+                      test: (value: any) => (Object.prototype.toString.call(value) === '[object Date]'),
+                      message: 'Must be a date'
+                    }]
+                  }
+                },
+                {
+                  id: 'type',
+                  label: 'Occupation',
+                  type: 'string',
+                  filterText: '',
+                  renderCell: (item: any, value: any) => <code>{value}</code>
+                },
+                {
+                  id: 'employee',
+                  label: 'Employee',
+                  type: 'string',
+                  edit: {
+                    render: renderEmployeeEditable,
+                    validation: [{
+                      test: '^.+$',
+                      message: 'validationMessage'
+                    }]
+                  }
+                },
+                {
+                  id: 'buttons',
+                  label: '',
+                  type: 'buttons'
+                }
+              ]}
+            />
+          </MarginDiv>
+        </PageDiv>
+      </NavHighContrast>
+    </>
   )
 }
 

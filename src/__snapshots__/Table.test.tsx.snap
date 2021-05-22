@@ -1,41 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TableSorter Renders 1`] = `
-.c9 {
+exports[`Table Renders 1`] = `
+.c8 {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+tabell.g32[id="c6"] {
+  content: "c8,";
+}
+
+.c9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: inherit;
-  line-height: inherit;
-  color: #0067c5 !important;
 }
 
-.c9:focus {
-  background-color: #19548a !important;
-  color: #FFFFFF !important;
-}
-
-.c9 svg {
-  fill: #0067c5 !important;
-  stroke: #0067c5 !important;
-}
-
-.c9 svg path {
-  stroke: #0067c5 !important;
-}
-
-.c9 svg:focus {
-  fill: #FFFFFF !important;
-  stroke: #FFFFFF !important;
-}
-
-tabell.g9[id="c8"] {
+tabell.g35[id="c7"] {
   content: "c9,";
+}
+
+.c13 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+tabell.g36[id="c12"] {
+  content: "c13,";
 }
 
 .c15 {
@@ -78,8 +80,12 @@ tabell.g96[id="c16"] {
 }
 
 .c1 * {
-  font-size: inherit;
-  line-height: inherit;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+.c1 tr:not(:hover) div.tabell__buttons {
+  visibility: hidden;
 }
 
 .c1.compact td,
@@ -87,23 +93,18 @@ tabell.g96[id="c16"] {
   padding: 0.35rem !important;
 }
 
-.c1.compact th a {
+.c1.compact thead th button {
   margin: 0rem !important;
-  padding: 0rem !important;
-  padding-right: 0.7rem !important;
+  padding: 0rem 0.35rem !important;
+  width: 100% !important;
 }
 
-.c1.compact th a:before,
-.c1.compact th a:after {
-  right: 0rem !important;
-}
-
-.c1.compact .c-tableSorter__filter .skjemaelement__input,
-.c1.compact .c-tableSorter__edit .skjemaelement__input {
+.c1.compact .tabell__filter .skjemaelement__input,
+.c1.compact .tabell__edit .skjemaelement__input {
   padding: 0.25rem !important;
 }
 
-.c1 .c-tableSorter__edit {
+.c1 .tabell__edit {
   vertical-align: top;
 }
 
@@ -180,53 +181,16 @@ tabell.g100[id="c4"] {
   content: "c5,";
 }
 
-.c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-tabell.g101[id="c12"] {
-  content: "c13,";
-}
-
-.c7 {
+.c11 {
   margin-left: 0.5rem;
   cursor: pointer;
 }
 
-tabell.g102[id="c6"] {
-  content: "c7,";
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-tabell.g103[id="c10"] {
+tabell.g101[id="c10"] {
   content: "c11,";
 }
 
-<TableSorter
+<Table
   animatable={true}
   columns={
     Array [
@@ -547,7 +511,6 @@ tabell.g103[id="c10"] {
     >
       <styled.div
         className="tabell"
-        key="83faec4280d060f0981395015c73b321"
       >
         <div
           className="c0 c1 tabell"
@@ -558,15 +521,15 @@ tabell.g103[id="c10"] {
             >
               <styled.table
                 cellSpacing="0"
-                className="c-tableSorter__table"
+                className="tabell__table"
               >
                 <table
                   cellSpacing="0"
-                  className="c4 c5 c-tableSorter__table"
+                  className="c4 c5 tabell__table"
                 >
                   <thead>
                     <tr
-                      className="c-tableSorter__header"
+                      className="tabell__header"
                     >
                       <th
                         style={
@@ -575,152 +538,115 @@ tabell.g103[id="c10"] {
                           }
                         }
                       >
-                        <div
-                          style={
-                            Object {
-                              "alignItems": "center",
-                              "display": "flex",
-                            }
-                          }
-                        >
-                          <Checkbox
-                            checked={false}
-                            className="c-tableSorter__checkAll-checkbox"
-                            id="c-tableSorter__checkAll-checkbox-id-test"
-                            label="Velg alle"
-                            onChange={[Function]}
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
                           >
-                            <div
-                              className="skjemaelement c-tableSorter__checkAll-checkbox"
+                            <Checkbox
+                              checked={false}
+                              className="tabell__checkAll-checkbox"
+                              id="tabell__checkAll-checkbox-id-test"
+                              label="Velg alle"
+                              onChange={[Function]}
                             >
-                              <input
-                                aria-invalid={false}
-                                checked={false}
-                                className="skjemaelement__input checkboks"
-                                id="c-tableSorter__checkAll-checkbox-id-test"
-                                onChange={[Function]}
-                                type="checkbox"
-                              />
-                              <label
-                                className="skjemaelement__label"
-                                htmlFor="c-tableSorter__checkAll-checkbox-id-test"
+                              <div
+                                className="skjemaelement tabell__checkAll-checkbox"
                               >
-                                Velg alle
-                              </label>
-                            </div>
-                          </Checkbox>
-                          <styled.div>
-                            <div
-                              className="c6 c7"
-                            >
-                              <View
-                                className="c-tableSorter___seefilters-icon"
-                                id="c-tableSorter__seefilters-icon-id"
-                                onClick={[Function]}
-                              >
-                                <svg
-                                  className="c-tableSorter___seefilters-icon"
-                                  enableBackground="new 0 0 24 24"
-                                  height={24}
-                                  id="c-tableSorter__seefilters-icon-id"
-                                  onClick={[Function]}
-                                  version="1.1"
-                                  viewBox="0 0 24 24"
-                                  width={24}
-                                  x="0px"
-                                  xmlSpace="preserve"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                                  y="0px"
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="skjemaelement__input checkboks"
+                                  id="tabell__checkAll-checkbox-id-test"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <label
+                                  className="skjemaelement__label"
+                                  htmlFor="tabell__checkAll-checkbox-id-test"
                                 >
-                                  <g>
-                                    <path
-                                      d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
-                                    />
-                                    <path
-                                      d="M23.853,23.146l-2.461-2.461l-0.713-0.714c0.581-0.734,0.932-1.659,0.932-2.666c0-2.374-1.932-4.306-4.305-4.306 c-2.375,0-4.307,1.932-4.307,4.306s1.932,4.305,4.307,4.305c1.007,0,1.932-0.35,2.666-0.932l0.713,0.713l2.461,2.462 C23.243,23.951,23.372,24,23.499,24c0.129,0,0.256-0.049,0.354-0.146C24.048,23.659,24.048,23.342,23.853,23.146z M17.306,20.61 c-1.823,0-3.307-1.482-3.307-3.305c0-1.823,1.483-3.306,3.307-3.306c1.822,0,3.305,1.482,3.305,3.306 C20.61,19.128,19.128,20.61,17.306,20.61z"
-                                    />
-                                  </g>
-                                </svg>
-                              </View>
-                            </div>
-                          </styled.div>
-                        </div>
+                                  Velg alle
+                                </label>
+                              </div>
+                            </Checkbox>
+                            <styled.div
+                              aria-pressed={false}
+                              role="button"
+                            >
+                              <div
+                                aria-pressed={false}
+                                className="c10 c11"
+                                role="button"
+                              >
+                                <View
+                                  className="tabell___seefilters-icon"
+                                  id="tabell__seefilters-icon-id"
+                                  onClick={[Function]}
+                                >
+                                  <svg
+                                    className="tabell___seefilters-icon"
+                                    enableBackground="new 0 0 24 24"
+                                    height={24}
+                                    id="tabell__seefilters-icon-id"
+                                    onClick={[Function]}
+                                    version="1.1"
+                                    viewBox="0 0 24 24"
+                                    width={24}
+                                    x="0px"
+                                    xmlSpace="preserve"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                                    y="0px"
+                                  >
+                                    <g>
+                                      <path
+                                        d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
+                                      />
+                                      <path
+                                        d="M23.853,23.146l-2.461-2.461l-0.713-0.714c0.581-0.734,0.932-1.659,0.932-2.666c0-2.374-1.932-4.306-4.305-4.306 c-2.375,0-4.307,1.932-4.307,4.306s1.932,4.305,4.307,4.305c1.007,0,1.932-0.35,2.666-0.932l0.713,0.713l2.461,2.462 C23.243,23.951,23.372,24,23.499,24c0.129,0,0.256-0.049,0.354-0.146C24.048,23.659,24.048,23.342,23.853,23.146z M17.306,20.61 c-1.823,0-3.307-1.482-3.307-3.305c0-1.823,1.483-3.306,3.307-3.306c1.822,0,3.305,1.482,3.305,3.306 C20.61,19.128,19.128,20.61,17.306,20.61z"
+                                      />
+                                    </g>
+                                  </svg>
+                                </View>
+                              </div>
+                            </styled.div>
+                          </div>
+                        </Styled(styled.div)>
                       </th>
                       <th
                         aria-sort="none"
-                        className="header none"
-                        key="string"
+                        className="header"
+                        key="th-string"
                         role="columnheader"
                       >
-                        <Styled(s)
-                          href="#"
+                        <button
                           onClick={[Function]}
                         >
-                          <s
-                            className="c8 c9"
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="lenke c8 c9"
-                              href="#"
-                              onClick={[Function]}
-                            >
-                              ui:string
-                            </a>
-                          </s>
-                        </Styled(s)>
+                          ui:string
+                        </button>
                       </th>
                       <th
                         aria-sort="none"
-                        className="header none"
-                        key="date"
+                        className="header"
+                        key="th-date"
                         role="columnheader"
                       >
-                        <Styled(s)
-                          href="#"
+                        <button
                           onClick={[Function]}
                         >
-                          <s
-                            className="c8 c9"
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="lenke c8 c9"
-                              href="#"
-                              onClick={[Function]}
-                            >
-                              ui:date
-                            </a>
-                          </s>
-                        </Styled(s)>
+                          ui:date
+                        </button>
                       </th>
                       <th
                         aria-sort="none"
-                        className="header none"
-                        key="object"
+                        className="header"
+                        key="th-object"
                         role="columnheader"
                       >
-                        <Styled(s)
-                          href="#"
+                        <button
                           onClick={[Function]}
                         >
-                          <s
-                            className="c8 c9"
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            <a
-                              className="lenke c8 c9"
-                              href="#"
-                              onClick={[Function]}
-                            >
-                              ui:variant
-                            </a>
-                          </s>
-                        </Styled(s)>
+                          ui:variant
+                        </button>
                       </th>
                     </tr>
                   </thead>
@@ -730,7 +656,7 @@ tabell.g103[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
-                      id="01"
+                      id="tabell-test__row-01"
                       key="01"
                       style={
                         Object {
@@ -739,16 +665,16 @@ tabell.g103[id="c10"] {
                       }
                     >
                       <td>
-                        <styled.div>
+                        <Styled(styled.div)>
                           <div
-                            className="c10 c11"
+                            className="c6 c7 c8 c9"
                           >
                             <Checkbox
                               checked={false}
-                              data-testid="c-tableSorter__row-checkbox-id-01-test"
+                              data-test-id="tabell-test__row-select-checkbox-01"
                               disabled={false}
-                              id="c-tableSorter__row-checkbox-id-01-test"
-                              label="Velg 01"
+                              id="tabell-test__row-select-checkbox-01"
+                              label="Velg01"
                               onChange={[Function]}
                             >
                               <div
@@ -758,26 +684,26 @@ tabell.g103[id="c10"] {
                                   aria-invalid={false}
                                   checked={false}
                                   className="skjemaelement__input checkboks"
-                                  data-testid="c-tableSorter__row-checkbox-id-01-test"
+                                  data-test-id="tabell-test__row-select-checkbox-01"
                                   disabled={false}
-                                  id="c-tableSorter__row-checkbox-id-01-test"
+                                  id="tabell-test__row-select-checkbox-01"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
                                 <label
                                   className="skjemaelement__label"
-                                  htmlFor="c-tableSorter__row-checkbox-id-01-test"
+                                  htmlFor="tabell-test__row-select-checkbox-01"
                                 >
-                                  Velg 01
+                                  Velg01
                                 </label>
                               </div>
                             </Checkbox>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </td>
                       <td
                         className=""
-                        key="0"
+                        key="01-column-string"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -795,7 +721,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="1"
+                        key="01-column-date"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -811,7 +737,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="2"
+                        key="01-column-object"
                       >
                         <span>
                           Object 01
@@ -821,25 +747,25 @@ tabell.g103[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
-                      id="02"
+                      id="tabell-test__row-02"
                       key="02"
                       style={
                         Object {
-                          "animationDelay": "0.04s",
+                          "animationDelay": "0.02s",
                         }
                       }
                     >
                       <td>
-                        <styled.div>
+                        <Styled(styled.div)>
                           <div
-                            className="c10 c11"
+                            className="c6 c7 c8 c9"
                           >
                             <Checkbox
                               checked={false}
-                              data-testid="c-tableSorter__row-checkbox-id-02-test"
+                              data-test-id="tabell-test__row-select-checkbox-02"
                               disabled={false}
-                              id="c-tableSorter__row-checkbox-id-02-test"
-                              label="Velg 02"
+                              id="tabell-test__row-select-checkbox-02"
+                              label="Velg02"
                               onChange={[Function]}
                             >
                               <div
@@ -849,26 +775,26 @@ tabell.g103[id="c10"] {
                                   aria-invalid={false}
                                   checked={false}
                                   className="skjemaelement__input checkboks"
-                                  data-testid="c-tableSorter__row-checkbox-id-02-test"
+                                  data-test-id="tabell-test__row-select-checkbox-02"
                                   disabled={false}
-                                  id="c-tableSorter__row-checkbox-id-02-test"
+                                  id="tabell-test__row-select-checkbox-02"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
                                 <label
                                   className="skjemaelement__label"
-                                  htmlFor="c-tableSorter__row-checkbox-id-02-test"
+                                  htmlFor="tabell-test__row-select-checkbox-02"
                                 >
-                                  Velg 02
+                                  Velg02
                                 </label>
                               </div>
                             </Checkbox>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </td>
                       <td
                         className=""
-                        key="0"
+                        key="02-column-string"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -886,7 +812,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="1"
+                        key="02-column-date"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -902,7 +828,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="2"
+                        key="02-column-object"
                       >
                         <span>
                           Object 02
@@ -912,25 +838,25 @@ tabell.g103[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
-                      id="03"
+                      id="tabell-test__row-03"
                       key="03"
                       style={
                         Object {
-                          "animationDelay": "0.08s",
+                          "animationDelay": "0.04s",
                         }
                       }
                     >
                       <td>
-                        <styled.div>
+                        <Styled(styled.div)>
                           <div
-                            className="c10 c11"
+                            className="c6 c7 c8 c9"
                           >
                             <Checkbox
                               checked={false}
-                              data-testid="c-tableSorter__row-checkbox-id-03-test"
+                              data-test-id="tabell-test__row-select-checkbox-03"
                               disabled={false}
-                              id="c-tableSorter__row-checkbox-id-03-test"
-                              label="Velg 03"
+                              id="tabell-test__row-select-checkbox-03"
+                              label="Velg03"
                               onChange={[Function]}
                             >
                               <div
@@ -940,26 +866,26 @@ tabell.g103[id="c10"] {
                                   aria-invalid={false}
                                   checked={false}
                                   className="skjemaelement__input checkboks"
-                                  data-testid="c-tableSorter__row-checkbox-id-03-test"
+                                  data-test-id="tabell-test__row-select-checkbox-03"
                                   disabled={false}
-                                  id="c-tableSorter__row-checkbox-id-03-test"
+                                  id="tabell-test__row-select-checkbox-03"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
                                 <label
                                   className="skjemaelement__label"
-                                  htmlFor="c-tableSorter__row-checkbox-id-03-test"
+                                  htmlFor="tabell-test__row-select-checkbox-03"
                                 >
-                                  Velg 03
+                                  Velg03
                                 </label>
                               </div>
                             </Checkbox>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </td>
                       <td
                         className=""
-                        key="0"
+                        key="03-column-string"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -977,7 +903,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="1"
+                        key="03-column-date"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -993,7 +919,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="2"
+                        key="03-column-object"
                       >
                         <span>
                           Object 03
@@ -1003,25 +929,25 @@ tabell.g103[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
-                      id="04"
+                      id="tabell-test__row-04"
                       key="04"
                       style={
                         Object {
-                          "animationDelay": "0.12s",
+                          "animationDelay": "0.06s",
                         }
                       }
                     >
                       <td>
-                        <styled.div>
+                        <Styled(styled.div)>
                           <div
-                            className="c10 c11"
+                            className="c6 c7 c8 c9"
                           >
                             <Checkbox
                               checked={false}
-                              data-testid="c-tableSorter__row-checkbox-id-04-test"
+                              data-test-id="tabell-test__row-select-checkbox-04"
                               disabled={false}
-                              id="c-tableSorter__row-checkbox-id-04-test"
-                              label="Velg 04"
+                              id="tabell-test__row-select-checkbox-04"
+                              label="Velg04"
                               onChange={[Function]}
                             >
                               <div
@@ -1031,26 +957,26 @@ tabell.g103[id="c10"] {
                                   aria-invalid={false}
                                   checked={false}
                                   className="skjemaelement__input checkboks"
-                                  data-testid="c-tableSorter__row-checkbox-id-04-test"
+                                  data-test-id="tabell-test__row-select-checkbox-04"
                                   disabled={false}
-                                  id="c-tableSorter__row-checkbox-id-04-test"
+                                  id="tabell-test__row-select-checkbox-04"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
                                 <label
                                   className="skjemaelement__label"
-                                  htmlFor="c-tableSorter__row-checkbox-id-04-test"
+                                  htmlFor="tabell-test__row-select-checkbox-04"
                                 >
-                                  Velg 04
+                                  Velg04
                                 </label>
                               </div>
                             </Checkbox>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </td>
                       <td
                         className=""
-                        key="0"
+                        key="04-column-string"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -1068,7 +994,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="1"
+                        key="04-column-date"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -1084,7 +1010,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="2"
+                        key="04-column-object"
                       >
                         <span>
                           Object 04
@@ -1094,25 +1020,25 @@ tabell.g103[id="c10"] {
                     <tr
                       aria-selected={false}
                       className="slideAnimate"
-                      id="05"
+                      id="tabell-test__row-05"
                       key="05"
                       style={
                         Object {
-                          "animationDelay": "0.16s",
+                          "animationDelay": "0.08s",
                         }
                       }
                     >
                       <td>
-                        <styled.div>
+                        <Styled(styled.div)>
                           <div
-                            className="c10 c11"
+                            className="c6 c7 c8 c9"
                           >
                             <Checkbox
                               checked={false}
-                              data-testid="c-tableSorter__row-checkbox-id-05-test"
+                              data-test-id="tabell-test__row-select-checkbox-05"
                               disabled={false}
-                              id="c-tableSorter__row-checkbox-id-05-test"
-                              label="Velg 05"
+                              id="tabell-test__row-select-checkbox-05"
+                              label="Velg05"
                               onChange={[Function]}
                             >
                               <div
@@ -1122,26 +1048,26 @@ tabell.g103[id="c10"] {
                                   aria-invalid={false}
                                   checked={false}
                                   className="skjemaelement__input checkboks"
-                                  data-testid="c-tableSorter__row-checkbox-id-05-test"
+                                  data-test-id="tabell-test__row-select-checkbox-05"
                                   disabled={false}
-                                  id="c-tableSorter__row-checkbox-id-05-test"
+                                  id="tabell-test__row-select-checkbox-05"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
                                 <label
                                   className="skjemaelement__label"
-                                  htmlFor="c-tableSorter__row-checkbox-id-05-test"
+                                  htmlFor="tabell-test__row-select-checkbox-05"
                                 >
-                                  Velg 05
+                                  Velg05
                                 </label>
                               </div>
                             </Checkbox>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </td>
                       <td
                         className=""
-                        key="0"
+                        key="05-column-string"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -1159,7 +1085,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="1"
+                        key="05-column-date"
                       >
                         <Normaltekst>
                           <TypografiBase
@@ -1175,7 +1101,7 @@ tabell.g103[id="c10"] {
                       </td>
                       <td
                         className=""
-                        key="2"
+                        key="05-column-object"
                       >
                         <span>
                           Object 05
@@ -1185,9 +1111,9 @@ tabell.g103[id="c10"] {
                   </tbody>
                 </table>
               </styled.table>
-              <styled.div>
+              <Styled(Styled(styled.div))>
                 <div
-                  className="c12 c13"
+                  className="c6 c7 c12 c8 c9 c13"
                 >
                   <div />
                   <div />
@@ -1566,12 +1492,12 @@ tabell.g103[id="c10"] {
                     </Component>
                   </k>
                 </div>
-              </styled.div>
+              </Styled(Styled(styled.div))>
             </div>
           </styled.div>
         </div>
       </styled.div>
     </Component>
   </me>
-</TableSorter>
+</Table>
 `;
