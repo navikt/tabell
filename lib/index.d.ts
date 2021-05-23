@@ -1,10 +1,15 @@
-export interface Item {
+
+export type ItemBase = {[k in string]? : any}
+
+export type ItemErrors = {[k: string] : string | undefined}
+
+export interface Item extends ItemBase {
   key: string
   selected ?: boolean
+  feil ?: ItemErrors
   disabled ?: boolean
   visible ?: boolean
   openSubrows ?: boolean
-  [k: string]: any
 }
 
 export interface Category {
@@ -33,7 +38,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
     validation?: Array<{
       mandatory?: boolean | ((c: CustomContext) => boolean)
       message: string,
-      pattern: string
+      test: string | ((value: any) => boolean)
     }>,
     placeholder?: string
     defaultValue?: CustomType
@@ -47,16 +52,18 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
 
 }
 
-export type SortOrder = 'none' | 'ascending' | 'descending'
+export type Order = '' | 'asc' | 'desc'
+
+export type SortOrder = {[k: string]: Order}
 
 export interface Sort {
   column: string
-  order: SortOrder
+  order: Order
 }
 
 export type Labels = {[k in string]? : string}
 
-export interface TableSorterProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
+export interface TableProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   animatable?: boolean
   className?: string
   categories?: Array<Category>
@@ -64,16 +71,16 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContext
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
   editable?: boolean
-  highContrast ?: boolean
+  highContrast?: boolean
   initialPage?: number
   id?: string
   items?: Array<CustomItem>
-  itemsPerPage ?: number
-  labels?: any
+  itemsPerPage?: number
+  labels?: Labels
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
-  onRowAdded ?: (ci: CustomItem, c: CustomContext) => void
-  onRowSelectChange ?: (i: Array<CustomItem>) => void
+  onRowsChanged ?: (items: Array<CustomItem>) => void
+  onRowSelectChange ?: (items: Array<CustomItem>) => void
   pagination?: boolean
   searchable?: boolean
   selectable?: boolean
@@ -83,9 +90,9 @@ export interface TableSorterProps <CustomItem extends Item = Item, CustomContext
   sort?: Sort
 }
 
-declare const TableSorter: <
+declare const Table: <
   CustomItem extends Item = Item,
   CustomContext extends Context = Context
->(props: TableSorterProps<CustomItem, CustomContext>) => JSX.Element
+>(props: TableProps<CustomItem, CustomContext>) => JSX.Element
 
-export default TableSorter
+export default Table
