@@ -9,6 +9,7 @@ import NavHighContrast, {
   FlexCenterDiv,
   FlexCenterSpacedDiv,
   FlexStartDiv,
+  HighContrastInput,
   HighContrastKnapp,
   HorizontalSeparatorDiv,
   slideInFromLeft,
@@ -45,8 +46,9 @@ export const TableDiv = styled.div`
       padding: 0.35rem !important;
     }
     thead th button {
+      white-space: break-spaces !important;
       margin: 0rem !important;
-      padding: 0rem 0.35rem !important;
+      padding: 0rem 0.2rem !important;
       width: 100% !important;
     }
     .tabell__filter .skjemaelement__input,
@@ -852,13 +854,12 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                     if (column.type !== 'buttons') {
                       return (
                         <td key={column.id}>
-                          <Input
+                          <HighContrastInput
                             className='tabell__sort-input'
-                            feil={undefined}
                             id={'tabell__sort-' + column.id + '-input-id'}
                             label=''
                             value={column.filterText || ''}
-                            onChanged={(e: string) => handleFilterChange(column, e)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange(column, e.target.value)}
                           />
                         </td>
                       )
