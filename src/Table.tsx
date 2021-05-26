@@ -408,9 +408,21 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                   }
                   break
                 case 'object':
-                  content = _.isFunction(column.renderCell)
-                    ? column.renderCell(item, value, context)
-                    : <Normaltekst>JSON.stringify(value)</Normaltekst>
+                  if (editing) {
+                    content = column.edit?.render
+                      ? column.edit.render({
+                          value: _editingRows[item.key][column.id],
+                          values: _editingRows[item.key],
+                          feil: feil ? feil[column.id] : undefined,
+                          context: context,
+                          setValue: (entries) => handleEditRowChange(entries, item)
+                        })
+                      : (<span>Ypu have to set a edit render function for object</span>)
+                  } else {
+                    content = _.isFunction(column.renderCell)
+                      ? column.renderCell(item, value, context)
+                      : <Normaltekst>JSON.stringify(value)</Normaltekst>
+                  }
                   break
                 case 'buttons':
                   if (!editable) {
@@ -667,7 +679,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
       }
     })
 
-    newItem.key = + md5('' + new Date().getTime())
+    newItem.key = +md5('' + new Date().getTime())
     newItem.selected = false
     newItem.disabled = false
     newItem.visible = true
@@ -743,7 +755,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
     delete newEditingRow.feil
 
-    let newEditedTransformedRow: CustomItem = _.cloneDeep(newEditingRow)
+    const newEditedTransformedRow: CustomItem = _.cloneDeep(newEditingRow)
     _columns.forEach((column) => {
       let text = newEditedTransformedRow[column.id]
       if (text && _.isFunction(column.edit?.transform)) {
