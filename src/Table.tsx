@@ -51,13 +51,9 @@ export const TableDiv = styled.div`
       padding: 0rem 0.2rem !important;
       width: 100% !important;
     }
-    .tabell__filter .skjemaelement__input,
-    .tabell__edit .skjemaelement__input {
-      padding: 0.25rem !important;
-    }
   }
   .tabell__edit {
-    vertical-align: top;
+    vertical-align: center;
   }
   thead th.noborder {
      border-bottom: none !important;
@@ -380,6 +376,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                       ? column.edit.render({
                           value: _editingRows[item.key][column.id],
                           values: _editingRows[item.key],
+                          feil: feil ? feil[column.id] : undefined,
                           context: context,
                           setValue: (entries) => handleEditRowChange(entries, item)
                         })
@@ -495,6 +492,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                       ? column.edit.render({
                           value: _editingRows[item.key][column.id],
                           values: _editingRows[item.key],
+                          feil: feil ? feil[column.id] : undefined,
                           context: context,
                           setValue: (entries) => handleEditRowChange(entries, item)
                         })
@@ -669,7 +667,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
       }
     })
 
-    newItem.key = '' + new Date().getTime()
+    newItem.key = + md5('' + new Date().getTime())
     newItem.selected = false
     newItem.disabled = false
     newItem.visible = true
@@ -696,6 +694,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
       column.edit?.validation?.forEach(v => {
         let valueToValidate = newEditingRow[column.id]
+
         if (_.isNil(valueToValidate)) {
           valueToValidate = ''
         }
@@ -744,9 +743,19 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
     delete newEditingRow.feil
 
+    let newEditedTransformedRow: CustomItem = _.cloneDeep(newEditingRow)
+    _columns.forEach((column) => {
+      let text = newEditedTransformedRow[column.id]
+      if (text && _.isFunction(column.edit?.transform)) {
+        text = column.edit?.transform(text)
+        // @ts-ignore
+        newEditedTransformedRow[column.id] = text
+      }
+    })
+
     const newItems = _items.map(_item => {
       if (_item.key === item.key) {
-        return newEditingRow
+        return newEditedTransformedRow
       }
       return _item
     })
