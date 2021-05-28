@@ -2,13 +2,13 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
-import { Checkbox } from 'nav-frontend-skjema'
 import Spinner from 'nav-frontend-spinner'
 import { Normaltekst } from 'nav-frontend-typografi'
 import NavHighContrast, {
   FlexCenterDiv,
   FlexCenterSpacedDiv,
   FlexStartDiv,
+  HighContrastCheckbox,
   HighContrastInput,
   HighContrastKnapp,
   HorizontalSeparatorDiv,
@@ -50,7 +50,11 @@ export const TableDiv = styled.div`
       margin: 0rem !important;
       padding: 0rem 0.2rem !important;
       width: 100% !important;
+      color:  ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
     }
+  }
+  tr.tabell__tr--valgt td {
+    background: ${({ theme }) => theme[themeKeys.ALTERNATIVE_HOVER_COLOR]};
   }
   .tabell__edit {
     vertical-align: center;
@@ -86,9 +90,9 @@ export const TableDiv = styled.div`
   }
   .tabell__tr--disabled td {
     background: ${({ theme }: any) => theme[themeKeys.MAIN_DISABLED_COLOR]} !important;
-    color: ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
+    color: ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
     * {
-      color:  ${({ theme }: any) => theme[themeKeys.MAIN_BACKGROUND_COLOR]} !important;
+      color:  ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
     }
   }
 `
@@ -342,7 +346,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                   <div style={{ marginRight: '2rem' }}>&nbsp;</div>
                 )}
                 {selectable && (
-                  <Checkbox
+                  <HighContrastCheckbox
                     id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     data-test-id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     disabled={!_.isNil(item.disabled) ? item.disabled : false}
@@ -824,7 +828,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                 <th style={{ width: 1 }}>
                   <FlexCenterDiv>
                     {selectable && (
-                      <Checkbox
+                      <HighContrastCheckbox
                         label={_labels.selectAll}
                         id={'tabell__checkAll-checkbox-id-' + id}
                         className='tabell__checkAll-checkbox'

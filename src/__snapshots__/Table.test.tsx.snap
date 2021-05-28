@@ -1,6 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Table Renders 1`] = `
+.c11 .checkboks:hover + .skjemaelement__label {
+  color: #0067c5 !important;
+}
+
+.c11 .skjemaelement__input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px #00347d !important;
+}
+
+.c11 .checkboks:hover + .skjemaelement__label::before {
+  border-color: #0067c5 !important;
+  background-color: #cce1ff;
+}
+
+.c11 .checkboks:disabled + .skjemaelement__label {
+  color: #a0a0a0 !important;
+}
+
+.c11 .checkboks:disabled + .skjemaelement__label::before {
+  background-color: #f1f1f1 !important;
+  border-color: #6a6a6a !important;
+}
+
+.c11 .checkboks:focus + .skjemaelement__label::before {
+  box-shadow: 0 0 0 3px #00347d !important;
+}
+
+.c11 .checkboks:checked:disabled + .skjemaelement__label::before {
+  border-color: #a0a0a0;
+  background-color: #6a6a6a !important;
+}
+
+.c11 .checkboks:checked:focus + .skjemaelement__label::before {
+  background-color: #FFFFFF !important;
+}
+
+.c11 .checkboks:checked + .skjemaelement__label::before {
+  border-color: #0067c5 !important;
+  border-width: 2px;
+  background-color: #0067c5 !important;
+}
+
+.c11 .checkboks + .skjemaelement__label::before {
+  background-color: #f1f1f1 !important;
+}
+
+.c11 .skjemaelement__input {
+  border-size: 1px !important;
+}
+
+.c11 .checkboks:checked + .skjemaelement__label::before {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMyAxMCI+ICAgIDxnPiAgICA8cGF0aCBmaWxsPSIjMDA2N0M1IiBkPSJNNCwxMGMtMC40LDAtMC44LTAuMS0xLjEtMC40TDAuNCw3LjFDMC4xLDYuOCwwLDYuNCwwLDZzMC4yLTAuOCwwLjUtMS4xQzEsNC40LDIsNC40LDIuNSw0LjlMNCw2LjRsNi40LTYgICAgQzEwLjgsMC4xLDExLjEsMCwxMS41LDBjMC40LDAsMC44LDAuMiwxLDAuNWMwLjYsMC42LDAuNSwxLjYtMC4xLDIuMXYwTDUsOS42QzQuNyw5LjksNC40LDEwLDQsMTB6IE0xMS44LDEuOUwxMS44LDEuOSAgICBDMTEuOCwxLjksMTEuOCwxLjksMTEuOCwxLjl6IE0xMS4yLDEuMUMxMS4yLDEuMSwxMS4yLDEuMSwxMS4yLDEuMUwxMS4yLDEuMXoiLz4gICAgPC9nPjwvc3ZnPg==) !important;
+  background-color: #f1f1f1 !important;
+}
+
+tabell.g1[id="c10"] {
+  content: "c11,";
+}
+
 .c8 {
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
@@ -14,7 +73,7 @@ exports[`Table Renders 1`] = `
   flex-direction: row;
 }
 
-tabell.g32[id="c6"] {
+tabell.g33[id="c6"] {
   content: "c8,";
 }
 
@@ -25,54 +84,101 @@ tabell.g32[id="c6"] {
   align-items: center;
 }
 
-tabell.g35[id="c7"] {
+tabell.g36[id="c7"] {
   content: "c9,";
 }
 
-.c13 {
+.c15 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
-tabell.g36[id="c12"] {
-  content: "c13,";
+tabell.g37[id="c14"] {
+  content: "c15,";
 }
 
-.c15 {
+.c21 {
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  color: #0067c5 !important;
+  background-color: transparent;
+}
+
+.c21:hover:not(:disabled) {
+  color: #99c3ff !important;
+  border-color: #99c3ff !important;
+}
+
+.c21:focus {
+  box-shadow: 0 0 0 3px #00347d !important;
+}
+
+.c21:disabled {
+  color: #FFFFFF !important;
+  background-color: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+}
+
+.c21:disabled svg {
+  color: #FFFFFF !important;
+}
+
+.c21:disabled svg path {
+  stroke: #FFFFFF !important;
+}
+
+.c21:disabled .knapp__spinner {
+  border: 2px solid #FFFFFF !important;
+  border-top-color: #6a6a6a !important;
+  border-right-color: #6a6a6a !important;
+}
+
+.c21 .knapp__spinner {
+  border: 2px solid #0067c5 !important;
+  border-left-color: #99c3ff !important;
+  border-bottom-color: #99c3ff !important;
+}
+
+.c21:not(:disabled) svg {
+  color: #0067c5 !important;
+}
+
+.c21:not(:disabled) svg path {
+  stroke: #0067c5 !important;
+}
+
+tabell.g52[id="c20"] {
+  content: "c21,";
+}
+
+.c18 {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+tabell.g81[id="c16"] {
+  content: "c18,";
+}
+
+.c19 {
   -webkit-align-items: baseline;
   -webkit-box-align: baseline;
   -ms-flex-align: baseline;
   align-items: baseline;
 }
 
-tabell.g95[id="c14"] {
-  content: "c15,";
-}
-
-.c17 {
-  color: #0067c5;
-  background-color: transparent;
-}
-
-.c17:hover:not(:disabled) {
-  color: #0067c5;
-  border-color: #0067c5;
-}
-
-.c17:disabled {
-  background-color: #a0a0a0;
-  color: #262626;
-  border: none;
-}
-
-tabell.g96[id="c16"] {
-  content: "c17,";
+tabell.g82[id="c17"] {
+  content: "c19,";
 }
 
 .c1 {
@@ -94,18 +200,19 @@ tabell.g96[id="c16"] {
 }
 
 .c1.compact thead th button {
+  white-space: break-spaces !important;
   margin: 0rem !important;
-  padding: 0rem 0.35rem !important;
+  padding: 0rem 0.2rem !important;
   width: 100% !important;
+  color: #0067c5;
 }
 
-.c1.compact .tabell__filter .skjemaelement__input,
-.c1.compact .tabell__edit .skjemaelement__input {
-  padding: 0.25rem !important;
+.c1 tr.tabell__tr--valgt td {
+  background: #cce1ff;
 }
 
 .c1 .tabell__edit {
-  vertical-align: top;
+  vertical-align: center;
 }
 
 .c1 thead th.noborder {
@@ -154,11 +261,11 @@ tabell.g96[id="c16"] {
 
 .c1 .tabell__tr--disabled td {
   background: #a0a0a0 !important;
-  color: #f1f1f1 !important;
+  color: #6a6a6a !important;
 }
 
 .c1 .tabell__tr--disabled td * {
-  color: #f1f1f1 !important;
+  color: #6a6a6a !important;
 }
 
 tabell.g97[id="c0"] {
@@ -181,13 +288,13 @@ tabell.g100[id="c4"] {
   content: "c5,";
 }
 
-.c11 {
+.c13 {
   margin-left: 0.5rem;
   cursor: pointer;
 }
 
-tabell.g101[id="c10"] {
-  content: "c11,";
+tabell.g101[id="c12"] {
+  content: "c13,";
 }
 
 <Table
@@ -320,19 +427,17 @@ tabell.g101[id="c10"] {
   itemsPerPage={5}
   labels={
     Object {
-      "string": Object {
-        "string 01": "Tooltip for string 01",
-        "string 02": "Tooltip for string 02",
-        "string 03": "Tooltip for string 03",
-        "string 04": "Tooltip for string 04",
-        "string 05": "Tooltip for string 05",
-        "string 06": "Tooltip for string 06",
-        "string 07": "Tooltip for string 07",
-        "string 08": "Tooltip for string 08",
-        "string 09": "Tooltip for string 09",
-        "string 10": "Tooltip for string 10",
-        "string 11": "Tooltip for string 11",
-      },
+      "string 01": "Tooltip for string 01",
+      "string 02": "Tooltip for string 02",
+      "string 03": "Tooltip for string 03",
+      "string 04": "Tooltip for string 04",
+      "string 05": "Tooltip for string 05",
+      "string 06": "Tooltip for string 06",
+      "string 07": "Tooltip for string 07",
+      "string 08": "Tooltip for string 08",
+      "string 09": "Tooltip for string 09",
+      "string 10": "Tooltip for string 10",
+      "string 11": "Tooltip for string 11",
     }
   }
   loading={false}
@@ -342,14 +447,14 @@ tabell.g101[id="c10"] {
   selectable={true}
   sortable={true}
 >
-  <me
+  <he
     highContrast={false}
   >
     <Component
       theme={
         Object {
           "alternative-background-color": "#FFFFFF",
-          "alternative-hover-color": "#cce1f3",
+          "alternative-hover-color": "#cce1ff",
           "black": "#000000",
           "border-radius-base": "4px",
           "border-radius-large": "6px",
@@ -360,7 +465,7 @@ tabell.g101[id="c10"] {
           "container-md": "(940px + @grid-gutter-width)",
           "container-sm": "(720px + @grid-gutter-width)",
           "container-tablet": "(720px + @grid-gutter-width)",
-          "fokusFarge": "#19548a",
+          "fokusFarge": "#00347d",
           "grayBackground": "#f1f1f1",
           "grayIcon": "#a0a0a0",
           "grayInactive": "#6a6a6a",
@@ -379,101 +484,84 @@ tabell.g101[id="c10"] {
           "main-border-width": "1px",
           "main-disabled-color": "#a0a0a0",
           "main-error-color": "#ba3a26",
-          "main-focus-color": "#19548a",
+          "main-focus-color": "#00347d",
           "main-font-color": "#262626",
-          "main-hover-color": "#0074df",
+          "main-hover-color": "#99c3ff",
           "main-interactive-color": "#0067c5",
           "main-success-color": "#06893a",
           "main-warning-color": "#ff9100",
           "navBakgrunn": "#ffffff",
           "navBla": "#0067c5",
-          "navBlaDarken20": "#32414f",
-          "navBlaDarken40": "#254b6d",
-          "navBlaDarken60": "#19548a",
-          "navBlaDarken80": "#0c5ea8",
-          "navBlaLighten20": "#cce1f3",
-          "navBlaLighten40": "#99c2e8",
-          "navBlaLighten60": "#66a4dc",
-          "navBlaLighten80": "#3385d1",
+          "navBlaDarken20": "#0056b4",
+          "navBlaDarken40": "#00459c",
+          "navBlaDarken60": "#00347d",
+          "navBlaDarken80": "#002252",
+          "navBlaLighten20": "#3386e0",
+          "navBlaLighten40": "#66a5f4",
+          "navBlaLighten60": "#99c3ff",
+          "navBlaLighten80": "#cce1ff",
           "navDypBla": "#005b82",
-          "navDypBlaDarken20": "#323f42",
-          "navDypBlaDarken40": "#254652",
-          "navDypBlaDarken60": "#194d62",
-          "navDypBlaDarken80": "#0c5472",
-          "navDypBlaLighten20": "#ccdee6",
-          "navDypBlaLighten40": "#99bdcd",
-          "navDypBlaLighten60": "#669db4",
-          "navDypBlaLighten80": "#337c9b",
+          "navDypBlaDarken20": "#005077",
+          "navDypBlaDarken40": "#004367",
+          "navDypBlaDarken60": "#003453",
+          "navDypBlaDarken80": "#00243a",
+          "navDypBlaLighten20": "#3380a5",
+          "navDypBlaLighten40": "#66a3c4",
+          "navDypBlaLighten60": "#99c4dd",
+          "navDypBlaLighten80": "#cce2f0",
           "navGra20": "#c9c9c9",
           "navGra40": "#a0a0a0",
           "navGra60": "#6a6a6a",
           "navGra80": "#4f4f4f",
           "navGraBakgrunn": "#f1f1f1",
           "navGronn": "#06893a",
-          "navGronnDarken20": "#334834",
-          "navGronnDarken40": "#285835",
-          "navGronnDarken60": "#1c6937",
-          "navGronnDarken80": "#117938",
-          "navGronnLighten20": "#cde7d8",
-          "navGronnLighten40": "#9bd0b0",
-          "navGronnLighten60": "#6ab889",
-          "navGronnLighten80": "#38a161",
+          "navGronnDarken20": "#007c2e",
+          "navGronnDarken40": "#006a23",
+          "navGronnDarken60": "#005519",
+          "navGronnDarken80": "#003b0f",
+          "navGronnLighten20": "#33aa5f",
+          "navGronnLighten40": "#66c786",
+          "navGronnLighten60": "#99dead",
+          "navGronnLighten80": "#ccf1d6",
           "navLilla": "#634689",
-          "navLillaDarken20": "#453b43",
-          "navLillaDarken40": "#4d3e55",
-          "navLillaDarken60": "#544066",
-          "navLillaDarken80": "#5c4378",
-          "navLillaLighten20": "#e0dae7",
-          "navLillaLighten40": "#c1b5d0",
-          "navLillaLighten60": "#a190b8",
-          "navLillaLighten80": "#826ba1",
+          "navLillaDarken20": "#523874",
+          "navLillaDarken40": "#412b5d",
+          "navLillaDarken60": "#301f46",
+          "navLillaDarken80": "#1f142f",
+          "navLillaLighten20": "#8269a2",
+          "navLillaLighten40": "#a18dbb",
+          "navLillaLighten60": "#c0b2d2",
+          "navLillaLighten80": "#e0d8e9",
           "navLimeGronn": "#a2ad00",
-          "navLimeGronnDarken20": "#524f28",
-          "navLimeGronnDarken40": "#66671e",
-          "navLimeGronnDarken60": "#7a7e14",
-          "navLimeGronnDarken80": "#8e960a",
-          "navLimeGronnLighten20": "#ecefcc",
-          "navLimeGronnLighten40": "#dade99",
-          "navLimeGronnLighten60": "#c7ce66",
-          "navLimeGronnLighten80": "#b5bd33",
+          "navLimeGronnDarken20": "#939e00",
+          "navLimeGronnDarken40": "#7f8900",
+          "navLimeGronnDarken60": "#666e00",
+          "navLimeGronnDarken80": "#474e00",
+          "navLimeGronnLighten20": "#c1cb33",
+          "navLimeGronnLighten40": "#d9e366",
+          "navLimeGronnLighten60": "#ecf399",
+          "navLimeGronnLighten80": "#f9fccc",
           "navLysBla": "#66cbec",
-          "navLysBlaDarken20": "#465557",
-          "navLysBlaDarken40": "#4e737c",
-          "navLysBlaDarken60": "#5690a2",
-          "navLysBlaDarken80": "#5eaec7",
-          "navLysBlaLighten20": "#e0f5fb",
-          "navLysBlaLighten40": "#c2eaf7",
-          "navLysBlaLighten60": "#a3e0f4",
-          "navLysBlaLighten80": "#85d5f0",
+          "navLysBlaDarken20": "#4cadcd",
+          "navLysBlaDarken40": "#368da8",
+          "navLysBlaDarken60": "#236b7d",
+          "navLysBlaDarken80": "#134852",
+          "navLysBlaLighten20": "#7cdaf8",
+          "navLysBlaLighten40": "#97e6ff",
+          "navLysBlaLighten60": "#b5f1ff",
+          "navLysBlaLighten80": "#d8f9ff",
           "navLysGra": "#f1f1f1",
           "navMorkGra": "#262626",
           "navOransje": "#ff9100",
-          "navOransjeDarken20": "#654a28",
-          "navOransjeDarken40": "#8b5c1e",
-          "navOransjeDarken60": "#b26d14",
-          "navOransjeDarken80": "#d87f0a",
-          "navOransjeLighten20": "#ffe9cc",
-          "navOransjeLighten40": "#ffd399",
-          "navOransjeLighten60": "#ffbd66",
-          "navOransjeLighten80": "#ffa733",
+          "navOransjeDarken20": "#d47b00",
+          "navOransjeDarken40": "#a86400",
+          "navOransjeDarken60": "#7d4c00",
+          "navOransjeDarken80": "#523300",
+          "navOransjeLighten20": "#ffaa33",
+          "navOransjeLighten40": "#ffc166",
+          "navOransjeLighten60": "#ffd799",
+          "navOransjeLighten80": "#ffeccc",
           "navRod": "#c30000",
-          "navRodDarken20": "#592d28",
-          "navRodDarken40": "#73221e",
-          "navRodDarken60": "#8e1614",
-          "navRodDarken80": "#a80b0a",
-          "navRodLighten20": "#f3cccc",
-          "navRodLighten40": "#e79999",
-          "navRodLighten60": "#db6666",
-          "navRodLighten80": "#cf3333",
-          "orangeFocus": "#ffbd66",
-          "orangeFocusDarken20": "#65533c",
-          "orangeFocusDarken40": "#8b6d47",
-          "orangeFocusDarken60": "#b28851",
-          "orangeFocusDarken80": "#d8a25c",
-          "orangeFocusLighten20": "#fff2e0",
-          "orangeFocusLighten40": "#ffe5c2",
-          "orangeFocusLighten60": "#ffd7a3",
-          "orangeFocusLighten80": "#ffca85",
           "padding-base-horizontal": "12px",
           "padding-base-vertical": "6px",
           "padding-large-horizontal": "16px",
@@ -484,14 +572,14 @@ tabell.g101[id="c10"] {
           "padding-xs-vertical": "1px",
           "pinkErrorBg": "#f3e3e3",
           "redError": "#ba3a26",
-          "redErrorDarken20": "#573830",
-          "redErrorDarken40": "#70392d",
-          "redErrorDarken60": "#88392b",
-          "redErrorDarken80": "#a13a28",
-          "redErrorLighten20": "#f1d8d4",
-          "redErrorLighten40": "#e3b0a8",
-          "redErrorLighten60": "#d6897d",
-          "redErrorLighten80": "#c86151",
+          "redErrorDarken20": "#a32a17",
+          "redErrorDarken40": "#881d0c",
+          "redErrorDarken60": "#6a1204",
+          "redErrorDarken80": "#480900",
+          "redErrorLighten20": "#d05c4a",
+          "redErrorLighten40": "#e18071",
+          "redErrorLighten60": "#efa89d",
+          "redErrorLighten80": "#f9d2cc",
           "screen-desktop": "992px",
           "screen-lg": "1200px",
           "screen-lg-desktop": "1200px",
@@ -542,39 +630,47 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               className="tabell__checkAll-checkbox"
                               id="tabell__checkAll-checkbox-id-test"
                               label="Velg alle"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement tabell__checkAll-checkbox"
+                              <h
+                                checked={false}
+                                className="c10 c11 tabell__checkAll-checkbox"
+                                id="tabell__checkAll-checkbox-id-test"
+                                label="Velg alle"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  id="tabell__checkAll-checkbox-id-test"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell__checkAll-checkbox-id-test"
+                                <div
+                                  className="skjemaelement c10 c11 tabell__checkAll-checkbox"
                                 >
-                                  Velg alle
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    id="tabell__checkAll-checkbox-id-test"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell__checkAll-checkbox-id-test"
+                                  >
+                                    Velg alle
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                             <styled.div
                               aria-pressed={false}
                               role="button"
                             >
                               <div
                                 aria-pressed={false}
-                                className="c10 c11"
+                                className="c12 c13"
                                 role="button"
                               >
                                 <View
@@ -669,7 +765,7 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               data-test-id="tabell-test__row-select-checkbox-01"
                               disabled={false}
@@ -677,27 +773,37 @@ tabell.g101[id="c10"] {
                               label="Velg01"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement"
+                              <h
+                                checked={false}
+                                className="c10 c11"
+                                data-test-id="tabell-test__row-select-checkbox-01"
+                                disabled={false}
+                                id="tabell-test__row-select-checkbox-01"
+                                label="Velg01"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  data-test-id="tabell-test__row-select-checkbox-01"
-                                  disabled={false}
-                                  id="tabell-test__row-select-checkbox-01"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell-test__row-select-checkbox-01"
+                                <div
+                                  className="skjemaelement c10 c11"
                                 >
-                                  Velg01
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    data-test-id="tabell-test__row-select-checkbox-01"
+                                    disabled={false}
+                                    id="tabell-test__row-select-checkbox-01"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell-test__row-select-checkbox-01"
+                                  >
+                                    Velg01
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                           </div>
                         </Styled(styled.div)>
                       </td>
@@ -760,7 +866,7 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               data-test-id="tabell-test__row-select-checkbox-02"
                               disabled={false}
@@ -768,27 +874,37 @@ tabell.g101[id="c10"] {
                               label="Velg02"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement"
+                              <h
+                                checked={false}
+                                className="c10 c11"
+                                data-test-id="tabell-test__row-select-checkbox-02"
+                                disabled={false}
+                                id="tabell-test__row-select-checkbox-02"
+                                label="Velg02"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  data-test-id="tabell-test__row-select-checkbox-02"
-                                  disabled={false}
-                                  id="tabell-test__row-select-checkbox-02"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell-test__row-select-checkbox-02"
+                                <div
+                                  className="skjemaelement c10 c11"
                                 >
-                                  Velg02
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    data-test-id="tabell-test__row-select-checkbox-02"
+                                    disabled={false}
+                                    id="tabell-test__row-select-checkbox-02"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell-test__row-select-checkbox-02"
+                                  >
+                                    Velg02
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                           </div>
                         </Styled(styled.div)>
                       </td>
@@ -851,7 +967,7 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               data-test-id="tabell-test__row-select-checkbox-03"
                               disabled={false}
@@ -859,27 +975,37 @@ tabell.g101[id="c10"] {
                               label="Velg03"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement"
+                              <h
+                                checked={false}
+                                className="c10 c11"
+                                data-test-id="tabell-test__row-select-checkbox-03"
+                                disabled={false}
+                                id="tabell-test__row-select-checkbox-03"
+                                label="Velg03"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  data-test-id="tabell-test__row-select-checkbox-03"
-                                  disabled={false}
-                                  id="tabell-test__row-select-checkbox-03"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell-test__row-select-checkbox-03"
+                                <div
+                                  className="skjemaelement c10 c11"
                                 >
-                                  Velg03
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    data-test-id="tabell-test__row-select-checkbox-03"
+                                    disabled={false}
+                                    id="tabell-test__row-select-checkbox-03"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell-test__row-select-checkbox-03"
+                                  >
+                                    Velg03
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                           </div>
                         </Styled(styled.div)>
                       </td>
@@ -942,7 +1068,7 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               data-test-id="tabell-test__row-select-checkbox-04"
                               disabled={false}
@@ -950,27 +1076,37 @@ tabell.g101[id="c10"] {
                               label="Velg04"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement"
+                              <h
+                                checked={false}
+                                className="c10 c11"
+                                data-test-id="tabell-test__row-select-checkbox-04"
+                                disabled={false}
+                                id="tabell-test__row-select-checkbox-04"
+                                label="Velg04"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  data-test-id="tabell-test__row-select-checkbox-04"
-                                  disabled={false}
-                                  id="tabell-test__row-select-checkbox-04"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell-test__row-select-checkbox-04"
+                                <div
+                                  className="skjemaelement c10 c11"
                                 >
-                                  Velg04
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    data-test-id="tabell-test__row-select-checkbox-04"
+                                    disabled={false}
+                                    id="tabell-test__row-select-checkbox-04"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell-test__row-select-checkbox-04"
+                                  >
+                                    Velg04
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                           </div>
                         </Styled(styled.div)>
                       </td>
@@ -1033,7 +1169,7 @@ tabell.g101[id="c10"] {
                           <div
                             className="c6 c7 c8 c9"
                           >
-                            <Checkbox
+                            <Styled(h)
                               checked={false}
                               data-test-id="tabell-test__row-select-checkbox-05"
                               disabled={false}
@@ -1041,27 +1177,37 @@ tabell.g101[id="c10"] {
                               label="Velg05"
                               onChange={[Function]}
                             >
-                              <div
-                                className="skjemaelement"
+                              <h
+                                checked={false}
+                                className="c10 c11"
+                                data-test-id="tabell-test__row-select-checkbox-05"
+                                disabled={false}
+                                id="tabell-test__row-select-checkbox-05"
+                                label="Velg05"
+                                onChange={[Function]}
                               >
-                                <input
-                                  aria-invalid={false}
-                                  checked={false}
-                                  className="skjemaelement__input checkboks"
-                                  data-test-id="tabell-test__row-select-checkbox-05"
-                                  disabled={false}
-                                  id="tabell-test__row-select-checkbox-05"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                />
-                                <label
-                                  className="skjemaelement__label"
-                                  htmlFor="tabell-test__row-select-checkbox-05"
+                                <div
+                                  className="skjemaelement c10 c11"
                                 >
-                                  Velg05
-                                </label>
-                              </div>
-                            </Checkbox>
+                                  <input
+                                    aria-invalid={false}
+                                    checked={false}
+                                    className="skjemaelement__input checkboks"
+                                    data-test-id="tabell-test__row-select-checkbox-05"
+                                    disabled={false}
+                                    id="tabell-test__row-select-checkbox-05"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    className="skjemaelement__label"
+                                    htmlFor="tabell-test__row-select-checkbox-05"
+                                  >
+                                    Velg05
+                                  </label>
+                                </div>
+                              </h>
+                            </Styled(h)>
                           </div>
                         </Styled(styled.div)>
                       </td>
@@ -1113,11 +1259,11 @@ tabell.g101[id="c10"] {
               </styled.table>
               <Styled(Styled(styled.div))>
                 <div
-                  className="c6 c7 c12 c8 c9 c13"
+                  className="c6 c7 c14 c8 c9 c15"
                 >
                   <div />
                   <div />
-                  <k
+                  <m
                     currentPage={1}
                     highContrast={false}
                     itemsPerPage={5}
@@ -1131,7 +1277,7 @@ tabell.g101[id="c10"] {
                         theme={
                           Object {
                             "alternative-background-color": "#FFFFFF",
-                            "alternative-hover-color": "#cce1f3",
+                            "alternative-hover-color": "#cce1ff",
                             "black": "#000000",
                             "border-radius-base": "4px",
                             "border-radius-large": "6px",
@@ -1142,7 +1288,7 @@ tabell.g101[id="c10"] {
                             "container-md": "(940px + @grid-gutter-width)",
                             "container-sm": "(720px + @grid-gutter-width)",
                             "container-tablet": "(720px + @grid-gutter-width)",
-                            "fokusFarge": "#19548a",
+                            "fokusFarge": "#00347d",
                             "grayBackground": "#f1f1f1",
                             "grayIcon": "#a0a0a0",
                             "grayInactive": "#6a6a6a",
@@ -1161,101 +1307,84 @@ tabell.g101[id="c10"] {
                             "main-border-width": "1px",
                             "main-disabled-color": "#a0a0a0",
                             "main-error-color": "#ba3a26",
-                            "main-focus-color": "#19548a",
+                            "main-focus-color": "#00347d",
                             "main-font-color": "#262626",
-                            "main-hover-color": "#0074df",
+                            "main-hover-color": "#99c3ff",
                             "main-interactive-color": "#0067c5",
                             "main-success-color": "#06893a",
                             "main-warning-color": "#ff9100",
                             "navBakgrunn": "#ffffff",
                             "navBla": "#0067c5",
-                            "navBlaDarken20": "#32414f",
-                            "navBlaDarken40": "#254b6d",
-                            "navBlaDarken60": "#19548a",
-                            "navBlaDarken80": "#0c5ea8",
-                            "navBlaLighten20": "#cce1f3",
-                            "navBlaLighten40": "#99c2e8",
-                            "navBlaLighten60": "#66a4dc",
-                            "navBlaLighten80": "#3385d1",
+                            "navBlaDarken20": "#0056b4",
+                            "navBlaDarken40": "#00459c",
+                            "navBlaDarken60": "#00347d",
+                            "navBlaDarken80": "#002252",
+                            "navBlaLighten20": "#3386e0",
+                            "navBlaLighten40": "#66a5f4",
+                            "navBlaLighten60": "#99c3ff",
+                            "navBlaLighten80": "#cce1ff",
                             "navDypBla": "#005b82",
-                            "navDypBlaDarken20": "#323f42",
-                            "navDypBlaDarken40": "#254652",
-                            "navDypBlaDarken60": "#194d62",
-                            "navDypBlaDarken80": "#0c5472",
-                            "navDypBlaLighten20": "#ccdee6",
-                            "navDypBlaLighten40": "#99bdcd",
-                            "navDypBlaLighten60": "#669db4",
-                            "navDypBlaLighten80": "#337c9b",
+                            "navDypBlaDarken20": "#005077",
+                            "navDypBlaDarken40": "#004367",
+                            "navDypBlaDarken60": "#003453",
+                            "navDypBlaDarken80": "#00243a",
+                            "navDypBlaLighten20": "#3380a5",
+                            "navDypBlaLighten40": "#66a3c4",
+                            "navDypBlaLighten60": "#99c4dd",
+                            "navDypBlaLighten80": "#cce2f0",
                             "navGra20": "#c9c9c9",
                             "navGra40": "#a0a0a0",
                             "navGra60": "#6a6a6a",
                             "navGra80": "#4f4f4f",
                             "navGraBakgrunn": "#f1f1f1",
                             "navGronn": "#06893a",
-                            "navGronnDarken20": "#334834",
-                            "navGronnDarken40": "#285835",
-                            "navGronnDarken60": "#1c6937",
-                            "navGronnDarken80": "#117938",
-                            "navGronnLighten20": "#cde7d8",
-                            "navGronnLighten40": "#9bd0b0",
-                            "navGronnLighten60": "#6ab889",
-                            "navGronnLighten80": "#38a161",
+                            "navGronnDarken20": "#007c2e",
+                            "navGronnDarken40": "#006a23",
+                            "navGronnDarken60": "#005519",
+                            "navGronnDarken80": "#003b0f",
+                            "navGronnLighten20": "#33aa5f",
+                            "navGronnLighten40": "#66c786",
+                            "navGronnLighten60": "#99dead",
+                            "navGronnLighten80": "#ccf1d6",
                             "navLilla": "#634689",
-                            "navLillaDarken20": "#453b43",
-                            "navLillaDarken40": "#4d3e55",
-                            "navLillaDarken60": "#544066",
-                            "navLillaDarken80": "#5c4378",
-                            "navLillaLighten20": "#e0dae7",
-                            "navLillaLighten40": "#c1b5d0",
-                            "navLillaLighten60": "#a190b8",
-                            "navLillaLighten80": "#826ba1",
+                            "navLillaDarken20": "#523874",
+                            "navLillaDarken40": "#412b5d",
+                            "navLillaDarken60": "#301f46",
+                            "navLillaDarken80": "#1f142f",
+                            "navLillaLighten20": "#8269a2",
+                            "navLillaLighten40": "#a18dbb",
+                            "navLillaLighten60": "#c0b2d2",
+                            "navLillaLighten80": "#e0d8e9",
                             "navLimeGronn": "#a2ad00",
-                            "navLimeGronnDarken20": "#524f28",
-                            "navLimeGronnDarken40": "#66671e",
-                            "navLimeGronnDarken60": "#7a7e14",
-                            "navLimeGronnDarken80": "#8e960a",
-                            "navLimeGronnLighten20": "#ecefcc",
-                            "navLimeGronnLighten40": "#dade99",
-                            "navLimeGronnLighten60": "#c7ce66",
-                            "navLimeGronnLighten80": "#b5bd33",
+                            "navLimeGronnDarken20": "#939e00",
+                            "navLimeGronnDarken40": "#7f8900",
+                            "navLimeGronnDarken60": "#666e00",
+                            "navLimeGronnDarken80": "#474e00",
+                            "navLimeGronnLighten20": "#c1cb33",
+                            "navLimeGronnLighten40": "#d9e366",
+                            "navLimeGronnLighten60": "#ecf399",
+                            "navLimeGronnLighten80": "#f9fccc",
                             "navLysBla": "#66cbec",
-                            "navLysBlaDarken20": "#465557",
-                            "navLysBlaDarken40": "#4e737c",
-                            "navLysBlaDarken60": "#5690a2",
-                            "navLysBlaDarken80": "#5eaec7",
-                            "navLysBlaLighten20": "#e0f5fb",
-                            "navLysBlaLighten40": "#c2eaf7",
-                            "navLysBlaLighten60": "#a3e0f4",
-                            "navLysBlaLighten80": "#85d5f0",
+                            "navLysBlaDarken20": "#4cadcd",
+                            "navLysBlaDarken40": "#368da8",
+                            "navLysBlaDarken60": "#236b7d",
+                            "navLysBlaDarken80": "#134852",
+                            "navLysBlaLighten20": "#7cdaf8",
+                            "navLysBlaLighten40": "#97e6ff",
+                            "navLysBlaLighten60": "#b5f1ff",
+                            "navLysBlaLighten80": "#d8f9ff",
                             "navLysGra": "#f1f1f1",
                             "navMorkGra": "#262626",
                             "navOransje": "#ff9100",
-                            "navOransjeDarken20": "#654a28",
-                            "navOransjeDarken40": "#8b5c1e",
-                            "navOransjeDarken60": "#b26d14",
-                            "navOransjeDarken80": "#d87f0a",
-                            "navOransjeLighten20": "#ffe9cc",
-                            "navOransjeLighten40": "#ffd399",
-                            "navOransjeLighten60": "#ffbd66",
-                            "navOransjeLighten80": "#ffa733",
+                            "navOransjeDarken20": "#d47b00",
+                            "navOransjeDarken40": "#a86400",
+                            "navOransjeDarken60": "#7d4c00",
+                            "navOransjeDarken80": "#523300",
+                            "navOransjeLighten20": "#ffaa33",
+                            "navOransjeLighten40": "#ffc166",
+                            "navOransjeLighten60": "#ffd799",
+                            "navOransjeLighten80": "#ffeccc",
                             "navRod": "#c30000",
-                            "navRodDarken20": "#592d28",
-                            "navRodDarken40": "#73221e",
-                            "navRodDarken60": "#8e1614",
-                            "navRodDarken80": "#a80b0a",
-                            "navRodLighten20": "#f3cccc",
-                            "navRodLighten40": "#e79999",
-                            "navRodLighten60": "#db6666",
-                            "navRodLighten80": "#cf3333",
-                            "orangeFocus": "#ffbd66",
-                            "orangeFocusDarken20": "#65533c",
-                            "orangeFocusDarken40": "#8b6d47",
-                            "orangeFocusDarken60": "#b28851",
-                            "orangeFocusDarken80": "#d8a25c",
-                            "orangeFocusLighten20": "#fff2e0",
-                            "orangeFocusLighten40": "#ffe5c2",
-                            "orangeFocusLighten60": "#ffd7a3",
-                            "orangeFocusLighten80": "#ffca85",
                             "padding-base-horizontal": "12px",
                             "padding-base-vertical": "6px",
                             "padding-large-horizontal": "16px",
@@ -1266,14 +1395,14 @@ tabell.g101[id="c10"] {
                             "padding-xs-vertical": "1px",
                             "pinkErrorBg": "#f3e3e3",
                             "redError": "#ba3a26",
-                            "redErrorDarken20": "#573830",
-                            "redErrorDarken40": "#70392d",
-                            "redErrorDarken60": "#88392b",
-                            "redErrorDarken80": "#a13a28",
-                            "redErrorLighten20": "#f1d8d4",
-                            "redErrorLighten40": "#e3b0a8",
-                            "redErrorLighten60": "#d6897d",
-                            "redErrorLighten80": "#c86151",
+                            "redErrorDarken20": "#a32a17",
+                            "redErrorDarken40": "#881d0c",
+                            "redErrorDarken60": "#6a1204",
+                            "redErrorDarken80": "#480900",
+                            "redErrorLighten20": "#d05c4a",
+                            "redErrorLighten40": "#e18071",
+                            "redErrorLighten60": "#efa89d",
+                            "redErrorLighten80": "#f9d2cc",
                             "screen-desktop": "992px",
                             "screen-lg": "1200px",
                             "screen-lg-desktop": "1200px",
@@ -1291,28 +1420,28 @@ tabell.g101[id="c10"] {
                           }
                         }
                       >
-                        <styled.div
+                        <Styled(styled.div)
                           className=""
                         >
                           <div
-                            className="c14 c15"
+                            className="c16 c17 c18 c19"
                           >
-                            <Styled(a)
+                            <Styled(u)
                               className="c-pagination__prev-button"
                               disabled={true}
                               key="prev"
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <a
-                                className="c16 c17 c-pagination__prev-button"
+                              <u
+                                className="c20 c21 c-pagination__prev-button"
                                 disabled={true}
                                 kompakt={true}
                                 onClick={[Function]}
                               >
-                                <s
+                                <p
                                   autoDisableVedSpinner={false}
-                                  className="c16 c17 c-pagination__prev-button"
+                                  className="c20 c21 c-pagination__prev-button"
                                   disabled={true}
                                   htmlType="submit"
                                   inaktivKlasseVedDisabled={false}
@@ -1323,34 +1452,34 @@ tabell.g101[id="c10"] {
                                   type="flat"
                                 >
                                   <button
-                                    className="knapp c16 c17 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
+                                    className="knapp c20 c21 c-pagination__prev-button knapp--flat knapp--disabled knapp--kompakt"
                                     disabled={true}
                                     onClick={[Function]}
                                     type="submit"
                                   >
                                     ◄
                                   </button>
-                                </s>
-                              </a>
-                            </Styled(a)>
+                                </p>
+                              </u>
+                            </Styled(u)>
                             <div
                               key="page_0"
                             >
-                              <Styled(a)
+                              <Styled(u)
                                 className="c-pagination__page-button"
                                 disabled={true}
                                 kompakt={true}
                                 onClick={[Function]}
                               >
-                                <a
-                                  className="c16 c17 c-pagination__page-button"
+                                <u
+                                  className="c20 c21 c-pagination__page-button"
                                   disabled={true}
                                   kompakt={true}
                                   onClick={[Function]}
                                 >
-                                  <s
+                                  <p
                                     autoDisableVedSpinner={false}
-                                    className="c16 c17 c-pagination__page-button"
+                                    className="c20 c21 c-pagination__page-button"
                                     disabled={true}
                                     htmlType="submit"
                                     inaktivKlasseVedDisabled={false}
@@ -1361,35 +1490,35 @@ tabell.g101[id="c10"] {
                                     type="flat"
                                   >
                                     <button
-                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
+                                      className="knapp c20 c21 c-pagination__page-button knapp--flat knapp--disabled knapp--kompakt"
                                       disabled={true}
                                       onClick={[Function]}
                                       type="submit"
                                     >
                                       1
                                     </button>
-                                  </s>
-                                </a>
-                              </Styled(a)>
+                                  </p>
+                                </u>
+                              </Styled(u)>
                             </div>
                             <div
                               key="page_1"
                             >
-                              <Styled(a)
+                              <Styled(u)
                                 className="c-pagination__page-button"
                                 disabled={false}
                                 kompakt={true}
                                 onClick={[Function]}
                               >
-                                <a
-                                  className="c16 c17 c-pagination__page-button"
+                                <u
+                                  className="c20 c21 c-pagination__page-button"
                                   disabled={false}
                                   kompakt={true}
                                   onClick={[Function]}
                                 >
-                                  <s
+                                  <p
                                     autoDisableVedSpinner={false}
-                                    className="c16 c17 c-pagination__page-button"
+                                    className="c20 c21 c-pagination__page-button"
                                     disabled={false}
                                     htmlType="submit"
                                     inaktivKlasseVedDisabled={false}
@@ -1400,35 +1529,35 @@ tabell.g101[id="c10"] {
                                     type="flat"
                                   >
                                     <button
-                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                      className="knapp c20 c21 c-pagination__page-button knapp--flat knapp--kompakt"
                                       disabled={false}
                                       onClick={[Function]}
                                       type="submit"
                                     >
                                       2
                                     </button>
-                                  </s>
-                                </a>
-                              </Styled(a)>
+                                  </p>
+                                </u>
+                              </Styled(u)>
                             </div>
                             <div
                               key="page_2"
                             >
-                              <Styled(a)
+                              <Styled(u)
                                 className="c-pagination__page-button"
                                 disabled={false}
                                 kompakt={true}
                                 onClick={[Function]}
                               >
-                                <a
-                                  className="c16 c17 c-pagination__page-button"
+                                <u
+                                  className="c20 c21 c-pagination__page-button"
                                   disabled={false}
                                   kompakt={true}
                                   onClick={[Function]}
                                 >
-                                  <s
+                                  <p
                                     autoDisableVedSpinner={false}
-                                    className="c16 c17 c-pagination__page-button"
+                                    className="c20 c21 c-pagination__page-button"
                                     disabled={false}
                                     htmlType="submit"
                                     inaktivKlasseVedDisabled={false}
@@ -1439,33 +1568,33 @@ tabell.g101[id="c10"] {
                                     type="flat"
                                   >
                                     <button
-                                      className="knapp c16 c17 c-pagination__page-button knapp--flat knapp--kompakt"
+                                      className="knapp c20 c21 c-pagination__page-button knapp--flat knapp--kompakt"
                                       disabled={false}
                                       onClick={[Function]}
                                       type="submit"
                                     >
                                       3
                                     </button>
-                                  </s>
-                                </a>
-                              </Styled(a)>
+                                  </p>
+                                </u>
+                              </Styled(u)>
                             </div>
-                            <Styled(a)
+                            <Styled(u)
                               className="c-pagination__next-button"
                               disabled={false}
                               key="next"
                               kompakt={true}
                               onClick={[Function]}
                             >
-                              <a
-                                className="c16 c17 c-pagination__next-button"
+                              <u
+                                className="c20 c21 c-pagination__next-button"
                                 disabled={false}
                                 kompakt={true}
                                 onClick={[Function]}
                               >
-                                <s
+                                <p
                                   autoDisableVedSpinner={false}
-                                  className="c16 c17 c-pagination__next-button"
+                                  className="c20 c21 c-pagination__next-button"
                                   disabled={false}
                                   htmlType="submit"
                                   inaktivKlasseVedDisabled={false}
@@ -1476,21 +1605,21 @@ tabell.g101[id="c10"] {
                                   type="flat"
                                 >
                                   <button
-                                    className="knapp c16 c17 c-pagination__next-button knapp--flat knapp--kompakt"
+                                    className="knapp c20 c21 c-pagination__next-button knapp--flat knapp--kompakt"
                                     disabled={false}
                                     onClick={[Function]}
                                     type="submit"
                                   >
                                     ►
                                   </button>
-                                </s>
-                              </a>
-                            </Styled(a)>
+                                </p>
+                              </u>
+                            </Styled(u)>
                           </div>
-                        </styled.div>
+                        </Styled(styled.div)>
                       </Component>
                     </Component>
-                  </k>
+                  </m>
                 </div>
               </Styled(Styled(styled.div))>
             </div>
@@ -1498,6 +1627,6 @@ tabell.g101[id="c10"] {
         </div>
       </styled.div>
     </Component>
-  </me>
+  </he>
 </Table>
 `;

@@ -2,11 +2,11 @@ import classNames from 'classnames'
 import md5 from 'md5'
 import 'nav-frontend-core/dist/main.css'
 import 'nav-frontend-lenker-style/dist/main.css'
-import { Select } from 'nav-frontend-skjema'
+import 'nav-frontend-knapper-style/dist/main.css'
 import 'nav-frontend-skjema-style/dist/main.css'
 import 'nav-frontend-tabell-style/dist/main.css'
 import 'nav-frontend-typografi-style/dist/main.css'
-import NavHighContrast from 'nav-hoykontrast'
+import NavHighContrast, { HighContrastSelect } from 'nav-hoykontrast'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { RenderEditableOptions } from './index.d'
@@ -65,10 +65,10 @@ const Page = () => {
     setValue
   }: RenderEditableOptions) => {
     return (
-      <Select
+      <HighContrastSelect
         value={value}
         feil={feil}
-        onChange={(e) => {
+        onChange={(e: any) => {
           console.log('setValue')
           setValue({
             employee: e.target.value
@@ -78,7 +78,7 @@ const Page = () => {
         <option />
         <option>ja</option>
         <option>nei</option>
-      </Select>
+      </HighContrastSelect>
     )
   }
 

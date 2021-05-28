@@ -89,7 +89,7 @@ describe('Table', () => {
 
   it('Sort order', () => {
     let lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header none')
+    expect(lastHeader.props().className).toEqual('header')
 
     lastHeader.find('a').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
@@ -101,7 +101,7 @@ describe('Table', () => {
 
     lastHeader.find('a').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header none')
+    expect(lastHeader.props().className).toEqual('header tabell__th--sortert-asc')
   })
 
   it('onCheckAllClicked triggered', () => {
@@ -147,6 +147,6 @@ describe('Table', () => {
     wrapper.find('.tabell__sort-input input').hostNodes().first().simulate('change', { target: { value: 'String 07' } })
     wrapper.update()
     expect(wrapper.find('tbody tr').length).toEqual(1)
-    expect(wrapper.find('tbody tr').render().text()).toEqual(['Velg 07', 'String 07', '2/7/2020', 'Object 07'].join(''))
+    expect(wrapper.find('tbody tr').render().text()).toEqual(['Velg07', 'String 07', '2/7/2020', 'Object 07'].join(''))
   })
 })

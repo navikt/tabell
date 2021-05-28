@@ -1,5 +1,6 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
+const { DuplicatesPlugin } = require("inspectpack/plugin")
 
 module.exports = {
   mode: 'development',
@@ -24,15 +25,19 @@ module.exports = {
         from: 'src/index.d.ts',
         to: 'index.d.ts'
       }]
+    }),
+    new DuplicatesPlugin({
+      emitErrors: true,
+      verbose: true
     })
   ],
   module: {
     rules: [{
       test: /\.less$/,
-      use: ['style-loader', 'css-loader', 'less-loader']
+      use: ['ignore-loader']
     }, {
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: ['css-loader']
     }, {
       test: /\.svg$/,
       loader: 'svg-url-loader',
@@ -78,7 +83,12 @@ module.exports = {
     modules: ['node_modules', './src/']
   },
   externals: {
-    // Don't bundle react or react-dom
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_'
+    },
     react: {
       commonjs: 'react',
       commonjs2: 'react',
