@@ -59,7 +59,8 @@ export const TableDiv = styled.div`
   }
 
   .tabell__edit {
-    vertical-align: center;
+    vertical-align: top;
+    line-height: 2rem !important;
   }
   thead th.noborder {
      border-bottom: none !important;
