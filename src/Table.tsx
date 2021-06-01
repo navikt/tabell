@@ -60,7 +60,9 @@ export const TableDiv = styled.div`
 
   .tabell__edit {
     vertical-align: top;
-    line-height: 2rem !important;
+    td p {
+      line-height: 2rem !important;
+    }
   }
   thead th.noborder {
      border-bottom: none !important;
@@ -665,7 +667,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
       return {
         ...column,
-        error: (isColumnValid ? undefined : (errorMessage ?? _labels.error))
+        feil: (isColumnValid ? undefined : (errorMessage ?? _labels.error))
       }
     })
 
@@ -695,7 +697,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
           ...c.edit,
           value: c.edit?.defaultValue
         },
-        error: undefined
+        feil: undefined
       }
     })
 
@@ -779,11 +781,11 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     }
 
     if (_.isFunction(beforeRowEdited)) {
-      const isValid: boolean = beforeRowEdited(item, context)
+      const isValid: boolean = beforeRowEdited(newEditingRow, context)
       if (!isValid) {
         _setEditingRows({
           ..._editingRows,
-          [item.key]: item
+          [item.key]: newEditingRow
         })
         return
       }
@@ -936,7 +938,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                             column.edit?.render
                               ? column.edit.render({
                                   value: column.edit.value,
-                                  feil: column.error,
+                                  feil: column.feil,
                                   values: currentEditValues,
                                   context: context,
                                   setValue: handleNewRowChange
@@ -948,7 +950,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                                   label=''
                                   placeholder={column.edit?.placeholder}
                                   value={column.edit?.value ?? ''}
-                                  feil={column.error}
+                                  feil={column.feil}
                                   onChanged={(e: string) => handleNewRowChange({
                                     [column.id]: e
                                   })}

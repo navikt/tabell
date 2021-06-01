@@ -44,7 +44,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
     defaultValue?: CustomType
     value?: CustomType
   },
-  error ?: string
+  feil ?: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string
