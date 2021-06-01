@@ -1,6 +1,7 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const { DuplicatesPlugin } = require("inspectpack/plugin")
+const PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -27,6 +28,7 @@ module.exports = {
       emitErrors: true,
       verbose: true
     }),
+    new PeerDepsExternalsPlugin()
   ],
   module: {
     rules: [{
@@ -78,30 +80,5 @@ module.exports = {
       assets: path.resolve(__dirname, 'assets')
     },
     modules: ['node_modules', './src/']
-  },
-  externals: {
-    lodash: {
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      amd: 'lodash',
-      root: '_'
-    },
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React'
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM'
-    },
-    "styled-components": {
-      commonjs: "styled-components",
-      commonjs2: "styled-components",
-      amd: "styled-components",
-    }
   }
 }

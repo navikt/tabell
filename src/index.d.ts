@@ -65,6 +65,8 @@ export type Labels = {[k in string]? : string}
 
 export interface TableProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   animatable?: boolean
+  beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
+  beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
   className?: string
   categories?: Array<Category>
   compact?: boolean

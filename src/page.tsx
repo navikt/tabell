@@ -125,6 +125,14 @@ const Page = () => {
                 colSpan: 3,
                 label: 'title'
               }]}
+              beforeRowAdded={(columns, context) => {
+                console.log('beforeRowAdded', columns, context)
+                return false
+              }}
+              beforeRowEdited={(item, context) => {
+                console.log('beforeRowEdited', item, context)
+                return false
+              }}
               onRowsChanged={(items) => {
                 console.log('Rows changed: ' + JSON.stringify(items))
               }}
@@ -150,7 +158,7 @@ const Page = () => {
                   edit: {
                     placeholder: 'DDMMÅÅÅÅ',
                     validation: [{
-                      test: (value: any) => (Object.prototype.toString.call(value) === '[object Date]'),
+                      test: '^\\d{8}$',
                       message: 'Must be a date'
                     }]
                   }

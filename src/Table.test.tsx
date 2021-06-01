@@ -3,6 +3,8 @@ import React from 'react'
 import Table, { TableDiv } from './Table'
 import { Item, TableProps } from './index.d'
 
+jest.mock('md5', () => ('mock-md5'))
+
 describe('Table', () => {
   let wrapper: ReactWrapper
   const initialMockProps: TableProps = {

@@ -100,15 +100,15 @@ tabell.g37[id="c14"] {
 }
 
 .c21 {
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   color: #0067c5 !important;
   background-color: transparent;
 }
 
 .c21:hover:not(:disabled) {
-  color: #99c3ff !important;
-  border-color: #99c3ff !important;
+  color: #0067c5 !important;
+  border-color: #0067c5 !important;
 }
 
 .c21:focus {
@@ -190,7 +190,8 @@ tabell.g82[id="c17"] {
   line-height: inherit !important;
 }
 
-.c1 tr:not(:hover) div.tabell__buttons {
+.c1 tr:not(:hover) div.tabell__buttons,
+.c1 tr.tabell__tr--disabled div.tabell__buttons {
   visibility: hidden;
 }
 
@@ -259,12 +260,16 @@ tabell.g82[id="c17"] {
   animation: fSLHgq 0.2s forwards;
 }
 
-.c1 .tabell__tr--disabled td {
+.c1 tbody tr:hover:not(.tabell__tr--disabled) td {
+  background: #99c3ff !important;
+}
+
+.c1 .tabell__tr--disabled {
   background: #a0a0a0 !important;
   color: #6a6a6a !important;
 }
 
-.c1 .tabell__tr--disabled td * {
+.c1 .tabell__tr--disabled * {
   color: #6a6a6a !important;
 }
 
@@ -455,6 +460,7 @@ tabell.g101[id="c12"] {
         Object {
           "alternative-background-color": "#FFFFFF",
           "alternative-hover-color": "#cce1ff",
+          "alternative-interactive-color": "#0074df",
           "black": "#000000",
           "border-radius-base": "4px",
           "border-radius-large": "6px",
@@ -693,6 +699,7 @@ tabell.g101[id="c12"] {
                                     xmlnsXlink="http://www.w3.org/1999/xlink"
                                     y="0px"
                                   >
+                                    <title />
                                     <g>
                                       <path
                                         d="M11.999,17.306c0-2.823,2.217-5.131,5-5.29V5.5c0-0.133-0.053-0.26-0.146-0.354l-5-5C11.759,0.053,11.632,0,11.499,0h-11 c-0.275,0-0.5,0.224-0.5,0.5v21c0,0.276,0.225,0.5,0.5,0.5h14.342C13.154,21.11,11.999,19.341,11.999,17.306z M11.499,0.5l5,5h-5 V0.5z"
@@ -1278,6 +1285,7 @@ tabell.g101[id="c12"] {
                           Object {
                             "alternative-background-color": "#FFFFFF",
                             "alternative-hover-color": "#cce1ff",
+                            "alternative-interactive-color": "#0074df",
                             "black": "#000000",
                             "border-radius-base": "4px",
                             "border-radius-large": "6px",

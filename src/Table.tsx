@@ -38,7 +38,8 @@ export const TableDiv = styled.div`
     font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'} !important;
     line-height: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'} !important;
   }
-  tr:not(:hover) div.tabell__buttons {
+  tr:not(:hover) div.tabell__buttons,
+  tr.tabell__tr--disabled div.tabell__buttons{
     visibility: hidden;
   } 
   &.compact {
@@ -56,13 +57,14 @@ export const TableDiv = styled.div`
   tr.tabell__tr--valgt td {
     background: ${({ theme }) => theme[themeKeys.ALTERNATIVE_HOVER_COLOR]};
   }
+
   .tabell__edit {
     vertical-align: center;
   }
   thead th.noborder {
      border-bottom: none !important;
   }
-  tbody.striped {
+  tbody.striped {  
     tr:nth-child(odd) {
       background: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
     }
@@ -88,7 +90,10 @@ export const TableDiv = styled.div`
     transform: translateX(-20px);
     animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
-  .tabell__tr--disabled td {
+  tbody tr:hover:not(.tabell__tr--disabled) td {
+    background: ${({ theme }) => theme[themeKeys.MAIN_HOVER_COLOR]} !important;
+  }
+  .tabell__tr--disabled {
     background: ${({ theme }: any) => theme[themeKeys.MAIN_DISABLED_COLOR]} !important;
     color: ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
     * {
@@ -123,6 +128,8 @@ const CenterTh = styled.th`
 
 const Table = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   animatable = true,
+  beforeRowAdded = undefined,
+  beforeRowEdited = undefined,
   categories,
   className,
   compact = false,
@@ -437,7 +444,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                       <FlexStartDiv className='tabell__buttons'>
                         <HighContrastKnapp
                           kompakt
-                          aria-label={_labels.confirm}
+                          aria-label={_labels.saveChanges}
                           mini
                           onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
                             e.preventDefault()
@@ -445,12 +452,12 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                             handleRowEdited(item)
                           }}
                         >
-                          <GreenCircle />
+                          <GreenCircle title={_labels.saveChanges} />
                         </HighContrastKnapp>
                         <HorizontalSeparatorDiv size='0.5' />
                         <HighContrastKnapp
                           kompakt
-                          aria-label={_labels.cancel}
+                          aria-label={_labels.cancelChanges}
                           mini
                           onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
                             e.preventDefault()
@@ -460,7 +467,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                             _setEditingRows(newEditingRows)
                           }}
                         >
-                          <RemoveCircle />
+                          <RemoveCircle title={_labels.cancelChanges} />
                         </HighContrastKnapp>
                       </FlexStartDiv>
                     )
@@ -480,7 +487,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                             })
                           }}
                         >
-                          <Edit />
+                          <Edit title={_labels.edit} />
                         </HighContrastKnapp>
                         <HorizontalSeparatorDiv size='0.5' />
                         <HighContrastKnapp
@@ -496,7 +503,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                             }
                           }}
                         >
-                          <Trashcan />
+                          <Trashcan title={_labels.delete} />
                         </HighContrastKnapp>
                       </FlexStartDiv>
                     )
@@ -666,6 +673,14 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
       return
     }
 
+    if (_.isFunction(beforeRowAdded)) {
+      const isValid: boolean = beforeRowAdded(newColumns, context)
+      if (!isValid) {
+        _setColumns(newColumns)
+        return
+      }
+    }
+
     const newItem: any = {}
     newColumns = _columns.map(c => {
       let text = c.edit?.value
@@ -717,6 +732,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
         if (typeof valueToValidate === 'number') {
           valueToValidate = '' + valueToValidate
         }
+
         let mandatory: boolean = true
         if (!_.isNil(v.mandatory)) {
           if (_.isFunction(v.mandatory)) {
@@ -729,7 +745,11 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
         if (mandatory) {
           let isThisValid: boolean = false
           if (typeof v.test === 'string') {
-            isThisValid = valueToValidate.match(v.test) !== null
+            if (column.type === 'date') {
+              isThisValid = _.isDate(valueToValidate)
+            } else {
+              isThisValid = valueToValidate.match(v.test) !== null
+            }
           }
           if (typeof v.test === 'function') {
             isThisValid = v.test(valueToValidate)
@@ -755,6 +775,17 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
         [item.key]: newEditingRow
       })
       return
+    }
+
+    if (_.isFunction(beforeRowEdited)) {
+      const isValid: boolean = beforeRowEdited(item, context)
+      if (!isValid) {
+        _setEditingRows({
+          ..._editingRows,
+          [item.key]: item
+        })
+        return
+      }
     }
 
     delete newEditingRow.feil
@@ -931,6 +962,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                           <HighContrastKnapp
                             kompakt
                             mini
+                            label={_labels.addLabel}
                             onClick={(e: any) => {
                               e.preventDefault()
                               e.stopPropagation()
