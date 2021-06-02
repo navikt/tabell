@@ -736,16 +736,20 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
           valueToValidate = '' + valueToValidate
         }
 
-        let mandatory: boolean = true
+        let willValidate: boolean = true
         if (!_.isNil(v.mandatory)) {
           if (_.isFunction(v.mandatory)) {
-            mandatory = v.mandatory(context)
+            willValidate = v.mandatory(context)
           } else {
-            mandatory = v.mandatory
+            willValidate = v.mandatory
           }
         }
+        // dates maybe are not mandatory, but sure can be invalid
+        if ((column.type === 'date') && valueToValidate.length > 0) {
+          willValidate = true
+        }
 
-        if (mandatory) {
+        if (willValidate) {
           let isThisValid: boolean = false
           if (typeof v.test === 'string') {
             if (column.type === 'date') {
