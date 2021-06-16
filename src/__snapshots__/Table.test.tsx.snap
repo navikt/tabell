@@ -205,6 +205,7 @@ tabell.g82[id="c17"] {
   margin: 0rem !important;
   padding: 0rem 0.2rem !important;
   width: 100% !important;
+  display: contents;
   color: #0067c5;
 }
 
@@ -213,7 +214,11 @@ tabell.g82[id="c17"] {
 }
 
 .c1 .tabell__edit {
-  vertical-align: center;
+  vertical-align: top;
+}
+
+.c1 .tabell__edit td p {
+  line-height: 2rem !important;
 }
 
 .c1 thead th.noborder {

@@ -51,6 +51,7 @@ export const TableDiv = styled.div`
       margin: 0rem !important;
       padding: 0rem 0.2rem !important;
       width: 100% !important;
+      display: contents;
       color:  ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
     }
   }
@@ -130,6 +131,7 @@ const CenterTh = styled.th`
 `
 
 const Table = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
+  allowNewRows = false,
   animatable = true,
   beforeRowAdded = undefined,
   beforeRowEdited = undefined,
@@ -934,7 +936,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                   })}
                 </tr>
               )}
-              {editable && (
+              {editable && allowNewRows && (
                 <tr className='tabell__edit'>
                   <td />
                   {_columns.map((column) => {

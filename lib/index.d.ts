@@ -64,6 +64,7 @@ export interface Sort {
 export type Labels = {[k in string]? : string}
 
 export interface TableProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
+  allowNewRows?: boolean,
   animatable?: boolean
   beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
   beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
