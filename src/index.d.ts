@@ -82,6 +82,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   labels?: Labels
   loading?: boolean
   onColumnSort ?: (s: Sort) => void
+  onRowClicked ?: (item: CustomItem) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
   onRowSelectChange ?: (items: Array<CustomItem>) => void
   pagination?: boolean

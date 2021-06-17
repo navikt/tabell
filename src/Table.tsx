@@ -65,6 +65,9 @@ export const TableDiv = styled.div`
       line-height: 2rem !important;
     }
   }
+  .clickable {
+    cursor: pointer;
+  }
   thead th.noborder {
      border-bottom: none !important;
   }
@@ -149,6 +152,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   labels = {},
   loading = false,
   onColumnSort = () => {},
+  onRowClicked,
   onRowsChanged = () => {},
   onRowSelectChange = () => {},
   pagination = true,
@@ -345,9 +349,11 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             id={'tabell-' + id + '__row-' + item.key + (editing ? '-edit' : '')}
             aria-selected={selectable && item.selected === true}
             style={{ animationDelay: (0.02 * index) + 's' }}
+            onClick={() => _.isFunction(onRowClicked) ? onRowClicked(item) : {}}
             className={classNames({
               slideAnimate: animatable,
               tabell__edit: editing,
+              clickable: _.isFunction(onRowClicked),
               'tabell__tr--valgt': selectable && item.selected,
               'tabell__tr--disabled': item.disabled
             })}
