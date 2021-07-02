@@ -107,6 +107,16 @@ export const TableDiv = styled.div`
       color:  ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
     }
   }
+  .tabell thead th button, .tabell .tabell__thead th button, .tabell thead .tabell__th button, .tabell .tabell__thead .tabell__th button {
+    color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+    &:hover:not(:disabled) {
+      color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+      border-color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px ${({ theme }: any) => theme[themeKeys.MAIN_FOCUS_COLOR]} !important;
+    } 
+  }
 `
 export const ContentDiv = styled.div`
   position: relative;
