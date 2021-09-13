@@ -221,6 +221,10 @@ tabell.g82[id="c17"] {
   line-height: 2rem !important;
 }
 
+.c1 .clickable {
+  cursor: pointer;
+}
+
 .c1 thead th.noborder {
   border-bottom: none !important;
 }
@@ -276,6 +280,28 @@ tabell.g82[id="c17"] {
 
 .c1 .tabell__tr--disabled * {
   color: #6a6a6a !important;
+}
+
+.c1 .tabell thead th button,
+.c1 .tabell .tabell__thead th button,
+.c1 .tabell thead .tabell__th button,
+.c1 .tabell .tabell__thead .tabell__th button {
+  color: #0067c5 !important;
+}
+
+.c1 .tabell thead th button:hover:not(:disabled),
+.c1 .tabell .tabell__thead th button:hover:not(:disabled),
+.c1 .tabell thead .tabell__th button:hover:not(:disabled),
+.c1 .tabell .tabell__thead .tabell__th button:hover:not(:disabled) {
+  color: #0067c5 !important;
+  border-color: #0067c5 !important;
+}
+
+.c1 .tabell thead th button:focus,
+.c1 .tabell .tabell__thead th button:focus,
+.c1 .tabell thead .tabell__th button:focus,
+.c1 .tabell .tabell__thead .tabell__th button:focus {
+  box-shadow: 0 0 0 3px #00347d !important;
 }
 
 tabell.g97[id="c0"] {
@@ -610,6 +636,7 @@ tabell.g101[id="c12"] {
     >
       <styled.div
         className="tabell"
+        coloredSelectedRow={true}
       >
         <div
           className="c0 c1 tabell"
@@ -766,6 +793,7 @@ tabell.g101[id="c12"] {
                       className="slideAnimate"
                       id="tabell-test__row-01"
                       key="01"
+                      onClick={[Function]}
                       style={
                         Object {
                           "animationDelay": "0s",
@@ -867,6 +895,7 @@ tabell.g101[id="c12"] {
                       className="slideAnimate"
                       id="tabell-test__row-02"
                       key="02"
+                      onClick={[Function]}
                       style={
                         Object {
                           "animationDelay": "0.02s",
@@ -968,6 +997,7 @@ tabell.g101[id="c12"] {
                       className="slideAnimate"
                       id="tabell-test__row-03"
                       key="03"
+                      onClick={[Function]}
                       style={
                         Object {
                           "animationDelay": "0.04s",
@@ -1069,6 +1099,7 @@ tabell.g101[id="c12"] {
                       className="slideAnimate"
                       id="tabell-test__row-04"
                       key="04"
+                      onClick={[Function]}
                       style={
                         Object {
                           "animationDelay": "0.06s",
@@ -1170,6 +1201,7 @@ tabell.g101[id="c12"] {
                       className="slideAnimate"
                       id="tabell-test__row-05"
                       key="05"
+                      onClick={[Function]}
                       style={
                         Object {
                           "animationDelay": "0.08s",

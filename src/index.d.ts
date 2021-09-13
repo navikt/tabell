@@ -73,6 +73,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   compact?: boolean
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
+  coloredSelectedRow ?: boolean
   editable?: boolean
   highContrast?: boolean
   initialPage?: number

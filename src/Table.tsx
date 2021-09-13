@@ -32,7 +32,7 @@ import Trashcan from './resources/Trashcan'
 import View from './resources/View'
 import defaultLabels from './Table.labels'
 
-export const TableDiv = styled.div`
+export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   display: block !important;
   * {
     font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'} !important;
@@ -56,7 +56,7 @@ export const TableDiv = styled.div`
     }
   }
   tr.tabell__tr--valgt td {
-    background: ${({ theme }) => theme[themeKeys.ALTERNATIVE_HOVER_COLOR]};
+    background: ${(props) => props.coloredSelectedRow ? props.theme[themeKeys.ALTERNATIVE_HOVER_COLOR] : 'inherit'};
   }
 
   .tabell__edit {
@@ -150,6 +150,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   beforeRowEdited = undefined,
   categories,
   className,
+  coloredSelectedRow = true,
   compact = false,
   context = {} as CustomContext,
   columns = [],
@@ -304,10 +305,15 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
         }
         switch (column.type) {
           case 'date':
+
             if (column.dateFormat) {
               label = moment(item[column.id]).format(column.dateFormat)
             } else {
-              label = item[column.id].toLocaleDateString ? item[column.id].toLocaleDateString() : item[column.id].toString()
+              label = _.isNil(item[column.id])
+                ? ''
+                : item[column.id].toLocaleDateString
+                  ? item[column.id].toLocaleDateString()
+                  : item[column.id].toString()
             }
             return regex ? label.match(regex) : true
           default: {
@@ -604,7 +610,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
   const handleNewRowChange = (entries: {[k in string]: any}): void => {
     const keys = Object.keys(entries)
-    _setColumns(_columns.map((column) => {
+    const newColumns = _columns.map((column) => {
       if (!keys.includes(column.id)) {
         return column
       }
@@ -615,7 +621,8 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
           value: entries[column.id]
         }
       }
-    }))
+    })
+    _setColumns(newColumns)
   }
 
   const handleEditRowChange = (entries: {[k in string]: any}, item: CustomItem): void => {
@@ -864,6 +871,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     <NavHighContrast highContrast={highContrast}>
       <TableDiv
         className={classNames('tabell', { compact: compact }, className)}
+        coloredSelectedRow={coloredSelectedRow}
       >
         <ContentDiv>
           {loading && (
@@ -1090,7 +1098,10 @@ Table.propTypes = {
   sortable: PT.bool,
   striped: PT.bool,
   summary: PT.bool,
-  sort: PT.oneOf<Sort>([])
+  sort: PT.shape({
+    column: PT.string,
+    order: PT.oneOf(['', 'asc', 'desc'])
+  })
 }
 
 export default Table
