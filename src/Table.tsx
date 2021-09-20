@@ -379,7 +379,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                 {item.parentKey && (
                   <div style={{ marginRight: '2rem' }}>&nbsp;</div>
                 )}
-                {selectable && (
+                {selectable && (!item.selectDisabled) && (
                   <HighContrastCheckbox
                     id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     data-test-id={'tabell-' + id + '__row-select-checkbox-' + item.key}

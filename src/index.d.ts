@@ -6,6 +6,7 @@ export type ItemErrors = {[k: string] : string | undefined}
 export interface Item extends ItemBase {
   key: string
   selected ?: boolean
+  selectdisabled ?: boolean
   feil ?: ItemErrors
   disabled ?: boolean
   visible ?: boolean
