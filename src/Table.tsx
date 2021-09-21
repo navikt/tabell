@@ -374,7 +374,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
               'tabell__tr--disabled': item.disabled
             })}
           >
-            <td>
+            <td title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}>
               <FlexCenterDiv>
                 {item.parentKey && (
                   <div style={{ marginRight: '2rem' }}>&nbsp;</div>
@@ -384,7 +384,6 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                     id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     data-test-id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     disabled={!_.isNil(item.disabled) ? item.disabled : false}
-                    label={item.selectLabel ?? 'Velg ' + item.key}
                     checked={!!item.selected} onChange={() => onCheckClicked(item)}
                   />
                 )}
