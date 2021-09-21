@@ -4,13 +4,14 @@ export type ItemBase = {[k in string]? : any}
 export type ItemErrors = {[k: string] : string | undefined}
 
 export interface Item extends ItemBase {
-  key: string
-  selected ?: boolean
-  selectdisabled ?: boolean
-  feil ?: ItemErrors
   disabled ?: boolean
-  visible ?: boolean
+  feil ?: ItemErrors
+  key: string
   openSubrows ?: boolean
+  selected ?: boolean
+  selectDisabled ?: boolean
+  selectLabel ?: string
+  visible ?: boolean
 }
 
 export interface Category {
