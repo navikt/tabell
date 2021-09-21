@@ -384,7 +384,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                     id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     data-test-id={'tabell-' + id + '__row-select-checkbox-' + item.key}
                     disabled={!_.isNil(item.disabled) ? item.disabled : false}
-                    label={' '}
+                    label={item.key}
                     checked={!!item.selected} onChange={() => onCheckClicked(item)}
                   />
                 )}
