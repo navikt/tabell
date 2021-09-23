@@ -364,7 +364,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             key={item.key}
             id={'tabell-' + id + '__row-' + item.key + (editing ? '-edit' : '')}
             aria-selected={selectable && item.selected === true}
-            style={{ animationDelay: (0.02 * index) + 's' }}
+            style={{ animationDelay: (0.01 * index) + 's' }}
             onClick={() => _.isFunction(onRowClicked) ? onRowClicked(item) : {}}
             className={classNames({
               slideAnimate: animatable,
@@ -1016,6 +1016,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             </thead>
             <tbody
               className={classNames({ striped: striped })}
+              key={'tbody-' + (pagination ? '-' + _currentPage : '')}
             >
               {tableRows}
             </tbody>
