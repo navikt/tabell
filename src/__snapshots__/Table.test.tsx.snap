@@ -787,6 +787,7 @@ tabell.g101[id="c12"] {
                   </thead>
                   <tbody
                     className="striped"
+                    key="tbody--1"
                   >
                     <tr
                       aria-selected={false}
@@ -800,7 +801,9 @@ tabell.g101[id="c12"] {
                         }
                       }
                     >
-                      <td>
+                      <td
+                        title="Velg 01"
+                      >
                         <Styled(styled.div)>
                           <div
                             className="c6 c7 c8 c9"
@@ -810,7 +813,7 @@ tabell.g101[id="c12"] {
                               data-test-id="tabell-test__row-select-checkbox-01"
                               disabled={false}
                               id="tabell-test__row-select-checkbox-01"
-                              label="Velg01"
+                              label="01"
                               onChange={[Function]}
                             >
                               <h
@@ -819,7 +822,7 @@ tabell.g101[id="c12"] {
                                 data-test-id="tabell-test__row-select-checkbox-01"
                                 disabled={false}
                                 id="tabell-test__row-select-checkbox-01"
-                                label="Velg01"
+                                label="01"
                                 onChange={[Function]}
                               >
                                 <div
@@ -839,7 +842,7 @@ tabell.g101[id="c12"] {
                                     className="skjemaelement__label"
                                     htmlFor="tabell-test__row-select-checkbox-01"
                                   >
-                                    Velg01
+                                    01
                                   </label>
                                 </div>
                               </h>
@@ -898,11 +901,13 @@ tabell.g101[id="c12"] {
                       onClick={[Function]}
                       style={
                         Object {
-                          "animationDelay": "0.02s",
+                          "animationDelay": "0.01s",
                         }
                       }
                     >
-                      <td>
+                      <td
+                        title="Velg 02"
+                      >
                         <Styled(styled.div)>
                           <div
                             className="c6 c7 c8 c9"
@@ -912,7 +917,7 @@ tabell.g101[id="c12"] {
                               data-test-id="tabell-test__row-select-checkbox-02"
                               disabled={false}
                               id="tabell-test__row-select-checkbox-02"
-                              label="Velg02"
+                              label="02"
                               onChange={[Function]}
                             >
                               <h
@@ -921,7 +926,7 @@ tabell.g101[id="c12"] {
                                 data-test-id="tabell-test__row-select-checkbox-02"
                                 disabled={false}
                                 id="tabell-test__row-select-checkbox-02"
-                                label="Velg02"
+                                label="02"
                                 onChange={[Function]}
                               >
                                 <div
@@ -941,7 +946,7 @@ tabell.g101[id="c12"] {
                                     className="skjemaelement__label"
                                     htmlFor="tabell-test__row-select-checkbox-02"
                                   >
-                                    Velg02
+                                    02
                                   </label>
                                 </div>
                               </h>
@@ -1000,11 +1005,13 @@ tabell.g101[id="c12"] {
                       onClick={[Function]}
                       style={
                         Object {
-                          "animationDelay": "0.04s",
+                          "animationDelay": "0.02s",
                         }
                       }
                     >
-                      <td>
+                      <td
+                        title="Velg 03"
+                      >
                         <Styled(styled.div)>
                           <div
                             className="c6 c7 c8 c9"
@@ -1014,7 +1021,7 @@ tabell.g101[id="c12"] {
                               data-test-id="tabell-test__row-select-checkbox-03"
                               disabled={false}
                               id="tabell-test__row-select-checkbox-03"
-                              label="Velg03"
+                              label="03"
                               onChange={[Function]}
                             >
                               <h
@@ -1023,7 +1030,7 @@ tabell.g101[id="c12"] {
                                 data-test-id="tabell-test__row-select-checkbox-03"
                                 disabled={false}
                                 id="tabell-test__row-select-checkbox-03"
-                                label="Velg03"
+                                label="03"
                                 onChange={[Function]}
                               >
                                 <div
@@ -1043,7 +1050,7 @@ tabell.g101[id="c12"] {
                                     className="skjemaelement__label"
                                     htmlFor="tabell-test__row-select-checkbox-03"
                                   >
-                                    Velg03
+                                    03
                                   </label>
                                 </div>
                               </h>
@@ -1102,11 +1109,13 @@ tabell.g101[id="c12"] {
                       onClick={[Function]}
                       style={
                         Object {
-                          "animationDelay": "0.06s",
+                          "animationDelay": "0.03s",
                         }
                       }
                     >
-                      <td>
+                      <td
+                        title="Velg 04"
+                      >
                         <Styled(styled.div)>
                           <div
                             className="c6 c7 c8 c9"
@@ -1116,7 +1125,7 @@ tabell.g101[id="c12"] {
                               data-test-id="tabell-test__row-select-checkbox-04"
                               disabled={false}
                               id="tabell-test__row-select-checkbox-04"
-                              label="Velg04"
+                              label="04"
                               onChange={[Function]}
                             >
                               <h
@@ -1125,7 +1134,7 @@ tabell.g101[id="c12"] {
                                 data-test-id="tabell-test__row-select-checkbox-04"
                                 disabled={false}
                                 id="tabell-test__row-select-checkbox-04"
-                                label="Velg04"
+                                label="04"
                                 onChange={[Function]}
                               >
                                 <div
@@ -1145,7 +1154,7 @@ tabell.g101[id="c12"] {
                                     className="skjemaelement__label"
                                     htmlFor="tabell-test__row-select-checkbox-04"
                                   >
-                                    Velg04
+                                    04
                                   </label>
                                 </div>
                               </h>
@@ -1204,11 +1213,13 @@ tabell.g101[id="c12"] {
                       onClick={[Function]}
                       style={
                         Object {
-                          "animationDelay": "0.08s",
+                          "animationDelay": "0.04s",
                         }
                       }
                     >
-                      <td>
+                      <td
+                        title="Velg 05"
+                      >
                         <Styled(styled.div)>
                           <div
                             className="c6 c7 c8 c9"
@@ -1218,7 +1229,7 @@ tabell.g101[id="c12"] {
                               data-test-id="tabell-test__row-select-checkbox-05"
                               disabled={false}
                               id="tabell-test__row-select-checkbox-05"
-                              label="Velg05"
+                              label="05"
                               onChange={[Function]}
                             >
                               <h
@@ -1227,7 +1238,7 @@ tabell.g101[id="c12"] {
                                 data-test-id="tabell-test__row-select-checkbox-05"
                                 disabled={false}
                                 id="tabell-test__row-select-checkbox-05"
-                                label="Velg05"
+                                label="05"
                                 onChange={[Function]}
                               >
                                 <div
@@ -1247,7 +1258,7 @@ tabell.g101[id="c12"] {
                                     className="skjemaelement__label"
                                     htmlFor="tabell-test__row-select-checkbox-05"
                                   >
-                                    Velg05
+                                    05
                                   </label>
                                 </div>
                               </h>
