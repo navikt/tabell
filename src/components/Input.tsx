@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { HighContrastInput } from 'nav-hoykontrast'
 import React, { useState } from 'react'
 
@@ -8,6 +9,7 @@ export interface InputProps {
   id: string
   label: JSX.Element | string
   onChanged: (e: string) => void
+  onEnterPress?: (e: string) => void
   placeholder?: string
   required ?: boolean
   type?: string
@@ -20,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   id,
   label,
   onChanged,
+  onEnterPress,
   placeholder,
   required = false,
   type = 'text',
@@ -41,6 +44,14 @@ const Input: React.FC<InputProps> = ({
         if (_dirty) {
           onChanged(_value)
           _setDirty(false)
+        }
+      }}
+      onKeyPress={(e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+          if (_.isFunction(onEnterPress)) {
+            onEnterPress(_value)
+            _setDirty(false)
+          }
         }
       }}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

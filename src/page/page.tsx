@@ -9,8 +9,8 @@ import 'nav-frontend-typografi-style/dist/main.css'
 import NavHighContrast, { HighContrastSelect } from 'nav-hoykontrast'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { RenderEditableOptions } from './index.d'
-import Table from './Table'
+import { RenderEditableOptions } from '../index.d'
+import Table from '../Table'
 
 const MarginDiv = styled.div`
   margin: 1rem;
@@ -31,9 +31,9 @@ const Page = () => {
     { key: '01', employee: 'ja', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true },
     { key: '02', employee: 'ja', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
     { key: '03', employee: 'ja', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
-    { key: '03_01', parentKey: '03', name: 'Claire 2', date: new Date(1970, 2, 4), type: 'CEO 2', selected: true },
-    { key: '03_02', parentKey: '03', name: 'Claire 3', date: new Date(1970, 2, 4), type: 'CEO 3', selected: false },
-    { key: '03_03', parentKey: '03', name: 'Claire 4', date: new Date(1970, 2, 4), type: 'CEO 4', selected: false },
+    { key: '03_01', parentKey: '03', employee: 'ja', name: 'Claire 2', date: new Date(1970, 2, 4), type: 'CEO 2', selected: true },
+    { key: '03_02', parentKey: '03', employee: 'ja', name: 'Claire 3', date: new Date(1970, 2, 4), type: 'CEO 3', selected: false },
+    { key: '03_03', parentKey: '03', employee: 'ja', name: 'Claire 4', date: new Date(1970, 2, 4), type: 'CEO 4', selected: false },
     { key: '04', employee: 'ja', name: 'Daniel', date: new Date(1946, 2, 24), type: 'Developer' },
     { key: '05', employee: 'ja', name: 'Emma', date: new Date(1947, 7, 1), type: 'Economist', selected: true },
     { key: '06', employee: 'ja', name: 'Frank', date: new Date(1978, 11, 14), type: 'Freelancer' },
@@ -100,6 +100,7 @@ const Page = () => {
           <MarginDiv>
             <Table
               key={md5(JSON.stringify(items))}
+              allowNewRows
               items={items}
               highContrast={highContrast}
               context={{ items: items }}
@@ -127,11 +128,11 @@ const Page = () => {
               }]}
               beforeRowAdded={(columns, context) => {
                 console.log('beforeRowAdded', columns, context)
-                return false
+                return true
               }}
               beforeRowEdited={(item, context) => {
                 console.log('beforeRowEdited', item, context)
-                return false
+                return true
               }}
               onRowsChanged={(items) => {
                 console.log('Rows changed: ' + JSON.stringify(items))
@@ -156,10 +157,10 @@ const Page = () => {
                   filterText: '',
                   dateFormat: 'DD.MM.YYYY',
                   edit: {
-                    placeholder: 'DDMMÅÅÅÅ',
+                    placeholder: 'DD.MM.ÅÅÅÅ',
                     validation: [{
-                      test: '^\\d{8}$',
-                      message: 'Must be a date'
+                      test: '^\\d{2}\\.\\d{2}\\.\\d{4}$',
+                      message: 'Must be a date in DD.MM.ÅÅÅÅ'
                     }]
                   }
                 },

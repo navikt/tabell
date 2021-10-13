@@ -7,10 +7,12 @@ export interface Item extends ItemBase {
   disabled ?: boolean
   feil ?: ItemErrors
   key: string
+  parentKey ?: string
   openSubrows ?: boolean
   selected ?: boolean
   selectDisabled ?: boolean
   selectLabel ?: string
+  sortKey ?: string
   visible ?: boolean
 }
 
@@ -54,7 +56,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
 
 }
 
-export type Order = '' | 'asc' | 'desc'
+export type Order = 'none' | 'asc' | 'desc'
 
 export type SortOrder = {[k: string]: Order}
 
