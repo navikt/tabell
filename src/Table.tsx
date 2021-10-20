@@ -142,8 +142,14 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     if (!sortable) { return }
     const newSortOrder = sortOrder[_sort.order]
     const newSort = { column: column.id, order: newSortOrder }
+
+    if (_.isFunction(onRowsChanged)) {
+      onRowsChanged(rawRows(newSort)[0])
+    }
+    if (_.isFunction(onColumnSort)) {
+      onColumnSort(newSort)
+    }
     setSort(newSort)
-    onColumnSort(newSort)
   }
 
   const sortClass = (column: Column<CustomItem, CustomContext>): string => {
@@ -233,7 +239,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   }
 
   /** Apllies filters and sorting to rows */
-  const rawRows = (): [Array<CustomItem>, number, number] => {
+  const rawRows = (sort: Sort): [Array<CustomItem>, number, number] => {
     let numberOfSelectedRows = 0
     let numberOfVisibleItems = 0
 
@@ -256,8 +262,8 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     })
 
     let finalItems: Array<CustomItem> = filteredItems
-    if (_sort.order === 'asc' || _sort.order === 'desc') {
-      const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(_columns, _c => _c.id === _sort.column)
+    if (sort.order === 'asc' || sort.order === 'desc') {
+      const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(_columns, _c => _c.id === sort.column)
       if (!_.isUndefined(sortColumn)) {
         filteredItems.forEach((item, index) => {
           const sortKey = getStringFromCellFor(sortColumn!, item, 'sort')
@@ -272,7 +278,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
         })
       }
       finalItems = filteredItems.sort((a: CustomItem, b: CustomItem) =>
-        _sort.order === 'asc' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
+        sort.order === 'asc' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
       )
     }
     return [finalItems, numberOfSelectedRows, numberOfVisibleItems]
@@ -890,7 +896,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     }
   }
 
-  const [sortedItems, nrOfselectedRows, nrOfVisibleItems] = rawRows()
+  const [sortedItems, nrOfselectedRows, nrOfVisibleItems] = rawRows(_sort)
   const tableRows = renderRows(sortedItems)
   const currentEditValues = {} as any
 
