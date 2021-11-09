@@ -27,7 +27,11 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   tr.tabell__tr--valgt td {
     background: ${(props) => props.coloredSelectedRow ? props.theme[themeKeys.ALTERNATIVE_HOVER_COLOR] : 'inherit'};
   }
-
+  &.error {
+    border-color: ${({ theme }) => theme[themeKeys.MAIN_ERROR_COLOR]} !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+  }
   .tabell__edit {
     vertical-align: top;
     td p {

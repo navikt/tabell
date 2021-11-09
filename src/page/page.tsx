@@ -101,6 +101,7 @@ const Page = () => {
             <Table
               key={md5(JSON.stringify(items))}
               allowNewRows
+              error={'blblablablab'}
               items={items}
               highContrast={highContrast}
               context={{ items: items }}

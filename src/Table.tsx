@@ -42,6 +42,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   context = {} as CustomContext,
   columns = [],
   editable = false,
+  error = undefined,
   highContrast = false,
   initialPage = 1,
   id = md5('tabell-' + new Date().getTime()),
@@ -910,8 +911,13 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
 
   return (
     <NavHighContrast highContrast={highContrast}>
+      {error && (
+        <label className='skjemaelement__feilmelding'>
+          <Normaltekst className='typo-feilmelding'>{error}</Normaltekst>
+        </label>
+      )}
       <TableDiv
-        className={classNames('tabell', { compact: compact }, className)}
+        className={classNames('tabell', { compact: compact, error: error}, className)}
         coloredSelectedRow={coloredSelectedRow}
       >
         <ContentDiv>
