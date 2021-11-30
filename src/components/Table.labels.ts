@@ -1,4 +1,4 @@
-import { Labels } from './index.d'
+import { Labels } from 'index.d'
 
 export default {
   addLabel: 'Lagre/legg til',

@@ -2,7 +2,7 @@ import { mount, ReactWrapper } from 'enzyme'
 import React from 'react'
 import Table from './Table'
 import { TableDiv } from './TableStyles'
-import { Item, TableProps } from './index.d'
+import { Item, TableProps } from 'index.d'
 
 jest.mock('md5', () => ('mock-md5'))
 
@@ -92,19 +92,19 @@ describe('Table', () => {
 
   it('Sort order', () => {
     let lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header')
+    expect(lastHeader.props().className).toEqual('navds-table__cell header')
 
     lastHeader.find('a').hostNodes().simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header tabell__th--sortert-asc')
+    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-asc')
 
     lastHeader.find('a').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header tabell__th--sortert-desc')
+    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-desc')
 
     lastHeader.find('a').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('header tabell__th--sortert-asc')
+    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-asc')
   })
 
   it('onCheckAllClicked triggered', () => {

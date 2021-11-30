@@ -1,16 +1,14 @@
+import { AddCircle, Delete, Edit, Sight } from '@navikt/ds-icons'
 import classNames from 'classnames'
+import Input from 'components/Input'
+import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
-import Spinner from 'nav-frontend-spinner'
-import { Normaltekst } from 'nav-frontend-typografi'
-import NavHighContrast, {
+import {
   FlexCenterDiv,
   FlexCenterSpacedDiv,
   FlexStartDiv,
-  HighContrastCheckbox,
-  HighContrastInput,
-  HighContrastKnapp,
   HorizontalSeparatorDiv
 } from 'nav-hoykontrast'
 import Pagination from 'paginering'
@@ -19,18 +17,12 @@ import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
-import Input from './components/Input'
-import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from './index.d'
-import Edit from './resources/Edit'
-import GreenCircle from './resources/GreenCircle'
-import RemoveCircle from './resources/RemoveCircle'
-import Tilsette from './resources/Tilsette'
-import Trashcan from './resources/Trashcan'
-import View from './resources/View'
 import defaultLabels from './Table.labels'
 import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable } from './TableStyles'
+import { BodyLong, Checkbox, Button, Table, Loader } from '@navikt/ds-react'
+import 'nav-frontend-tabell-style/dist/main.css'
 
-const Table = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
+const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
   animatable = true,
   beforeRowAdded = undefined,
@@ -43,7 +35,6 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   columns = [],
   editable = false,
   error = undefined,
-  highContrast = false,
   initialPage = 1,
   id = md5('tabell-' + new Date().getTime()),
   items = [],
@@ -319,13 +310,13 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
         : (
-          <Normaltekst>
+          <BodyLong>
             {column.dateFormat
               ? moment(value).format(column.dateFormat)
               : _.isFunction(value.toLocaleDateString)
                 ? value.toLocaleDateString()
                 : value.toString()}
-          </Normaltekst>
+          </BodyLong>
           )
     }
   }
@@ -341,11 +332,11 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             context: context,
             setValue: (entries) => handleEditRowChange(entries, item)
           })
-        : (<span>Ypu have to set a edit render function for object</span>)
+        : (<span>You have to set a edit render function for object</span>)
     } else {
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
-        : <Normaltekst>JSON.stringify(value)</Normaltekst>
+        : <BodyLong>JSON.stringify(value)</BodyLong>
     }
   }
 
@@ -353,24 +344,24 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
     if (editing) {
       return (
         <FlexStartDiv className='tabell__buttons'>
-          <HighContrastKnapp
-            kompakt
+          <Button
+            variant="secondary"
+            size="small"
             aria-label={_labels.saveChanges}
-            mini
-            onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
               handleRowEdited(item, undefined)
             }}
           >
-            <GreenCircle title={_labels.saveChanges} />
-          </HighContrastKnapp>
+            <AddCircle title={_labels.saveChanges} />
+          </Button>
           <HorizontalSeparatorDiv size='0.5' />
-          <HighContrastKnapp
-            kompakt
+          <Button
+            variant="secondary"
+            size="small"
             aria-label={_labels.cancelChanges}
-            mini
-            onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
               const newEditingRows = _.cloneDeep(_editingRows)
@@ -378,18 +369,20 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
               _setEditingRows(newEditingRows)
             }}
           >
-            <RemoveCircle title={_labels.cancelChanges} />
-          </HighContrastKnapp>
+            <div style={{transform: 'rotate(45deg);' }}>
+              <AddCircle title={_labels.cancelChanges} />
+            </div>
+          </Button>
         </FlexStartDiv>
       )
     } else {
       return (
         <FlexStartDiv className='tabell__buttons'>
-          <HighContrastKnapp
-            kompakt
+          <Button
+            variant="secondary"
+            size="small"
             aria-label={_labels.edit}
-            mini
-            onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
               _setEditingRows({
@@ -399,13 +392,13 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             }}
           >
             <Edit title={_labels.edit} />
-          </HighContrastKnapp>
+          </Button>
           <HorizontalSeparatorDiv size='0.5' />
-          <HighContrastKnapp
-            kompakt
+          <Button
+            variant="secondary"
+            size="small"
             aria-label={_labels.delete}
-            mini
-            onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
               const answer = window.confirm(_labels.areYouSure)
@@ -414,8 +407,8 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
               }
             }}
           >
-            <Trashcan title={_labels.delete} />
-          </HighContrastKnapp>
+            <Delete  title={_labels.delete} />
+          </Button>
         </FlexStartDiv>
       )
     }
@@ -453,7 +446,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
         : (
-          <Normaltekst>
+          <BodyLong>
             {_labels[column.id] && _labels[column.id]![value]
               ? (
                 <Tooltip
@@ -467,7 +460,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                 </Tooltip>
                 )
               : <span>{value}</span>}
-          </Normaltekst>
+          </BodyLong>
           )
     }
   }
@@ -523,18 +516,18 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
           } else {
             return (
               <td key={column.id}>
-                <HighContrastKnapp
-                  kompakt
-                  mini
-                  label={_labels.addLabel}
+                <Button
+                  variant="secondary"
+                  size="small"
                   onClick={(e: any) => {
                     e.preventDefault()
                     e.stopPropagation()
                     handleRowAdded(context)
                   }}
                 >
-                  <Tilsette title={_labels.addLabel} />
-                </HighContrastKnapp>
+                  <AddCircle title={_labels.addLabel} />
+                  {_labels.addLabel}
+                </Button>
               </td>
             )
           }
@@ -574,27 +567,29 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                 <div style={{ marginRight: '2rem' }}>&nbsp;</div>
               )}
               {selectable && !item.selectDisabled && (
-                <HighContrastCheckbox
+                <Checkbox
                   id={'tabell-' + id + '__row-select-' + item.key}
                   data-test-id={'tabell-' + id + '__row-select-' + item.key}
                   disabled={!_.isNil(item.disabled) ? item.disabled : false}
-                  label={item.key}
+                  hideLabel
                   checked={!!item.selected}
                   onChange={() => onCheckClicked(item)}
-                />
+                >
+                </Checkbox>
+
               )}
               {item.hasSubrows && (
-                <HighContrastKnapp
-                  mini
-                  kompakt
-                  onClick={(e: React.ChangeEvent<HTMLButtonElement>) => {
+                <Button
+                  size="small"
+                  variant="secondary"
+                  onClick={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
                     toggleSubRowOpen(item)
                   }}
                 >
                   {item.openSubrows ? (_sort.order === 'asc' ? '▼' : '▲') : '►'}
-                </HighContrastKnapp>
+                </Button>
               )}
             </FlexCenterDiv>
           </td>
@@ -910,60 +905,63 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
   }
 
   return (
-    <NavHighContrast highContrast={highContrast}>
+   <>
       {error && (
-        <label className='skjemaelement__feilmelding'>
-          <Normaltekst className='typo-feilmelding'>{error}</Normaltekst>
-        </label>
+        <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
+          <BodyLong className='typo-feilmelding'>{error}</BodyLong>
+        </div>
       )}
       <TableDiv
-        className={classNames('tabell', { compact: compact, error: error}, className)}
+
+        className={classNames({error: error}, className)}
         coloredSelectedRow={coloredSelectedRow}
       >
         <ContentDiv>
           {loading && (
             <LoadingDiv>
-              <Spinner type='XL' />
+              <Loader size='2xlarge' />
             </LoadingDiv>
           )}
-          <WideTable cellSpacing='0' className='tabell__table'>
-            <thead>
+          <WideTable size={compact ? "small" : "medium"} cellSpacing='0' className='tabell tabell__table'>
+            <Table.Header>
               {categories && (
-                <tr>
-                  <th role='columnheader' className='noborder' />
+                <Table.Row>
+                  <Table.HeaderCell role='columnheader' className='noborder' />
                   {categories.map(c => (
                     <CenterTh key={c.label} colSpan={c.colSpan} className={classNames({ noborder: c.border === false })}>
                       {c.label}
                     </CenterTh>
                   ))}
-                </tr>
+                </Table.Row>
               )}
-              <tr className='tabell__header'>
-                <th style={{ width: 1 }}>
+              <Table.Row className='tabell__header'>
+                <Table.HeaderCell style={{ width: 1 }}>
                   <FlexCenterDiv>
                     {selectable && (
-                      <HighContrastCheckbox
-                        label={_labels.selectAll}
+                      <Checkbox
+                        hideLabel
                         id={'tabell__checkAll-checkbox-id-' + id}
                         className='tabell__checkAll-checkbox'
                         checked={_checkAll}
                         onChange={onCheckAllClicked}
-                      />
+                      >
+                        {_labels.selectAll}
+                      </Checkbox>
                     )}
                     {searchable && (
                       <FilterIcon role='button' aria-pressed={_seeFilters}>
-                        <View
+                        <Sight
                           className='tabell___seefilters-icon'
                           id='tabell__seefilters-icon-id'
                           onClick={() => _setSeeFilters(!_seeFilters)}
                         />
                       </FilterIcon>)}
                   </FlexCenterDiv>
-                </th>
+                </Table.HeaderCell>
                 {_columns.map((column) => {
                   const filterText: string = column.filterText ? column.filterText.toLowerCase() : ''
                   return (
-                    <th
+                    <Table.HeaderCell
                       role='columnheader'
                       aria-sort={_sort.column === column.id ? ariaSortLabel[_sort.order] : 'none'}
                       key={'th-' + column.id}
@@ -982,39 +980,39 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                           </button>
                           )
                         : column.label + (filterText ? ' (' + filterText + ')' : '')}
-                    </th>
+                    </Table.HeaderCell>
                   )
                 })}
-              </tr>
+              </Table.Row>
               {_seeFilters && (
-                <tr className='tabell__filter'>
-                  <td />
+                <Table.Row className='tabell__filter'>
+                  <Table.DataCell />
                   {_columns.map((column) => {
                     if (column.type !== 'buttons') {
                       return (
-                        <td key={column.id}>
-                          <HighContrastInput
+                        <Table.DataCell key={column.id}>
+                          <Input
                             className='tabell__sort-input'
                             id={'tabell__sort-' + column.id + '-input-id'}
                             label=''
                             value={column.filterText || ''}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilterChange(column, e.target.value)}
+                            onChanged={(e: string) => handleFilterChange(column, e)}
                           />
-                        </td>
+                        </Table.DataCell>
                       )
                     }
                     return null
                   })}
-                </tr>
+                </Table.Row>
               )}
               {editable && allowNewRows && renderAddRow()}
-            </thead>
-            <tbody
+            </Table.Header>
+            <Table.Body
               className={classNames({ striped: striped })}
               key={'tbody-' + (pagination ? '-' + _currentPage : '')}
             >
               {tableRows}
-            </tbody>
+            </Table.Body>
           </WideTable>
           <FlexCenterSpacedDiv>
             {summary && !loading
@@ -1022,19 +1020,19 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                 <>
                   {selectable
                     ? (
-                      <Normaltekst>
+                      <BodyLong>
                         {nrOfselectedRows === 0
                           ? renderPlaceholders(_labels.noSelectedItems, { type: _labels.type })
                           : renderPlaceholders(_labels.xSelectedItems, {
                             type: _labels.type,
                             x: nrOfselectedRows
                           })}
-                      </Normaltekst>
+                      </BodyLong>
                       )
                     : (
                       <div />
                       )}
-                  <Normaltekst>
+                  <BodyLong>
                     {nrOfVisibleItems === 0
                       ? renderPlaceholders(_labels.showNoItems, { type: _labels.type })
                       : renderPlaceholders(_labels.showXofYItems, {
@@ -1045,7 +1043,7 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
                           : _currentPage * itemsPerPage)),
                         y: nrOfVisibleItems
                       })}
-                  </Normaltekst>
+                  </BodyLong>
                 </>
                 )
               : (
@@ -1057,7 +1055,6 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
             {pagination && !loading
               ? (
                 <Pagination
-                  highContrast={highContrast}
                   itemsPerPage={itemsPerPage}
                   currentPage={_currentPage}
                   numberOfItems={sortedItems.length}
@@ -1070,17 +1067,16 @@ const Table = <CustomItem extends Item = Item, CustomContext extends Context = C
           </FlexCenterSpacedDiv>
         </ContentDiv>
       </TableDiv>
-    </NavHighContrast>
+    </>
   )
 }
 
-Table.propTypes = {
+TableFC.propTypes = {
   animatable: PT.bool,
   className: PT.string,
   categories: PT.object,
   context: PT.object,
   columns: PT.array.isRequired,
-  highContrast: PT.bool,
   initialPage: PT.number,
   items: PT.array,
   itemsPerPage: PT.number,
@@ -1100,4 +1096,4 @@ Table.propTypes = {
   })
 }
 
-export default Table
+export default TableFC

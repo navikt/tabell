@@ -8,6 +8,6 @@ This package renders a table with several capabilities: sorting, searching, anim
     
 # How-To
 
-https://navikt.github.io/tabell-doc/build/
+https://navikt.github.io/tabell/build/
 
 Maintainer: Nuno.Cardoso@nav.no

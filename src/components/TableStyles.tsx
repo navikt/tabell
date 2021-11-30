@@ -1,12 +1,16 @@
-import { slideInFromLeft, themeKeys } from 'nav-hoykontrast'
+import { slideInFromLeft } from 'nav-hoykontrast'
 import styled from 'styled-components'
+import { Table } from '@navikt/ds-react'
 
 export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
-  display: block !important;
-  * {
-    font-size: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'} !important;
-    line-height: ${({ theme }: any) => theme.type === 'themeHighContrast' ? '1.5rem' : 'inherit'} !important;
+  .tabell td,
+  .tabell th,
+  .tabell .tabell__td,
+  .tabell .tabell__th {
+    padding: inherit;
   }
+
+  display: block !important;
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
@@ -21,14 +25,14 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
       padding: 0rem 0.2rem !important;
       width: 100% !important;
       display: contents;
-      color:  ${({ theme }) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]};
+      color: var(--navds-semantic-color-interaction-primary-hover);
     }
   }
   tr.tabell__tr--valgt td {
-    background: ${(props) => props.coloredSelectedRow ? props.theme[themeKeys.ALTERNATIVE_HOVER_COLOR] : 'inherit'};
+    background: ${(props) => props.coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary-default)' : 'inherit'};
   }
   &.error {
-    border-color: ${({ theme }) => theme[themeKeys.MAIN_ERROR_COLOR]} !important;
+    border-color: var(--navds-color-error-border) !important;
     border-width: 3px !important;
     border-style: solid !important;
   }
@@ -46,10 +50,10 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   }
   tbody.striped {  
     tr:nth-child(odd) {
-      background: ${({ theme }) => theme[themeKeys.MAIN_BACKGROUND_COLOR]};
+      background: var(--navds-color-background);
     }
     tr:nth-child(even) {
-      background: ${({ theme }) => theme[themeKeys.ALTERNATIVE_BACKGROUND_COLOR]};   
+      background: var(--navds-semantic-color-component-background-light);  
     }
   }
   &__subcell {
@@ -71,23 +75,24 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
   tbody tr:hover:not(.tabell__tr--disabled) td {
-    background: ${({ theme }) => theme[themeKeys.MAIN_HOVER_COLOR]} !important;
+    background: var(--navds-semantic-color-feedback-info-background) !important;
   }
   .tabell__tr--disabled {
-    background: ${({ theme }: any) => theme[themeKeys.MAIN_DISABLED_COLOR]} !important;
-    color: ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
+    background: var(--navds-color-disabled) !important;
+    color: var(--navds-color-disabled) !important;
     * {
-      color:  ${({ theme }: any) => theme[themeKeys.GRAYINACTIVE]} !important;
+      color: var(--navds-color-disabled) !important;
     }
   }
+
   .tabell thead th button, .tabell .tabell__thead th button, .tabell thead .tabell__th button, .tabell .tabell__thead .tabell__th button {
-    color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+    color: var(--navds-semantic-color-interaction-primary-default) !important;
     &:hover:not(:disabled) {
-      color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
-      border-color: ${({ theme }: any) => theme[themeKeys.MAIN_INTERACTIVE_COLOR]} !important;
+      color: var(--navds-semantic-color-interaction-primary-default) !important;
+      border-color: var(--navds-semantic-color-interaction-primary-default) !important;
     }
     &:focus {
-      box-shadow: 0 0 0 3px ${({ theme }: any) => theme[themeKeys.MAIN_FOCUS_COLOR]} !important;
+      box-shadow: 0 0 0 3px var(--navds-semantic-color-focus) !important;
     } 
   }
 `
@@ -105,7 +110,7 @@ export const LoadingDiv = styled.div`
   align-items: center;
   justify-content: center;
 `
-export const WideTable = styled.table`
+export const WideTable = styled(Table)<{size: 'small' | 'medium', cellSpacing: string}>`
   width: 100%;
 `
 export const FilterIcon = styled.div`

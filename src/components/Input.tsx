@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { HighContrastInput } from 'nav-hoykontrast'
+import { TextField } from '@navikt/ds-react'
 import React, { useState } from 'react'
 
 export interface InputProps {
@@ -7,12 +7,12 @@ export interface InputProps {
   className ?: string
   feil?: string | null | undefined
   id: string
-  label: JSX.Element | string
+  label: string
   onChanged: (e: string) => void
   onEnterPress?: (e: string) => void
   placeholder?: string
   required ?: boolean
-  type?: string
+  type?: "number" | "text" | "email" | "password" | "tel" | "url" | undefined
   value: string | undefined
 }
 const Input: React.FC<InputProps> = ({
@@ -32,12 +32,12 @@ const Input: React.FC<InputProps> = ({
   const [_dirty, _setDirty] = useState<boolean>(false)
 
   return (
-    <HighContrastInput
+    <TextField
       aria-invalid={!!feil}
       aria-label={ariaLabel ?? label}
       className={className}
       data-test-id={id}
-      feil={feil}
+      error={feil}
       id={id}
       label={label}
       onBlur={() => {

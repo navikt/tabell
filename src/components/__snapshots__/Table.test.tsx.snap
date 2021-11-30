@@ -1,0 +1,1258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Renders 1`] = `
+.c8 {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+tabell.g19[id="c6"] {
+  content: "c8,";
+}
+
+.c9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+tabell.g22[id="c7"] {
+  content: "c9,";
+}
+
+.c13 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+tabell.g23[id="c12"] {
+  content: "c13,";
+}
+
+.c16 {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+tabell.g52[id="c14"] {
+  content: "c16,";
+}
+
+.c17 {
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+tabell.g53[id="c15"] {
+  content: "c17,";
+}
+
+.c1 {
+  display: block !important;
+}
+
+.c1 .tabell td,
+.c1 .tabell th,
+.c1 .tabell .tabell__td,
+.c1 .tabell .tabell__th {
+  padding: inherit;
+}
+
+.c1 tr:not(:hover) div.tabell__buttons,
+.c1 tr.tabell__tr--disabled div.tabell__buttons {
+  visibility: hidden;
+}
+
+.c1.compact td,
+.c1.compact th {
+  padding: 0.35rem !important;
+}
+
+.c1.compact thead th button {
+  white-space: break-spaces !important;
+  margin: 0rem !important;
+  padding: 0rem 0.2rem !important;
+  width: 100% !important;
+  display: contents;
+  color: var(--navds-semantic-color-interaction-primary-hover);
+}
+
+.c1 tr.tabell__tr--valgt td {
+  background: var(--navds-semantic-color-interaction-primary-default);
+}
+
+.c1.error {
+  border-color: var(--navds-color-error-border) !important;
+  border-width: 3px !important;
+  border-style: solid !important;
+}
+
+.c1 .tabell__edit {
+  vertical-align: top;
+}
+
+.c1 .tabell__edit td p {
+  line-height: 2rem !important;
+}
+
+.c1 .clickable {
+  cursor: pointer;
+}
+
+.c1 thead th.noborder {
+  border-bottom: none !important;
+}
+
+.c1 tbody.striped tr:nth-child(odd) {
+  background: var(--navds-color-background);
+}
+
+.c1 tbody.striped tr:nth-child(even) {
+  background: var(--navds-semantic-color-component-background-light);
+}
+
+.c1__subcell {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.c1___seefilters-icon {
+  cursor: pointer;
+}
+
+.c1__pagination {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c1 .header {
+  cursor: pointer;
+}
+
+.c1 tr.slideAnimate {
+  opacity: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+  -webkit-animation: fSLHgq 0.2s forwards;
+  animation: fSLHgq 0.2s forwards;
+}
+
+.c1 tbody tr:hover:not(.tabell__tr--disabled) td {
+  background: var(--navds-semantic-color-feedback-info-background) !important;
+}
+
+.c1 .tabell__tr--disabled {
+  background: var(--navds-color-disabled) !important;
+  color: var(--navds-color-disabled) !important;
+}
+
+.c1 .tabell__tr--disabled * {
+  color: var(--navds-color-disabled) !important;
+}
+
+.c1 .tabell thead th button,
+.c1 .tabell .tabell__thead th button,
+.c1 .tabell thead .tabell__th button,
+.c1 .tabell .tabell__thead .tabell__th button {
+  color: var(--navds-semantic-color-interaction-primary-default) !important;
+}
+
+.c1 .tabell thead th button:hover:not(:disabled),
+.c1 .tabell .tabell__thead th button:hover:not(:disabled),
+.c1 .tabell thead .tabell__th button:hover:not(:disabled),
+.c1 .tabell .tabell__thead .tabell__th button:hover:not(:disabled) {
+  color: var(--navds-semantic-color-interaction-primary-default) !important;
+  border-color: var(--navds-semantic-color-interaction-primary-default) !important;
+}
+
+.c1 .tabell thead th button:focus,
+.c1 .tabell .tabell__thead th button:focus,
+.c1 .tabell thead .tabell__th button:focus,
+.c1 .tabell .tabell__thead .tabell__th button:focus {
+  box-shadow: 0 0 0 3px var(--navds-semantic-color-focus) !important;
+}
+
+tabell.g68[id="c0"] {
+  content: "c1,";
+}
+
+.c3 {
+  position: relative;
+}
+
+tabell.g69[id="c2"] {
+  content: "c3,";
+}
+
+.c5 {
+  width: 100%;
+}
+
+tabell.g71[id="c4"] {
+  content: "c5,";
+}
+
+.c11 {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+tabell.g72[id="c10"] {
+  content: "c11,";
+}
+
+<TableFC
+  animatable={true}
+  columns={
+    Array [
+      Object {
+        "id": "string",
+        "label": "ui:string",
+        "type": "string",
+      },
+      Object {
+        "id": "date",
+        "label": "ui:date",
+        "type": "date",
+      },
+      Object {
+        "id": "object",
+        "label": "ui:variant",
+        "needle": [Function],
+        "renderCell": [Function],
+        "type": "object",
+      },
+    ]
+  }
+  id="test"
+  items={
+    Array [
+      Object {
+        "date": 2020-01-31T23:00:00.000Z,
+        "key": "01",
+        "object": Object {
+          "label": "Object 01",
+        },
+        "string": "String 01",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-01T23:00:00.000Z,
+        "key": "02",
+        "object": Object {
+          "label": "Object 02",
+        },
+        "string": "String 02",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-02T23:00:00.000Z,
+        "key": "03",
+        "object": Object {
+          "label": "Object 03",
+        },
+        "string": "String 03",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-03T23:00:00.000Z,
+        "key": "04",
+        "object": Object {
+          "label": "Object 04",
+        },
+        "string": "String 04",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-04T23:00:00.000Z,
+        "key": "05",
+        "object": Object {
+          "label": "Object 05",
+        },
+        "string": "String 05",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-05T23:00:00.000Z,
+        "key": "06",
+        "object": Object {
+          "label": "Object 06",
+        },
+        "string": "String 06",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-06T23:00:00.000Z,
+        "key": "07",
+        "object": Object {
+          "label": "Object 07",
+        },
+        "string": "String 07",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-07T23:00:00.000Z,
+        "key": "08",
+        "object": Object {
+          "label": "Object 08",
+        },
+        "string": "String 08",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-08T23:00:00.000Z,
+        "key": "09",
+        "object": Object {
+          "label": "Object 09",
+        },
+        "string": "String 09",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-09T23:00:00.000Z,
+        "key": "10",
+        "object": Object {
+          "label": "Object 10",
+        },
+        "string": "String 10",
+        "visible": true,
+      },
+      Object {
+        "date": 2020-02-10T23:00:00.000Z,
+        "key": "11",
+        "object": Object {
+          "label": "Object 11",
+        },
+        "string": "String 11",
+        "visible": true,
+      },
+    ]
+  }
+  itemsPerPage={5}
+  labels={
+    Object {
+      "string 01": "Tooltip for string 01",
+      "string 02": "Tooltip for string 02",
+      "string 03": "Tooltip for string 03",
+      "string 04": "Tooltip for string 04",
+      "string 05": "Tooltip for string 05",
+      "string 06": "Tooltip for string 06",
+      "string 07": "Tooltip for string 07",
+      "string 08": "Tooltip for string 08",
+      "string 09": "Tooltip for string 09",
+      "string 10": "Tooltip for string 10",
+      "string 11": "Tooltip for string 11",
+    }
+  }
+  loading={false}
+  onRowSelectChange={[MockFunction]}
+  pagination={true}
+  searchable={true}
+  selectable={true}
+  sortable={true}
+>
+  <styled.div
+    className=""
+    coloredSelectedRow={true}
+  >
+    <div
+      className="c0 c1"
+    >
+      <styled.div>
+        <div
+          className="c2 c3"
+        >
+          <Styled(Component)
+            cellSpacing="0"
+            className="tabell tabell__table"
+            size="medium"
+          >
+            <ForwardRef
+              cellSpacing="0"
+              className="c4 c5 tabell tabell__table"
+              size="medium"
+            >
+              <table
+                cellSpacing="0"
+                className="navds-table navds-table--medium c4 c5 tabell tabell__table"
+              >
+                <ForwardRef>
+                  <thead
+                    className="navds-table__header"
+                  >
+                    <ForwardRef
+                      className="tabell__header"
+                    >
+                      <tr
+                        className="navds-table__row tabell__header"
+                      >
+                        <ForwardRef
+                          style={
+                            Object {
+                              "width": 1,
+                            }
+                          }
+                        >
+                          <th
+                            className="navds-table__cell"
+                            style={
+                              Object {
+                                "width": 1,
+                              }
+                            }
+                          >
+                            <Styled(styled.div)>
+                              <div
+                                className="c6 c7 c8 c9"
+                              >
+                                <ForwardRef
+                                  checked={false}
+                                  className="tabell__checkAll-checkbox"
+                                  hideLabel={true}
+                                  id="tabell__checkAll-checkbox-id-test"
+                                  onChange={[Function]}
+                                >
+                                  <div
+                                    className="tabell__checkAll-checkbox navds-checkbox navds-checkbox--medium"
+                                  >
+                                    <input
+                                      aria-invalid={false}
+                                      checked={false}
+                                      className="navds-checkbox__input"
+                                      id="tabell__checkAll-checkbox-id-test"
+                                      onChange={[Function]}
+                                      type="checkbox"
+                                    />
+                                    <ForwardRef
+                                      as="label"
+                                      className="navds-checkbox__label"
+                                      htmlFor="tabell__checkAll-checkbox-id-test"
+                                      size="medium"
+                                    >
+                                      <label
+                                        className="navds-checkbox__label navds-body-short"
+                                        htmlFor="tabell__checkAll-checkbox-id-test"
+                                      >
+                                        <span
+                                          className="sr-only"
+                                        >
+                                          Velg alle
+                                        </span>
+                                      </label>
+                                    </ForwardRef>
+                                    <div
+                                      aria-live="polite"
+                                      aria-relevant="additions removals"
+                                      id="checkbox-error-9fb55aed-588a-4e28-95d0-e11262ecf8b1"
+                                    />
+                                  </div>
+                                </ForwardRef>
+                                <styled.div
+                                  aria-pressed={false}
+                                  role="button"
+                                >
+                                  <div
+                                    aria-pressed={false}
+                                    className="c10 c11"
+                                    role="button"
+                                  >
+                                    <ForwardRef(SvgSight)
+                                      className="tabell___seefilters-icon"
+                                      id="tabell__seefilters-icon-id"
+                                      onClick={[Function]}
+                                    >
+                                      <svg
+                                        className="tabell___seefilters-icon"
+                                        fill="none"
+                                        focusable={false}
+                                        height="1em"
+                                        id="tabell__seefilters-icon-id"
+                                        onClick={[Function]}
+                                        role="img"
+                                        viewBox="0 0 24 24"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          clipRule="evenodd"
+                                          d="M21.42 12C18.387 8.517 15.247 7 12 7s-6.387 1.517-9.42 5c3.033 3.483 6.173 5 9.42 5s6.387-1.517 9.42-5zM12 17a5 5 0 100-10 5 5 0 000 10zm12-5c-3.582-4.667-7.582-7-12-7S3.582 7.333 0 12c3.582 4.667 7.582 7 12 7s8.418-2.333 12-7zm-12 3a3 3 0 100-6 3 3 0 000 6zm0-2a1 1 0 100-2 1 1 0 000 2z"
+                                          fill="currentColor"
+                                          fillRule="evenodd"
+                                        />
+                                      </svg>
+                                    </ForwardRef(SvgSight)>
+                                  </div>
+                                </styled.div>
+                              </div>
+                            </Styled(styled.div)>
+                          </th>
+                        </ForwardRef>
+                        <ForwardRef
+                          aria-sort="none"
+                          className="header"
+                          key="th-string"
+                          role="columnheader"
+                        >
+                          <th
+                            aria-sort="none"
+                            className="navds-table__cell header"
+                            role="columnheader"
+                          >
+                            <button
+                              onClick={[Function]}
+                            >
+                              ui:string
+                            </button>
+                          </th>
+                        </ForwardRef>
+                        <ForwardRef
+                          aria-sort="none"
+                          className="header"
+                          key="th-date"
+                          role="columnheader"
+                        >
+                          <th
+                            aria-sort="none"
+                            className="navds-table__cell header"
+                            role="columnheader"
+                          >
+                            <button
+                              onClick={[Function]}
+                            >
+                              ui:date
+                            </button>
+                          </th>
+                        </ForwardRef>
+                        <ForwardRef
+                          aria-sort="none"
+                          className="header"
+                          key="th-object"
+                          role="columnheader"
+                        >
+                          <th
+                            aria-sort="none"
+                            className="navds-table__cell header"
+                            role="columnheader"
+                          >
+                            <button
+                              onClick={[Function]}
+                            >
+                              ui:variant
+                            </button>
+                          </th>
+                        </ForwardRef>
+                      </tr>
+                    </ForwardRef>
+                  </thead>
+                </ForwardRef>
+                <ForwardRef
+                  className="striped"
+                  key="tbody--1"
+                >
+                  <tbody
+                    className="navds-table__body striped"
+                  >
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      id="tabell-test__row-01"
+                      key="01_sort_none"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "animationDelay": "0s",
+                        }
+                      }
+                    >
+                      <td
+                        title="Velg 01"
+                      >
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
+                          >
+                            <ForwardRef
+                              checked={false}
+                              data-test-id="tabell-test__row-select-01"
+                              disabled={false}
+                              hideLabel={true}
+                              id="tabell-test__row-select-01"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="navds-checkbox navds-checkbox--medium"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="navds-checkbox__input"
+                                  data-test-id="tabell-test__row-select-01"
+                                  disabled={false}
+                                  id="tabell-test__row-select-01"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <ForwardRef
+                                  as="label"
+                                  className="navds-checkbox__label"
+                                  htmlFor="tabell-test__row-select-01"
+                                  size="medium"
+                                >
+                                  <label
+                                    className="navds-checkbox__label navds-body-short"
+                                    htmlFor="tabell-test__row-select-01"
+                                  >
+                                    <span
+                                      className="sr-only"
+                                    />
+                                  </label>
+                                </ForwardRef>
+                                <div
+                                  aria-live="polite"
+                                  aria-relevant="additions removals"
+                                  id="checkbox-error-5c99ea99-26f8-4c2c-80d9-681b36754235"
+                                />
+                              </div>
+                            </ForwardRef>
+                          </div>
+                        </Styled(styled.div)>
+                      </td>
+                      <td
+                        className=""
+                        key="01-column-string"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            <span>
+                              String 01
+                            </span>
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="01-column-date"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            01/02/2020
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="01-column-object"
+                      >
+                        <span>
+                          Object 01
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      id="tabell-test__row-02"
+                      key="02_sort_none"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "animationDelay": "0.01s",
+                        }
+                      }
+                    >
+                      <td
+                        title="Velg 02"
+                      >
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
+                          >
+                            <ForwardRef
+                              checked={false}
+                              data-test-id="tabell-test__row-select-02"
+                              disabled={false}
+                              hideLabel={true}
+                              id="tabell-test__row-select-02"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="navds-checkbox navds-checkbox--medium"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="navds-checkbox__input"
+                                  data-test-id="tabell-test__row-select-02"
+                                  disabled={false}
+                                  id="tabell-test__row-select-02"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <ForwardRef
+                                  as="label"
+                                  className="navds-checkbox__label"
+                                  htmlFor="tabell-test__row-select-02"
+                                  size="medium"
+                                >
+                                  <label
+                                    className="navds-checkbox__label navds-body-short"
+                                    htmlFor="tabell-test__row-select-02"
+                                  >
+                                    <span
+                                      className="sr-only"
+                                    />
+                                  </label>
+                                </ForwardRef>
+                                <div
+                                  aria-live="polite"
+                                  aria-relevant="additions removals"
+                                  id="checkbox-error-6a31759a-350c-4d67-9cb3-b670b7931302"
+                                />
+                              </div>
+                            </ForwardRef>
+                          </div>
+                        </Styled(styled.div)>
+                      </td>
+                      <td
+                        className=""
+                        key="02-column-string"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            <span>
+                              String 02
+                            </span>
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="02-column-date"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            02/02/2020
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="02-column-object"
+                      >
+                        <span>
+                          Object 02
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      id="tabell-test__row-03"
+                      key="03_sort_none"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "animationDelay": "0.02s",
+                        }
+                      }
+                    >
+                      <td
+                        title="Velg 03"
+                      >
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
+                          >
+                            <ForwardRef
+                              checked={false}
+                              data-test-id="tabell-test__row-select-03"
+                              disabled={false}
+                              hideLabel={true}
+                              id="tabell-test__row-select-03"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="navds-checkbox navds-checkbox--medium"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="navds-checkbox__input"
+                                  data-test-id="tabell-test__row-select-03"
+                                  disabled={false}
+                                  id="tabell-test__row-select-03"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <ForwardRef
+                                  as="label"
+                                  className="navds-checkbox__label"
+                                  htmlFor="tabell-test__row-select-03"
+                                  size="medium"
+                                >
+                                  <label
+                                    className="navds-checkbox__label navds-body-short"
+                                    htmlFor="tabell-test__row-select-03"
+                                  >
+                                    <span
+                                      className="sr-only"
+                                    />
+                                  </label>
+                                </ForwardRef>
+                                <div
+                                  aria-live="polite"
+                                  aria-relevant="additions removals"
+                                  id="checkbox-error-c36a6962-df26-405c-b02b-108884a50d36"
+                                />
+                              </div>
+                            </ForwardRef>
+                          </div>
+                        </Styled(styled.div)>
+                      </td>
+                      <td
+                        className=""
+                        key="03-column-string"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            <span>
+                              String 03
+                            </span>
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="03-column-date"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            03/02/2020
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="03-column-object"
+                      >
+                        <span>
+                          Object 03
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      id="tabell-test__row-04"
+                      key="04_sort_none"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "animationDelay": "0.03s",
+                        }
+                      }
+                    >
+                      <td
+                        title="Velg 04"
+                      >
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
+                          >
+                            <ForwardRef
+                              checked={false}
+                              data-test-id="tabell-test__row-select-04"
+                              disabled={false}
+                              hideLabel={true}
+                              id="tabell-test__row-select-04"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="navds-checkbox navds-checkbox--medium"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="navds-checkbox__input"
+                                  data-test-id="tabell-test__row-select-04"
+                                  disabled={false}
+                                  id="tabell-test__row-select-04"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <ForwardRef
+                                  as="label"
+                                  className="navds-checkbox__label"
+                                  htmlFor="tabell-test__row-select-04"
+                                  size="medium"
+                                >
+                                  <label
+                                    className="navds-checkbox__label navds-body-short"
+                                    htmlFor="tabell-test__row-select-04"
+                                  >
+                                    <span
+                                      className="sr-only"
+                                    />
+                                  </label>
+                                </ForwardRef>
+                                <div
+                                  aria-live="polite"
+                                  aria-relevant="additions removals"
+                                  id="checkbox-error-3ec5072d-bfe3-498d-b8ab-62cd675ea073"
+                                />
+                              </div>
+                            </ForwardRef>
+                          </div>
+                        </Styled(styled.div)>
+                      </td>
+                      <td
+                        className=""
+                        key="04-column-string"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            <span>
+                              String 04
+                            </span>
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="04-column-date"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            04/02/2020
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="04-column-object"
+                      >
+                        <span>
+                          Object 04
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      aria-selected={false}
+                      className="slideAnimate"
+                      id="tabell-test__row-05"
+                      key="05_sort_none"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "animationDelay": "0.04s",
+                        }
+                      }
+                    >
+                      <td
+                        title="Velg 05"
+                      >
+                        <Styled(styled.div)>
+                          <div
+                            className="c6 c7 c8 c9"
+                          >
+                            <ForwardRef
+                              checked={false}
+                              data-test-id="tabell-test__row-select-05"
+                              disabled={false}
+                              hideLabel={true}
+                              id="tabell-test__row-select-05"
+                              onChange={[Function]}
+                            >
+                              <div
+                                className="navds-checkbox navds-checkbox--medium"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  checked={false}
+                                  className="navds-checkbox__input"
+                                  data-test-id="tabell-test__row-select-05"
+                                  disabled={false}
+                                  id="tabell-test__row-select-05"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                />
+                                <ForwardRef
+                                  as="label"
+                                  className="navds-checkbox__label"
+                                  htmlFor="tabell-test__row-select-05"
+                                  size="medium"
+                                >
+                                  <label
+                                    className="navds-checkbox__label navds-body-short"
+                                    htmlFor="tabell-test__row-select-05"
+                                  >
+                                    <span
+                                      className="sr-only"
+                                    />
+                                  </label>
+                                </ForwardRef>
+                                <div
+                                  aria-live="polite"
+                                  aria-relevant="additions removals"
+                                  id="checkbox-error-9770fb88-5521-4e55-997c-aab69312062f"
+                                />
+                              </div>
+                            </ForwardRef>
+                          </div>
+                        </Styled(styled.div)>
+                      </td>
+                      <td
+                        className=""
+                        key="05-column-string"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            <span>
+                              String 05
+                            </span>
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="05-column-date"
+                      >
+                        <ForwardRef>
+                          <p
+                            className="navds-body-long"
+                          >
+                            05/02/2020
+                          </p>
+                        </ForwardRef>
+                      </td>
+                      <td
+                        className=""
+                        key="05-column-object"
+                      >
+                        <span>
+                          Object 05
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </ForwardRef>
+              </table>
+            </ForwardRef>
+          </Styled(Component)>
+          <Styled(Styled(styled.div))>
+            <div
+              className="c6 c7 c12 c8 c9 c13"
+            >
+              <div />
+              <div />
+              <h
+                currentPage={1}
+                itemsPerPage={5}
+                numberOfItems={11}
+                onChange={[Function]}
+              >
+                <mr
+                  highContrast={false}
+                >
+                  <Styled(styled.div)
+                    className=""
+                  >
+                    <div
+                      className="c14 c15 c16 c17"
+                    >
+                      <ForwardRef
+                        className="c-pagination__prev-button"
+                        disabled={true}
+                        key="prev"
+                        onClick={[Function]}
+                        size="small"
+                        variant="tertiary"
+                      >
+                        <button
+                          className="c-pagination__prev-button navds-button navds-button--tertiary navds-button--small"
+                          disabled={true}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="span"
+                            className="navds-button__inner"
+                            size="small"
+                          >
+                            <span
+                              className="navds-button__inner navds-body-short navds-body-short--small"
+                            >
+                              ◄
+                            </span>
+                          </ForwardRef>
+                        </button>
+                      </ForwardRef>
+                      <div
+                        key="page_0"
+                      >
+                        <ForwardRef
+                          className="c-pagination__page-button"
+                          disabled={true}
+                          onClick={[Function]}
+                          size="small"
+                          variant="tertiary"
+                        >
+                          <button
+                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
+                            disabled={true}
+                            onClick={[Function]}
+                          >
+                            <ForwardRef
+                              as="span"
+                              className="navds-button__inner"
+                              size="small"
+                            >
+                              <span
+                                className="navds-button__inner navds-body-short navds-body-short--small"
+                              >
+                                1
+                              </span>
+                            </ForwardRef>
+                          </button>
+                        </ForwardRef>
+                      </div>
+                      <div
+                        key="page_1"
+                      >
+                        <ForwardRef
+                          className="c-pagination__page-button"
+                          disabled={false}
+                          onClick={[Function]}
+                          size="small"
+                          variant="tertiary"
+                        >
+                          <button
+                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
+                            disabled={false}
+                            onClick={[Function]}
+                          >
+                            <ForwardRef
+                              as="span"
+                              className="navds-button__inner"
+                              size="small"
+                            >
+                              <span
+                                className="navds-button__inner navds-body-short navds-body-short--small"
+                              >
+                                2
+                              </span>
+                            </ForwardRef>
+                          </button>
+                        </ForwardRef>
+                      </div>
+                      <div
+                        key="page_2"
+                      >
+                        <ForwardRef
+                          className="c-pagination__page-button"
+                          disabled={false}
+                          onClick={[Function]}
+                          size="small"
+                          variant="tertiary"
+                        >
+                          <button
+                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
+                            disabled={false}
+                            onClick={[Function]}
+                          >
+                            <ForwardRef
+                              as="span"
+                              className="navds-button__inner"
+                              size="small"
+                            >
+                              <span
+                                className="navds-button__inner navds-body-short navds-body-short--small"
+                              >
+                                3
+                              </span>
+                            </ForwardRef>
+                          </button>
+                        </ForwardRef>
+                      </div>
+                      <ForwardRef
+                        className="c-pagination__next-button"
+                        disabled={false}
+                        key="next"
+                        onClick={[Function]}
+                        size="small"
+                        variant="tertiary"
+                      >
+                        <button
+                          className="c-pagination__next-button navds-button navds-button--tertiary navds-button--small"
+                          disabled={false}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="span"
+                            className="navds-button__inner"
+                            size="small"
+                          >
+                            <span
+                              className="navds-button__inner navds-body-short navds-body-short--small"
+                            >
+                              ►
+                            </span>
+                          </ForwardRef>
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </Styled(styled.div)>
+                </mr>
+              </h>
+            </div>
+          </Styled(Styled(styled.div))>
+        </div>
+      </styled.div>
+    </div>
+  </styled.div>
+</TableFC>
+`;
