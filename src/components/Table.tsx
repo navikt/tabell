@@ -1,4 +1,4 @@
-import { AddCircle, Delete, Edit, Sight } from '@navikt/ds-icons'
+import { AddCircle, ErrorFilled, SuccessFilled, Delete, Edit, Sight } from '@navikt/ds-icons'
 import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
@@ -354,7 +354,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               handleRowEdited(item, undefined)
             }}
           >
-            <AddCircle title={_labels.saveChanges} />
+            <SuccessFilled color='green' title={_labels.saveChanges} />
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
           <Button
@@ -369,9 +369,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               _setEditingRows(newEditingRows)
             }}
           >
-            <div style={{transform: 'rotate(45deg);' }}>
-              <AddCircle title={_labels.cancelChanges} />
-            </div>
+            <ErrorFilled color='red' title={_labels.cancelChanges} />
           </Button>
         </FlexStartDiv>
       )
@@ -407,7 +405,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               }
             }}
           >
-            <Delete  title={_labels.delete} />
+            <Delete title={_labels.delete} />
           </Button>
         </FlexStartDiv>
       )
@@ -526,7 +524,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   }}
                 >
                   <AddCircle title={_labels.addLabel} />
-                  {_labels.addLabel}
                 </Button>
               </td>
             )

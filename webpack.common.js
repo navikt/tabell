@@ -102,13 +102,13 @@ module.exports = {
       amd: 'lodash',
       root: '_'
     },
-    'md5': {
+    md5: {
       commonjs: "md5",
       commonjs2: "md5",
       amd: "md5",
       root: "md5"
     },
-    'moment': {
+    moment: {
       commonjs: "moment",
       commonjs2: "moment",
       amd: "moment",
