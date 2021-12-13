@@ -1,4 +1,4 @@
-import { AddCircle, ErrorFilled, SuccessFilled, Delete, Edit, Sight } from '@navikt/ds-icons'
+import { AddCircle, ErrorFilled, ExpandFilled, CollapseFilled, NextFilled, SuccessFilled, Delete, Edit, Sight } from '@navikt/ds-icons'
 import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
@@ -576,17 +576,21 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
 
               )}
               {item.hasSubrows && (
-                <Button
-                  size="small"
-                  variant="secondary"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    e.preventDefault()
-                    toggleSubRowOpen(item)
-                  }}
-                >
-                  {item.openSubrows ? (_sort.order === 'asc' ? '▼' : '▲') : '►'}
-                </Button>
+                <>
+                  <HorizontalSeparatorDiv size='0.3'/>
+                  <Button
+                    size="small"
+                    variant="secondary"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      e.preventDefault()
+                      toggleSubRowOpen(item)
+                    }}
+                  >
+                    {item.openSubrows ? (_sort.order === 'asc' ? <ExpandFilled/> : <CollapseFilled/>) :  <NextFilled/>}
+                  </Button>
+                  <HorizontalSeparatorDiv size='0.3'/>
+                </>
               )}
             </FlexCenterDiv>
           </td>

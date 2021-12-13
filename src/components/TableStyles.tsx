@@ -32,7 +32,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     background: ${(props) => props.coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary-default)' : 'inherit'};
   }
   &.error {
-    border-color: var(--navds-color-error-border) !important;
+    border-color: var(--navds-tag-color-error-border) !important;
     border-width: 3px !important;
     border-style: solid !important;
   }
@@ -50,7 +50,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   }
   tbody.striped {  
     tr:nth-child(odd) {
-      background: var(--navds-color-background);
+      background: var(--navds-semantic-color-canvas-background);
     }
     tr:nth-child(even) {
       background: var(--navds-semantic-color-component-background-light);  
@@ -75,13 +75,13 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
   tbody tr:hover:not(.tabell__tr--disabled) td {
-    background: var(--navds-semantic-color-feedback-info-background) !important;
+    background: var(--navds-semantic-color-interaction-primary-hover) !important;
   }
   .tabell__tr--disabled {
-    background: var(--navds-color-disabled) !important;
-    color: var(--navds-color-disabled) !important;
+    background: var(--navds-semantic-color-component-background-alternate) !important;
+    color: var(--navds-semantic-color-text) !important;
     * {
-      color: var(--navds-color-disabled) !important;
+      color: var(--navds-semantic-color-text) !important;
     }
   }
 

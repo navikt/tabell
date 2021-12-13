@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     height: 100%;
     color: var(--navds-color-text-primary);
-    background-color: var(--navds-color-background);
+    background-color: var(--navds-semantic-color-canvas-background);
     line-height: 1.42857143;
     font-family: 'Source Sans Pro', Arial, sans-serif;
   }
