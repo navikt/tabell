@@ -52,6 +52,7 @@ const MarginTable = styled(NavTable)`
 const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
 
   const [_highContrast, _setHighContrast] = useState<boolean>(highContrast)
+  const [coloredSelectedRow, setColoredSelectedRow] = useState<boolean>(true)
   const [loading, setLoading] = useState(false)
   const [animatable, setAnimatable] = useState(true)
   const [searchable, setSearchable] = useState(true)
@@ -100,6 +101,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
         <FlexDiv>
           <SmallDiv>
             <Checkbox checked={loading} onChange={() => setLoading(!loading)} >Toggle loading prop</Checkbox>
+            <Checkbox checked={coloredSelectedRow} onChange={() => setColoredSelectedRow(!coloredSelectedRow)} >Toggle colored selected row</Checkbox>
             <Checkbox checked={animatable} onChange={() => setAnimatable(!animatable)} >Toggle animation</Checkbox>
             <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Toggle searchable</Checkbox>
             <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Toggle selectable</Checkbox>
@@ -155,6 +157,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             { key: '26', name: 'Ziggy', date: new Date(1929, 1, 14), type: 'Zoo keeper' }
           ]}
           highContrast={_highContrast}
+          coloredSelectedRow={coloredSelectedRow}
           itemsPerPage={itemsPerPage}
           loading={loading}
           sort={{ column: 'name', order: 'asc' }}
@@ -214,6 +217,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             '     { key: \'26\', name: \'Ziggy\', date: new Date(1929, 1, 14), type: \'Zoo keeper\' }\n' +
             '   ]}\n' +
             '   itemsPerPage={ {{itemsPerPage}} }\n' +
+            '   coloredSelectedRow={ {{coloredSelectedRow}} }\n' +
             '   loading={ {{loading}} }\n' +
             '   animatable={ {{animatable}} }\n' +
             '   searchable={ {{searchable}} }\n' +
@@ -233,6 +237,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             '/>', {
             loading: loading,
             itemsPerPage: itemsPerPage,
+            coloredSelectedRow: coloredSelectedRow,
             animatable: animatable,
             searchable: searchable,
             selectable: selectable,

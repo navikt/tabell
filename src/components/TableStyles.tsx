@@ -29,7 +29,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     }
   }
   tr.tabell__tr--valgt td {
-    background: ${(props) => props.coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary-default)' : 'inherit'};
+    background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary)' : 'inherit'};
   }
   &.error {
     border-color: var(--navds-tag-color-error-border) !important;
@@ -75,7 +75,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
   tbody tr:hover:not(.tabell__tr--disabled) td {
-    background: var(--navds-semantic-color-interaction-primary-hover) !important;
+    background: var(--navds-semantic-color-interaction-primary-hover-subtle) !important;
   }
   .tabell__tr--disabled {
     background: var(--navds-semantic-color-component-background-alternate) !important;
