@@ -8,7 +8,7 @@ import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
 import styled, { createGlobalStyle } from 'styled-components'
 import NavHighContrast, { VerticalSeparatorDiv } from 'nav-hoykontrast'
 import NavTable from 'components/Table'
-import { Item } from 'index.d'
+import { Column, Item } from 'index.d'
 import '@navikt/ds-css'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)
@@ -55,6 +55,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   const [coloredSelectedRow, setColoredSelectedRow] = useState<boolean>(true)
   const [loading, setLoading] = useState(false)
   const [animatable, setAnimatable] = useState(true)
+  const [editable, setEditable] = useState(false)
   const [searchable, setSearchable] = useState(true)
   const [selectable, setSelectable] = useState(true)
   const [sortable, setSortable] = useState(true)
@@ -69,6 +70,20 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
     }
   }, [highContrast])
 
+  let columns: Array<Column> = [
+    { id: 'name', label: 'Name', type: 'string', filterText: '' },
+    { id: 'date', label: 'Date', type: 'date', filterText: '' },
+    {
+      id: 'type',
+      label: 'Occupation',
+      type: 'string',
+      filterText: '',
+      renderCell: (item: Item, value: any) => <Detail >{value}</Detail>
+    }
+  ]
+  if (editable) {
+    columns.push({id: 'buttons', label: '', type: 'buttons'})
+  }
   return (
     <>
       <GlobalStyle />
@@ -103,6 +118,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             <Checkbox checked={loading} onChange={() => setLoading(!loading)} >Toggle loading prop</Checkbox>
             <Checkbox checked={coloredSelectedRow} onChange={() => setColoredSelectedRow(!coloredSelectedRow)} >Toggle colored selected row</Checkbox>
             <Checkbox checked={animatable} onChange={() => setAnimatable(!animatable)} >Toggle animation</Checkbox>
+            <Checkbox checked={editable} onChange={() => setEditable(!editable)} >Toggle editable</Checkbox>
             <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Toggle searchable</Checkbox>
             <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Toggle selectable</Checkbox>
             <Checkbox checked={sortable} onChange={() => setSortable(!sortable)} >Toggle sortable</Checkbox>
@@ -125,6 +141,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
         <VerticalSeparatorDiv size='2'/>
 
         <MarginTable
+          key={'' + editable}
           items={[
             { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true },
             { key: '02', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
@@ -164,21 +181,12 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
           animatable={animatable}
           searchable={searchable}
           selectable={selectable}
+          editable={editable}
           sortable={sortable}
           striped={striped}
           summary={summary}
           compact={compact}
-          columns={[
-            { id: 'name', label: 'Name', type: 'string', filterText: '' },
-            { id: 'date', label: 'Date', type: 'date', filterText: '' },
-            {
-              id: 'type',
-              label: 'Occupation',
-              type: 'string',
-              filterText: '',
-              renderCell: (item: Item, value: any) => <Detail >{value}</Detail>
-            }
-          ]}
+          columns={columns}
         />
         <VerticalSeparatorDiv size='2'/>
 
@@ -220,6 +228,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             '   coloredSelectedRow={ {{coloredSelectedRow}} }\n' +
             '   loading={ {{loading}} }\n' +
             '   animatable={ {{animatable}} }\n' +
+            '   editable={ {{editable}} }\n' +
             '   searchable={ {{searchable}} }\n' +
             '   selectable={ {{selectable}} }\n' +
             '   sortable={ {{sortable}} }\n' +
@@ -227,24 +236,20 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             '   summary={ {{summary}} }\n' +
             '   compact={ {{compact}} }\n' +
             '   sort={{ column: \'name\', order: \'ascending\' }}\n' +
-            '   columns={[\n' +
-            '     {id: \'name\', label: \'Name\', type: \'string\', filterText: \'\' },\n' +
-            '     {id: \'date\', label: \'Date\', type: \'date\', filterText: \'\' },\n' +
-            '     {id: \'type\', label: \'Occupation\', type: \'string\', filterText: \'\',\n' +
-            '       renderCell: (item, value) => <EtikettLiten>{value}</EtikettLiten>\n' +
-            '     }\n' +
-            '   ]}' +
+            '   columns={ {{{columns}}} }' +
             '/>', {
             loading: loading,
             itemsPerPage: itemsPerPage,
             coloredSelectedRow: coloredSelectedRow,
             animatable: animatable,
+            editable: editable,
             searchable: searchable,
             selectable: selectable,
             sortable: sortable,
             striped: striped,
             summary: summary,
-            compact: compact
+            compact: compact,
+            columns: JSON.stringify(columns)
           })}
         </SyntaxHighlighter>
         <VerticalSeparatorDiv size='2'/>

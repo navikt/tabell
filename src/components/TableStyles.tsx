@@ -10,11 +10,15 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     padding: inherit;
   }
 
+  .tabell__buttons { 
+    margin-top: 8px;
+  }
   display: block !important;
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
   } 
+  
   &.compact {
     td, th {
       padding: 0.35rem !important;
@@ -69,6 +73,10 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .header {
     cursor: pointer;
   }
+  th.buttons {
+     width: 1px;
+  }
+  
   tr.slideAnimate {
     opacity: 0;
     transform: translateX(-20px);

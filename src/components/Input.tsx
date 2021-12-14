@@ -12,6 +12,8 @@ export interface InputProps {
   onEnterPress?: (e: string) => void
   placeholder?: string
   required ?: boolean
+  size?: 'medium' | 'small'
+  style ?: any
   type?: "number" | "text" | "email" | "password" | "tel" | "url" | undefined
   value: string | undefined
 }
@@ -26,6 +28,8 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   required = false,
   type = 'text',
+  size = 'medium',
+  style={},
   value
 }: InputProps) => {
   const [_value, _setValue] = useState<string>(value ?? '')
@@ -39,6 +43,8 @@ const Input: React.FC<InputProps> = ({
       data-test-id={id}
       error={feil}
       id={id}
+      size={size}
+      style={style}
       label={label}
       onBlur={() => {
         if (_dirty) {

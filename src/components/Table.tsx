@@ -1,26 +1,31 @@
-import { AddCircle, ErrorFilled, ExpandFilled, CollapseFilled, NextFilled, SuccessFilled, Delete, Edit, Sight } from '@navikt/ds-icons'
+import {
+  AddCircle,
+  CollapseFilled,
+  Delete,
+  Edit,
+  ErrorFilled,
+  ExpandFilled,
+  NextFilled
+} from '@navikt/ds-icons'
+import { BodyLong, Button, Checkbox, Loader, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
-import {
-  FlexCenterDiv,
-  FlexCenterSpacedDiv,
-  FlexStartDiv,
-  HorizontalSeparatorDiv
-} from 'nav-hoykontrast'
+import 'nav-frontend-tabell-style/dist/main.css'
+import { FlexCenterDiv, FlexCenterSpacedDiv, FlexStartDiv, HorizontalSeparatorDiv, PaddedDiv } from 'nav-hoykontrast'
 import Pagination from 'paginering'
 import PT from 'prop-types'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
+import Filter from 'resources/Filter'
+import Save from 'resources/Save'
 import defaultLabels from './Table.labels'
 import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable } from './TableStyles'
-import { BodyLong, Checkbox, Button, Table, Loader } from '@navikt/ds-react'
-import 'nav-frontend-tabell-style/dist/main.css'
 
 const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
@@ -288,7 +293,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             setValue: (entries) => handleEditRowChange(entries, item)
           })
         : (
-          <Input
+          <PaddedDiv size='0.25'>
+            <Input
+            style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
             feil={feil?.[column.id]}
@@ -305,6 +312,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
             }, item)}
           />
+          </PaddedDiv>
           )
     } else {
       return _.isFunction(column.renderCell)
@@ -345,6 +353,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       return (
         <FlexStartDiv className='tabell__buttons'>
           <Button
+            title={_labels.saveChanges}
             variant="secondary"
             size="small"
             aria-label={_labels.saveChanges}
@@ -354,7 +363,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               handleRowEdited(item, undefined)
             }}
           >
-            <SuccessFilled color='green' title={_labels.saveChanges} />
+            <Save color='green' />
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
           <Button
@@ -369,7 +378,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               _setEditingRows(newEditingRows)
             }}
           >
-            <ErrorFilled color='red' title={_labels.cancelChanges} />
+            <ErrorFilled width='24' height='24' color='red' title={_labels.cancelChanges} />
           </Button>
         </FlexStartDiv>
       )
@@ -424,7 +433,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             setValue: (entries) => handleEditRowChange(entries, item)
           })
         : (
-          <Input
+          <PaddedDiv size='0.25'>
+            <Input
+            style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
             feil={feil && feil[column.id]}
@@ -439,6 +450,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               [column.id]: newText
             }, item)}
           />
+          </PaddedDiv>
           )
     } else {
       return _.isFunction(column.renderCell)
@@ -489,7 +501,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                         setValue: handleNewRowChange
                       })
                     : (
+                      <PaddedDiv size='0.25'>
                       <Input
+                        style={{marginTop: '0px'}}
                         id={'tabell__edit-' + column.id + '-input-id'}
                         className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
                         label=''
@@ -503,6 +517,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                         }}
                         onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
                       />
+                      </PaddedDiv>
                       )
                 }
               </td>
@@ -950,27 +965,31 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                       </Checkbox>
                     )}
                     {searchable && (
-                      <FilterIcon role='button' aria-pressed={_seeFilters}>
-                        <Sight
-                          className='tabell___seefilters-icon'
-                          id='tabell__seefilters-icon-id'
-                          onClick={() => _setSeeFilters(!_seeFilters)}
-                        />
+                      <FilterIcon
+                        role='button'
+                        title='Filter'
+                        aria-pressed={_seeFilters}
+                        className='tabell___seefilters-icon'
+                        id='tabell__seefilters-icon-id'
+                        onClick={() => _setSeeFilters(!_seeFilters)}>
+                        <Filter/>
                       </FilterIcon>)}
                   </FlexCenterDiv>
                 </Table.HeaderCell>
                 {_columns.map((column) => {
                   const filterText: string = column.filterText ? column.filterText.toLowerCase() : ''
+                  console.log(column)
                   return (
                     <Table.HeaderCell
                       role='columnheader'
                       aria-sort={_sort.column === column.id ? ariaSortLabel[_sort.order] : 'none'}
                       key={'th-' + column.id}
-                      className={classNames('header', sortClass(column))}
+                      className={classNames('header', sortClass(column), {buttons: column.type === 'buttons'})}
                     >
                       {sortable && column.label
                         ? (
-                          <button
+                          <Button
+                            size='small'
                             onClick={(e: any) => {
                               e.preventDefault()
                               e.stopPropagation()
@@ -978,7 +997,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                             }}
                           >
                             {column.label + (filterText ? ' (' + filterText + ')' : '')}
-                          </button>
+                          </Button>
                           )
                         : column.label + (filterText ? ' (' + filterText + ')' : '')}
                     </Table.HeaderCell>
@@ -992,13 +1011,18 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     if (column.type !== 'buttons') {
                       return (
                         <Table.DataCell key={column.id}>
+                          <PaddedDiv size='0.2'>
                           <Input
+                            size='small'
+                            style={{marginTop: '0px'}}
                             className='tabell__sort-input'
                             id={'tabell__sort-' + column.id + '-input-id'}
                             label=''
                             value={column.filterText || ''}
+                            onEnterPress={(e: string) => handleFilterChange(column, e)}
                             onChanged={(e: string) => handleFilterChange(column, e)}
                           />
+                          </PaddedDiv>
                         </Table.DataCell>
                       )
                     }
