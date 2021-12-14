@@ -58,6 +58,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   const [editable, setEditable] = useState(false)
   const [searchable, setSearchable] = useState(true)
   const [selectable, setSelectable] = useState(true)
+  const [showSelectAll, setShowSelectAll] = useState(true)
   const [sortable, setSortable] = useState(true)
   const [striped, setStriped] = useState(true)
   const [summary, setSummary] = useState(true)
@@ -121,6 +122,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             <Checkbox checked={editable} onChange={() => setEditable(!editable)} >Toggle editable</Checkbox>
             <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Toggle searchable</Checkbox>
             <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Toggle selectable</Checkbox>
+            <Checkbox checked={showSelectAll} onChange={() => setShowSelectAll(!showSelectAll)} >Toggle show select all</Checkbox>
             <Checkbox checked={sortable} onChange={() => setSortable(!sortable)} >Toggle sortable</Checkbox>
             <Checkbox checked={striped} onChange={() => setStriped(!striped)} >Toggle striped</Checkbox>
             <Checkbox checked={summary} onChange={() => setSummary(!summary)} >Toggle summary</Checkbox>
@@ -181,6 +183,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
           animatable={animatable}
           searchable={searchable}
           selectable={selectable}
+          showSelectAll={showSelectAll}
           editable={editable}
           sortable={sortable}
           striped={striped}
@@ -231,6 +234,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             '   editable={ {{editable}} }\n' +
             '   searchable={ {{searchable}} }\n' +
             '   selectable={ {{selectable}} }\n' +
+            '   showSelectAll={ {{showSelectAll}} }\n' +
             '   sortable={ {{sortable}} }\n' +
             '   striped={ {{striped}} }\n' +
             '   summary={ {{summary}} }\n' +
@@ -245,6 +249,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             editable: editable,
             searchable: searchable,
             selectable: selectable,
+            showSelectAll: showSelectAll,
             sortable: sortable,
             striped: striped,
             summary: summary,

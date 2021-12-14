@@ -53,6 +53,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   pagination = true,
   searchable = true,
   selectable = false,
+  showSelectAll = true,
   sortable = true,
   striped = true,
   summary = false,
@@ -953,17 +954,21 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <Table.Row className='tabell__header'>
                 <Table.HeaderCell style={{ width: 1 }}>
                   <FlexCenterDiv>
+                    {/* I am doing like this as I still want to keep the sape reserved for the checkbox */}
                     {selectable && (
-                      <Checkbox
-                        hideLabel
-                        id={'tabell__checkAll-checkbox-id-' + id}
-                        className='tabell__checkAll-checkbox'
-                        checked={_checkAll}
-                        onChange={onCheckAllClicked}
-                      >
-                        {_labels.selectAll}
-                      </Checkbox>
-                    )}
+                      <div style={{visibility: showSelectAll ? 'inherit' : 'hidden'}}>
+                        <Checkbox
+                          key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
+                          hideLabel
+                          id={'tabell__checkAll-checkbox-id-' + id}
+                          className='tabell__checkAll-checkbox'
+                          checked={_checkAll}
+                          onChange={onCheckAllClicked}
+                        >
+                          {_labels.selectAll}
+                        </Checkbox>
+                      </div>
+                      )}
                     {searchable && (
                       <FilterIcon
                         role='button'
@@ -978,7 +983,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 </Table.HeaderCell>
                 {_columns.map((column) => {
                   const filterText: string = column.filterText ? column.filterText.toLowerCase() : ''
-                  console.log(column)
                   return (
                     <Table.HeaderCell
                       role='columnheader'

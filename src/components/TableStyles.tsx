@@ -94,6 +94,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   }
 
   .tabell thead th button, .tabell .tabell__thead th button, .tabell thead .tabell__th button, .tabell .tabell__thead .tabell__th button {
+    display: flex;
     color: var(--navds-semantic-color-interaction-primary-default) !important;
     &:hover:not(:disabled) {
       color: var(--navds-semantic-color-interaction-primary-default) !important;
