@@ -95,10 +95,10 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
 
   .tabell thead th button, .tabell .tabell__thead th button, .tabell thead .tabell__th button, .tabell .tabell__thead .tabell__th button {
     display: flex;
-    color: var(--navds-semantic-color-interaction-primary-default) !important;
+    color: var(--navds-semantic-color-interaction-primary) !important;
     &:hover:not(:disabled) {
-      color: var(--navds-semantic-color-interaction-primary-default) !important;
-      border-color: var(--navds-semantic-color-interaction-primary-default) !important;
+      color: var(--navds-semantic-color-interaction-primary) !important;
+      border-color: var(--navds-semantic-color-interaction-primary) !important;
     }
     &:focus {
       box-shadow: 0 0 0 3px var(--navds-semantic-color-focus) !important;
