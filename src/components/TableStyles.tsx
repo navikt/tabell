@@ -3,36 +3,30 @@ import styled  from 'styled-components'
 import { Table } from '@navikt/ds-react'
 
 export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
-
-
   .tabell td,
   .tabell th,
   .tabell .tabell__td,
   .tabell .tabell__th {
     padding: inherit;
   }
-
   .tabell__buttons { 
     margin-top: 8px;
   }
-  display: block !important;
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
   } 
- 
-    td, th {
-      padding: 0.35rem !important;
-    }
-    thead th button {
-      white-space: break-spaces !important;
-      margin: 0rem !important;
-      padding: 0rem 0.2rem !important;
-      width: 100% !important;
-      display: contents;
-      color: var(--navds-semantic-color-interaction-primary-hover);
-    }
-  
+  td, th {
+    padding: 0.35rem !important;
+  }
+  thead th button {
+    white-space: break-spaces !important;
+    margin: 0rem !important;
+    padding: 0rem 0.2rem !important;
+    width: 100% !important;
+    display: contents;
+    color: var(--navds-semantic-color-interaction-primary-hover);
+  }
   tr.tabell__tr--valgt td {
     background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary)' : 'inherit'};
   }

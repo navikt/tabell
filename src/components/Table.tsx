@@ -951,7 +951,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         </div>
       )}
       <TableDiv
-
         className={classNames({error: error}, className)}
         coloredSelectedRow={coloredSelectedRow}
       >
