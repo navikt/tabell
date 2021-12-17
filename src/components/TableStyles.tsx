@@ -9,6 +9,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .tabell .tabell__th {
     padding: inherit;
   }
+  width: 100%;
   .tabell__buttons { 
     margin-top: 8px;
   }
