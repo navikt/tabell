@@ -185,6 +185,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
           selectable={selectable}
           showSelectAll={showSelectAll}
           editable={editable}
+          allowNewRows={editable}
           sortable={sortable}
           striped={striped}
           summary={summary}

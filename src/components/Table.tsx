@@ -282,16 +282,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return [finalItems, numberOfSelectedRows, numberOfVisibleItems]
   }
 
-  const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, feil: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
             value: _editingRows[item.key][column.id],
             values: _editingRows[item.key],
-            feil: feil?.[column.id],
+            error: error?.[column.id],
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item)
+            setValue: (entries) => handleEditRowChange(entries, item),
+            onEnter: (entries) => {
+              const editedRow: CustomItem = handleEditRowChange(entries, item)
+              handleRowEdited(item, editedRow)
+            }
           })
         : (
           <PaddedDiv size='0.25'>
@@ -299,7 +303,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
-            feil={feil?.[column.id]}
+            error={error?.[column.id]}
             label=''
             placeholder={column.edit?.placeholder}
             value={moment(_editingRows[item.key][column.id]).format('DD.MM.YYYY') ?? ''}
@@ -330,16 +334,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }
 
-  const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, feil: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
             value: _editingRows[item.key][column.id],
             values: _editingRows[item.key],
-            feil: feil ? feil[column.id] : undefined,
+            error: error ? error[column.id] : undefined,
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item)
+            setValue: (entries) => handleEditRowChange(entries, item),
+            onEnter: (entries) => {
+              const editedRow: CustomItem = handleEditRowChange(entries, item)
+              handleRowEdited(item, editedRow)
+            }
           })
         : (<span>You have to set a edit render function for object</span>)
     } else {
@@ -422,16 +430,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }
 
-  const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, feil: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
             value: _editingRows[item.key][column.id],
             values: _editingRows[item.key],
-            feil: feil ? feil[column.id] : undefined,
+            error: error ? error[column.id] : undefined,
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item)
+            setValue: (entries) => handleEditRowChange(entries, item),
+            onEnter: (entries) => {
+              const editedRow: CustomItem = handleEditRowChange(entries, item)
+              handleRowEdited(item, editedRow)
+            }
           })
         : (
           <PaddedDiv size='0.25'>
@@ -439,7 +451,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
-            feil={feil && feil[column.id]}
+            error={error && error[column.id]}
             label=''
             placeholder={column.edit?.placeholder}
             value={value ?? ''}
@@ -496,10 +508,14 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   column.edit?.render
                     ? column.edit.render({
                         value: column.edit.value,
-                        feil: column.feil,
+                        error: column.error,
                         values: currentEditValues,
                         context: context,
-                        setValue: handleNewRowChange
+                        setValue: handleNewRowChange,
+                        onEnter: (entries) => {
+                          handleNewRowChange(entries)
+                          handleRowAdded(context)
+                        }
                       })
                     : (
                       <PaddedDiv size='0.25'>
@@ -511,7 +527,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                         key={'x-' + column.edit?.value ?? ''}
                         placeholder={column.edit?.placeholder}
                         value={column.edit?.value ?? ''}
-                        feil={column.feil}
+                        error={column.error}
                         onEnterPress={(e: string) => {
                           handleNewRowChange({ [column.id]: e })
                           handleRowAdded(context)
@@ -611,15 +627,15 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             </FlexCenterDiv>
           </td>
           {_columns.map((column) => {
-            const feil = _editingRows ? _editingRows[item.key]?.feil : {}
+            const error = _editingRows ? _editingRows[item.key]?.error : {}
             let content: JSX.Element | null = null
 
             switch (column.type) {
               case 'date':
-                content = renderRowAsDate(item, column, feil, editing)
+                content = renderRowAsDate(item, column, error, editing)
                 break
               case 'object':
-                content = renderRowAsObject(item, column, feil, editing)
+                content = renderRowAsObject(item, column, error, editing)
                 break
               case 'buttons':
                 if (!editable) {
@@ -628,7 +644,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 content = renderButtons(item, editing)
                 break
               default:
-                content = renderRowAsDefault(item, column, feil, editing)
+                content = renderRowAsDefault(item, column, error, editing)
                 break
             }
             return (
@@ -746,7 +762,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
 
       return {
         ...column,
-        feil: (isColumnValid ? undefined : (errorMessage ?? _labels.error))
+        error: (isColumnValid ? undefined : (errorMessage ?? _labels.error))
       }
     })
 
@@ -776,7 +792,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           ...c.edit,
           value: c.edit?.defaultValue
         },
-        feil: undefined
+        error: undefined
       }
     })
 
@@ -860,7 +876,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     })
 
     if (!allValidated) {
-      newEditingRow.feil = errors
+      newEditingRow.error = errors
       _setEditingRows({
         ..._editingRows,
         [item.key]: newEditingRow
@@ -879,7 +895,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       }
     }
 
-    delete newEditingRow.feil
+    delete newEditingRow.error
 
     const newEditedTransformedRow: CustomItem = _.cloneDeep(newEditingRow)
     _columns.forEach((column) => {
@@ -925,7 +941,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
    <>
       {error && (
         <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
-          <BodyLong className='typo-feilmelding'>{error}</BodyLong>
+          {error}
         </div>
       )}
       <TableDiv

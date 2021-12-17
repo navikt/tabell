@@ -14,7 +14,7 @@ exports[`Table Renders 1`] = `
   flex-direction: row;
 }
 
-tabell.g19[id="c6"] {
+tabell.g20[id="c6"] {
   content: "c8,";
 }
 
@@ -25,7 +25,7 @@ tabell.g19[id="c6"] {
   align-items: center;
 }
 
-tabell.g22[id="c7"] {
+tabell.g23[id="c7"] {
   content: "c9,";
 }
 
@@ -36,36 +36,8 @@ tabell.g22[id="c7"] {
   justify-content: space-between;
 }
 
-tabell.g23[id="c12"] {
+tabell.g24[id="c12"] {
   content: "c13,";
-}
-
-.c16 {
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-tabell.g52[id="c14"] {
-  content: "c16,";
-}
-
-.c17 {
-  -webkit-align-items: baseline;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-}
-
-tabell.g53[id="c15"] {
-  content: "c17,";
 }
 
 .c1 {
@@ -77,6 +49,10 @@ tabell.g53[id="c15"] {
 .c1 .tabell .tabell__td,
 .c1 .tabell .tabell__th {
   padding: inherit;
+}
+
+.c1 .tabell__buttons {
+  margin-top: 8px;
 }
 
 .c1 tr:not(:hover) div.tabell__buttons,
@@ -99,11 +75,11 @@ tabell.g53[id="c15"] {
 }
 
 .c1 tr.tabell__tr--valgt td {
-  background: var(--navds-semantic-color-interaction-primary-default);
+  background: var(--navds-semantic-color-interaction-primary);
 }
 
 .c1.error {
-  border-color: var(--navds-color-error-border) !important;
+  border-color: var(--navds-tag-color-error-border) !important;
   border-width: 3px !important;
   border-style: solid !important;
 }
@@ -125,7 +101,7 @@ tabell.g53[id="c15"] {
 }
 
 .c1 tbody.striped tr:nth-child(odd) {
-  background: var(--navds-color-background);
+  background: var(--navds-semantic-color-canvas-background);
 }
 
 .c1 tbody.striped tr:nth-child(even) {
@@ -155,6 +131,10 @@ tabell.g53[id="c15"] {
   cursor: pointer;
 }
 
+.c1 th.buttons {
+  width: 1px;
+}
+
 .c1 tr.slideAnimate {
   opacity: 0;
   -webkit-transform: translateX(-20px);
@@ -165,31 +145,35 @@ tabell.g53[id="c15"] {
 }
 
 .c1 tbody tr:hover:not(.tabell__tr--disabled) td {
-  background: var(--navds-semantic-color-feedback-info-background) !important;
+  background: var(--navds-semantic-color-interaction-primary-hover-subtle) !important;
 }
 
 .c1 .tabell__tr--disabled {
-  background: var(--navds-color-disabled) !important;
-  color: var(--navds-color-disabled) !important;
+  background: var(--navds-semantic-color-component-background-alternate) !important;
+  color: var(--navds-semantic-color-text) !important;
 }
 
 .c1 .tabell__tr--disabled * {
-  color: var(--navds-color-disabled) !important;
+  color: var(--navds-semantic-color-text) !important;
 }
 
 .c1 .tabell thead th button,
 .c1 .tabell .tabell__thead th button,
 .c1 .tabell thead .tabell__th button,
 .c1 .tabell .tabell__thead .tabell__th button {
-  color: var(--navds-semantic-color-interaction-primary-default) !important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: var(--navds-semantic-color-interaction-primary) !important;
 }
 
 .c1 .tabell thead th button:hover:not(:disabled),
 .c1 .tabell .tabell__thead th button:hover:not(:disabled),
 .c1 .tabell thead .tabell__th button:hover:not(:disabled),
 .c1 .tabell .tabell__thead .tabell__th button:hover:not(:disabled) {
-  color: var(--navds-semantic-color-interaction-primary-default) !important;
-  border-color: var(--navds-semantic-color-interaction-primary-default) !important;
+  color: var(--navds-semantic-color-interaction-primary) !important;
+  border-color: var(--navds-semantic-color-interaction-primary) !important;
 }
 
 .c1 .tabell thead th button:focus,
@@ -199,7 +183,7 @@ tabell.g53[id="c15"] {
   box-shadow: 0 0 0 3px var(--navds-semantic-color-focus) !important;
 }
 
-tabell.g68[id="c0"] {
+tabell.g38[id="c0"] {
   content: "c1,";
 }
 
@@ -207,7 +191,7 @@ tabell.g68[id="c0"] {
   position: relative;
 }
 
-tabell.g69[id="c2"] {
+tabell.g39[id="c2"] {
   content: "c3,";
 }
 
@@ -215,7 +199,7 @@ tabell.g69[id="c2"] {
   width: 100%;
 }
 
-tabell.g71[id="c4"] {
+tabell.g41[id="c4"] {
   content: "c5,";
 }
 
@@ -224,7 +208,7 @@ tabell.g71[id="c4"] {
   cursor: pointer;
 }
 
-tabell.g72[id="c10"] {
+tabell.g42[id="c10"] {
   content: "c11,";
 }
 
@@ -432,82 +416,112 @@ tabell.g72[id="c10"] {
                               <div
                                 className="c6 c7 c8 c9"
                               >
-                                <ForwardRef
-                                  checked={false}
-                                  className="tabell__checkAll-checkbox"
-                                  hideLabel={true}
-                                  id="tabell__checkAll-checkbox-id-test"
-                                  onChange={[Function]}
+                                <div
+                                  style={
+                                    Object {
+                                      "visibility": "inherit",
+                                    }
+                                  }
                                 >
-                                  <div
-                                    className="tabell__checkAll-checkbox navds-checkbox navds-checkbox--medium"
+                                  <ForwardRef
+                                    checked={false}
+                                    className="tabell__checkAll-checkbox"
+                                    hideLabel={true}
+                                    id="tabell__checkAll-checkbox-id-test"
+                                    key="tabell__checkAll-checkbox-id-testtrue"
+                                    onChange={[Function]}
                                   >
-                                    <input
-                                      aria-invalid={false}
-                                      checked={false}
-                                      className="navds-checkbox__input"
-                                      id="tabell__checkAll-checkbox-id-test"
-                                      onChange={[Function]}
-                                      type="checkbox"
-                                    />
-                                    <ForwardRef
-                                      as="label"
-                                      className="navds-checkbox__label"
-                                      htmlFor="tabell__checkAll-checkbox-id-test"
-                                      size="medium"
+                                    <div
+                                      className="tabell__checkAll-checkbox navds-checkbox navds-checkbox--medium"
                                     >
+                                      <input
+                                        aria-invalid={false}
+                                        checked={false}
+                                        className="navds-checkbox__input"
+                                        id="tabell__checkAll-checkbox-id-test"
+                                        onChange={[Function]}
+                                        type="checkbox"
+                                      />
                                       <label
-                                        className="navds-checkbox__label navds-body-short"
+                                        className="navds-checkbox__label"
                                         htmlFor="tabell__checkAll-checkbox-id-test"
                                       >
-                                        <span
-                                          className="sr-only"
+                                        <div
+                                          className="navds-checkbox__content sr-only"
                                         >
-                                          Velg alle
-                                        </span>
+                                          <ForwardRef
+                                            as="div"
+                                            size="medium"
+                                          >
+                                            <div
+                                              className="navds-body-short"
+                                            >
+                                              Velg alle
+                                            </div>
+                                          </ForwardRef>
+                                        </div>
                                       </label>
-                                    </ForwardRef>
-                                    <div
-                                      aria-live="polite"
-                                      aria-relevant="additions removals"
-                                      id="checkbox-error-9fb55aed-588a-4e28-95d0-e11262ecf8b1"
-                                    />
-                                  </div>
-                                </ForwardRef>
+                                    </div>
+                                  </ForwardRef>
+                                </div>
                                 <styled.div
                                   aria-pressed={false}
+                                  className="tabell___seefilters-icon"
+                                  id="tabell__seefilters-icon-id"
+                                  onClick={[Function]}
                                   role="button"
+                                  title="Filter"
                                 >
                                   <div
                                     aria-pressed={false}
-                                    className="c10 c11"
+                                    className="c10 c11 tabell___seefilters-icon"
+                                    id="tabell__seefilters-icon-id"
+                                    onClick={[Function]}
                                     role="button"
+                                    title="Filter"
                                   >
-                                    <ForwardRef(SvgSight)
-                                      className="tabell___seefilters-icon"
-                                      id="tabell__seefilters-icon-id"
-                                      onClick={[Function]}
-                                    >
+                                    <_default>
                                       <svg
-                                        className="tabell___seefilters-icon"
-                                        fill="none"
-                                        focusable={false}
-                                        height="1em"
-                                        id="tabell__seefilters-icon-id"
-                                        onClick={[Function]}
-                                        role="img"
-                                        viewBox="0 0 24 24"
-                                        width="1em"
+                                        height="20"
+                                        version="1.1"
+                                        viewBox="0 0 256 256"
+                                        width="20"
+                                        xmlSpace="preserve"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        xmlnsXlink="http://www.w3.org/1999/xlink"
                                       >
-                                        <path
-                                          clipRule="evenodd"
-                                          d="M21.42 12C18.387 8.517 15.247 7 12 7s-6.387 1.517-9.42 5c3.033 3.483 6.173 5 9.42 5s6.387-1.517 9.42-5zM12 17a5 5 0 100-10 5 5 0 000 10zm12-5c-3.582-4.667-7.582-7-12-7S3.582 7.333 0 12c3.582 4.667 7.582 7 12 7s8.418-2.333 12-7zm-12 3a3 3 0 100-6 3 3 0 000 6zm0-2a1 1 0 100-2 1 1 0 000 2z"
-                                          fill="currentColor"
-                                          fillRule="evenodd"
-                                        />
+                                        <g
+                                          transform="translate(128 128) scale(0.87 0.87)"
+                                        >
+                                          <g
+                                            fill="none"
+                                            fillRule="nonzero"
+                                            opacity="1"
+                                            stroke="none"
+                                            strokeDasharray="none"
+                                            strokeLinecap="butt"
+                                            strokeLinejoin="miter"
+                                            strokeMiterlimit="10"
+                                            strokeWidth="0"
+                                            transform="translate(-144.89999999999998 -144.90000000000003) scale(3.22 3.22)"
+                                          >
+                                            <path
+                                              d="M 37.882 90 c -0.338 0 -0.676 -0.086 -0.981 -0.258 c -0.629 -0.354 -1.019 -1.02 -1.019 -1.742 V 45.354 L 3.923 3.208 C 3.464 2.604 3.388 1.791 3.726 1.11 S 4.758 0 5.517 0 h 78.966 c 0.76 0 1.453 0.43 1.791 1.11 s 0.262 1.493 -0.197 2.098 L 54.118 45.354 V 79.37 c 0 0.699 -0.365 1.348 -0.963 1.71 l -14.237 8.63 C 38.601 89.903 38.241 90 37.882 90 z M 9.543 4 l 29.932 39.474 c 0.264 0.348 0.406 0.772 0.406 1.208 v 39.767 l 10.236 -6.205 V 44.682 c 0 -0.437 0.143 -0.861 0.406 -1.208 L 80.457 4 H 9.543 z M 52.118 79.37 h 0.01 H 52.118 z"
+                                              fill="rgb(0,0,0)"
+                                              fillRule="nonzero"
+                                              opacity="1"
+                                              stroke="none"
+                                              strokeDasharray="none"
+                                              strokeLinecap="round"
+                                              strokeLinejoin="miter"
+                                              strokeMiterlimit="10"
+                                              strokeWidth="1"
+                                              transform=" matrix(1 0 0 1 0 0) "
+                                            />
+                                          </g>
+                                        </g>
                                       </svg>
-                                    </ForwardRef(SvgSight)>
+                                    </_default>
                                   </div>
                                 </styled.div>
                               </div>
@@ -525,11 +539,27 @@ tabell.g72[id="c10"] {
                             className="navds-table__cell header"
                             role="columnheader"
                           >
-                            <button
+                            <ForwardRef
                               onClick={[Function]}
+                              size="small"
                             >
-                              ui:string
-                            </button>
+                              <button
+                                className="navds-button navds-button--primary navds-button--small"
+                                onClick={[Function]}
+                              >
+                                <ForwardRef
+                                  as="span"
+                                  className="navds-button__inner"
+                                  size="small"
+                                >
+                                  <span
+                                    className="navds-button__inner navds-body-short navds-body-short--small"
+                                  >
+                                    ui:string
+                                  </span>
+                                </ForwardRef>
+                              </button>
+                            </ForwardRef>
                           </th>
                         </ForwardRef>
                         <ForwardRef
@@ -543,11 +573,27 @@ tabell.g72[id="c10"] {
                             className="navds-table__cell header"
                             role="columnheader"
                           >
-                            <button
+                            <ForwardRef
                               onClick={[Function]}
+                              size="small"
                             >
-                              ui:date
-                            </button>
+                              <button
+                                className="navds-button navds-button--primary navds-button--small"
+                                onClick={[Function]}
+                              >
+                                <ForwardRef
+                                  as="span"
+                                  className="navds-button__inner"
+                                  size="small"
+                                >
+                                  <span
+                                    className="navds-button__inner navds-body-short navds-body-short--small"
+                                  >
+                                    ui:date
+                                  </span>
+                                </ForwardRef>
+                              </button>
+                            </ForwardRef>
                           </th>
                         </ForwardRef>
                         <ForwardRef
@@ -561,11 +607,27 @@ tabell.g72[id="c10"] {
                             className="navds-table__cell header"
                             role="columnheader"
                           >
-                            <button
+                            <ForwardRef
                               onClick={[Function]}
+                              size="small"
                             >
-                              ui:variant
-                            </button>
+                              <button
+                                className="navds-button navds-button--primary navds-button--small"
+                                onClick={[Function]}
+                              >
+                                <ForwardRef
+                                  as="span"
+                                  className="navds-button__inner"
+                                  size="small"
+                                >
+                                  <span
+                                    className="navds-button__inner navds-body-short navds-body-short--small"
+                                  >
+                                    ui:variant
+                                  </span>
+                                </ForwardRef>
+                              </button>
+                            </ForwardRef>
                           </th>
                         </ForwardRef>
                       </tr>
@@ -619,26 +681,23 @@ tabell.g72[id="c10"] {
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
-                                <ForwardRef
-                                  as="label"
+                                <label
                                   className="navds-checkbox__label"
                                   htmlFor="tabell-test__row-select-01"
-                                  size="medium"
                                 >
-                                  <label
-                                    className="navds-checkbox__label navds-body-short"
-                                    htmlFor="tabell-test__row-select-01"
+                                  <div
+                                    className="navds-checkbox__content sr-only"
                                   >
-                                    <span
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                </ForwardRef>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  id="checkbox-error-5c99ea99-26f8-4c2c-80d9-681b36754235"
-                                />
+                                    <ForwardRef
+                                      as="div"
+                                      size="medium"
+                                    >
+                                      <div
+                                        className="navds-body-short"
+                                      />
+                                    </ForwardRef>
+                                  </div>
+                                </label>
                               </div>
                             </ForwardRef>
                           </div>
@@ -719,26 +778,23 @@ tabell.g72[id="c10"] {
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
-                                <ForwardRef
-                                  as="label"
+                                <label
                                   className="navds-checkbox__label"
                                   htmlFor="tabell-test__row-select-02"
-                                  size="medium"
                                 >
-                                  <label
-                                    className="navds-checkbox__label navds-body-short"
-                                    htmlFor="tabell-test__row-select-02"
+                                  <div
+                                    className="navds-checkbox__content sr-only"
                                   >
-                                    <span
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                </ForwardRef>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  id="checkbox-error-6a31759a-350c-4d67-9cb3-b670b7931302"
-                                />
+                                    <ForwardRef
+                                      as="div"
+                                      size="medium"
+                                    >
+                                      <div
+                                        className="navds-body-short"
+                                      />
+                                    </ForwardRef>
+                                  </div>
+                                </label>
                               </div>
                             </ForwardRef>
                           </div>
@@ -819,26 +875,23 @@ tabell.g72[id="c10"] {
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
-                                <ForwardRef
-                                  as="label"
+                                <label
                                   className="navds-checkbox__label"
                                   htmlFor="tabell-test__row-select-03"
-                                  size="medium"
                                 >
-                                  <label
-                                    className="navds-checkbox__label navds-body-short"
-                                    htmlFor="tabell-test__row-select-03"
+                                  <div
+                                    className="navds-checkbox__content sr-only"
                                   >
-                                    <span
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                </ForwardRef>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  id="checkbox-error-c36a6962-df26-405c-b02b-108884a50d36"
-                                />
+                                    <ForwardRef
+                                      as="div"
+                                      size="medium"
+                                    >
+                                      <div
+                                        className="navds-body-short"
+                                      />
+                                    </ForwardRef>
+                                  </div>
+                                </label>
                               </div>
                             </ForwardRef>
                           </div>
@@ -919,26 +972,23 @@ tabell.g72[id="c10"] {
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
-                                <ForwardRef
-                                  as="label"
+                                <label
                                   className="navds-checkbox__label"
                                   htmlFor="tabell-test__row-select-04"
-                                  size="medium"
                                 >
-                                  <label
-                                    className="navds-checkbox__label navds-body-short"
-                                    htmlFor="tabell-test__row-select-04"
+                                  <div
+                                    className="navds-checkbox__content sr-only"
                                   >
-                                    <span
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                </ForwardRef>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  id="checkbox-error-3ec5072d-bfe3-498d-b8ab-62cd675ea073"
-                                />
+                                    <ForwardRef
+                                      as="div"
+                                      size="medium"
+                                    >
+                                      <div
+                                        className="navds-body-short"
+                                      />
+                                    </ForwardRef>
+                                  </div>
+                                </label>
                               </div>
                             </ForwardRef>
                           </div>
@@ -1019,26 +1069,23 @@ tabell.g72[id="c10"] {
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
-                                <ForwardRef
-                                  as="label"
+                                <label
                                   className="navds-checkbox__label"
                                   htmlFor="tabell-test__row-select-05"
-                                  size="medium"
                                 >
-                                  <label
-                                    className="navds-checkbox__label navds-body-short"
-                                    htmlFor="tabell-test__row-select-05"
+                                  <div
+                                    className="navds-checkbox__content sr-only"
                                   >
-                                    <span
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                </ForwardRef>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  id="checkbox-error-9770fb88-5521-4e55-997c-aab69312062f"
-                                />
+                                    <ForwardRef
+                                      as="div"
+                                      size="medium"
+                                    >
+                                      <div
+                                        className="navds-body-short"
+                                      />
+                                    </ForwardRef>
+                                  </div>
+                                </label>
                               </div>
                             </ForwardRef>
                           </div>
@@ -1090,31 +1137,73 @@ tabell.g72[id="c10"] {
             >
               <div />
               <div />
-              <h
+              <v
                 currentPage={1}
                 itemsPerPage={5}
                 numberOfItems={11}
                 onChange={[Function]}
               >
-                <mr
-                  highContrast={false}
+                <Styled(styled.div)
+                  className=""
                 >
-                  <Styled(styled.div)
-                    className=""
+                  <div
+                    className="c6 c7 c8 c9"
                   >
+                    <ForwardRef
+                      className="c-pagination__prev-button"
+                      disabled={true}
+                      key="prev"
+                      onClick={[Function]}
+                      size="small"
+                      variant="tertiary"
+                    >
+                      <button
+                        className="c-pagination__prev-button navds-button navds-button--tertiary navds-button--small"
+                        disabled={true}
+                        onClick={[Function]}
+                      >
+                        <ForwardRef
+                          as="span"
+                          className="navds-button__inner"
+                          size="small"
+                        >
+                          <span
+                            className="navds-button__inner navds-body-short navds-body-short--small"
+                          >
+                            <ForwardRef(SvgBackFilled)>
+                              <svg
+                                fill="none"
+                                focusable={false}
+                                height="1em"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  clipRule="evenodd"
+                                  d="M6.5 11.5l8.571-9L17.5 5 11 11.5l6.5 6.5-2.429 2.5-8.571-9z"
+                                  fill="currentColor"
+                                  fillRule="evenodd"
+                                />
+                              </svg>
+                            </ForwardRef(SvgBackFilled)>
+                          </span>
+                        </ForwardRef>
+                      </button>
+                    </ForwardRef>
                     <div
-                      className="c14 c15 c16 c17"
+                      key="page_0"
                     >
                       <ForwardRef
-                        className="c-pagination__prev-button"
+                        className="c-pagination__page-button"
                         disabled={true}
-                        key="prev"
                         onClick={[Function]}
                         size="small"
                         variant="tertiary"
                       >
                         <button
-                          className="c-pagination__prev-button navds-button navds-button--tertiary navds-button--small"
+                          className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
                           disabled={true}
                           onClick={[Function]}
                         >
@@ -1126,128 +1215,116 @@ tabell.g72[id="c10"] {
                             <span
                               className="navds-button__inner navds-body-short navds-body-short--small"
                             >
-                              ◄
-                            </span>
-                          </ForwardRef>
-                        </button>
-                      </ForwardRef>
-                      <div
-                        key="page_0"
-                      >
-                        <ForwardRef
-                          className="c-pagination__page-button"
-                          disabled={true}
-                          onClick={[Function]}
-                          size="small"
-                          variant="tertiary"
-                        >
-                          <button
-                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
-                            disabled={true}
-                            onClick={[Function]}
-                          >
-                            <ForwardRef
-                              as="span"
-                              className="navds-button__inner"
-                              size="small"
-                            >
-                              <span
-                                className="navds-button__inner navds-body-short navds-body-short--small"
-                              >
-                                1
-                              </span>
-                            </ForwardRef>
-                          </button>
-                        </ForwardRef>
-                      </div>
-                      <div
-                        key="page_1"
-                      >
-                        <ForwardRef
-                          className="c-pagination__page-button"
-                          disabled={false}
-                          onClick={[Function]}
-                          size="small"
-                          variant="tertiary"
-                        >
-                          <button
-                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
-                            disabled={false}
-                            onClick={[Function]}
-                          >
-                            <ForwardRef
-                              as="span"
-                              className="navds-button__inner"
-                              size="small"
-                            >
-                              <span
-                                className="navds-button__inner navds-body-short navds-body-short--small"
-                              >
-                                2
-                              </span>
-                            </ForwardRef>
-                          </button>
-                        </ForwardRef>
-                      </div>
-                      <div
-                        key="page_2"
-                      >
-                        <ForwardRef
-                          className="c-pagination__page-button"
-                          disabled={false}
-                          onClick={[Function]}
-                          size="small"
-                          variant="tertiary"
-                        >
-                          <button
-                            className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
-                            disabled={false}
-                            onClick={[Function]}
-                          >
-                            <ForwardRef
-                              as="span"
-                              className="navds-button__inner"
-                              size="small"
-                            >
-                              <span
-                                className="navds-button__inner navds-body-short navds-body-short--small"
-                              >
-                                3
-                              </span>
-                            </ForwardRef>
-                          </button>
-                        </ForwardRef>
-                      </div>
-                      <ForwardRef
-                        className="c-pagination__next-button"
-                        disabled={false}
-                        key="next"
-                        onClick={[Function]}
-                        size="small"
-                        variant="tertiary"
-                      >
-                        <button
-                          className="c-pagination__next-button navds-button navds-button--tertiary navds-button--small"
-                          disabled={false}
-                          onClick={[Function]}
-                        >
-                          <ForwardRef
-                            as="span"
-                            className="navds-button__inner"
-                            size="small"
-                          >
-                            <span
-                              className="navds-button__inner navds-body-short navds-body-short--small"
-                            >
-                              ►
+                              1
                             </span>
                           </ForwardRef>
                         </button>
                       </ForwardRef>
                     </div>
-                  </Styled(styled.div)>
-                </mr>
-              </h>
+                    <div
+                      key="page_1"
+                    >
+                      <ForwardRef
+                        className="c-pagination__page-button"
+                        disabled={false}
+                        onClick={[Function]}
+                        size="small"
+                        variant="tertiary"
+                      >
+                        <button
+                          className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
+                          disabled={false}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="span"
+                            className="navds-button__inner"
+                            size="small"
+                          >
+                            <span
+                              className="navds-button__inner navds-body-short navds-body-short--small"
+                            >
+                              2
+                            </span>
+                          </ForwardRef>
+                        </button>
+                      </ForwardRef>
+                    </div>
+                    <div
+                      key="page_2"
+                    >
+                      <ForwardRef
+                        className="c-pagination__page-button"
+                        disabled={false}
+                        onClick={[Function]}
+                        size="small"
+                        variant="tertiary"
+                      >
+                        <button
+                          className="c-pagination__page-button navds-button navds-button--tertiary navds-button--small"
+                          disabled={false}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="span"
+                            className="navds-button__inner"
+                            size="small"
+                          >
+                            <span
+                              className="navds-button__inner navds-body-short navds-body-short--small"
+                            >
+                              3
+                            </span>
+                          </ForwardRef>
+                        </button>
+                      </ForwardRef>
+                    </div>
+                    <ForwardRef
+                      className="c-pagination__next-button"
+                      disabled={false}
+                      key="next"
+                      onClick={[Function]}
+                      size="small"
+                      variant="tertiary"
+                    >
+                      <button
+                        className="c-pagination__next-button navds-button navds-button--tertiary navds-button--small"
+                        disabled={false}
+                        onClick={[Function]}
+                      >
+                        <ForwardRef
+                          as="span"
+                          className="navds-button__inner"
+                          size="small"
+                        >
+                          <span
+                            className="navds-button__inner navds-body-short navds-body-short--small"
+                          >
+                            <ForwardRef(SvgNextFilled)>
+                              <svg
+                                fill="none"
+                                focusable={false}
+                                height="1em"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  clipRule="evenodd"
+                                  d="M17.5 11.5l-8.571 9L6.5 18l6.5-6.5L6.5 5l2.429-2.5 8.571 9z"
+                                  fill="currentColor"
+                                  fillRule="evenodd"
+                                />
+                              </svg>
+                            </ForwardRef(SvgNextFilled)>
+                          </span>
+                        </ForwardRef>
+                      </button>
+                    </ForwardRef>
+                  </div>
+                </Styled(styled.div)>
+              </v>
             </div>
           </Styled(Styled(styled.div))>
         </div>

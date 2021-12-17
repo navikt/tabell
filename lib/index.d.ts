@@ -5,7 +5,7 @@ export type ItemErrors = {[k: string] : string | undefined}
 
 export interface Item extends ItemBase {
   disabled ?: boolean
-  feil ?: ItemErrors
+  error ?: ItemErrors
   key: string
   parentKey ?: string
   openSubrows ?: boolean
@@ -27,9 +27,10 @@ export interface Context {}
 export interface RenderEditableOptions<CustomContext extends Context = Context, CustomType = any> {
   context: CustomContext
   value?: CustomType
-  feil?: string
+  error?: string
   setValue: (entries: {[k in string]: any}) => void,
   values: {[k in string]: any}
+  onEnter: (entries: {[k in string]: any}) => void
 }
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
@@ -48,7 +49,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
     defaultValue?: CustomType
     value?: CustomType
   },
-  feil ?: string
+  error ?: string
   filterText?: string
   needle?: (item: CustomItem) => string
   dateFormat?: string

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 export interface InputProps {
   ariaLabel ?: string
   className ?: string
-  feil?: string | null | undefined
+  error?: string | null | undefined
   id: string
   label: string
   onChanged: (e: string) => void
@@ -20,7 +20,7 @@ export interface InputProps {
 const Input: React.FC<InputProps> = ({
   ariaLabel,
   className,
-  feil,
+  error,
   id,
   label,
   onChanged,
@@ -37,11 +37,11 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <TextField
-      aria-invalid={!!feil}
+      aria-invalid={!!error}
       aria-label={ariaLabel ?? label}
       className={className}
       data-test-id={id}
-      error={feil}
+      error={error}
       id={id}
       size={size}
       style={style}
@@ -53,11 +53,9 @@ const Input: React.FC<InputProps> = ({
         }
       }}
       onKeyPress={(e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-          if (_.isFunction(onEnterPress)) {
-            onEnterPress(_value)
-            _setDirty(false)
-          }
+        if (e.key === 'Enter' && _.isFunction(onEnterPress)) {
+          onEnterPress(_value)
+          _setDirty(false)
         }
       }}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
