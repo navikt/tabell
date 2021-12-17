@@ -35,9 +35,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   categories,
   className,
   coloredSelectedRow = true,
-  compact = false,
-  context = {} as CustomContext,
   columns = [],
+  context = {} as CustomContext,
   editable = false,
   error = undefined,
   initialPage = 1,
@@ -47,18 +46,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   labels = {},
   loading = false,
   onColumnSort = () => {},
-  onRowClicked,
+  onRowClicked = () => {},
   onRowsChanged = () => {},
   onRowSelectChange = () => {},
   pagination = true,
   searchable = true,
   selectable = false,
   showSelectAll = true,
+  size = 'medium',
+  sort = { column: '', order: 'none' },
   sortable = true,
   striped = true,
-  summary = false,
-  sort = { column: '', order: 'none' }
+  summary = false
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
+
   /** fill out default values to current values for editing columns */
   const initializeColumns = (columns: Array<Column<CustomItem, CustomContext>>): Array<Column<CustomItem, CustomContext>> => {
     return columns.map(column => {
@@ -89,11 +90,11 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       return item
     })
   }
-  /** Table column data */
+  /** Column data */
   const [_columns, _setColumns] = useState<Array<Column<CustomItem, CustomContext>>>(() => initializeColumns(columns))
-  /** Store temporary row editing data. We can have multiple rows being edited */
+  /** Store temp info for rows being edited. We can have multiple rows being edited, thus the hashmap */
   const [_editingRows, _setEditingRows] = useState<{[k in string]: CustomItem}>({})
-  /** Table items */
+  /** Row items */
   const [_items, _setItems] = useState<Array<CustomItem>>(() => preProcessItems(items))
   /** show/hide filter */
   const [_seeFilters, _setSeeFilters] = useState<boolean>(false)
@@ -103,9 +104,11 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const [_checkAll, _setCheckAll] = useState<boolean>(false)
   /** Current pagination value */
   const [_currentPage, _setCurrentPage] = useState<number>(initialPage)
+  /** Table labels */
   const _labels: Labels = { ...defaultLabels, ...labels }
 
   const animationDelay = 0.01
+
   /** order on which sort switches over */
   const sortOrder: SortOrder = {
     none: 'asc',
@@ -127,7 +130,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     _setItems(preProcessItems(items))
   }
 
-  /** handlebars */
+  /** label handlebars */
   const renderPlaceholders = (template: any, values: any) => {
     template = template.replace(/\{\{([^}]+)\}\}/g, (match: string) => {
       match = match.slice(2, -2)
@@ -136,6 +139,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return template
   }
 
+  /** get new rows with a sort change */
   const handleSortColumn = (column: Column<CustomItem, CustomContext>): void => {
     if (!sortable) { return }
     const newSortOrder = sortOrder[_sort.order]
@@ -150,8 +154,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     setSort(newSort)
   }
 
+  /** get class for header sort */
   const sortClass = (column: Column<CustomItem, CustomContext>): string => {
-    if (!sortable) { return '' }
+    if (!sortable) { return ''}
     return _sort.column === column.id ? 'tabell__th--sortert-' + _sort.order : ''
   }
 
@@ -236,7 +241,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return haystack
   }
 
-  /** Apllies filters and sorting to rows */
+  /** Applies filters and sorting to rows */
   const rawRows = (sort: Sort): [Array<CustomItem>, number, number] => {
     let numberOfSelectedRows = 0
     let numberOfVisibleItems = 0
@@ -282,6 +287,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return [finalItems, numberOfSelectedRows, numberOfVisibleItems]
   }
 
+  /** Renders the row as a date */
   const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
@@ -291,10 +297,10 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             values: _editingRows[item.key],
             error: error?.[column.id],
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item),
+            setValues: (entries) => handleEditRowChange(entries, item),
             onEnter: (entries) => {
               const editedRow: CustomItem = handleEditRowChange(entries, item)
-              handleRowEdited(item, editedRow)
+              saveEditedRow(item, editedRow)
             }
           })
         : (
@@ -304,14 +310,15 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
             error={error?.[column.id]}
-            label=''
+            label='date'
+            hideLabel
             placeholder={column.edit?.placeholder}
             value={moment(_editingRows[item.key][column.id]).format('DD.MM.YYYY') ?? ''}
             onEnterPress={(newText: string) => {
               const editedRow: CustomItem = handleEditRowChange({
                 [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
               }, item)
-              handleRowEdited(item, editedRow)
+              saveEditedRow(item, editedRow)
             }}
             onChanged={(newText: string) => handleEditRowChange({
               [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
@@ -326,14 +333,15 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           <BodyLong>
             {column.dateFormat
               ? moment(value).format(column.dateFormat)
-              : _.isFunction(value.toLocaleDateString)
+              : _.isFunction(value?.toLocaleDateString)
                 ? value.toLocaleDateString()
-                : value.toString()}
+                : value?.toString()}
           </BodyLong>
-          )
+        )
     }
   }
 
+  /** Renders the row as a object (needs custom render functions) */
   const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
@@ -343,20 +351,21 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             values: _editingRows[item.key],
             error: error ? error[column.id] : undefined,
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item),
+            setValues: (entries) => handleEditRowChange(entries, item),
             onEnter: (entries) => {
               const editedRow: CustomItem = handleEditRowChange(entries, item)
-              handleRowEdited(item, editedRow)
+              saveEditedRow(item, editedRow)
             }
           })
         : (<span>You have to set a edit render function for object</span>)
     } else {
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
-        : <BodyLong>JSON.stringify(value)</BodyLong>
+        : <span>You have to set a render function for object</span>
     }
   }
 
+  /** Renders the row buttons */
   const renderButtons = (item: CustomItem, editing: boolean): JSX.Element => {
     if (editing) {
       return (
@@ -369,7 +378,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              handleRowEdited(item, undefined)
+              saveEditedRow(item, undefined)
             }}
           >
             <Save color='green' />
@@ -430,6 +439,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }
 
+  /** Renders the row as default string */
   const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
@@ -439,10 +449,10 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             values: _editingRows[item.key],
             error: error ? error[column.id] : undefined,
             context: context,
-            setValue: (entries) => handleEditRowChange(entries, item),
+            setValues: (entries) => handleEditRowChange(entries, item),
             onEnter: (entries) => {
               const editedRow: CustomItem = handleEditRowChange(entries, item)
-              handleRowEdited(item, editedRow)
+              saveEditedRow(item, editedRow)
             }
           })
         : (
@@ -453,15 +463,14 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             className='tabell__edit-input'
             error={error && error[column.id]}
             label=''
+            hideLabel
             placeholder={column.edit?.placeholder}
             value={value ?? ''}
             onEnterPress={(newText: string) => {
               const editedRow: CustomItem = handleEditRowChange({ [column.id]: newText }, item)
-              handleRowEdited(item, editedRow)
+              saveEditedRow(item, editedRow)
             }}
-            onChanged={(newText: string) => handleEditRowChange({
-              [column.id]: newText
-            }, item)}
+            onChanged={(newText: string) => handleEditRowChange({[column.id]: newText}, item)}
           />
           </PaddedDiv>
           )
@@ -469,41 +478,42 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
         : (
-          <BodyLong>
+           <>
             {_labels[column.id] && _labels[column.id]![value]
               ? (
                 <Tooltip
                   placement='top'
                   trigger={['hover']}
                   overlay={
-                    <span>{_labels[column.id]![value]}</span>
+                    <BodyLong>{_labels[column.id]![value]}</BodyLong>
                   }
                 >
-                  <span>{value}</span>
+                  <BodyLong>{value}</BodyLong>
                 </Tooltip>
                 )
-              : <span>{value}</span>}
-          </BodyLong>
-          )
+              : <BodyLong>{value}</BodyLong>}
+           </>
+        )
     }
   }
 
+  /** Renders the add row */
   const renderAddRow = () => {
     let addedFocusRef = false
+    const currentEditValues = {} as any
+    _columns.forEach(c => {
+      if (c.edit) {
+        currentEditValues[c.id] = c.edit.value
+      }
+    })
+
     return (
-      <tr
-        className='tabell__edit' onKeyPress={(e: React.KeyboardEvent) => {
-          if (e.key === 'Enter') {
-            e.preventDefault()
-            handleRowAdded(context)
-          }
-        }}
-      >
-        <td />
+      <Table.Row className='tabell__edit'>
+        <Table.DataCell />
         {_columns.map((column) => {
           if (column.type !== 'buttons') {
             const content: JSX.Element = (
-              <td key={column.id}>
+              <Table.DataCell key={column.id}>
                 {
                   column.edit?.render
                     ? column.edit.render({
@@ -511,33 +521,33 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                         error: column.error,
                         values: currentEditValues,
                         context: context,
-                        setValue: handleNewRowChange,
+                        setValues: (entries) => handleNewRowChange(entries),
                         onEnter: (entries) => {
-                          handleNewRowChange(entries)
-                          handleRowAdded(context)
+                          const newColumns: Array<Column<CustomItem, CustomContext>> = handleNewRowChange(entries)
+                          saveAddedRow(context, newColumns)
                         }
                       })
                     : (
                       <PaddedDiv size='0.25'>
-                      <Input
-                        style={{marginTop: '0px'}}
-                        id={'tabell__edit-' + column.id + '-input-id'}
-                        className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
-                        label=''
-                        key={'x-' + column.edit?.value ?? ''}
-                        placeholder={column.edit?.placeholder}
-                        value={column.edit?.value ?? ''}
-                        error={column.error}
-                        onEnterPress={(e: string) => {
-                          handleNewRowChange({ [column.id]: e })
-                          handleRowAdded(context)
-                        }}
-                        onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
-                      />
+                        <Input
+                          style={{marginTop: '0px'}}
+                          id={'tabell__edit-' + column.id + '-input-id'}
+                          className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
+                          label=''
+                          key={'x-' + column.edit?.value ?? ''}
+                          placeholder={column.edit?.placeholder}
+                          value={column.edit?.value ?? ''}
+                          error={column.error}
+                          onEnterPress={(e: string) => {
+                            const newColumns: Array<Column<CustomItem, CustomContext>> = handleNewRowChange({ [column.id]: e })
+                            saveAddedRow(context, newColumns)
+                          }}
+                          onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
+                        />
                       </PaddedDiv>
                       )
                 }
-              </td>
+              </Table.DataCell>
             )
             if (!addedFocusRef) {
               addedFocusRef = true
@@ -545,26 +555,27 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             return content
           } else {
             return (
-              <td key={column.id}>
+              <Table.DataCell key={column.id}>
                 <Button
                   variant="secondary"
-                  size="small"
+                  style={{marginTop: '5px'}}
                   onClick={(e: any) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    handleRowAdded(context)
+                    saveAddedRow(context, _columns)
                   }}
                 >
                   <AddCircle title={_labels.addLabel} />
                 </Button>
-              </td>
+              </Table.DataCell>
             )
           }
         })}
-      </tr>
+      </Table.Row>
     )
   }
 
+  /** Render rows */
   const renderRows = (items: Array<CustomItem>): Array<JSX.Element> => {
     const visibleItems = items.filter((item) => !!item.visible)
     const pageItems = visibleItems.filter((item, index) => {
@@ -576,7 +587,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return pageItems.map((item, index) => {
       const editing = isBeingEdited(item)
       return (
-        <tr
+        <Table.Row
           key={item.key + '_sort' + _sort.column + '_' + _sort.order}
           id={'tabell-' + id + '__row-' + item.key + (editing ? '-edit' : '')}
           aria-selected={selectable && item.selected === true}
@@ -590,7 +601,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             'tabell__tr--disabled': item.disabled
           })}
         >
-          <td title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}>
+          <Table.DataCell title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}>
             <FlexCenterDiv>
               {item.parentKey && (
                 <div style={{ marginRight: '2rem' }}>&nbsp;</div>
@@ -599,7 +610,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 <Checkbox
                   id={'tabell-' + id + '__row-select-' + item.key}
                   data-test-id={'tabell-' + id + '__row-select-' + item.key}
-                  disabled={!_.isNil(item.disabled) ? item.disabled : false}
+                  disabled={item.disabled ?? false}
                   hideLabel
                   checked={!!item.selected}
                   onChange={() => onCheckClicked(item)}
@@ -625,7 +636,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 </>
               )}
             </FlexCenterDiv>
-          </td>
+          </Table.DataCell>
           {_columns.map((column) => {
             const error = _editingRows ? _editingRows[item.key]?.error : {}
             let content: JSX.Element | null = null
@@ -638,31 +649,31 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 content = renderRowAsObject(item, column, error, editing)
                 break
               case 'buttons':
-                if (!editable) {
-                  break
+                if (editable) {
+                  content = renderButtons(item, editing)
                 }
-                content = renderButtons(item, editing)
                 break
               default:
                 content = renderRowAsDefault(item, column, error, editing)
                 break
             }
             return (
-              <td
+              <Table.DataCell
                 key={item.key + '-column-' + column.id}
                 className={classNames({
                   'tabell__td--sortert': sortable && _sort.column === column.id
                 })}
               >
                 {content}
-              </td>
+              </Table.DataCell>
             )
           })}
-        </tr>
+        </Table.Row>
       )
     })
   }
 
+  /** Handle filter text updates */
   const handleFilterChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
     _setColumns(_columns.map((column) => {
       return _column.id === column.id
@@ -674,7 +685,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }))
   }
 
-  const handleNewRowChange = (entries: {[k in string]: any}): void => {
+  /** handle any change made to cells in the add row */
+  const handleNewRowChange = (entries: {[k in string]: any}): Array<Column<CustomItem, CustomContext>> => {
     const keys = Object.keys(entries)
     const newColumns = _columns.map((column) => {
       if (!keys.includes(column.id)) {
@@ -689,8 +701,10 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       }
     })
     _setColumns(newColumns)
+    return newColumns
   }
 
+  /** handle any change made to cells in existing row */
   const handleEditRowChange = (entries: {[k in string]: any}, item: CustomItem): CustomItem => {
     const newEditingRow: CustomItem = _.cloneDeep(_editingRows[item.key])
     Object.keys(entries).forEach((e: string) => {
@@ -704,6 +718,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     return newEditingRow
   }
 
+  /** Handle request for row deletion */
   const handleRowDeleted = (item: CustomItem) : void => {
     const newItems = _.filter(_items, it => it.key !== item.key)
     setItems(newItems)
@@ -712,14 +727,14 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }
 
-  const handleRowAdded = (context: CustomContext): void => {
+  const saveAddedRow = (context: CustomContext, columns: Array<Column<CustomItem, CustomContext>>): void => {
     // first, let's validate
     let allValidated: boolean = true
     let newColumns: Array<Column<CustomItem, CustomContext>> = []
 
-    newColumns = _columns.map((column) => {
+    newColumns = columns.map((column) => {
       let isColumnValid: boolean = true
-      let errorMessage: string | undefined
+      let errorMessage: string | undefined = undefined
 
       column.edit?.validation?.forEach(v => {
         let valueToValidate = column.edit?.value
@@ -779,13 +794,13 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       }
     }
 
-    const newItem: any = {}
-    newColumns = _columns.map(c => {
+    const newItem: CustomItem = {} as CustomItem
+    newColumns = columns.map(c => {
       let text = c.edit?.value
       if (text && _.isFunction(c.edit?.transform)) {
         text = c.edit?.transform(text)
       }
-      newItem[c.id] = text
+      _.set(newItem, c.id, text)
       return {
         ...c,
         edit: {
@@ -796,7 +811,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       }
     })
 
-    newItem.key = +md5('' + new Date().getTime())
+    newItem.key = md5('' + new Date().getTime())
     newItem.selected = false
     newItem.disabled = false
     newItem.visible = true
@@ -815,7 +830,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }, 100)
   }
 
-  const handleRowEdited = (item: CustomItem, editedRow: CustomItem | undefined): void => {
+  const saveEditedRow = (item: CustomItem, editedRow: CustomItem | undefined): void => {
     let allValidated: boolean = true
     const errors: ItemErrors = {}
     // if we have the row edit changes, use them, or else, get from state.
@@ -927,15 +942,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
 
   const [sortedItems, nrOfselectedRows, nrOfVisibleItems] = rawRows(_sort)
   const tableRows = renderRows(sortedItems)
-  const currentEditValues = {} as any
-
-  if (editable) {
-    _columns.forEach(c => {
-      if (c.edit) {
-        currentEditValues[c.id] = c.edit.value
-      }
-    })
-  }
 
   return (
    <>
@@ -955,7 +961,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <Loader size='2xlarge' />
             </LoadingDiv>
           )}
-          <WideTable size={compact ? "small" : "medium"} cellSpacing='0' className='tabell tabell__table'>
+          <WideTable size={size} cellSpacing='0' className='tabell tabell__table'>
             <Table.Header>
               {categories && (
                 <Table.Row>

@@ -27,9 +27,9 @@ export interface Context {}
 export interface RenderEditableOptions<CustomContext extends Context = Context, CustomType = any> {
   context: CustomContext
   value?: CustomType
-  error?: string
-  setValue: (entries: {[k in string]: any}) => void,
-  values: {[k in string]: any}
+  error?: string | undefined
+  setValues: (entries: {[k in string]: any}) => void,
+  values: {[k in string]: CustomType}
   onEnter: (entries: {[k in string]: any}) => void
 }
 
@@ -73,9 +73,8 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   animatable?: boolean
   beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
   beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
-  className?: string
   categories?: Array<Category>
-  compact?: boolean
+  className?: string
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
   coloredSelectedRow ?: boolean
@@ -96,6 +95,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   searchable?: boolean
   selectable?: boolean
   showSelectAll ?: boolean
+  size ?: 'medium' | 'small' | undefined
   sortable?: boolean
   striped?: boolean
   summary?: boolean

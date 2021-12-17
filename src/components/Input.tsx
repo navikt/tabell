@@ -7,6 +7,7 @@ export interface InputProps {
   className ?: string
   error?: string | null | undefined
   id: string
+  hideLabel?: boolean
   label: string
   onChanged: (e: string) => void
   onEnterPress?: (e: string) => void
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   ariaLabel,
   className,
   error,
+  hideLabel = true,
   id,
   label,
   onChanged,
@@ -42,6 +44,7 @@ const Input: React.FC<InputProps> = ({
       className={className}
       data-test-id={id}
       error={error}
+      hideLabel={hideLabel}
       id={id}
       size={size}
       style={style}
@@ -54,6 +57,8 @@ const Input: React.FC<InputProps> = ({
       }}
       onKeyPress={(e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && _.isFunction(onEnterPress)) {
+          e.preventDefault()
+          e.stopPropagation()
           onEnterPress(_value)
           _setDirty(false)
         }

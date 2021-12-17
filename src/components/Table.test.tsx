@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme'
 import React from 'react'
 import Table from './Table'
-import { TableDiv } from './TableStyles'
+import { WideTable } from './TableStyles'
 import { Item, TableProps } from 'index.d'
 
 jest.mock('md5', () => ('mock-md5'))
@@ -78,7 +78,7 @@ describe('Table', () => {
   })
 
   it('Has proper HTML structure: loading', () => {
-    expect(wrapper.exists(TableDiv)).toBeTruthy()
+    expect(wrapper.exists(WideTable)).toBeTruthy()
   })
 
   it('UseEffect: new items', () => {
@@ -86,7 +86,7 @@ describe('Table', () => {
       items: initialMockProps.items!.slice(initialMockProps.items!.length - 1)
     })
     wrapper.update()
-    expect(wrapper.exists(TableDiv)).toBeTruthy()
+    expect(wrapper.exists(WideTable)).toBeTruthy()
     expect(wrapper.find('tbody tr').length).toEqual(1)
   })
 

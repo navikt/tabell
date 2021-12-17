@@ -1,8 +1,10 @@
 import { slideInFromLeft } from 'nav-hoykontrast'
-import styled from 'styled-components'
+import styled  from 'styled-components'
 import { Table } from '@navikt/ds-react'
 
 export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
+
+
   .tabell td,
   .tabell th,
   .tabell .tabell__td,
@@ -18,8 +20,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
   } 
-  
-  &.compact {
+ 
     td, th {
       padding: 0.35rem !important;
     }
@@ -31,7 +32,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
       display: contents;
       color: var(--navds-semantic-color-interaction-primary-hover);
     }
-  }
+  
   tr.tabell__tr--valgt td {
     background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary)' : 'inherit'};
   }

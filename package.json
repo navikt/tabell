@@ -2,7 +2,7 @@
   "name": "tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
@@ -20,9 +20,9 @@
     "test:coverage": "react-scripts test --coverage  --watchAll=false"
   },
   "peerDependencies": {
-    "@navikt/ds-css": "^0.12.3",
+    "@navikt/ds-css": "^0.12.4",
     "@navikt/ds-icons": "^0.7.0",
-    "@navikt/ds-react": "^0.14.0",
+    "@navikt/ds-react": "^0.14.1",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
     "lodash.throttle": "^4.1.1",
@@ -38,9 +38,9 @@
     "paginering": "^2.1.1"
   },
   "devDependencies": {
-    "@navikt/ds-css": "^0.12.3",
+    "@navikt/ds-css": "^0.12.4",
     "@navikt/ds-icons": "^0.7.0",
-    "@navikt/ds-react": "^0.14.0",
+    "@navikt/ds-react": "^0.14.1",
     "@navikt/fnrvalidator": "^1.1.4",
     "@types/classnames": "^2.3.0",
     "@types/enzyme": "^3.10.10",
