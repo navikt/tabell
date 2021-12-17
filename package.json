@@ -2,7 +2,7 @@
   "name": "tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
