@@ -8,6 +8,7 @@ export default {
   delete: 'Fjern',
   edit: 'Rediger',
   error: 'Ugyldig verdi',
+  filter: 'Filter',
   noSelectedItems: 'Ingen {{type}} valgt',
   saveChanges: 'Lagre endringer',
   selectAll: 'Velg alle',

@@ -992,7 +992,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     {searchable && (
                       <FilterIcon
                         role='button'
-                        title='Filter'
+                        title={_labels.filter}
                         aria-pressed={_seeFilters}
                         className='tabell___seefilters-icon'
                         id='tabell__seefilters-icon-id'
