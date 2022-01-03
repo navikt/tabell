@@ -2,8 +2,7 @@ import {
   AddCircle,
   CollapseFilled,
   Delete,
-  Edit,
-  ErrorFilled,
+  Edit, Cancel ,
   ExpandFilled,
   NextFilled
 } from '@navikt/ds-icons'
@@ -381,7 +380,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               saveEditedRow(item, undefined)
             }}
           >
-            <Save color='green' />
+            <Save/>
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
           <Button
@@ -396,7 +395,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               _setEditingRows(newEditingRows)
             }}
           >
-            <ErrorFilled width='24' height='24' color='red' title={_labels.cancelChanges} />
+            <Cancel width='24' height='24' title={_labels.cancelChanges} />
           </Button>
         </FlexStartDiv>
       )
