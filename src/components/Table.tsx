@@ -163,7 +163,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const onCheckAllClicked = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newItems: Array<CustomItem> = _items?.map((item: CustomItem) => ({
       ...item,
-      selected: item.disabled ? false : e.target.checked
+      selected: (item.disabled || item.selectDisabled) ? false : e.target.checked
     })) || []
 
     if (_.isFunction(onRowSelectChange)) {
@@ -977,7 +977,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   <FlexCenterDiv>
                     {/* I am doing like this as I still want to keep the sape reserved for the checkbox */}
                     {selectable && (
-                      <div style={{visibility: showSelectAll ? 'inherit' : 'hidden'}}>
+                      <div title={_labels.selectAll} style={{visibility: showSelectAll ? 'inherit' : 'hidden'}}>
                         <Checkbox
                           key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
                           hideLabel
