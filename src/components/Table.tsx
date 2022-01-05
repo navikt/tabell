@@ -1,8 +1,8 @@
 import {
-  AddCircle,
+  Cancel,
   CollapseFilled,
   Delete,
-  Edit, Cancel ,
+  Edit,
   ExpandFilled,
   NextFilled
 } from '@navikt/ds-icons'
@@ -556,6 +556,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             return (
               <Table.DataCell key={column.id}>
                 <Button
+                  title={_labels.addLabel}
                   variant="secondary"
                   style={{marginTop: '5px'}}
                   onClick={(e: any) => {
@@ -564,7 +565,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     saveAddedRow(context, _columns)
                   }}
                 >
-                  <AddCircle title={_labels.addLabel} />
+                  <Save/>
                 </Button>
               </Table.DataCell>
             )
