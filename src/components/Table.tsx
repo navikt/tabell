@@ -6,7 +6,7 @@ import {
   ExpandFilled,
   NextFilled
 } from '@navikt/ds-icons'
-import { BodyLong, Button, Checkbox, Loader, Table } from '@navikt/ds-react'
+import { BodyLong, Button, Checkbox, HelpText, Loader, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
@@ -973,21 +973,27 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 </Table.Row>
               )}
               <Table.Row className='tabell__header'>
-                <Table.HeaderCell style={{ width: 1 }}>
+                <Table.HeaderCell style={{ width: 1,  }}>
                   <FlexCenterDiv>
                     {/* I am doing like this as I still want to keep the sape reserved for the checkbox */}
                     {selectable && (
-                      <div title={_labels.selectAll} style={{visibility: showSelectAll ? 'inherit' : 'hidden'}}>
-                        <Checkbox
-                          key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
-                          hideLabel
-                          id={'tabell__checkAll-checkbox-id-' + id}
-                          className='tabell__checkAll-checkbox'
-                          checked={_checkAll}
-                          onChange={onCheckAllClicked}
-                        >
-                          {_labels.selectAll}
-                        </Checkbox>
+                      <div className='selectall' title={_labels.selectAll}>
+                        {showSelectAll ? (
+                          <Checkbox
+                            key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
+                            hideLabel
+                            id={'tabell__checkAll-checkbox-id-' + id}
+                            className='tabell__checkAll-checkbox'
+                            checked={_checkAll}
+                            onChange={onCheckAllClicked}
+                          >
+                            {_labels.selectAll}
+                          </Checkbox>
+                          ) : (
+                            <HelpText>
+                              {_labels.selectAll}
+                            </HelpText>
+                        )}
                       </div>
                       )}
                     {searchable && (
