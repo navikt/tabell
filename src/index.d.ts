@@ -6,6 +6,7 @@ export type ItemErrors = {[k: string] : string | undefined}
 export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
+  flag?: boolean
   key: string
   parentKey ?: string
   openSubrows ?: boolean
@@ -80,6 +81,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   coloredSelectedRow ?: boolean
   editable?: boolean
   error?: string | undefined
+  flaggable ?: boolean
   highContrast?: boolean
   initialPage?: number
   id?: string

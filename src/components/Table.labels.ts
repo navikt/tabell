@@ -7,6 +7,7 @@ export default {
   confirm: 'Bekreft endringer',
   delete: 'Fjern',
   edit: 'Rediger',
+  flagged: 'Flagget',
   error: 'Ugyldig verdi',
   filter: 'Filter',
   noSelectedItems: 'Ingen {{type}} valgt',

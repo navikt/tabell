@@ -20,7 +20,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   td, th {
     padding: 0.35rem !important;
   }
-  .selectAll button:after {
+  .tabell thead th div.selectall button::after {
     content: none !important; /* clean up the sort arrows for select all th */
   }
   thead th button {

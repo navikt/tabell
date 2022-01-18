@@ -1,4 +1,5 @@
 import {
+  Bookmark,
   Cancel,
   CollapseFilled,
   Delete,
@@ -37,6 +38,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   columns = [],
   context = {} as CustomContext,
   editable = false,
+  flaggable = false,
   error = undefined,
   initialPage = 1,
   id = md5('tabell-' + new Date().getTime()),
@@ -603,6 +605,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         >
           <Table.DataCell title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}>
             <FlexCenterDiv>
+              {flaggable && (
+                <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
+              )}
               {item.parentKey && (
                 <div style={{ marginRight: '2rem' }}>&nbsp;</div>
               )}
@@ -616,7 +621,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   onChange={() => onCheckClicked(item)}
                 >
                 </Checkbox>
-
               )}
               {item.hasSubrows && (
                 <>
@@ -975,7 +979,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <Table.Row className='tabell__header'>
                 <Table.HeaderCell style={{ width: 1,  }}>
                   <FlexCenterDiv>
-                    {/* I am doing like this as I still want to keep the sape reserved for the checkbox */}
+                    {flaggable && (
+                      <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px' }} />
+                    )}
                     {selectable && (
                       <div className='selectall' title={_labels.selectAll}>
                         {showSelectAll ? (
@@ -990,7 +996,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                             {_labels.selectAll}
                           </Checkbox>
                           ) : (
-                            <HelpText>
+                            <HelpText placement='right'>
                               {_labels.selectAll}
                             </HelpText>
                         )}

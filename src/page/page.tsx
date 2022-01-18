@@ -60,6 +60,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   const [pagination, setPagination] = useState(true)
   const [searchable, setSearchable] = useState(true)
   const [selectable, setSelectable] = useState(true)
+  const [flaggable, setFlaggable] = useState(true)
   const [showSelectAll, setShowSelectAll] = useState(true)
   const [sortable, setSortable] = useState(true)
   const [striped, setStriped] = useState(true)
@@ -129,6 +130,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Searchable table</Checkbox>
               <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Selectable table</Checkbox>
               <Checkbox checked={showSelectAll} onChange={() => setShowSelectAll(!showSelectAll)} >Show 'select all' checkbox</Checkbox>
+              <Checkbox checked={flaggable} onChange={() => setFlaggable(!flaggable)} >Flaggable table</Checkbox>
             </SmallDiv>
             <SmallDiv>
               <Checkbox checked={size === 'small'} onChange={() => setSize(size === 'small' ? 'medium' : 'small')}>Switch to small size</Checkbox>
@@ -155,7 +157,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
           <MarginTable
             key={'' + editable}
             items={[
-              { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true },
+              { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true, flag: true },
               { key: '02', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
               { key: '03', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
               { key: '03_01', parentKey: '03', name: 'Charles', date: new Date(1970, 2, 4), type: 'co-CEO', selected: true },
@@ -195,6 +197,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             pagination={pagination}
             searchable={searchable}
             selectable={selectable}
+            flaggable={flaggable}
             showSelectAll={showSelectAll}
             sortable={sortable}
             striped={striped}
@@ -246,6 +249,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               '   pagination={ {{pagination}} }\n' +
               '   searchable={ {{searchable}} }\n' +
               '   selectable={ {{selectable}} }\n' +
+              '   flaggable={ {{flaggable}} }\n' +
               '   showSelectAll={ {{showSelectAll}} }\n' +
               '   sortable={ {{sortable}} }\n' +
               '   striped={ {{striped}} }\n' +
@@ -263,6 +267,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               pagination: pagination,
               searchable: searchable,
               selectable: selectable,
+              flaggable: flaggable,
               showSelectAll: showSelectAll,
               sortable: sortable,
               striped: striped,
