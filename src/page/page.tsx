@@ -387,6 +387,13 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>false</Table.DataCell>
               </Table.Row>
               <Table.Row>
+                <Table.DataCell>flaggable</Table.DataCell>
+                <Table.DataCell><code>boolean</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Add optional flags for table rows</Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
                 <Table.DataCell>error</Table.DataCell>
                 <Table.DataCell><code>string</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
