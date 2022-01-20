@@ -12,6 +12,7 @@ export default {
   filter: 'Filter',
   noSelectedItems: 'Ingen {{type}} valgt',
   saveChanges: 'Lagre endringer',
+  selectAllTitle: 'Velg alle',
   selectAll: 'Velg alle',
   showNoItems: 'Ingen {{type}} vist',
   showXofYItems: 'Viser {{x}} av {{y}} {{type}}',
