@@ -10,7 +10,6 @@ import {
 import { BodyLong, Button, Checkbox, Loader, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import Input from 'components/Input'
-import SelectAllLabel from 'components/SelectAllLabel'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
@@ -27,7 +26,6 @@ import Filter from 'resources/Filter'
 import Save from 'resources/Save'
 import defaultLabels from './Table.labels'
 import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable } from './TableStyles'
-import './SelectAllLabel'
 
 const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
@@ -995,13 +993,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                             checked={_checkAll}
                             onChange={onCheckAllClicked}
                           >
-                            {_labels.selectAll}
+                            {_labels.selectAllTitle}
                           </Checkbox>
                           ) : (
-                            <SelectAllLabel title={_labels.selectAllTitle} placement='right'>
-                              {_labels.selectAll}
-                            </SelectAllLabel>
-                        )}
+                            <>{_labels.selectAllTitle}</>
+                          )
+                        }
                       </div>
                       )}
                     {searchable && (

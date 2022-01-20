@@ -23,6 +23,9 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .tabell thead th div.selectall button::after {
     content: none !important; /* clean up the sort arrows for select all th */
   }
+  .tabell thead th div.selectall {
+    text-align: center;   
+  }
   thead th button {
     white-space: break-spaces !important;
     margin: 0rem !important;
