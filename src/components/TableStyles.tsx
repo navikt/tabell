@@ -8,6 +8,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .tabell .tabell__td,
   .tabell .tabell__th {
     padding: inherit;
+    vertical-align: middle;
   }
   width: 100%;
 
@@ -42,12 +43,6 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     border-color: var(--navds-tag-color-error-border) !important;
     border-width: 3px !important;
     border-style: solid !important;
-  }
-  .tabell__edit {
-    vertical-align: top;
-    td p {
-      line-height: 2rem !important;
-    }
   }
   .clickable {
     cursor: pointer;

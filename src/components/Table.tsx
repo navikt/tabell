@@ -673,7 +673,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             return (
               <Table.DataCell
                 key={item.key + '-column-' + column.id}
-                style={{verticalAlign: column.type === 'buttons' ? 'middle' : 'baseline'}}
                 className={classNames({
                   'tabell__td--sortert': sortable && _sort.column === column.id
                 })}
@@ -1057,7 +1056,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     if (column.type !== 'buttons') {
                       return (
                         <Table.DataCell key={column.id}>
-
                           <Input
                             style={{marginTop: '0px'}}
                             className='tabell__sort-input'
