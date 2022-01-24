@@ -101,6 +101,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   sortable?: boolean
   striped?: boolean
   summary?: boolean
+  subrowsIcon ?: 'arrow' | 'merge'
   sort?: Sort
 }
 

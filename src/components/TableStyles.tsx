@@ -10,9 +10,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     padding: inherit;
   }
   width: 100%;
-  .tabell__buttons { 
-    margin-top: 8px;
-  }
+
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
@@ -33,6 +31,9 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     width: 100% !important;
     display: contents;
     color: var(--navds-semantic-color-interaction-primary-hover);
+  }
+  tbody tr button.expandingButton {
+    padding: 0.2rem;
   }
   tr.tabell__tr--valgt td {
     background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary)' : 'inherit'};

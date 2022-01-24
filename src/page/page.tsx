@@ -204,6 +204,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             summary={summary}
             size={size}
             columns={columns}
+            subrowsIcon='merge'
           />
           <VerticalSeparatorDiv size='2'/>
           <SyntaxHighlighter language='javascript' style={_highContrast ? dark : light}>

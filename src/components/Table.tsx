@@ -15,7 +15,7 @@ import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
 import 'nav-frontend-tabell-style/dist/main.css'
-import { FlexCenterDiv, FlexCenterSpacedDiv, FlexStartDiv, HorizontalSeparatorDiv, PaddedDiv } from 'nav-hoykontrast'
+import { FlexCenterDiv, FlexCenterSpacedDiv, FlexStartDiv, HorizontalSeparatorDiv } from 'nav-hoykontrast'
 import Pagination from 'paginering'
 import PT from 'prop-types'
 import Tooltip from 'rc-tooltip'
@@ -23,6 +23,7 @@ import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import Filter from 'resources/Filter'
+import Merge from 'resources/Merge'
 import Save from 'resources/Save'
 import defaultLabels from './Table.labels'
 import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable } from './TableStyles'
@@ -57,6 +58,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   size = 'medium',
   sort = { column: '', order: 'none' },
   sortable = true,
+  subrowsIcon = 'arrow',
   striped = true,
   summary = false
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
@@ -305,7 +307,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             }
           })
         : (
-          <PaddedDiv size='0.25'>
             <Input
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
@@ -325,7 +326,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
             }, item)}
           />
-          </PaddedDiv>
           )
     } else {
       return _.isFunction(column.renderCell)
@@ -457,8 +457,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             }
           })
         : (
-          <PaddedDiv size='0.25'>
-            <Input
+          <Input
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
@@ -473,7 +472,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             }}
             onChanged={(newText: string) => handleEditRowChange({[column.id]: newText}, item)}
           />
-          </PaddedDiv>
           )
     } else {
       return _.isFunction(column.renderCell)
@@ -529,7 +527,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                         }
                       })
                     : (
-                      <PaddedDiv size='0.25'>
                         <Input
                           style={{marginTop: '0px'}}
                           id={'tabell__edit-' + column.id + '-input-id'}
@@ -545,7 +542,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                           }}
                           onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
                         />
-                      </PaddedDiv>
                       )
                 }
               </Table.DataCell>
@@ -556,11 +552,11 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             return content
           } else {
             return (
-              <Table.DataCell key={column.id}>
+              <Table.DataCell style={{verticalAlign: 'middle'}} key={column.id}>
                 <Button
+                  size="small"
                   title={_labels.addLabel}
                   variant="secondary"
-                  style={{marginTop: '5px'}}
                   onClick={(e: any) => {
                     e.preventDefault()
                     e.stopPropagation()
@@ -603,7 +599,10 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             'tabell__tr--disabled': item.disabled
           })}
         >
-          <Table.DataCell title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}>
+          <Table.DataCell
+            style={{verticalAlign: 'middle'}}
+            title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
+          >
             <FlexCenterDiv>
               {flaggable && (
                 <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
@@ -627,14 +626,24 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   <HorizontalSeparatorDiv size='0.3'/>
                   <Button
                     size="small"
-                    variant="secondary"
+                    className='expandingButton'
+                    variant="tertiary"
                     onClick={(e) => {
                       e.stopPropagation()
                       e.preventDefault()
                       toggleSubRowOpen(item)
                     }}
                   >
-                    {item.openSubrows ? (_sort.order === 'asc' ? <ExpandFilled/> : <CollapseFilled/>) :  <NextFilled/>}
+                    {item.openSubrows
+                      ? subrowsIcon === 'merge'
+                        ? <Merge/>
+                        : _sort.order === 'asc'
+                          ? <ExpandFilled/>
+                          : <CollapseFilled/>
+                      : subrowsIcon === 'merge'
+                        ?  <Merge/>
+                        : <NextFilled/>
+                    }
                   </Button>
                   <HorizontalSeparatorDiv size='0.3'/>
                 </>
@@ -664,6 +673,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             return (
               <Table.DataCell
                 key={item.key + '-column-' + column.id}
+                style={{verticalAlign: column.type === 'buttons' ? 'middle' : 'baseline'}}
                 className={classNames({
                   'tabell__td--sortert': sortable && _sort.column === column.id
                 })}
@@ -1047,9 +1057,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     if (column.type !== 'buttons') {
                       return (
                         <Table.DataCell key={column.id}>
-                          <PaddedDiv size='0.2'>
+
                           <Input
-                            size='small'
                             style={{marginTop: '0px'}}
                             className='tabell__sort-input'
                             id={'tabell__sort-' + column.id + '-input-id'}
@@ -1058,7 +1067,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                             onEnterPress={(e: string) => handleFilterChange(column, e)}
                             onChanged={(e: string) => handleFilterChange(column, e)}
                           />
-                          </PaddedDiv>
                         </Table.DataCell>
                       )
                     }
