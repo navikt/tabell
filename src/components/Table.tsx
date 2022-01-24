@@ -22,6 +22,7 @@ import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
+import Connected from 'resources/Connected'
 import Filter from 'resources/Filter'
 import Merge from 'resources/Merge'
 import Save from 'resources/Save'
@@ -608,7 +609,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
               )}
               {item.parentKey && (
-                <div style={{ marginRight: '2rem' }}>&nbsp;</div>
+                <div style={{marginRight: '2rem'}}>&nbsp;</div>
               )}
               {selectable && !item.selectDisabled && (
                 <Checkbox
@@ -621,13 +622,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 >
                 </Checkbox>
               )}
+              {item.parentKey && (
+                <>
+                  <HorizontalSeparatorDiv size='0.5'/>
+                  <Connected/>
+                  <HorizontalSeparatorDiv size='0.3'/>
+                </>
+              )}
               {item.hasSubrows && (
                 <>
                   <HorizontalSeparatorDiv size='0.3'/>
                   <Button
                     size="small"
                     className='expandingButton'
-                    variant="tertiary"
+                    variant={item.openSubrows ? "primary" : "tertiary"}
                     onClick={(e) => {
                       e.stopPropagation()
                       e.preventDefault()

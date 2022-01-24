@@ -37,7 +37,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     padding: 0.2rem;
   }
   tr.tabell__tr--valgt td {
-    background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-interaction-primary)' : 'inherit'};
+    background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-focus-inverted)' : 'inherit'};
   }
   &.error {
     border-color: var(--navds-tag-color-error-border) !important;
