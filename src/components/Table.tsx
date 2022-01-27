@@ -605,9 +605,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
           >
             <FlexCenterDiv>
-              {flaggable && (
-                <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
-              )}
+              {flaggable
+                ? item.flagIkon ?? (
+                  <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
+                )
+                : null
+              }
               {item.parentKey && (
                 <div style={{marginRight: '2rem'}}>&nbsp;</div>
               )}

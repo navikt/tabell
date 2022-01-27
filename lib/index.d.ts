@@ -7,6 +7,7 @@ export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
   flag?: boolean
+  flagIkon ?: any
   key: string
   parentKey ?: string
   openSubrows ?: boolean
