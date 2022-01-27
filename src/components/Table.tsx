@@ -615,15 +615,18 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 <div style={{marginRight: '2rem'}}>&nbsp;</div>
               )}
               {selectable && !item.selectDisabled && (
-                <Checkbox
-                  id={'tabell-' + id + '__row-select-' + item.key}
-                  data-test-id={'tabell-' + id + '__row-select-' + item.key}
-                  disabled={item.disabled ?? false}
-                  hideLabel
-                  checked={!!item.selected}
-                  onChange={() => onCheckClicked(item)}
-                >
-                </Checkbox>
+                <>
+                  <HorizontalSeparatorDiv size='0.3'/>
+                  <Checkbox
+                    id={'tabell-' + id + '__row-select-' + item.key}
+                    data-test-id={'tabell-' + id + '__row-select-' + item.key}
+                    disabled={item.disabled ?? false}
+                    hideLabel
+                    checked={!!item.selected}
+                    onChange={() => onCheckClicked(item)}
+                  >
+                  </Checkbox>
+                </>
               )}
               {item.parentKey && (
                 <>
