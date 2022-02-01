@@ -129,4 +129,5 @@ export const CenterTh = styled.th`
 `
 export const BlueText = styled.div`
   color: var(--navds-link-color-text);
+  font-weight: 400;
 `
