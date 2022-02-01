@@ -27,7 +27,7 @@ import Filter from 'resources/Filter'
 import Merge from 'resources/Merge'
 import Save from 'resources/Save'
 import defaultLabels from './Table.labels'
-import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable } from './TableStyles'
+import { CenterTh, ContentDiv, FilterIcon, LoadingDiv, TableDiv, WideTable, BlueText } from './TableStyles'
 
 const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
@@ -1019,7 +1019,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                             {_labels.selectAllTitle}
                           </Checkbox>
                           ) : (
-                            <>{_labels.selectAllTitle}</>
+                            <BlueText>{_labels.selectAllTitle}</BlueText>
                           )
                         }
                       </div>
