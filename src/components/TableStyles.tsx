@@ -1,4 +1,4 @@
-import { slideInFromLeft } from 'nav-hoykontrast'
+import { slideInFromLeft } from '@navikt/hoykontrast'
 import styled  from 'styled-components'
 import { Table } from '@navikt/ds-react'
 
