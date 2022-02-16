@@ -606,9 +606,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           >
             <FlexCenterDiv>
               {flaggable
-                ? item.flagIkon ?? (
-                  <Bookmark title={item.flagLabel ?? _labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />
-                )
+                ? item.flagIkon
+                  ? (<div title={item.flagLabel ?? _labels.flagged}>{item.flagIkon}</div>)
+                  : (<Bookmark title={item.flagLabel ?? _labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />)
                 : null
               }
               {item.parentKey && (
