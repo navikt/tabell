@@ -81,30 +81,21 @@ describe('Table', () => {
     expect(wrapper.exists(WideTable)).toBeTruthy()
   })
 
-  it('UseEffect: new items', () => {
-    wrapper.setProps({
-      items: initialMockProps.items!.slice(initialMockProps.items!.length - 1)
-    })
-    wrapper.update()
-    expect(wrapper.exists(WideTable)).toBeTruthy()
-    expect(wrapper.find('tbody tr').length).toEqual(1)
-  })
-
   it('Sort order', () => {
     let lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('navds-table__cell header')
+    expect(lastHeader.props().className).toEqual('navds-table__header-cell header navds-label')
 
-    lastHeader.find('a').hostNodes().simulate('click')
+    lastHeader.find('button').hostNodes().simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-asc')
+    expect(lastHeader.props().className).toEqual('navds-table__header-cell header tabell__th--sortert-asc navds-label')
 
-    lastHeader.find('a').simulate('click')
+    lastHeader.find('button').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-desc')
+    expect(lastHeader.props().className).toEqual('navds-table__header-cell header tabell__th--sortert-desc navds-label')
 
-    lastHeader.find('a').simulate('click')
+    lastHeader.find('button').simulate('click')
     lastHeader = wrapper.find('thead tr th').last()
-    expect(lastHeader.props().className).toEqual('navds-table__cell header tabell__th--sortert-asc')
+    expect(lastHeader.props().className).toEqual('navds-table__header-cell header tabell__th--sortert-asc navds-label')
   })
 
   it('onCheckAllClicked triggered', () => {
@@ -121,25 +112,25 @@ describe('Table', () => {
 
   it('onCheckClicked triggered to select and deselect', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
-      [{ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }]
+      [{ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true }]
     )
-    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
   })
 
   it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
-    wrapper.find('input[data-testid="tabell__row-checkbox-id-01-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }
+      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true }
     ])
-    wrapper.find('input[data-testid="tabell__row-checkbox-id-02-test"]').hostNodes().first().simulate('change', { target: { checked: true } })
+    wrapper.find('input[data-test-id="tabell-test__row-select-02"]').hostNodes().first().simulate('change', { target: { checked: true } })
     expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true },
-      { key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, visible: true }
+      { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true },
+      { key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, sortKey: 'object 02', visible: true }
     ])
   })
 
@@ -147,9 +138,11 @@ describe('Table', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('.tabell___seefilters-icon').hostNodes().simulate('click')
     wrapper.update()
-    wrapper.find('.tabell__sort-input input').hostNodes().first().simulate('change', { target: { value: 'String 07' } })
+    const filterTextBox = wrapper.find('.tabell__sort-input input').hostNodes().first()
+    filterTextBox.simulate('change', { target: { value: 'String 07' } })
+    filterTextBox.simulate('blur')
     wrapper.update()
     expect(wrapper.find('tbody tr').length).toEqual(1)
-    expect(wrapper.find('tbody tr').render().text()).toEqual(['07', 'String 07', '2/7/2020', 'Object 07'].join(''))
+    expect(wrapper.find('tbody tr').render().text()).toEqual(['String 07', '07/02/2020', 'Object 07'].join(''))
   })
 })

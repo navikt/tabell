@@ -41,6 +41,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   context = {} as CustomContext,
   editable = false,
   flaggable = false,
+  flagIkon,
   error = undefined,
   initialPage = 1,
   id = md5('tabell-' + new Date().getTime()),
@@ -1002,9 +1003,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <Table.Row className='tabell__header'>
                 <Table.HeaderCell style={{ width: 1,  }}>
                   <FlexCenterDiv>
-                    {flaggable && (
-                      <Bookmark title={_labels.flagged} style={{width: '30px', height: '24px' }} />
-                    )}
+                    {flaggable
+                      ? flagIkon ?? (
+                        <Bookmark title={_labels.flagAll} style={{width: '30px', height: '24px' }} />
+                      )
+                      : null
+                    }
                     {selectable && (
                       <div className='selectall' title={_labels.selectAll}>
                         {showSelectAll ? (
