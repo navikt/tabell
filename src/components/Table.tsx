@@ -7,6 +7,7 @@ import {
   ExpandFilled,
   NextFilled
 } from '@navikt/ds-icons'
+import Tooltip from '@navikt/tooltip'
 import { BodyLong, Button, Checkbox, Loader, Popover, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import Input from 'components/Input'
@@ -375,7 +376,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       return (
         <FlexStartDiv className='tabell__buttons'>
           <Button
-            title={_labels.saveChanges}
             variant="secondary"
             size="small"
             aria-label={_labels.saveChanges}
@@ -385,7 +385,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               saveEditedRow(item, undefined)
             }}
           >
-            <Save/>
+            <Tooltip label={_labels.saveChanges!}>
+              <Save/>
+            </Tooltip>
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
           <Button
@@ -400,7 +402,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               _setEditingRows(newEditingRows)
             }}
           >
-            <Cancel width='24' height='24' title={_labels.cancelChanges} />
+            <Tooltip label={_labels.cancelChanges!}>
+              <Cancel width='24' height='24' />
+            </Tooltip>
           </Button>
         </FlexStartDiv>
       )
@@ -420,7 +424,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               })
             }}
           >
-            <Edit title={_labels.edit} />
+            <Tooltip label={_labels.edit!}>
+              <Edit />
+            </Tooltip>
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
           <Button
@@ -436,7 +442,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               }
             }}
           >
-            <Delete title={_labels.delete} />
+            <Tooltip label={_labels.delete!}>
+              <Delete />
+            </Tooltip>
           </Button>
         </FlexStartDiv>
       )
@@ -566,7 +574,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <Table.DataCell style={{verticalAlign: 'middle'}} key={column.id}>
                 <Button
                   size="small"
-                  title={_labels.addLabel}
                   variant="secondary"
                   onClick={(e: any) => {
                     e.preventDefault()
@@ -574,7 +581,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                     saveAddedRow(context, _columns)
                   }}
                 >
+                  <Tooltip label={_labels.addLabel!}>
                   <Save/>
+                  </Tooltip>
                 </Button>
               </Table.DataCell>
             )
@@ -616,9 +625,11 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           >
             <FlexCenterDiv>
               {flaggable
-                ? item.flagIkon
-                  ? (<div title={item.flagLabel ?? _labels.flagged}>{item.flagIkon}</div>)
-                  : (<Bookmark title={item.flagLabel ?? _labels.flagged} style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />)
+                ? (
+                  <Tooltip label={(item.flagLabel ?? _labels.flagged)!}>
+                    {item.flagIkon ?? <Bookmark style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />}
+                  </Tooltip>
+                )
                 : null
               }
               {item.parentKey && (
@@ -665,7 +676,11 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                           ? <ExpandFilled/>
                           : <CollapseFilled/>
                       : subrowsIcon === 'merge'
-                        ?  <Merge/>
+                        ? (
+                          <Tooltip label={_labels.merged!}>
+                            <Merge/>
+                          </Tooltip>
+                        )
                         : <NextFilled/>
                     }
                   </Button>
@@ -1014,13 +1029,16 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   <FlexCenterDiv>
                     {flaggable
                       ? flagIkon ?? (
-                        <Bookmark title={_labels.flagAll} style={{width: '30px', height: '24px' }} />
+                        <Tooltip label={_labels.flagAll!}>
+                          <Bookmark style={{width: '30px', height: '24px' }} />
+                        </Tooltip>
                       )
                       : null
                     }
                     {selectable && (
-                      <div className='selectall' title={_labels.selectAll}>
+                      <div className='selectall'>
                         {showSelectAll ? (
+                          <Tooltip label={_labels.selectAll!}>
                           <Checkbox
                             key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
                             hideLabel
@@ -1031,6 +1049,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                           >
                             {_labels.selectAllTitle}
                           </Checkbox>
+                          </Tooltip>
                           ) : (
                             <BlueText>{_labels.selectAllTitle}</BlueText>
                           )
@@ -1038,15 +1057,17 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                       </div>
                       )}
                     {searchable && (
-                      <FilterIcon
+                      <Tooltip label={_labels.filter!}>
+                        <FilterIcon
                         role='button'
-                        title={_labels.filter}
                         aria-pressed={_seeFilters}
                         className='tabell___seefilters-icon'
                         id='tabell__seefilters-icon-id'
                         onClick={() => _setSeeFilters(!_seeFilters)}>
                         <Filter/>
-                      </FilterIcon>)}
+                      </FilterIcon>
+                      </Tooltip>
+                    )}
                   </FlexCenterDiv>
                 </Table.HeaderCell>
                 {_columns.map((column) => {

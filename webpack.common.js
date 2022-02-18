@@ -136,7 +136,6 @@ module.exports = {
       commonjs: "styled-components",
       commonjs2: "styled-components",
       amd: "styled-components",
-    },
-
+    }
   }
 }
