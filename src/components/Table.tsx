@@ -7,7 +7,7 @@ import {
   ExpandFilled,
   NextFilled
 } from '@navikt/ds-icons'
-import { BodyLong, Button, Checkbox, Loader, Table } from '@navikt/ds-react'
+import { BodyLong, Button, Checkbox, Loader, Popover, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, Item, ItemErrors, Labels, Sort, SortOrder, TableProps } from 'index.d'
@@ -18,8 +18,6 @@ import 'nav-frontend-tabell-style/dist/main.css'
 import { FlexCenterDiv, FlexCenterSpacedDiv, FlexStartDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
 import Pagination from '@navikt/paginering'
 import PT from 'prop-types'
-import Tooltip from 'rc-tooltip'
-import 'rc-tooltip/assets/bootstrap_white.css'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import Connected from 'resources/Connected'
@@ -112,7 +110,10 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   /** Table labels */
   const _labels: Labels = { ...defaultLabels, ...labels }
 
+  const [popoverOpen, _setPopover] = useState<{[k in string]: boolean}>(() => ({}))
   const animationDelay = 0.01
+
+  const setPopoverOpen = (key: string, value: boolean) => _setPopover({...popoverOpen, [key]: value})
 
   /** order on which sort switches over */
   const sortOrder: SortOrder = {
@@ -476,25 +477,33 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           />
           )
     } else {
+      const id = 'popover-' + item.key + '-' + column.id
       return _.isFunction(column.renderCell)
         ? column.renderCell(item, value, context)
-        : (
-           <>
-            {_labels[column.id] && _labels[column.id]![value]
-              ? (
-                <Tooltip
-                  placement='top'
-                  trigger={['hover']}
-                  overlay={
-                    <BodyLong>{_labels[column.id]![value]}</BodyLong>
-                  }
-                >
-                  <BodyLong>{value}</BodyLong>
-                </Tooltip>
-                )
-              : <BodyLong>{value}</BodyLong>}
-           </>
-        )
+        : _labels[column.id] && _labels[column.id]![value]
+          ? (
+            <>
+              <Popover
+                anchorEl={document.getElementById(id)}
+                onClose={() => setPopoverOpen(id, false)}
+                open={popoverOpen[id]}
+                placement='top'
+              >
+                <BodyLong>{_labels[column.id]![value]}</BodyLong>
+              </Popover>
+              <div
+                id={'popover-' + item.key + '-' + column.id}
+                style={{display: 'inline-block'}}
+                onFocus={() => setPopoverOpen(id, true)}
+                onBlur={() => setPopoverOpen(id, false)}
+                onMouseOver={() => setPopoverOpen(id,true)}
+                onMouseOut={() => setPopoverOpen(id, false)}
+              >
+                <BodyLong>{value}</BodyLong>
+              </div>
+              </>
+            )
+          : <BodyLong>{value}</BodyLong>
     }
   }
 

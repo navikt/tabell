@@ -120,12 +120,6 @@ module.exports = {
       amd: 'nav-hoykontrast',
       root: 'nav-hoykontrast'
     },
-    'rc-tooltip': {
-      commonjs: 'rc-tooltip',
-      commonjs2: 'rc-tooltip',
-      amd: 'rc-tooltip',
-      root: 'rc-tooltip'
-    },
     react: {
       commonjs: 'react',
       commonjs2: 'react',
