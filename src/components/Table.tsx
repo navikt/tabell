@@ -49,7 +49,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   labels = {},
   loading = false,
   onColumnSort = () => {},
-  onRowClicked = () => {},
+  onRowClicked,
+  onRowDoubleClicked,
   onRowsChanged = () => {},
   onRowSelectChange = () => {},
   pagination = true,
@@ -610,7 +611,22 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           id={'tabell-' + id + '__row-' + item.key + (editing ? '-edit' : '')}
           aria-selected={selectable && item.selected === true}
           style={{ animationDelay: (animationDelay * index) + 's' }}
-          onClick={() => _.isFunction(onRowClicked) ? onRowClicked(item) : {}}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            // single click
+            if (e.detail === 1) {
+              _.isFunction(onRowClicked) ? onRowClicked(item) : {}
+            }
+            // double click
+            if (e.detail === 2) {
+              _.isFunction(onRowDoubleClicked) ? onRowDoubleClicked(item) :
+                editable && !item.disabled ? _setEditingRows({
+                  ..._editingRows,
+                  [item.key]: item
+                }) : {}
+            }
+          }}
           className={classNames({
             slideAnimate: animatable,
             tabell__edit: editing,
