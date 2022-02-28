@@ -1,0 +1,279 @@
+import { Cancel, Delete, Edit } from '@navikt/ds-icons'
+import { BodyLong, Button, Popover, Table } from '@navikt/ds-react'
+import { FlexStartDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
+import Tooltip from '@navikt/tooltip'
+import classNames from 'classnames'
+import Input from 'components/Input'
+import { Context, CellProps, Item, Column } from '../index.d'
+import _ from 'lodash'
+import moment from 'moment'
+import React, { useState } from 'react'
+import Save from 'resources/Save'
+
+const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
+  column,
+  context,
+  editingRow,
+  editable,
+  handleEditRowChange,
+  handleRowDeleted,
+  saveEditedRow,
+  item,
+  id,
+  labels,
+  sortable,
+  sort,
+  setEditingRow
+}: CellProps<CustomItem, CustomContext>) => {
+
+  const editing: boolean = !_.isNil(editingRow)
+  const error = editing ? editingRow!.error : undefined
+  let content: JSX.Element | null = null
+
+  const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
+
+
+  /** Renders the row as a date */
+  const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+    const value: any = item[column.id]
+    if (editing) {
+      return column.edit?.render
+        ? column.edit.render({
+          value: editingRow![column.id],
+          values: editingRow!,
+          error: error?.[column.id],
+          context: context,
+          setValues: handleEditRowChange,
+          onEnter: (entries) => {
+            const editedRow: CustomItem = handleEditRowChange(entries)
+            saveEditedRow(editedRow)
+          }
+        })
+        : (
+          <Input
+            style={{marginTop: '0px'}}
+            id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
+            className='tabell__edit-input'
+            error={error?.[column.id]}
+            label='date'
+            hideLabel
+            placeholder={column.edit?.placeholder}
+            value={moment(editingRow![column.id]).format('DD.MM.YYYY') ?? ''}
+            onEnterPress={(newText: string) => {
+              const editedRow: CustomItem = handleEditRowChange({
+                [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
+              })
+              saveEditedRow(editedRow)
+            }}
+            onChanged={(newText: string) => handleEditRowChange({
+              [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
+            })}
+          />
+        )
+    } else {
+      return _.isFunction(column.renderCell)
+        ? column.renderCell(item, value, context)
+        : (
+          <BodyLong>
+            {column.dateFormat
+              ? moment(value).format(column.dateFormat)
+              : _.isFunction(value?.toLocaleDateString)
+                ? value.toLocaleDateString()
+                : value?.toString()}
+          </BodyLong>
+        )
+    }
+  }
+
+  /** Renders the row as a object (needs custom render functions) */
+  const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+    const value: any = item[column.id]
+    if (editing) {
+      return column.edit?.render
+        ? column.edit.render({
+          value: editingRow![column.id],
+          values: editingRow!,
+          error: error ? error[column.id] : undefined,
+          context: context,
+          setValues: handleEditRowChange,
+          onEnter: (entries) => {
+            const editedRow: CustomItem = handleEditRowChange(entries)
+            saveEditedRow(editedRow)
+          }
+        })
+        : (<span>You have to set a edit render function for object</span>)
+    } else {
+      return _.isFunction(column.renderCell)
+        ? column.renderCell(item, value, context)
+        : <span>You have to set a render function for object</span>
+    }
+  }
+
+  /** Renders the row buttons */
+  const renderButtons = (item: CustomItem, editing: boolean): JSX.Element => {
+    if (editing) {
+      return (
+        <FlexStartDiv className='tabell__buttons'>
+          <Button
+            variant="secondary"
+            size="small"
+            aria-label={labels.saveChanges}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              saveEditedRow(undefined)
+            }}
+          >
+            <Tooltip label={labels.saveChanges!}>
+              <Save/>
+            </Tooltip>
+          </Button>
+          <HorizontalSeparatorDiv size='0.5' />
+          <Button
+            variant="secondary"
+            size="small"
+            aria-label={labels.cancelChanges}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setEditingRow(undefined)
+            }}
+          >
+            <Tooltip label={labels.cancelChanges!}>
+              <Cancel width='24' height='24' />
+            </Tooltip>
+          </Button>
+        </FlexStartDiv>
+      )
+    } else {
+      return (
+        <FlexStartDiv className='tabell__buttons'>
+          <Button
+            variant="secondary"
+            size="small"
+            aria-label={labels.edit}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setEditingRow(item)
+            }}
+          >
+            <Tooltip label={labels.edit!}>
+              <Edit />
+            </Tooltip>
+          </Button>
+          <HorizontalSeparatorDiv size='0.5' />
+          <Button
+            variant="secondary"
+            size="small"
+            aria-label={labels.delete}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              const answer = window.confirm(labels.areYouSure)
+              if (answer) {
+                handleRowDeleted(item)
+              }
+            }}
+          >
+            <Tooltip label={labels.delete!}>
+              <Delete />
+            </Tooltip>
+          </Button>
+        </FlexStartDiv>
+      )
+    }
+  }
+
+  /** Renders the row as default string */
+  const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+    const value: any = item[column.id]
+    if (editing) {
+      return column.edit?.render
+        ? column.edit.render({
+          value: editingRow![column.id],
+          values: editingRow!,
+          error: error ? error[column.id] : undefined,
+          context: context,
+          setValues: handleEditRowChange,
+          onEnter: (entries) => {
+            const editedRow: CustomItem = handleEditRowChange(entries)
+            saveEditedRow(editedRow)
+          }
+        })
+        : (
+          <Input
+            style={{marginTop: '0px'}}
+            id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
+            className='tabell__edit-input'
+            error={error && error[column.id]}
+            label=''
+            hideLabel
+            placeholder={column.edit?.placeholder}
+            value={value ?? ''}
+            onEnterPress={(newText: string) => {
+              const editedRow: CustomItem = handleEditRowChange({ [column.id]: newText })
+              saveEditedRow(editedRow)
+            }}
+            onChanged={(newText: string) => handleEditRowChange({[column.id]: newText})}
+          />
+        )
+    } else {
+      return _.isFunction(column.renderCell)
+        ? column.renderCell(item, value, context)
+        : labels[column.id] && labels[column.id]![value]
+          ? (
+            <>
+              <Popover
+                anchorEl={document.getElementById(id)}
+                onClose={() => setPopoverOpen(false)}
+                open={popoverOpen}
+                placement='top'
+              >
+                <BodyLong>{labels[column.id]![value]}</BodyLong>
+              </Popover>
+              <div
+                id={'popover-' + item.key + '-' + column.id}
+                style={{display: 'inline-block'}}
+                onFocus={() => setPopoverOpen(true)}
+                onBlur={() => setPopoverOpen(false)}
+                onMouseOver={() => setPopoverOpen(true)}
+                onMouseOut={() => setPopoverOpen(false)}
+              >
+                <BodyLong>{value}</BodyLong>
+              </div>
+            </>
+          )
+          : <BodyLong>{value}</BodyLong>
+    }
+  }
+
+  switch (column.type) {
+    case 'date':
+      content = renderRowAsDate(item, column, error, editing)
+      break
+    case 'object':
+      content = renderRowAsObject(item, column, error, editing)
+      break
+    case 'buttons':
+      if (editable) {
+        content = renderButtons(item, editing)
+      }
+      break
+    default:
+      content = renderRowAsDefault(item, column, error, editing)
+      break
+  }
+  return (
+    <Table.DataCell
+      key={item.key + '-column-' + column.id}
+      className={classNames({
+        'tabell__td--sortert': sortable && sort.column === column.id
+      })}
+    >
+      {content}
+    </Table.DataCell>
+  )
+}
+
+export default Cell

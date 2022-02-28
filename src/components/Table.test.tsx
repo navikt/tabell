@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme'
 import React from 'react'
 import Table from './Table'
-import { WideTable } from './TableStyles'
+import { WideTable } from './Styles'
 import { Item, TableProps } from 'index.d'
 
 jest.mock('md5', () => ('mock-md5'))

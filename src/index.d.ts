@@ -1,4 +1,3 @@
-
 export type ItemBase = {[k in string]? : any}
 
 export type ItemErrors = {[k: string] : string | undefined}
@@ -7,7 +6,7 @@ export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
   flag?: boolean
-  flagIkon ?: any
+  flagIkon ?: any | undefined
   flagLabel ?: string
   key: string
   parentKey ?: string
@@ -84,8 +83,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   editable?: boolean
   error?: string | undefined
   flaggable ?: boolean
-  flagIkon ?: JSX.Element | string
-  highContrast?: boolean
+  flagIkon ?: JSX.Element | string | undefined
   initialPage?: number
   id?: string
   items?: Array<CustomItem>
@@ -103,10 +101,116 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   showSelectAll ?: boolean
   size ?: 'medium' | 'small' | undefined
   sortable?: boolean
+  sort?: Sort
   striped?: boolean
   summary?: boolean
   subrowsIcon ?: 'arrow' | 'merge'
-  sort?: Sort
+}
+
+export interface TableHeaderProps<CustomItem, CustomContext> {
+  categories?: Array<Category>
+  columns: Array<Column<CustomItem, CustomContext>>
+  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
+  flaggable ?: boolean
+  flagIkon ?: JSX.Element | string
+  items: Array<CustomItem>
+  labels: Labels
+  selectable ?: boolean
+  searchable ?: boolean
+  sortable ?: boolean
+  showSelectAll ?: boolean
+  id?: string
+  onColumnSort ?: (s: Sort) => void
+  onRowSelectChange ?: (items: Array<CustomItem>) => void
+  setItems: (items: Array<CustomItem>) => void
+  sort: Sort
+  setSort: (s: Sort) => void
+}
+
+export interface TableRowProps<CustomItem, CustomContext> {
+  beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
+  index: number
+  item: CustomItem
+  items: Array<CustomItem>
+  columns: Array<Column<CustomItem, CustomContext>>
+  context?: CustomContext
+  sort: Sort
+  labels: Labels
+  flaggable: boolean
+  id: string
+  animatable: boolean
+  editable: boolean
+  selectable: boolean
+  sortable: boolean
+  onRowClicked ?: (item: CustomItem) => void
+  onRowDoubleClicked ?: (item: CustomItem) => void
+  onRowsChanged ?: (items: Array<CustomItem>) => void
+  onRowSelectChange ?: (items: Array<CustomItem>) => void
+  setItems: (items: Array<CustomItem>) => void
+  subrowsIcon ?: 'arrow' | 'merge'
+}
+
+export interface TableFooterProps {
+  itemsPerPage?: number
+  labels: Labels
+  loading?: boolean
+  summary?: boolean
+  editable?: boolean
+  selectable?: boolean
+  pagination?: boolean
+  currentPage: number
+  setCurrentPage: (page: number) => void
+  numberOfSelectedRows: number
+  numberOfVisibleItems: number
+}
+
+export interface HeaderFilterProps<CustomItem, CustomContext> {
+  columns: Array<Column<CustomItem, CustomContext>>
+  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
+}
+
+export interface HeaderCategoriesProps {
+  categories: Array<Category>
+}
+
+export interface AddRowProps<CustomItem, CustomContext> {
+  beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
+  context?: CustomContext
+  columns: Array<Column<CustomItem, CustomContext>>
+  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
+  labels: Labels
+  items: Array<CustomItem>
+  setItems: (items: Array<CustomItem>) => void
+  onRowsChanged ?: (items: Array<CustomItem>) => void
+}
+
+export interface FirstCellProps<CustomItem> {
+  flaggable: boolean
+  item: CustomItem
+  items: Array<CustomItem>
+  labels: Labels
+  id: string
+  selectable: boolean
+  sort: Sort
+  subrowsIcon: 'arrow' | 'merge' | undefined
+  setItems: (items: Array<CustomItem>) => void
+  onRowSelectChange ?: (items: Array<CustomItem>) => void
+}
+
+export interface CellProps<CustomItem, CustomContext> {
+  column: Column<CustomItem, CustomContext>
+  context: CustomContext
+  editingRow: CustomItem | undefined
+  editable: boolean
+  handleEditRowChange: (entries: {[k in string]: any}) => CustomItem
+  handleRowDeleted: (item: CustomItem) => void
+  saveEditedRow: (editedRow: CustomItem | undefined) => void
+  item: CustomItem
+  id: string
+  labels: Labels
+  sortable: boolean
+  sort: Sort
+  setEditingRow: (c: CustomItem | undefined) => void
 }
 
 declare const Table: <

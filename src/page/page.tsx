@@ -1,3 +1,4 @@
+import Input from 'components/Input'
 import React, { useEffect, useState } from 'react'
 import Mustache from 'mustache'
 import { Detail, Checkbox, Link, Select, BodyLong, Heading, Table } from '@navikt/ds-react'
@@ -52,21 +53,25 @@ const MarginTable = styled(NavTable)`
 const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
 
   const [_highContrast, _setHighContrast] = useState<boolean>(highContrast)
-  const [allowNewRows, setAllowNewRows] = useState(true)
-  const [animatable, setAnimatable] = useState(true)
+  const [allowNewRows, setAllowNewRows] = useState<boolean>(true)
+  const [animatable, setAnimatable] = useState<boolean>(true)
+  const [categories, setCategories] = useState<boolean>(true)
   const [coloredSelectedRow, setColoredSelectedRow] = useState<boolean>(true)
-  const [editable, setEditable] = useState(true)
+  const [editable, setEditable] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
+  const [flaggable, setFlaggable] = useState(true)
+  const [flagIkon, setFlagIkon] = useState<string | undefined>(undefined)
+  const [itemsPerPage, setItemsPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
   const [pagination, setPagination] = useState(true)
   const [searchable, setSearchable] = useState(true)
   const [selectable, setSelectable] = useState(true)
-  const [flaggable, setFlaggable] = useState(true)
   const [showSelectAll, setShowSelectAll] = useState(true)
   const [sortable, setSortable] = useState(true)
   const [striped, setStriped] = useState(true)
   const [summary, setSummary] = useState(true)
   const [size, setSize] = useState<'medium' | 'small' | undefined> ('medium')
-  const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [subrowsIcon, setSubrowsIcon] = useState<string>('arrow')
 
   useEffect(() => {
     if (!(highContrast === undefined || highContrast === null)) {
@@ -85,9 +90,48 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
       renderCell: (item: Item, value: any) => <Detail >{value}</Detail>
     }
   ]
+
   if (editable) {
     columns.push({id: 'buttons', label: '', type: 'buttons'})
   }
+
+  let items: Array<Item> = [
+    { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true, flag: true },
+    { key: '02', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
+    { key: '03', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
+    { key: '03_01', parentKey: '03', name: 'Charles', date: new Date(1970, 2, 4), type: 'co-CEO', selected: true },
+    { key: '03_02', parentKey: '03', name: 'Chad', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
+    { key: '03_03', parentKey: '03', name: 'Christine', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
+    { key: '04', name: 'Daniel', date: new Date(1946, 2, 24), type: 'Developer' },
+    { key: '05', name: 'Emma', date: new Date(1947, 7, 1), type: 'Economist', selected: true },
+    { key: '06', name: 'Frank', date: new Date(1978, 11, 14), type: 'Freelancer' },
+    { key: '07', name: 'Gwyneth', date: new Date(1992, 1, 4), type: 'Geographer' },
+    { key: '08', name: 'Howard', date: new Date(2001, 9, 19), type: 'HR head', disabled: true },
+    { key: '09', name: 'Iva', date: new Date(1925, 6, 12), type: 'Investor', selected: true },
+    { key: '10', name: 'John', date: new Date(1994, 3, 2), type: 'Journalist' },
+    { key: '11', name: 'Karen', date: new Date(1999, 9, 22), type: 'Knowledge engineer' },
+    { key: '12', name: 'Leonard', date: new Date(1991, 10, 26), type: 'Lawyer' },
+    { key: '13', name: 'Mary', date: new Date(1962, 10, 25), type: 'Marketing' },
+    { key: '14', name: 'Neville', date: new Date(1983, 1, 22), type: 'Nurse' },
+    { key: '15', name: 'Olivia', date: new Date(1992, 7, 2), type: 'Operations manager', selected: true },
+    { key: '16', name: 'Peter', date: new Date(1927, 6, 13), type: 'Project manager' },
+    { key: '17', name: 'Quincey', date: new Date(1965, 3, 11), type: 'Quality control' },
+    { key: '18', name: 'Ronald', date: new Date(1982, 8, 18), type: 'Realtor', disabled: true },
+    { key: '19', name: 'Sally', date: new Date(1942, 8, 20), type: 'Sales manager' },
+    { key: '20', name: 'Ted', date: new Date(1968, 3, 22), type: 'Tester' },
+    { key: '21', name: 'Uma', date: new Date(1985, 9, 17), type: 'UI expert', selected: true },
+    { key: '22', name: 'Victor', date: new Date(2012, 12, 13), type: 'Video editor' },
+    { key: '23', name: 'Wanda', date: new Date(1947, 2, 2), type: 'Web designer', disabled: true },
+    { key: '24', name: 'Xavier', date: new Date(1932, 7, 5), type: 'XML developer' },
+    { key: '25', name: 'Yvonne', date: new Date(1993, 2, 28), type: 'Yoga instructor' },
+    { key: '26', name: 'Ziggy', date: new Date(1929, 1, 14), type: 'Zoo keeper' }
+  ]
+
+  let readyItems = items.map((it: Item) => {
+    it.flagIkon = flagIkon
+    return it
+  })
+
   return (
     <>
       <GlobalStyle />
@@ -121,160 +165,138 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             <SmallDiv>
               <Checkbox checked={allowNewRows} onChange={() => setAllowNewRows(!allowNewRows)} >Allow new rows</Checkbox>
               <Checkbox checked={animatable} onChange={() => setAnimatable(!animatable)} >Row animation</Checkbox>
+              <Checkbox checked={categories} onChange={() =>  setCategories(!categories)} >Add categories</Checkbox>
               <Checkbox checked={coloredSelectedRow} onChange={() => setColoredSelectedRow(!coloredSelectedRow)} >Add color to selected row</Checkbox>
               <Checkbox checked={editable} onChange={() => setEditable(!editable)} >Editable table</Checkbox>
-              <Checkbox checked={loading} onChange={() => setLoading(!loading)} >Loading table</Checkbox>
-            </SmallDiv>
-            <SmallDiv>
-              <Checkbox checked={pagination} onChange={() => setPagination(!pagination)} >Add pagination</Checkbox>
-              <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Searchable table</Checkbox>
-              <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Selectable table</Checkbox>
-              <Checkbox checked={showSelectAll} onChange={() => setShowSelectAll(!showSelectAll)} >Show 'select all' checkbox</Checkbox>
+              <Checkbox checked={error} onChange={() => setError(!error)} >Table error</Checkbox>
               <Checkbox checked={flaggable} onChange={() => setFlaggable(!flaggable)} >Flaggable table</Checkbox>
             </SmallDiv>
             <SmallDiv>
+              <Input
+                id='flag icon'
+                label='flag icon'
+                hideLabel={false}
+                value={flagIkon}
+                onChanged={setFlagIkon}
+              />
+              <SmallSelect
+                label='Number of items per page'
+                value={itemsPerPage}
+                onChange={(e: any) => setItemsPerPage(parseInt(e.target.value, 10))}
+              >
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+              </SmallSelect>
+              <Checkbox checked={loading} onChange={() => setLoading(!loading)} >Loading table</Checkbox>
+              <Checkbox checked={pagination} onChange={() => setPagination(!pagination)} >Add pagination</Checkbox>
+              <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Searchable table</Checkbox>
+              <Checkbox checked={selectable} onChange={() => setSelectable(!selectable)} >Selectable table</Checkbox>
+            </SmallDiv>
+            <SmallDiv>
+              <Checkbox checked={showSelectAll} onChange={() => setShowSelectAll(!showSelectAll)} >Show 'select all' checkbox</Checkbox>
               <Checkbox checked={size === 'small'} onChange={() => setSize(size === 'small' ? 'medium' : 'small')}>Switch to small size</Checkbox>
               <Checkbox checked={sortable} onChange={() => setSortable(!sortable)} >Sortable table</Checkbox>
+              <SmallSelect
+                label='Subrows Icon'
+                value={subrowsIcon}
+                onChange={(e: any) => setSubrowsIcon(e.target.value)}
+              >
+                <option>arrow</option>
+                <option>merge</option>
+              </SmallSelect>
               <Checkbox checked={striped} onChange={() => setStriped(!striped)} >Striped table</Checkbox>
               <Checkbox checked={summary} onChange={() => setSummary(!summary)} >Add summary</Checkbox>
             </SmallDiv>
           </FlexDiv>
           <FlexDiv>
-            <SmallSelect
-              label='Number of items per page'
-              value={itemsPerPage}
-              onChange={(e: any) => setItemsPerPage(parseInt(e.target.value, 10))}
-            >
-              <option>2</option>
-              <option>5</option>
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-            </SmallSelect>
+
           </FlexDiv>
           <VerticalSeparatorDiv size='2'/>
 
           <MarginTable
-            key={'' + editable}
-            items={[
-              { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true, flag: true },
-              { key: '02', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
-              { key: '03', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
-              { key: '03_01', parentKey: '03', name: 'Charles', date: new Date(1970, 2, 4), type: 'co-CEO', selected: true },
-              { key: '03_02', parentKey: '03', name: 'Chad', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
-              { key: '03_03', parentKey: '03', name: 'Christine', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
-              { key: '04', name: 'Daniel', date: new Date(1946, 2, 24), type: 'Developer' },
-              { key: '05', name: 'Emma', date: new Date(1947, 7, 1), type: 'Economist', selected: true },
-              { key: '06', name: 'Frank', date: new Date(1978, 11, 14), type: 'Freelancer' },
-              { key: '07', name: 'Gwyneth', date: new Date(1992, 1, 4), type: 'Geographer' },
-              { key: '08', name: 'Howard', date: new Date(2001, 9, 19), type: 'HR head', disabled: true },
-              { key: '09', name: 'Iva', date: new Date(1925, 6, 12), type: 'Investor', selected: true },
-              { key: '10', name: 'John', date: new Date(1994, 3, 2), type: 'Journalist' },
-              { key: '11', name: 'Karen', date: new Date(1999, 9, 22), type: 'Knowledge engineer' },
-              { key: '12', name: 'Leonard', date: new Date(1991, 10, 26), type: 'Lawyer' },
-              { key: '13', name: 'Mary', date: new Date(1962, 10, 25), type: 'Marketing' },
-              { key: '14', name: 'Neville', date: new Date(1983, 1, 22), type: 'Nurse' },
-              { key: '15', name: 'Olivia', date: new Date(1992, 7, 2), type: 'Operations manager', selected: true },
-              { key: '16', name: 'Peter', date: new Date(1927, 6, 13), type: 'Project manager' },
-              { key: '17', name: 'Quincey', date: new Date(1965, 3, 11), type: 'Quality control' },
-              { key: '18', name: 'Ronald', date: new Date(1982, 8, 18), type: 'Realtor', disabled: true },
-              { key: '19', name: 'Sally', date: new Date(1942, 8, 20), type: 'Sales manager' },
-              { key: '20', name: 'Ted', date: new Date(1968, 3, 22), type: 'Tester' },
-              { key: '21', name: 'Uma', date: new Date(1985, 9, 17), type: 'UI expert', selected: true },
-              { key: '22', name: 'Victor', date: new Date(2012, 12, 13), type: 'Video editor' },
-              { key: '23', name: 'Wanda', date: new Date(1947, 2, 2), type: 'Web designer', disabled: true },
-              { key: '24', name: 'Xavier', date: new Date(1932, 7, 5), type: 'XML developer' },
-              { key: '25', name: 'Yvonne', date: new Date(1993, 2, 28), type: 'Yoga instructor' },
-              { key: '26', name: 'Ziggy', date: new Date(1929, 1, 14), type: 'Zoo keeper' }
-            ]}
-            itemsPerPage={itemsPerPage}
-            loading={loading}
-            sort={{ column: 'name', order: 'asc' }}
+            columns={columns}
+            items={readyItems}
             allowNewRows={allowNewRows}
             animatable={animatable}
+            beforeRowAdded={(columns, context) => {
+              console.log('beforeRowAdded called with ', columns, context)
+              return true
+            }}
+            beforeRowEdited={(item, context) => {
+              console.log('beforeRowEdited called with ', item, context)
+              return true
+            }}
+            categories={categories ? [{
+                colSpan: 3,
+                label: 'Category',
+                border: true
+              }] : undefined}
             coloredSelectedRow={coloredSelectedRow}
             editable={editable}
+            error={error ? 'This table has an error' : undefined}
+            flaggable={flaggable}
+            flagIkon={flagIkon}
+            itemsPerPage={itemsPerPage}
+            loading={loading}
             pagination={pagination}
             searchable={searchable}
             selectable={selectable}
-            flaggable={flaggable}
             showSelectAll={showSelectAll}
+            size={size}
             sortable={sortable}
             striped={striped}
             summary={summary}
-            size={size}
-            columns={columns}
-            subrowsIcon='merge'
+            subrowsIcon={subrowsIcon as 'arrow' | 'merge' | undefined}
           />
           <VerticalSeparatorDiv size='2'/>
           <SyntaxHighlighter language='javascript' style={_highContrast ? dark : light}>
             {Mustache.render('<TableSorter\n' +
-              '  items={[\n' +
-              '    { key: \'01\', name: \'Anna\', date: new Date(1970, 2, 4), type: \'Analyst\' , selected: true },\n' +
-              '     { key: \'02\', name: \'Bernard\', date: new Date(1980, 4, 8), type: \'Bookkeeper\', disabled: true },\n' +
-              '     { key: \'03\', name: \'Claire\', date: new Date(1972, 6, 12), type: \'CEO\' },\n' +
-              '     { key: \'03\', hasSubrows: true, openSubrows: false, name: \'Claire\', date: new Date(1972, 6, 12), type: \'CEO\' },\n' +
-              '     { key: \'03_01\', parentKey: \'03\', name: \'Charles\', date: new Date(1970, 2, 4), type: \'co-CEO\', selected: true },\n' +
-              '     { key: \'03_02\', parentKey: \'03\', name: \'Chad\', date: new Date(1970, 2, 4), type: \'co-CEO\', selected: false },\n' +
-              '     { key: \'03_03\', parentKey: \'03\', name: \'Christine\', date: new Date(1970, 2, 4), type: \'co-CEO\', selected: false },\n' +
-              '     { key: \'04\', name: \'Daniel\', date: new Date(1946, 2, 24), type: \'Developer\' },\n' +
-              '     { key: \'05\', name: \'Emma\', date: new Date(1947, 7, 1), type: \'Economist\' , selected: true },\n' +
-              '     { key: \'06\', name: \'Frank\', date: new Date(1978, 11, 14), type: \'Freelancer\' },\n' +
-              '     { key: \'07\', name: \'Gwyneth\', date: new Date(1992, 1, 4), type: \'Geographer\' },\n' +
-              '     { key: \'08\', name: \'Howard\', date: new Date(2001, 9, 19), type: \'HR head\' , disabled: true },\n' +
-              '     { key: \'09\', name: \'Iva\', date: new Date(1925, 6, 12), type: \'Investor\' , selected: true },\n' +
-              '     { key: \'10\', name: \'John\', date: new Date(1994, 3, 2), type: \'Journalist\' },\n' +
-              '     { key: \'11\', name: \'Karen\', date: new Date(1999, 9, 22), type: \'Knowledge engineer\' },\n' +
-              '     { key: \'12\', name: \'Leonard\', date: new Date(1991, 10, 26), type: \'Lawyer\' },\n' +
-              '     { key: \'13\', name: \'Mary\', date: new Date(1962, 10, 25), type: \'Marketing\' },\n' +
-              '     { key: \'14\', name: \'Neville\', date: new Date(1983, 1, 22), type: \'Nurse\' },\n' +
-              '     { key: \'15\', name: \'Olivia\', date: new Date(1992, 7, 2), type: \'Operations manager\' , selected: true },\n' +
-              '     { key: \'16\', name: \'Peter\', date: new Date(1927, 6, 13), type: \'Project manager\' },\n' +
-              '     { key: \'17\', name: \'Quincey\', date: new Date(1965, 3, 11), type: \'Quality control\' },\n' +
-              '     { key: \'18\', name: \'Ronald\', date: new Date(1982, 8, 18), type: \'Realtor\' , disabled: true },\n' +
-              '     { key: \'19\', name: \'Sally\', date: new Date(1942, 8, 20), type: \'Sales manager\' },\n' +
-              '     { key: \'20\', name: \'Ted\', date: new Date(1968, 3, 22), type: \'Tester\' },\n' +
-              '     { key: \'21\', name: \'Uma\', date: new Date(1985, 9, 17), type: \'UI expert\' , selected: true },\n' +
-              '     { key: \'22\', name: \'Victor\', date: new Date(2012, 12, 13), type: \'Video editor\' },\n' +
-              '     { key: \'23\', name: \'Wanda\', date: new Date(1947, 2, 2), type: \'Web designer\', disabled: true  },\n' +
-              '     { key: \'24\', name: \'Xavier\', date: new Date(1932, 7, 5), type: \'XML developer\' },\n' +
-              '     { key: \'25\', name: \'Yvonne\', date: new Date(1993, 2, 28), type: \'Yoga instructor\' },\n' +
-              '     { key: \'26\', name: \'Ziggy\', date: new Date(1929, 1, 14), type: \'Zoo keeper\' }\n' +
-              '   ]}\n' +
-              '   itemsPerPage={ {{itemsPerPage}} }\n' +
+              '   columns={ {{{columns}}} }\n' +
+              '   items={ {{{items}}} }\n' +
               '   allowNewRows={ {{allowNewRows}} }\n' +
               '   animatable={ {{animatable}} }\n' +
+              '   categories={ {{{categories}}} }\n' +
               '   coloredSelectedRow={ {{coloredSelectedRow}} }\n' +
               '   editable={ {{editable}} }\n' +
+              '   error={ {{error}} }\n' +
+              '   flaggable={ {{flaggable}} }\n' +
+              '   flagIkon={ {{flagIkon}} }\n' +
+              '   itemsPerPage={ {{itemsPerPage}} }\n' +
               '   loading={ {{loading}} }\n' +
               '   pagination={ {{pagination}} }\n' +
               '   searchable={ {{searchable}} }\n' +
               '   selectable={ {{selectable}} }\n' +
-              '   flaggable={ {{flaggable}} }\n' +
               '   showSelectAll={ {{showSelectAll}} }\n' +
               '   sortable={ {{sortable}} }\n' +
               '   striped={ {{striped}} }\n' +
               '   summary={ {{summary}} }\n' +
               '   size=\'{{size}}\'\n' +
-              '   sort={{ column: \'name\', order: \'ascending\' }}\n' +
-              '   columns={ {{{columns}}} }' +
+              '   subrowsIcon=\'{{subrowsIcon}}\'\n' +
               '/>', {
-              loading: loading,
-              itemsPerPage: itemsPerPage,
               allowNewRows: allowNewRows,
               animatable: animatable,
+              categories: categories ? [{colSpan: 3, label: 'Category', border: true}] : undefined,
               coloredSelectedRow: coloredSelectedRow,
+              columns: JSON.stringify(columns, null, 2),
               editable: editable,
+              error: error ? 'This table has an error' : undefined,
+              flaggable: flaggable,
+              flagIkon: flagIkon,
+              itemsPerPage: itemsPerPage,
+              items: JSON.stringify(readyItems, null, 2),
+              loading: loading,
               pagination: pagination,
               searchable: searchable,
               selectable: selectable,
-              flaggable: flaggable,
               showSelectAll: showSelectAll,
               sortable: sortable,
               striped: striped,
               summary: summary,
               size: size,
-              columns: JSON.stringify(columns)
+              subrowsIcon: subrowsIcon
             })}
           </SyntaxHighlighter>
           <VerticalSeparatorDiv size='2'/>
@@ -346,11 +368,11 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>-</Table.DataCell>
               </Table.Row>
               <Table.Row>
-                <Table.DataCell>compact</Table.DataCell>
+                <Table.DataCell>coloredSelectedRows</Table.DataCell>
                 <Table.DataCell><code>boolean</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
-                <Table.DataCell>Boolean for less padding on the cells (from 1rem to 0.35rem).</Table.DataCell>
-                <Table.DataCell>-</Table.DataCell>
+                <Table.DataCell>Have a select background color on selecgted rows</Table.DataCell>
+                <Table.DataCell>true</Table.DataCell>
               </Table.Row>
               <Table.Row>
                 <Table.DataCell>context</Table.DataCell>
@@ -367,20 +389,6 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell><code>[]</code></Table.DataCell>
               </Table.Row>
               <Table.Row>
-                <Table.DataCell>coloredSelectedRow</Table.DataCell>
-                <Table.DataCell><code>boolean</code></Table.DataCell>
-                <Table.DataCell>false</Table.DataCell>
-                <Table.DataCell>Coloured rows when selected</Table.DataCell>
-                <Table.DataCell><code>true</code></Table.DataCell>
-              </Table.Row>
-              <Table.Row>
-                <Table.DataCell>context</Table.DataCell>
-                <Table.DataCell><code>CustomContext</code></Table.DataCell>
-                <Table.DataCell>false</Table.DataCell>
-                <Table.DataCell>Context object with optional custom data to pass to render functions.</Table.DataCell>
-                <Table.DataCell><code>-</code></Table.DataCell>
-              </Table.Row>
-              <Table.Row>
                 <Table.DataCell>editable</Table.DataCell>
                 <Table.DataCell><code>boolean</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
@@ -393,6 +401,13 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>false</Table.DataCell>
                 <Table.DataCell>Add optional flags for table rows</Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.DataCell>flagIkon</Table.DataCell>
+                <Table.DataCell><code>JSX.Element | string</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Customize the flag icon</Table.DataCell>
+                <Table.DataCell>-</Table.DataCell>
               </Table.Row>
               <Table.Row>
                 <Table.DataCell>error</Table.DataCell>
@@ -458,6 +473,13 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>-</Table.DataCell>
               </Table.Row>
               <Table.Row>
+                <Table.DataCell>onRowDoubleClicked</Table.DataCell>
+                <Table.DataCell><code>function</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Callback function when row is double clicked</Table.DataCell>
+                <Table.DataCell>-</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
                 <Table.DataCell>onRowsChanged</Table.DataCell>
                 <Table.DataCell><code>function</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
@@ -519,6 +541,13 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>false</Table.DataCell>
                 <Table.DataCell>Allow sortable table headers</Table.DataCell>
                 <Table.DataCell>true</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.DataCell>subrowsIcon</Table.DataCell>
+                <Table.DataCell><code>'arrow' | 'merge'</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Icon to show on the button that expandsa subrows</Table.DataCell>
+                <Table.DataCell>arrow</Table.DataCell>
               </Table.Row>
               <Table.Row>
                 <Table.DataCell>striped</Table.DataCell>
