@@ -158,8 +158,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   })
 
   let sortedItems: Array<CustomItem> = filteredItems
-  if (sort.order === 'asc' || sort.order === 'desc') {
-    const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(_columns, _c => _c.id === sort.column)
+  if (_sort.order === 'asc' || _sort.order === 'desc') {
+    const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(_columns, _c => _c.id === _sort.column)
     if (!_.isUndefined(sortColumn)) {
       filteredItems.forEach((item, index) => {
         const sortKey = getStringFromCellFor(sortColumn!, item, 'sort')
@@ -174,7 +174,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       })
     }
     sortedItems = filteredItems.sort((a: CustomItem, b: CustomItem) =>
-      sort.order === 'asc' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
+      _sort.order === 'asc' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
     )
   }
 
@@ -224,6 +224,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               setItems={setItems}
               showSelectAll={showSelectAll}
               sort={_sort}
+              sortable={sortable}
               onColumnSort={onColumnSort}
             />
             <Table.Body

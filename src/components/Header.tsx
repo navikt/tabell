@@ -46,7 +46,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
   const sortOrder: SortOrder = {
     none: 'asc',
     asc: 'desc',
-    desc: 'asc'
+    desc: 'none'
   }
 
   /** get class for header sort */
