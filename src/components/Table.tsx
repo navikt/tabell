@@ -187,107 +187,106 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   })
 
   return (
-   <>
+    <TableDiv
+      style={{width: fullWidth ? '100%' : 'fit-content'}}
+      className={classNames(className, {error})}
+      coloredSelectedRow={coloredSelectedRow}
+    >
       {error && (
-        <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
-          {error}
-        </div>
+      <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
+        {error}
+      </div>
       )}
-      <TableDiv
-        className={classNames(className, {error})}
-        coloredSelectedRow={coloredSelectedRow}
-      >
-        <ContentDiv style={{width: fullWidth ? '100%' : 'fit-content'}}>
-          {loading && (
-            <LoadingDiv>
-              <Loader size='2xlarge' />
-            </LoadingDiv>
-          )}
-          <WideTable
-            id={id}
-            size={size}
-            cellSpacing='0'
-            width={fullWidth ? '100%' : 'fit-content'}
-            className='tabell tabell__table'
-          >
-            <Header<CustomItem, CustomContext>
-              categories={categories}
-              columns={_columns}
-              flaggable={flaggable}
-              flagIkon={flagIkon}
-              id={id + '-Header'}
-              items={_items}
-              labels={_labels}
-              onRowSelectChange={onRowSelectChange}
-              searchable={searchable}
-              selectable={selectable}
-              setColumns={_setColumns}
-              setSort={setSort}
-              setItems={setItems}
-              showSelectAll={showSelectAll}
-              sort={_sort}
-              sortable={sortable}
-              onColumnSort={onColumnSort}
-            />
-            <Table.Body
-              className={classNames({ striped })}
-            >
-              {editable && allowNewRows && (
-                <AddRow
-                  id={id + '-AddRow'}
-                  beforeRowAdded={beforeRowAdded}
-                  columns={_columns}
-                  setColumns={_setColumns}
-                  context={context}
-                  labels={_labels}
-                  items={_items}
-                  setItems={setItems}
-                  onRowsChanged={onRowsChanged}
-                />
-              )}
-              {pageItems.map((item, index) => (
-                <Row
-                  item={item}
-                  items={items}
-                  index={index}
-                  context={context}
-                  columns={_columns}
-                  sort={_sort}
-                  labels={_labels}
-                  flaggable={flaggable}
-                  editable={editable}
-                  sortable={sortable}
-                  animatable={animatable}
-                  id={id + '-Row-' + item.key}
-                  key={id + '-Row-' + item.key + '-key'}
-                  selectable={selectable}
-                  onRowClicked={onRowClicked}
-                  onRowDoubleClicked={onRowDoubleClicked}
-                  onRowsChanged={onRowsChanged}
-                  onRowSelectChange={onRowSelectChange}
-                  setItems={setItems}
-                  subrowsIcon={subrowsIcon}
-                  beforeRowEdited={beforeRowEdited}
-                />
-              ))}
-            </Table.Body>
-          </WideTable>
-          <Footer
-            id={id + '-Footer'}
-            summary={summary}
-            loading={loading}
-            selectable={selectable}
-            pagination={pagination}
+      <ContentDiv>
+        {loading && (
+          <LoadingDiv>
+            <Loader size='2xlarge' />
+          </LoadingDiv>
+        )}
+        <WideTable
+          id={id}
+          size={size}
+          cellSpacing='0'
+          width={fullWidth ? '100%' : 'fit-content'}
+          className='tabell tabell__table'
+        >
+          <Header<CustomItem, CustomContext>
+            categories={categories}
+            columns={_columns}
+            flaggable={flaggable}
+            flagIkon={flagIkon}
+            id={id + '-Header'}
+            items={_items}
             labels={_labels}
-            itemsPerPage={itemsPerPage}
-            currentPage={_currentPage}
-            setCurrentPage={_setCurrentPage}
-            numberOfSelectedRows={numberOfSelectedRows}
-            numberOfVisibleItems={numberOfVisibleItems}
+            onRowSelectChange={onRowSelectChange}
+            searchable={searchable}
+            selectable={selectable}
+            setColumns={_setColumns}
+            setSort={setSort}
+            setItems={setItems}
+            showSelectAll={showSelectAll}
+            sort={_sort}
+            sortable={sortable}
+            onColumnSort={onColumnSort}
           />
-        </ContentDiv>
-      </TableDiv>
-    </>
+          <Table.Body
+            className={classNames({ striped })}
+          >
+            {editable && allowNewRows && (
+              <AddRow
+                id={id + '-AddRow'}
+                beforeRowAdded={beforeRowAdded}
+                columns={_columns}
+                setColumns={_setColumns}
+                context={context}
+                labels={_labels}
+                items={_items}
+                setItems={setItems}
+                onRowsChanged={onRowsChanged}
+              />
+            )}
+            {pageItems.map((item, index) => (
+              <Row
+                item={item}
+                items={items}
+                index={index}
+                context={context}
+                columns={_columns}
+                sort={_sort}
+                labels={_labels}
+                flaggable={flaggable}
+                editable={editable}
+                sortable={sortable}
+                animatable={animatable}
+                id={id + '-Row-' + item.key}
+                key={id + '-Row-' + item.key + '-key'}
+                selectable={selectable}
+                onRowClicked={onRowClicked}
+                onRowDoubleClicked={onRowDoubleClicked}
+                onRowsChanged={onRowsChanged}
+                onRowSelectChange={onRowSelectChange}
+                setItems={setItems}
+                subrowsIcon={subrowsIcon}
+                beforeRowEdited={beforeRowEdited}
+              />
+            ))}
+          </Table.Body>
+        </WideTable>
+        <Footer
+          id={id + '-Footer'}
+          summary={summary}
+          loading={loading}
+          selectable={selectable}
+          pagination={pagination}
+          labels={_labels}
+          itemsPerPage={itemsPerPage}
+          currentPage={_currentPage}
+          setCurrentPage={_setCurrentPage}
+          numberOfSelectedRows={numberOfSelectedRows}
+          numberOfVisibleItems={numberOfVisibleItems}
+        />
+      </ContentDiv>
+    </TableDiv>
   )
 }
 

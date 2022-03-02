@@ -19,7 +19,6 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
       text-align: left
     }
   }
- 
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
