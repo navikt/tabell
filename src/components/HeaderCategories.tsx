@@ -12,8 +12,13 @@ const HeaderCategories: React.FC<HeaderCategoriesProps> = ({
   return (
     <Table.Row>
       <Table.HeaderCell role='columnheader' className='noborder' />
-      {categories.map((c: Category) => (
-        <CenterTh id={id + '-Categories-' + c.label} key={id + '-Categories-' + c.label+'-key'} colSpan={c.colSpan} className={classNames({ noborder: c.border === false })}>
+      {categories.map((c: Category, index: number) => (
+        <CenterTh
+          id={id + '-Categories[' + index + ']-' + c.label}
+          key={id + '-Categories[' + index + ']-' + c.label + '-key'}
+          colSpan={c.colSpan}
+          className={classNames({ noborder: c.border === false })}
+        >
           {c.label}
         </CenterTh>
       ))}
