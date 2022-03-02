@@ -202,7 +202,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
           return content
         } else {
           return (
-            <Table.DataCell style={{verticalAlign: 'middle'}} key={column.id}>
+            <Table.DataCell key={column.id}>
               <Button
                 size="small"
                 variant="secondary"

@@ -29,6 +29,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   error = undefined,
   flaggable = false,
   flagIkon = undefined,
+  fullWidth = true,
   initialPage = 1,
   id = md5('tabell-' + new Date().getTime()),
   items = [],
@@ -196,7 +197,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         className={classNames(className, {error})}
         coloredSelectedRow={coloredSelectedRow}
       >
-        <ContentDiv>
+        <ContentDiv style={{width: fullWidth ? '100%' : 'fit-content'}}>
           {loading && (
             <LoadingDiv>
               <Loader size='2xlarge' />
@@ -206,6 +207,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             id={id}
             size={size}
             cellSpacing='0'
+            width={fullWidth ? '100%' : 'fit-content'}
             className='tabell tabell__table'
           >
             <Header<CustomItem, CustomContext>

@@ -8,10 +8,18 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .tabell .tabell__td,
   .tabell .tabell__th {
     padding: inherit;
-    vertical-align: middle;
+    vertical-align: baseline;
+    &.center {
+      text-align: center
+    }
+    &.right {
+      text-align: right
+    }
+     &.left {
+      text-align: left
+    }
   }
-  width: 100%;
-
+ 
   tr:not(:hover) div.tabell__buttons,
   tr.tabell__tr--disabled div.tabell__buttons {
     visibility: hidden;
@@ -117,8 +125,8 @@ export const LoadingDiv = styled.div`
   align-items: center;
   justify-content: center;
 `
-export const WideTable = styled(Table)<{size: 'small' | 'medium', cellSpacing: string}>`
-  width: 100%;
+export const WideTable = styled(Table)<{size: 'small' | 'medium', cellSpacing: string, width: string}>`
+  width: ${({width}) => width};
 `
 export const FilterIcon = styled.div`
   margin-left: 0.5rem;

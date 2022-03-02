@@ -61,6 +61,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   const [error, setError] = useState<boolean>(false)
   const [flaggable, setFlaggable] = useState(true)
   const [flagIkon, setFlagIkon] = useState<string | undefined>(undefined)
+  const [fullWidth, setFullWidth] = useState<boolean>(true)
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
   const [pagination, setPagination] = useState(true)
@@ -81,7 +82,14 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
 
   let columns: Array<Column> = [
     { id: 'name', label: 'Name', type: 'string', filterText: '' },
-    { id: 'date', label: 'Date', type: 'date', filterText: '' },
+    { id: 'date', label: 'Date', type: 'date', align: 'center', filterText: '',
+      edit: {
+        validation: [{
+          mandatory: true,
+          test: '^\d\d/\d\d/\d\d\d\d$',
+          message: 'Use DD/MM/YYYY pattern'
+        }]
+      }},
     {
       id: 'type',
       label: 'Occupation',
@@ -170,6 +178,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               <Checkbox checked={editable} onChange={() => setEditable(!editable)} >Editable table</Checkbox>
               <Checkbox checked={error} onChange={() => setError(!error)} >Table error</Checkbox>
               <Checkbox checked={flaggable} onChange={() => setFlaggable(!flaggable)} >Flaggable table</Checkbox>
+              <Checkbox checked={fullWidth} onChange={() => setFullWidth(!fullWidth)} >Full width table</Checkbox>
             </SmallDiv>
             <SmallDiv>
               <Input
@@ -240,6 +249,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             error={error ? 'This table has an error' : undefined}
             flaggable={flaggable}
             flagIkon={flagIkon}
+            fullWidth={fullWidth}
             itemsPerPage={itemsPerPage}
             loading={loading}
             pagination={pagination}
@@ -265,6 +275,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               '   error={ {{error}} }\n' +
               '   flaggable={ {{flaggable}} }\n' +
               '   flagIkon={ {{flagIkon}} }\n' +
+              '   fullWidth={ {{fullWidth}} }\n' +
               '   itemsPerPage={ {{itemsPerPage}} }\n' +
               '   loading={ {{loading}} }\n' +
               '   pagination={ {{pagination}} }\n' +
@@ -286,6 +297,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               error: error ? 'This table has an error' : undefined,
               flaggable: flaggable,
               flagIkon: flagIkon,
+              fullWidth: fullWidth,
               itemsPerPage: itemsPerPage,
               items: JSON.stringify(readyItems, null, 2),
               loading: loading,
@@ -409,6 +421,13 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>false</Table.DataCell>
                 <Table.DataCell>Customize the flag icon</Table.DataCell>
                 <Table.DataCell>-</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.DataCell>fullWidth</Table.DataCell>
+                <Table.DataCell><code>boolean</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>full width table </Table.DataCell>
+                <Table.DataCell>true</Table.DataCell>
               </Table.Row>
               <Table.Row>
                 <Table.DataCell>error</Table.DataCell>

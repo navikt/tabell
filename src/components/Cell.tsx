@@ -267,8 +267,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   return (
     <Table.DataCell
       id={id}
-      className={classNames({
-        'tabell__td--sortert': sortable && sort.column === column.id
+      className={classNames(column.align ?? '', {
+        'tabell__td--sortert': sortable && sort.column === column.id,
       })}
     >
       {content}

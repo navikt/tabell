@@ -55,7 +55,6 @@ const FirstCell =  <CustomItem extends Item = Item> ({
   return (
     <Table.DataCell
       id={id}
-      style={{verticalAlign: 'middle'}}
       title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
     >
       <FlexCenterDiv>

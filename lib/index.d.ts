@@ -36,10 +36,9 @@ export interface RenderEditableOptions<CustomContext extends Context = Context, 
 }
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
-  id: string
-  label: string
-  type: string
-  edit?: {
+  align ?: 'left' | 'center' | 'right' | undefined
+  dateFormat?: string
+  edit ?: {
     render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
     transform?: (s: CustomType) => CustomType
     validation?: Array<{
@@ -53,10 +52,11 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   },
   error ?: string
   filterText?: string
+  id: string
+  label: string
   needle?: (item: CustomItem) => string
-  dateFormat?: string
   renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
-
+  type: string
 }
 
 export type Order = 'none' | 'asc' | 'desc'
@@ -84,6 +84,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   error?: string | undefined
   flaggable ?: boolean
   flagIkon ?: JSX.Element | string | undefined
+  fullWidth ?: boolean
   initialPage?: number
   id?: string
   items?: Array<CustomItem>
