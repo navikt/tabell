@@ -5,6 +5,7 @@ import { TableFooterProps } from '../index.d'
 import React from 'react'
 
 const Footer: React.FC<TableFooterProps> = ({
+  id,
   labels,
   summary,
   selectable,
@@ -27,7 +28,7 @@ const Footer: React.FC<TableFooterProps> = ({
   }
 
   return (
-    <FlexCenterSpacedDiv>
+    <FlexCenterSpacedDiv id={id} key={id + '-key'}>
       {summary && !loading
         ? (
           <>

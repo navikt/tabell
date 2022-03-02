@@ -83,7 +83,11 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
 
   return (
     <Table.Header>
-      {categories && <HeaderCategories categories={categories}/>}
+      {categories && (
+        <HeaderCategories
+          id={id}
+          categories={categories}/>
+        )}
       <Table.Row className='tabell__header'>
         <Table.HeaderCell style={{ width: 1 }}>
           <FlexCenterDiv>
@@ -159,6 +163,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
       </Table.Row>
       {_seeFilters && (
         <HeaderFilter
+          id={id + '-Filter'}
           setColumns={setColumns}
           columns={columns}
         />

@@ -155,10 +155,9 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     }
   }
   const editing = !_.isNil(_editingRow)
-  const rowId = 'tabell-' + id + '__row-' + item.key + (editing ? '-edit' : '')
+  const rowId = id + (editing ? '-edit' : '')
   return (
     <Table.Row
-      key={item.key + '_sort' + sort.column + '_' + sort.order}
       id={rowId}
       aria-selected={selectable && item.selected === true}
       style={{ animationDelay: (animationDelay * index) + 's' }}
@@ -185,7 +184,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     >
       <FirstCell
         flaggable={flaggable}
-        id={id}
+        id={rowId + '-FirstCell'}
         item={item}
         items={items}
         labels={labels}
@@ -202,8 +201,8 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
           editingRow={_editingRow}
           setEditingRow={_setEditingRow}
           editable={editable}
-          id={id}
-          key={rowId + '-' + column.id}
+          id={rowId + '-Cell-' + column.id}
+          key={rowId + '-Cell-' + column.id + '-key'}
           item={item}
           labels={labels}
           sortable={sortable}

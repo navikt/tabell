@@ -13,6 +13,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   setColumns,
   context = {} as CustomContext,
   labels,
+  id,
   items,
   setItems,
   onRowsChanged
@@ -149,12 +150,19 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   }
 
   return (
-    <Table.Row className='tabell__edit'>
+    <Table.Row
+      id={id}
+      key={id + '-key'}
+      className='tabell__edit'
+    >
       <Table.DataCell />
       {columns.map((column: Column<CustomItem, CustomContext>) => {
         if (column.type !== 'buttons') {
           const content: JSX.Element = (
-            <Table.DataCell key={column.id}>
+            <Table.DataCell
+              id={id + '-Column-' + column.id}
+              key={id + '-Column-' + column.id + '-key'}
+            >
               {
                 column.edit?.render
                   ? column.edit.render({
@@ -171,10 +179,10 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                   : (
                     <Input
                       style={{marginTop: '0px'}}
-                      id={'tabell__edit-' + column.id + '-input-id'}
+                      id={id + '-Column-' + column.id + '-Input'}
                       className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
                       label=''
-                      key={'x-' + column.edit?.value ?? ''}
+                      key={id + '-Column-' + column.id + '-Input-' + (column.edit?.value ?? '') + '-key'}
                       placeholder={column.edit?.placeholder}
                       value={column.edit?.value ?? ''}
                       error={column.error}

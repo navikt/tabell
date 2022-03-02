@@ -54,6 +54,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
 
   return (
     <Table.DataCell
+      id={id}
       style={{verticalAlign: 'middle'}}
       title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
     >
@@ -73,9 +74,9 @@ const FirstCell =  <CustomItem extends Item = Item> ({
           <>
             <HorizontalSeparatorDiv size='0.3'/>
             <Checkbox
-              id={'tabell-' + id + '__row-select-' + item.key}
-              key={'tabell-' + id + '__row-select-' + (!!item.selected)}
-              data-test-id={'tabell-' + id + '__row-select-' + item.key}
+              id={id + '-Checkbox'}
+              key={id + '-Checkbox-' + (!!item.selected) + '-key'}
+              data-test-id={id + '-Checkbox'}
               disabled={item.disabled ?? false}
               hideLabel
               checked={!!item.selected}

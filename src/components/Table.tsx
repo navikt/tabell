@@ -213,7 +213,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               columns={_columns}
               flaggable={flaggable}
               flagIkon={flagIkon}
-              id={id}
+              id={id + '-Header'}
               items={_items}
               labels={_labels}
               onRowSelectChange={onRowSelectChange}
@@ -232,6 +232,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             >
               {editable && allowNewRows && (
                 <AddRow
+                  id={id + '-AddRow'}
                   beforeRowAdded={beforeRowAdded}
                   columns={_columns}
                   setColumns={_setColumns}
@@ -255,8 +256,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                   editable={editable}
                   sortable={sortable}
                   animatable={animatable}
-                  id={id}
-                  key={id + '-' + item.key}
+                  id={id + '-Row-' + item.key}
+                  key={id + '-Row-' + item.key + '-key'}
                   selectable={selectable}
                   onRowClicked={onRowClicked}
                   onRowDoubleClicked={onRowDoubleClicked}
@@ -270,6 +271,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             </Table.Body>
           </WideTable>
           <Footer
+            id={id + '-Footer'}
             summary={summary}
             loading={loading}
             selectable={selectable}

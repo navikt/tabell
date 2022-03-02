@@ -217,6 +217,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
           <VerticalSeparatorDiv size='2'/>
 
           <MarginTable
+            id='Employees-Table'
             columns={columns}
             items={readyItems}
             allowNewRows={allowNewRows}

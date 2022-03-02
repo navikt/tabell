@@ -119,7 +119,7 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
   searchable ?: boolean
   sortable ?: boolean
   showSelectAll ?: boolean
-  id?: string
+  id: string
   onColumnSort ?: (s: Sort) => void
   onRowSelectChange ?: (items: Array<CustomItem>) => void
   setItems: (items: Array<CustomItem>) => void
@@ -151,6 +151,7 @@ export interface TableRowProps<CustomItem, CustomContext> {
 }
 
 export interface TableFooterProps {
+  id: string
   itemsPerPage?: number
   labels: Labels
   loading?: boolean
@@ -165,11 +166,13 @@ export interface TableFooterProps {
 }
 
 export interface HeaderFilterProps<CustomItem, CustomContext> {
+  id: string
   columns: Array<Column<CustomItem, CustomContext>>
   setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
 }
 
 export interface HeaderCategoriesProps {
+  id: string
   categories: Array<Category>
 }
 
@@ -179,6 +182,7 @@ export interface AddRowProps<CustomItem, CustomContext> {
   columns: Array<Column<CustomItem, CustomContext>>
   setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
   labels: Labels
+  id: string
   items: Array<CustomItem>
   setItems: (items: Array<CustomItem>) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
