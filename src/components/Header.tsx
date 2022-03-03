@@ -76,10 +76,10 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
       selected: (item.disabled || item.selectDisabled) ? false : e.target.checked
     })) || []
 
+    setItems(newItems)
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(_.filter(newItems,(item) => (item.selected && !item.hasSubrows)) as Array<CustomItem>)
     }
-    setItems(newItems)
   }
 
   return (

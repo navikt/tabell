@@ -32,10 +32,10 @@ const FirstCell =  <CustomItem extends Item = Item> ({
       }
       return item
     }) || []
+    setItems(newItems)
     if (_.isFunction(onRowSelectChange)) {
       onRowSelectChange(newItems.filter(item => item.selected && !item.hasSubrows))
     }
-    setItems(newItems)
   }
 
   /** toggle visibility on rows that are from a subrow */

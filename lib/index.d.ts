@@ -115,6 +115,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   searchable?: boolean
   selectable?: boolean
   showSelectAll ?: boolean
+  skipItemUpdates ?: boolean
   size ?: 'medium' | 'small' | undefined
   sortable?: boolean
   sort?: Sort

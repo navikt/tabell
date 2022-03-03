@@ -6,7 +6,7 @@ import md5 from 'md5'
 import moment from 'moment'
 import 'nav-frontend-tabell-style/dist/main.css'
 import PT from 'prop-types'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import AddRow from './AddRow'
 import Footer from './Footer'
@@ -45,6 +45,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   searchable = true,
   selectable = false,
   showSelectAll = true,
+  skipItemUpdates = false,
   size = 'medium',
   sort = { column: '', order: 'none' },
   sortable = true,
@@ -200,6 +201,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       ? ((_currentPage - 1) * itemsPerPage <= index && index < (_currentPage * itemsPerPage))
       : true
   })
+
+  useEffect(() => {
+    if (!skipItemUpdates) {
+      setItems(items)
+    }
+  }, [skipItemUpdates, items])
 
   return (
     <TableDiv
