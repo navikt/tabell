@@ -6,19 +6,16 @@ import React from 'react'
 const HeaderFilter = <CustomItem extends Item = Item, CustomContext extends Context = Context>  ({
   id,
   columns,
-  setColumns
+  filter,
+  setFilter,
 }: HeaderFilterProps<CustomItem, CustomContext>) => {
 
   /** Handle filter text updates */
   const handleFilterChange = (_column: Column<CustomItem, CustomContext>, newValue: string): void => {
-    setColumns(columns.map((column: Column<CustomItem, CustomContext>) => {
-      return _column.id === column.id
-        ? {
-          ...column,
-          filterText: newValue
-        }
-        : column
-    }))
+    setFilter({
+      ...filter,
+      [_column.id]: newValue
+    })
   }
 
   return (
@@ -37,7 +34,7 @@ const HeaderFilter = <CustomItem extends Item = Item, CustomContext extends Cont
                 id={id + '-Cell-' + column.id + '-Input'}
                 key={id + '-Cell-' + column.id + '-Input-key'}
                 label=''
-                value={column.filterText || ''}
+                value={filter[column.id] || ''}
                 onEnterPress={(e: string) => handleFilterChange(column, e)}
                 onChanged={(e: string) => handleFilterChange(column, e)}
               />

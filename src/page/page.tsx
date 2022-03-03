@@ -81,8 +81,8 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   }, [highContrast])
 
   let columns: Array<Column> = [
-    { id: 'name', label: 'Name', type: 'string', filterText: '' },
-    { id: 'date', label: 'Date', type: 'date', align: 'center', filterText: '',
+    { id: 'name', label: 'Name', type: 'string' },
+    { id: 'date', label: 'Date', type: 'date', align: 'center',
       edit: {
         validation: [{
           mandatory: true,
@@ -94,7 +94,6 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
       id: 'type',
       label: 'Occupation',
       type: 'string',
-      filterText: '',
       render: ({value}) => <Detail>{value}</Detail>
     }
   ]
@@ -398,7 +397,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell>columns</Table.DataCell>
                 <Table.DataCell><code>array</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
-                <Table.DataCell>List with column data. Elements should be objects with keys <code>id</code>, <code>label</code>, <code>type</code>, <code>filterText</code>, <code>defaulsSortOrder</code></Table.DataCell>
+                <Table.DataCell>List with column data. Elements should be objects with keys <code>id</code>, <code>label</code>, <code>type</code></Table.DataCell>
                 <Table.DataCell><code>[]</code></Table.DataCell>
               </Table.Row>
               <Table.Row>

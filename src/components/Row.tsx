@@ -2,12 +2,15 @@ import { Table } from '@navikt/ds-react'
 import classNames from 'classnames'
 import { Item, Context, TableRowProps, ItemErrors } from '../index.d'
 import _ from 'lodash'
-import React, { useState } from 'react'
+import React from 'react'
 import FirstCell from './FirstCell'
 import Cell from './Cell'
 
 const Row = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowEdited = undefined,
+  editingRow,
+  setEditingRow,
+  resetEditingRow,
   items,
   item,
   index,
@@ -31,25 +34,22 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
 
   const animationDelay = 0.01
 
-  /** Store temp info for rows being edited. We can have multiple rows being edited, thus the hashmap */
-  const [_editingRow, _setEditingRow] = useState<CustomItem | undefined>(undefined)
-
   /** handle any change made to cells in existing row */
   const handleEditRowChange = (entries: {[k in string]: any}): CustomItem => {
-    const newEditingRow: CustomItem = _.cloneDeep(_editingRow) as CustomItem
+    const newEditingRow: CustomItem = _.cloneDeep(editingRow) as CustomItem
     Object.keys(entries).forEach((e: string) => {
       // @ts-ignore
       newEditingRow[e] = entries[e]
     })
-    _setEditingRow(newEditingRow)
+    setEditingRow(newEditingRow)
     return newEditingRow
   }
 
   const saveEditedRow = (editedRow: CustomItem | undefined): void => {
     let allValidated: boolean = true
     const errors: ItemErrors = {}
-    // if we have the editedRow changes, use it, or else, use the _editingRow version.
-    const newEditingRow: CustomItem = !_.isUndefined(editedRow) ? editedRow : _.cloneDeep(_editingRow) as CustomItem
+    // if we have the editedRow changes, use it; if not (for example, clicking save button), use the editingRow version.
+    const newEditingRow: CustomItem = !_.isUndefined(editedRow) ? editedRow : _.cloneDeep(editingRow) as CustomItem
 
     columns.forEach((column) => {
       let isColumnValid: boolean = true
@@ -100,20 +100,20 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
       allValidated = allValidated && isColumnValid
 
       if (!isColumnValid) {
-        errors[column.id] = errorMessage ?? labels.error
+        errors[column.id] = (errorMessage ?? labels.error)
       }
     })
 
     if (!allValidated) {
       newEditingRow.error = errors
-      _setEditingRow(newEditingRow)
+      setEditingRow(newEditingRow)
       return
     }
 
     if (_.isFunction(beforeRowEdited)) {
       const isValid: boolean = beforeRowEdited(newEditingRow, context)
       if (!isValid) {
-        _setEditingRow(newEditingRow)
+        setEditingRow(newEditingRow)
         return
       }
     }
@@ -125,8 +125,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
       let text = newEditedTransformedRow[column.id]
       if (text && _.isFunction(column.edit?.transform)) {
         text = column.edit?.transform(text)
-        // @ts-ignore
-        newEditedTransformedRow[column.id] = text
+        _.set(newEditedTransformedRow, column.id, text)
       }
     })
 
@@ -137,9 +136,8 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
       return _item
     })
 
+    resetEditingRow(newEditingRow!.key)
     setItems(newItems)
-
-    _setEditingRow(undefined)
 
     if (_.isFunction(onRowsChanged)) {
       onRowsChanged(newItems)
@@ -154,7 +152,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
       onRowsChanged(newItems)
     }
   }
-  const editing = !_.isNil(_editingRow)
+  const editing = !_.isNil(editingRow)
   const rowId = id + (editing ? '-edit' : '')
   return (
     <Table.Row
@@ -171,7 +169,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
         // double click
         if (e.detail === 2) {
           _.isFunction(onRowDoubleClicked) ? onRowDoubleClicked(item) :
-            editable && !item.disabled ? _setEditingRow(item) : {}
+            editable && !item.disabled ? setEditingRow(item) : {}
         }
       }}
       className={classNames({
@@ -198,8 +196,9 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
         <Cell
           column={column}
           context={context}
-          editingRow={_editingRow}
-          setEditingRow={_setEditingRow}
+          editingRow={editingRow}
+          setEditingRow={setEditingRow}
+          resetEditingRow={resetEditingRow}
           editable={editable}
           id={rowId + '-Cell-' + column.id}
           key={rowId + '-Cell-' + column.id + '-key'}

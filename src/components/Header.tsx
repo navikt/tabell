@@ -14,9 +14,9 @@ import HeaderFilter from './HeaderFilter'
 const Header = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   categories,
   columns,
-  setColumns,
   flaggable,
   flagIkon,
+  filter,
   labels,
   selectable,
   searchable,
@@ -27,6 +27,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
   onRowSelectChange,
   items,
   setItems,
+  setFilter,
   sort,
   setSort
  }: TableHeaderProps<CustomItem, CustomContext>) => {
@@ -135,7 +136,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
           </FlexCenterDiv>
         </Table.HeaderCell>
         {columns.map((column) => {
-          const filterText: string = column.filterText ? column.filterText.toLowerCase() : ''
+          const _filter: string = filter[column.id] ? filter[column.id].toLowerCase() : ''
           return (
             <Table.HeaderCell
               role='columnheader'
@@ -153,10 +154,10 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
                       handleSortColumn(column)
                     }}
                   >
-                    {column.label + (filterText ? ' (' + filterText + ')' : '')}
+                    {column.label + (_filter ? ' (' + _filter + ')' : '')}
                   </Button>
                 )
-                : column.label + (filterText ? ' (' + filterText + ')' : '')}
+                : column.label + (_filter ? ' (' + _filter + ')' : '')}
             </Table.HeaderCell>
           )
         })}
@@ -164,8 +165,9 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
       {_seeFilters && (
         <HeaderFilter
           id={id + '-Filter'}
-          setColumns={setColumns}
           columns={columns}
+          filter={filter}
+          setFilter={setFilter}
         />
       )}
     </Table.Header>

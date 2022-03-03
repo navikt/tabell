@@ -138,13 +138,13 @@ describe('Table', () => {
     ])
   })
 
-  it('handleFilterTextChange()', () => {
+  it('handlefilterChange()', () => {
     (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
     wrapper.find('.tabell___seefilters-icon').hostNodes().simulate('click')
     wrapper.update()
-    const filterTextBox = wrapper.find('.tabell__sort-input input').hostNodes().first()
-    filterTextBox.simulate('change', { target: { value: 'String 07' } })
-    filterTextBox.simulate('blur')
+    const filterBox = wrapper.find('.tabell__sort-input input').hostNodes().first()
+    filterBox.simulate('change', { target: { value: 'String 07' } })
+    filterBox.simulate('blur')
     wrapper.update()
     expect(wrapper.find('tbody tr').length).toEqual(1)
     expect(wrapper.find('tbody tr').render().text()).toEqual(['String 07', '07/02/2020', 'Object 07'].join(''))

@@ -1,6 +1,6 @@
 import { Loader, Table } from '@navikt/ds-react'
 import classNames from 'classnames'
-import { Column, Context, Item, Labels, Sort, TableProps } from 'index.d'
+import { TextFilters, Column, Context, Item, Labels, Sort, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
@@ -53,16 +53,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   summary = false
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
 
-  /** fill out default values to current values for editing columns */
-  const initializeColumns = (columns: Array<Column<CustomItem, CustomContext>>): Array<Column<CustomItem, CustomContext>> => {
-    return columns.map(column => {
-      if (column.edit && !_.isNil(column.edit.defaultValue)) {
-        column.edit.value = column.edit.defaultValue
-      }
-      return column
-    })
-  }
-
   /** fill out openSubrows and visible values if they are not in item */
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
@@ -83,8 +73,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       return item
     })
   }
-  /** Column data */
-  const [_columns, _setColumns] = useState<Array<Column<CustomItem, CustomContext>>>(() => initializeColumns(columns))
   /** Row items */
   const [_items, _setItems] = useState<Array<CustomItem>>(() => preProcessItems(items))
   /** Current sort */
@@ -93,50 +81,71 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const [_currentPage, _setCurrentPage] = useState<number>(initialPage)
   /** Table labels */
   const _labels: Labels = { ...defaultLabels, ...labels }
+  /** Column filters */
+  const [_filter, setFilter] = useState<TextFilters>({})
+  /** Store temp info for rows being edited. We can have multiple rows being edited, thus the hashmap */
+  const [_editingRows, _setEditingRows] = useState<{[k in string]: CustomItem}>({})
+
+  const setEditingRow = (item: CustomItem) => {
+    _setEditingRows({
+      ..._editingRows,
+      [item.key]: item
+    })
+  }
+
+  const resetEditingRow = (key: string) => {
+    const editingRows = _.cloneDeep(_editingRows)
+    delete editingRows[key]
+    _setEditingRows(editingRows)
+  }
 
   /** make sure we always preprocess the changed items */
   const setItems = (items: Array<CustomItem>) => {
     _setItems(preProcessItems(items))
   }
 
-  /** generates a string from the cell, rendering its contents, for filtering or sorting */
+  /** generates a string from the cell contents, for filtering or sorting */
   const getStringFromCellFor = (column: Column<CustomItem, CustomContext>, item: CustomItem, _for: 'filter' | 'sort') => {
-    let haystack: string = ''
+    let cellAsString: string = ''
     switch (column.type) {
       case 'date':
         if (_for === 'filter') {
           if (column.dateFormat) {
-            haystack = moment(item[column.id]).format(column.dateFormat)
+            cellAsString = moment(item[column.id]).format(column.dateFormat)
           } else {
-            haystack = !_.isNil(item[column.id])
-              ? item[column.id].toLocaleDateString ? item[column.id].toLocaleDateString() : item[column.id].toString()
+            cellAsString = !_.isNil(item[column.id])
+              ? item[column.id].toLocaleDateString
+                ? item[column.id].toLocaleDateString()
+                : item[column.id].toString()
               : ''
           }
         }
         if (_for === 'sort') {
-          haystack = !_.isNil(item[column.id])
-            ? item[column.id].getTime ? '' + moment(item[column.id]).format('YYYYMMDD') : item[column.id].toString()
+          cellAsString = !_.isNil(item[column.id])
+            ? item[column.id].getTime
+              ? '' + moment(item[column.id]).format('YYYYMMDD')
+              : item[column.id].toString()
             : ''
         }
         break
       default: {
         if (_.isFunction(column.needle) && _.isString(column.needle(item[column.id]))) {
-          haystack = column.needle(item[column.id]).toLowerCase()
+          cellAsString = column.needle(item[column.id]).toLowerCase()
         } else {
           if (_.isFunction(column.render)) {
-            haystack = renderToString(column.render({
+            cellAsString = renderToString(column.render({
               item,
               value: item[column.id],
               context
             }) as JSX.Element).toLowerCase()
           } else {
-            haystack = item[column.id]?.toString()?.toLowerCase() ?? ''
+            cellAsString = item[column.id]?.toString()?.toLowerCase() ?? ''
           }
         }
         break
       }
     }
-    return haystack
+    return cellAsString
   }
 
   /** Applies filters and sorting to rows */
@@ -145,17 +154,19 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   let numberOfVisibleItems = 0
 
   const filteredItems: Array<CustomItem> = _.filter(_items, (item: CustomItem) => {
+
     if (item.selected && !item.hasSubrows) {
       numberOfSelectedRows++
     }
     if (item.visible && !item.hasSubrows) {
       numberOfVisibleItems++
     }
-    return _.every(_columns, (column: Column) => {
-      const filterText: string = _.isString(column.filterText) ? column.filterText.toLowerCase() : ''
+
+    return _.every(columns, (column: Column) => {
+      const filter: string = _.isString(_filter[column.id]) ? _filter[column.id].toLowerCase() : ''
       let needle
       try {
-        needle = new RegExp(filterText)
+        needle = new RegExp(filter)
       } catch (e) {}
       const haystack = getStringFromCellFor(column, item, 'filter')
       return needle ? haystack?.match(needle) : true
@@ -164,7 +175,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
 
   let sortedItems: Array<CustomItem> = filteredItems
   if (_sort.order === 'asc' || _sort.order === 'desc') {
-    const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(_columns, _c => _c.id === _sort.column)
+    const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(columns, _c => _c.id === _sort.column)
     if (!_.isUndefined(sortColumn)) {
       filteredItems.forEach((item, index) => {
         const sortKey = getStringFromCellFor(sortColumn!, item, 'sort')
@@ -197,9 +208,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       coloredSelectedRow={coloredSelectedRow}
     >
       {error && (
-      <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
-        {error}
-      </div>
+        <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
+          {error}
+        </div>
       )}
       <ContentDiv>
         {loading && (
@@ -216,16 +227,17 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         >
           <Header<CustomItem, CustomContext>
             categories={categories}
-            columns={_columns}
+            columns={columns}
             flaggable={flaggable}
             flagIkon={flagIkon}
+            filter={_filter}
+            setFilter={setFilter}
             id={id + '-Header'}
             items={_items}
             labels={_labels}
             onRowSelectChange={onRowSelectChange}
             searchable={searchable}
             selectable={selectable}
-            setColumns={_setColumns}
             setSort={setSort}
             setItems={setItems}
             showSelectAll={showSelectAll}
@@ -240,8 +252,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <AddRow
                 id={id + '-AddRow'}
                 beforeRowAdded={beforeRowAdded}
-                columns={_columns}
-                setColumns={_setColumns}
+                columns={columns}
                 context={context}
                 labels={_labels}
                 items={_items}
@@ -251,11 +262,14 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
             )}
             {pageItems.map((item, index) => (
               <Row
+                editingRow={_editingRows[item.key]}
+                setEditingRow={setEditingRow}
+                resetEditingRow={resetEditingRow}
                 item={item}
                 items={items}
                 index={index}
                 context={context}
-                columns={_columns}
+                columns={columns}
                 sort={_sort}
                 labels={_labels}
                 flaggable={flaggable}

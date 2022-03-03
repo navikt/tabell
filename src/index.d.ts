@@ -4,6 +4,10 @@ export type ItemErrors = {[k: string] : string | undefined}
 
 export type ColumnAlign = 'left' | 'center' | 'right' | undefined
 
+export type TextFilters = {[k in string]: any}
+
+export type NewRowValues = {[k in string]: any}
+
 export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
@@ -28,38 +32,41 @@ export interface Category {
 
 export interface Context {}
 
-export interface RenderEditableOptions<CustomContext extends Context = Context, CustomType = any> {
+export interface RenderEditableOptions<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
   context: CustomContext
   value?: CustomType
+  item?: CustomItem
   error?: string | undefined
   setValues: (entries: {[k in string]: any}) => void,
   values: {[k in string]: CustomType}
   onEnter: (entries: {[k in string]: any}) => void
 }
 
-export interface RenderOptions<CustomItem, CustomContext, CustomType>{
+export interface RenderOptions<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
   item: CustomItem,
   value: CustomType,
   context: CustomContext | undefined
 }
 
+export interface ColumnValidation {
+  mandatory?: boolean | ((c: CustomContext) => boolean)
+  message: string,
+  test: string | ((value: any) => boolean)
+}
+
+export interface ColumnEdit {
+  render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element | undefined
+  transform?: (s: CustomType) => CustomType
+  validation?: Array<ColumnValidation>
+  placeholder?: string
+  defaultValue?: CustomType
+}
+
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
-  align ?: ColumnAlign
+  align?: ColumnAlign
   dateFormat?: string
-  edit ?: {
-    render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
-    transform?: (s: CustomType) => CustomType
-    validation?: Array<{
-      mandatory?: boolean | ((c: CustomContext) => boolean)
-      message: string,
-      test: string | ((value: any) => boolean)
-    }>,
-    placeholder?: string
-    defaultValue?: CustomType
-    value?: CustomType
-  },
-  error ?: string
-  filterText?: string
+  add ?: ColumnEdit,
+  edit ?: ColumnEdit,
   id: string
   label: string
   needle?: (item: CustomItem) => string
@@ -81,7 +88,7 @@ export type Labels = {[k in string]? : string}
 export interface TableProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   allowNewRows?: boolean,
   animatable?: boolean
-  beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
+  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => boolean
   beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
   categories?: Array<Category>
   className?: string
@@ -119,7 +126,8 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
 export interface TableHeaderProps<CustomItem, CustomContext> {
   categories?: Array<Category>
   columns: Array<Column<CustomItem, CustomContext>>
-  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
+  filter: TextFilters
+  setFilter: (t: TextFilters) => void
   flaggable ?: boolean
   flagIkon ?: JSX.Element | string
   items: Array<CustomItem>
@@ -138,6 +146,9 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
 
 export interface TableRowProps<CustomItem, CustomContext> {
   beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
+  editingRow: CustomItem | undefined
+  setEditingRow: (item: CustomItem) => void
+  resetEditingRow: (key: string) => void
   index: number
   item: CustomItem
   items: Array<CustomItem>
@@ -177,7 +188,8 @@ export interface TableFooterProps {
 export interface HeaderFilterProps<CustomItem, CustomContext> {
   id: string
   columns: Array<Column<CustomItem, CustomContext>>
-  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
+  filter: TextFilters
+  setFilter: (t: TextFilters) => void
 }
 
 export interface HeaderCategoriesProps {
@@ -186,10 +198,9 @@ export interface HeaderCategoriesProps {
 }
 
 export interface AddRowProps<CustomItem, CustomContext> {
-  beforeRowAdded?: (colums: Array<Column<CustomItem, CustomContext>>, context: CustomContext) => boolean
+  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => boolean
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
-  setColumns: (columns: Array<Column<CustomItem, CustomContext>>) => void
   labels: Labels
   id: string
   items: Array<CustomItem>
@@ -223,7 +234,8 @@ export interface CellProps<CustomItem, CustomContext> {
   labels: Labels
   sortable: boolean
   sort: Sort
-  setEditingRow: (c: CustomItem | undefined) => void
+  setEditingRow: (c: CustomItem) => void
+  resetEditingRow: (key: string) => void
 }
 
 declare const Table: <

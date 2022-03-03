@@ -23,22 +23,23 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   labels,
   sortable,
   sort,
-  setEditingRow
+  setEditingRow,
+  resetEditingRow
 }: CellProps<CustomItem, CustomContext>) => {
 
   const editing: boolean = !_.isNil(editingRow)
   const error = editing ? editingRow!.error : undefined
-  let content: JSX.Element | null = null
+  let content: JSX.Element | undefined = undefined
 
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
 
-
   /** Renders the row as a date */
-  const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | undefined => {
     const value: any = item[column.id]
     if (editing) {
       return _.isFunction(column.edit?.render)
         ? column.edit!.render({
+          item: item,
           value: editingRow![column.id],
           values: editingRow!,
           error: error?.[column.id],
@@ -86,11 +87,12 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   }
 
   /** Renders the row as a object (needs custom render functions) */
-  const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsObject = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | undefined => {
     const value: any = item[column.id]
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
+          item: item,
           value: editingRow![column.id],
           values: editingRow!,
           error: error?.[column.id],
@@ -136,7 +138,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              setEditingRow(undefined)
+              resetEditingRow(item.key)
             }}
           >
             <Tooltip label={labels.cancelChanges!}>
@@ -186,11 +188,12 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   }
 
   /** Renders the row as default string */
-  const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
+  const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | undefined => {
     const value: any = item[column.id]
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
+          item: item,
           value: editingRow![column.id],
           values: editingRow!,
           error: error?.[column.id],

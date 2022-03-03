@@ -3,14 +3,13 @@ import Tooltip from '@navikt/tooltip'
 import Input from 'components/Input'
 import _ from 'lodash'
 import md5 from 'md5'
-import { AddRowProps, Column, Context, Item } from '../index.d'
-import React from 'react'
+import { AddRowProps, Column, Context, Item, NewRowValues } from '../index.d'
+import React, { useState } from 'react'
 import Save from 'resources/Save'
 
 const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowAdded,
   columns,
-  setColumns,
   context = {} as CustomContext,
   labels,
   id,
@@ -20,43 +19,42 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
 }: AddRowProps<CustomItem, CustomContext>): JSX.Element => {
 
   let addedFocusRef = false
-  const currentEditValues = {} as any
-  columns.forEach((c: Column<CustomItem, CustomContext>) => {
-    if (c.edit) {
-      currentEditValues[c.id] = c.edit.value
-    }
-  })
 
-  /** handle any change made to cells in the add row */
-  const handleNewRowChange = (entries: {[k in string]: any}): Array<Column<CustomItem, CustomContext>> => {
-    const keys = Object.keys(entries)
-    const newColumns = columns.map((column: Column<CustomItem, CustomContext>) => {
-      if (!keys.includes(column.id)) {
-        return column
-      }
-      return {
-        ...column,
-        edit: {
-          ...column.edit,
-          value: entries[column.id]
-        }
+  const resetRowValues = (columns: Array<Column<CustomItem, CustomContext>>) => {
+    const newValues: any = {}
+    columns.forEach((column: Column<CustomItem, CustomContext>) => {
+      if (column.add && !_.isNil(column.add.defaultValue)) {
+        newValues[column.id] = column.add.defaultValue
       }
     })
-    setColumns(newColumns)
-    return newColumns
+    return newValues
   }
 
-  const saveAddedRow = (_context: CustomContext, columns: Array<Column<CustomItem, CustomContext>>): void => {
+  /** fill out default values when adding new rows */
+  const [_newRowValues, setNewRowValues] = useState<NewRowValues>(() => resetRowValues(columns))
+
+  const [_errors, setErrors] = useState<any>({})
+
+  /** handle any change made to cells in the add row */
+  const handleNewRowChange = (entries: {[k in string]: any}): NewRowValues => {
+    const newRowValues = _.cloneDeep(_newRowValues)
+    Object.keys(entries).forEach(key => {
+      newRowValues[key] = entries[key]
+    })
+    setNewRowValues(newRowValues)
+    return newRowValues
+  }
+
+  const saveAddedRow = (_context: CustomContext, newRowValues: NewRowValues): void => {
     // first, let's validate
     let allValidated: boolean = true
-    let newColumns: Array<Column<CustomItem, CustomContext>> = []
 
-    newColumns = columns.map((column) => {
+    columns.forEach((column) => {
       let isColumnValid: boolean = true
       let errorMessage: string | undefined = undefined
 
-      column.edit?.validation?.forEach(v => {
-        let valueToValidate = column.edit?.value
+      column.add?.validation?.forEach(v => {
+        let valueToValidate = newRowValues[column.id]
         if (_.isNil(valueToValidate)) {
           valueToValidate = ''
         }
@@ -94,40 +92,35 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
 
       allValidated = allValidated && isColumnValid
 
-      return {
-        ...column,
-        error: (isColumnValid ? undefined : (errorMessage ?? labels.error))
+      if (!isColumnValid) {
+        setErrors({
+          ..._errors,
+          [column.id]: (errorMessage ?? labels.error)
+        })
       }
     })
 
     if (!allValidated) {
-      setColumns(newColumns)
       return
     }
 
     if (_.isFunction(beforeRowAdded)) {
-      const isValid: boolean = beforeRowAdded(newColumns, _context)
+      const isValid: boolean = beforeRowAdded(_newRowValues, _context)
       if (!isValid) {
-        setColumns(newColumns)
         return
       }
     }
 
+    // validated, we will add a new Item then
+    setErrors({})
+    setNewRowValues(resetRowValues(columns))
     const newItem: CustomItem = {} as CustomItem
-    newColumns = columns.map(c => {
-      let text = c.edit?.value
-      if (text && _.isFunction(c.edit?.transform)) {
-        text = c.edit?.transform(text)
+    columns.forEach(column => {
+      let text = newRowValues[column.id]
+      if (text && _.isFunction(column.add?.transform)) {
+        text = column.add?.transform(text)
       }
-      _.set(newItem, c.id, text)
-      return {
-        ...c,
-        edit: {
-          ...c.edit,
-          value: c.edit?.defaultValue
-        },
-        error: undefined
-      }
+      _.set(newItem, column.id, text)
     })
 
     newItem.key = md5('' + new Date().getTime())
@@ -135,8 +128,6 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
     newItem.disabled = false
     newItem.visible = true
     newItem.openSubrows = false
-
-    setColumns(newColumns)
 
     const newItems = _.cloneDeep(items)
     newItems.unshift(newItem as CustomItem)
@@ -164,16 +155,16 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
               key={id + '-Column-' + column.id + '-key'}
             >
               {
-                column.edit?.render
-                  ? column.edit.render({
-                    value: column.edit.value,
-                    error: column.error,
-                    values: currentEditValues,
+                column.add?.render
+                  ? column.add.render({
+                    value: _newRowValues[column.id],
+                    error: _errors[column.id],
+                    values: _newRowValues,
                     context: context,
                     setValues: handleNewRowChange,
                     onEnter: (entries) => {
-                      const newColumns: Array<Column<CustomItem, CustomContext>> = handleNewRowChange(entries)
-                      saveAddedRow(context, newColumns)
+                      const newRowValues: NewRowValues = handleNewRowChange(entries)
+                      saveAddedRow(context, newRowValues)
                     }
                   })
                   : (
@@ -182,13 +173,13 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                       id={id + '-Column-' + column.id + '-Input'}
                       className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
                       label=''
-                      key={id + '-Column-' + column.id + '-Input-' + (column.edit?.value ?? '') + '-key'}
-                      placeholder={column.edit?.placeholder}
-                      value={column.edit?.value ?? ''}
-                      error={column.error}
+                      key={id + '-Column-' + column.id + '-Input-' + (_newRowValues[column.id] ?? '') + '-key'}
+                      placeholder={column.add?.placeholder}
+                      value={_newRowValues[column.id] ?? ''}
+                      error={_errors[column.id]}
                       onEnterPress={(e: string) => {
-                        const newColumns: Array<Column<CustomItem, CustomContext>> = handleNewRowChange({ [column.id]: e })
-                        saveAddedRow(context, newColumns)
+                        const newRowValues: NewRowValues = handleNewRowChange({ [column.id]: e })
+                        saveAddedRow(context, newRowValues)
                       }}
                       onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
                     />
@@ -209,7 +200,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                 onClick={(e: any) => {
                   e.preventDefault()
                   e.stopPropagation()
-                  saveAddedRow(context, columns)
+                  saveAddedRow(context, _newRowValues)
                 }}
               >
                 <Tooltip label={labels.addLabel!}>
