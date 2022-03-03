@@ -2,6 +2,8 @@ export type ItemBase = {[k in string]? : any}
 
 export type ItemErrors = {[k: string] : string | undefined}
 
+export type ColumnAlign = 'left' | 'center' | 'right' | undefined
+
 export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
@@ -36,7 +38,7 @@ export interface RenderEditableOptions<CustomContext extends Context = Context, 
 }
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
-  align ?: 'left' | 'center' | 'right' | undefined
+  align ?: ColumnAlign
   dateFormat?: string
   edit ?: {
     render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element
