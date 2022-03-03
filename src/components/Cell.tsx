@@ -37,8 +37,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   const renderRowAsDate = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | null => {
     const value: any = item[column.id]
     if (editing) {
-      return column.edit?.render
-        ? column.edit.render({
+      return _.isFunction(column.edit?.render)
+        ? column.edit!.render({
           value: editingRow![column.id],
           values: editingRow!,
           error: error?.[column.id],
@@ -71,8 +71,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           />
         )
     } else {
-      return _.isFunction(column.renderCell)
-        ? column.renderCell(item, value, context)
+      return _.isFunction(column.render)
+        ? column.render({item, value, context})
         : (
           <BodyLong>
             {column.dateFormat
@@ -93,7 +93,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         ? column.edit.render({
           value: editingRow![column.id],
           values: editingRow!,
-          error: error ? error[column.id] : undefined,
+          error: error?.[column.id],
           context: context,
           setValues: handleEditRowChange,
           onEnter: (entries) => {
@@ -103,8 +103,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         })
         : (<span>You have to set a edit render function for object</span>)
     } else {
-      return _.isFunction(column.renderCell)
-        ? column.renderCell(item, value, context)
+      return _.isFunction(column.render)
+        ? column.render({item, value, context})
         : <span>You have to set a render function for object</span>
     }
   }
@@ -193,7 +193,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         ? column.edit.render({
           value: editingRow![column.id],
           values: editingRow!,
-          error: error ? error[column.id] : undefined,
+          error: error?.[column.id],
           context: context,
           setValues: handleEditRowChange,
           onEnter: (entries) => {
@@ -219,8 +219,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           />
         )
     } else {
-      return _.isFunction(column.renderCell)
-        ? column.renderCell(item, value, context)
+      return _.isFunction(column.render)
+        ? column.render({item, value, context})
         : labels[column.id] && labels[column.id]![value]
           ? (
             <>

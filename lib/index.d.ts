@@ -37,6 +37,12 @@ export interface RenderEditableOptions<CustomContext extends Context = Context, 
   onEnter: (entries: {[k in string]: any}) => void
 }
 
+export interface RenderOptions<CustomItem, CustomContext, CustomType>{
+  item: CustomItem,
+  value: CustomType,
+  context: CustomContext | undefined
+}
+
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
   align ?: ColumnAlign
   dateFormat?: string
@@ -57,7 +63,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   id: string
   label: string
   needle?: (item: CustomItem) => string
-  renderCell?: (item: CustomItem, value: any, context: CustomContext | undefined) => JSX.Element
+  render?: (o: RenderOptions<CustomItem, CustomContext, CustomType>) => JSX.Element
   type: string
 }
 

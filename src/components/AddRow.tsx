@@ -170,7 +170,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                     error: column.error,
                     values: currentEditValues,
                     context: context,
-                    setValues: (entries) => handleNewRowChange(entries),
+                    setValues: handleNewRowChange,
                     onEnter: (entries) => {
                       const newColumns: Array<Column<CustomItem, CustomContext>> = handleNewRowChange(entries)
                       saveAddedRow(context, newColumns)

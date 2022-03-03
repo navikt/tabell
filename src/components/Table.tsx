@@ -123,8 +123,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         if (_.isFunction(column.needle) && _.isString(column.needle(item[column.id]))) {
           haystack = column.needle(item[column.id]).toLowerCase()
         } else {
-          if (_.isFunction(column.renderCell)) {
-            haystack = renderToString(column.renderCell(item, item[column.id], context) as JSX.Element).toLowerCase()
+          if (_.isFunction(column.render)) {
+            haystack = renderToString(column.render({
+              item,
+              value: item[column.id],
+              context
+            }) as JSX.Element).toLowerCase()
           } else {
             haystack = item[column.id]?.toString()?.toLowerCase() ?? ''
           }

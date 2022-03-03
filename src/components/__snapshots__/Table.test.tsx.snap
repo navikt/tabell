@@ -240,7 +240,7 @@ tabell.g42[id="c10"] {
         "id": "object",
         "label": "ui:variant",
         "needle": [Function],
-        "renderCell": [Function],
+        "render": [Function],
         "type": "object",
       },
     ]

@@ -6,6 +6,10 @@ import { Item, TableProps } from 'index.d'
 
 jest.mock('md5', () => ('mock-md5'))
 
+type MockObject = {
+  label: string
+}
+
 describe('Table', () => {
   let wrapper: ReactWrapper
   const initialMockProps: TableProps = {
@@ -17,23 +21,23 @@ describe('Table', () => {
         label: 'ui:variant',
         type: 'object',
         needle: (it: Item) => it.label.toLowerCase(),
-        renderCell: (item: Item, value: any) => {
-          return <span>{value.label}</span>
+        render: ({value}) => {
+          return <span>{value?.label}</span>
         }
       }
     ],
     items: [
-      { key: '01', string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' } },
-      { key: '02', string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' } },
-      { key: '03', string: 'String 03', date: new Date(2020, 1, 3), object: { label: 'Object 03' } },
-      { key: '04', string: 'String 04', date: new Date(2020, 1, 4), object: { label: 'Object 04' } },
-      { key: '05', string: 'String 05', date: new Date(2020, 1, 5), object: { label: 'Object 05' } },
-      { key: '06', string: 'String 06', date: new Date(2020, 1, 6), object: { label: 'Object 06' } },
-      { key: '07', string: 'String 07', date: new Date(2020, 1, 7), object: { label: 'Object 07' } },
-      { key: '08', string: 'String 08', date: new Date(2020, 1, 8), object: { label: 'Object 08' } },
-      { key: '09', string: 'String 09', date: new Date(2020, 1, 9), object: { label: 'Object 09' } },
-      { key: '10', string: 'String 10', date: new Date(2020, 1, 10), object: { label: 'Object 10' } },
-      { key: '11', string: 'String 11', date: new Date(2020, 1, 11), object: { label: 'Object 11' } }
+      { key: '01', string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' } as MockObject },
+      { key: '02', string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' } as MockObject },
+      { key: '03', string: 'String 03', date: new Date(2020, 1, 3), object: { label: 'Object 03' } as MockObject },
+      { key: '04', string: 'String 04', date: new Date(2020, 1, 4), object: { label: 'Object 04' } as MockObject },
+      { key: '05', string: 'String 05', date: new Date(2020, 1, 5), object: { label: 'Object 05' } as MockObject },
+      { key: '06', string: 'String 06', date: new Date(2020, 1, 6), object: { label: 'Object 06' } as MockObject },
+      { key: '07', string: 'String 07', date: new Date(2020, 1, 7), object: { label: 'Object 07' } as MockObject },
+      { key: '08', string: 'String 08', date: new Date(2020, 1, 8), object: { label: 'Object 08' } as MockObject },
+      { key: '09', string: 'String 09', date: new Date(2020, 1, 9), object: { label: 'Object 09' } as MockObject },
+      { key: '10', string: 'String 10', date: new Date(2020, 1, 10), object: { label: 'Object 10' } as MockObject },
+      { key: '11', string: 'String 11', date: new Date(2020, 1, 11), object: { label: 'Object 11' } as MockObject }
     ],
     loading: false,
     labels: {

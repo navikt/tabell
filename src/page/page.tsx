@@ -95,7 +95,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
       label: 'Occupation',
       type: 'string',
       filterText: '',
-      renderCell: (item: Item, value: any) => <Detail >{value}</Detail>
+      render: ({value}) => <Detail>{value}</Detail>
     }
   ]
 

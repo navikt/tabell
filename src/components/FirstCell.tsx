@@ -70,19 +70,16 @@ const FirstCell =  <CustomItem extends Item = Item> ({
           <div style={{marginRight: '2rem'}}>&nbsp;</div>
         )}
         {selectable && !item.selectDisabled && (
-          <>
-            <HorizontalSeparatorDiv size='0.3'/>
-            <Checkbox
-              id={id + '-Checkbox'}
-              key={id + '-Checkbox-' + (!!item.selected) + '-key'}
-              data-test-id={id + '-Checkbox'}
-              disabled={item.disabled ?? false}
-              hideLabel
-              checked={!!item.selected}
-              onChange={() => onCheckClicked(item)}
-            >
-            </Checkbox>
-          </>
+          <Checkbox
+            id={id + '-Checkbox'}
+            key={id + '-Checkbox-' + (!!item.selected) + '-key'}
+            data-test-id={id + '-Checkbox'}
+            disabled={item.disabled ?? false}
+            hideLabel
+            checked={!!item.selected}
+            onChange={() => onCheckClicked(item)}
+          >
+          </Checkbox>
         )}
         {item.parentKey && (
           <>
