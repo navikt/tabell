@@ -232,11 +232,11 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             animatable={animatable}
             beforeRowAdded={(columns, context) => {
               console.log('beforeRowAdded called with ', columns, context)
-              return true
+              return undefined
             }}
             beforeRowEdited={(item, context) => {
               console.log('beforeRowEdited called with ', item, context)
-              return true
+              return undefined
             }}
             categories={categories ? [{
                 colSpan: 3,

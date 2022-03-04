@@ -88,8 +88,8 @@ export type Labels = {[k in string]? : string}
 export interface TableProps <CustomItem extends Item = Item, CustomContext extends Context = Context> {
   allowNewRows?: boolean,
   animatable?: boolean
-  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => boolean
-  beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
+  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => ItemErrors | undefined
+  beforeRowEdited?: (item: CustomItem, context: CustomContext) => ItemErrors | undefined
   categories?: Array<Category>
   className?: string
   context?: CustomContext
@@ -146,7 +146,7 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
 }
 
 export interface TableRowProps<CustomItem, CustomContext> {
-  beforeRowEdited?: (item: CustomItem, context: CustomContext) => boolean
+  beforeRowEdited?: (item: CustomItem, context: CustomContext) => ItemErrors | undefined
   editingRow: CustomItem | undefined
   setEditingRow: (item: CustomItem) => void
   resetEditingRow: (key: string) => void
@@ -199,7 +199,7 @@ export interface HeaderCategoriesProps {
 }
 
 export interface AddRowProps<CustomItem, CustomContext> {
-  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => boolean
+  beforeRowAdded?: (values: NewRowValues, context: CustomContext) => ItemErrors | undefined
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
   labels: Labels

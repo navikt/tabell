@@ -3,7 +3,7 @@ import Tooltip from '@navikt/tooltip'
 import Input from 'components/Input'
 import _ from 'lodash'
 import md5 from 'md5'
-import { AddRowProps, Column, Context, Item, NewRowValues } from '../index.d'
+import { AddRowProps, Column, Context, Item, ItemErrors, NewRowValues } from '../index.d'
 import React, { useState } from 'react'
 import Save from 'resources/Save'
 
@@ -105,8 +105,9 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
     }
 
     if (_.isFunction(beforeRowAdded)) {
-      const isValid: boolean = beforeRowAdded(_newRowValues, _context)
-      if (!isValid) {
+      const errors: ItemErrors | undefined = beforeRowAdded(_newRowValues, _context)
+      if (!_.isUndefined(errors)) {
+        setErrors(errors)
         return
       }
     }

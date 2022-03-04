@@ -111,8 +111,9 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     }
 
     if (_.isFunction(beforeRowEdited)) {
-      const isValid: boolean = beforeRowEdited(newEditingRow, context)
-      if (!isValid) {
+      const errors: ItemErrors | undefined = beforeRowEdited(newEditingRow, context)
+      if (!_.isUndefined(errors)) {
+        newEditingRow.error = errors
         setEditingRow(newEditingRow)
         return
       }
