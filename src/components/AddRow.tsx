@@ -6,6 +6,7 @@ import md5 from 'md5'
 import { AddRowProps, Column, Context, Item, ItemErrors, NewRowValues } from '../index.d'
 import React, { useState } from 'react'
 import Save from 'resources/Save'
+import classNames from 'classnames'
 
 const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowAdded,
@@ -152,6 +153,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         if (column.type !== 'buttons') {
           const content: JSX.Element = (
             <Table.DataCell
+              className={classNames(column.align ?? '')}
               id={id + '-Column-' + column.id}
               key={id + '-Column-' + column.id + '-key'}
             >

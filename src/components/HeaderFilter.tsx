@@ -1,4 +1,5 @@
 import { Table } from '@navikt/ds-react'
+import classNames from 'classnames'
 import Input from 'components/Input'
 import { Column, Context, HeaderFilterProps, Item } from '../index.d'
 import React from 'react'
@@ -27,7 +28,7 @@ const HeaderFilter = <CustomItem extends Item = Item, CustomContext extends Cont
       {columns.map((column: Column<CustomItem, CustomContext>) => {
         if (column.type !== 'buttons') {
           return (
-            <Table.DataCell key={column.id}>
+            <Table.DataCell key={column.id} className={classNames(column.align ?? '')} >
               <Input
                 style={{marginTop: '0px'}}
                 className='tabell__sort-input'

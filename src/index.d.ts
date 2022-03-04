@@ -79,7 +79,7 @@ export type Order = 'none' | 'asc' | 'desc'
 export type SortOrder = {[k: string]: Order}
 
 export interface Sort {
-  column: stringColumn
+  column: string
   order: Order
 }
 
