@@ -6,7 +6,7 @@ import crypto from 'crypto'
 
 Enzyme.configure({ adapter: new Adapter() });
 
-(global as any).crypto = crypto;
+(global as any).crypto = crypto
 Object.defineProperty(global, 'crypto', {
   value: {
     getRandomValues: (arr: any) => crypto.randomBytes(arr.length)

@@ -94,7 +94,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
       id: 'type',
       label: 'Occupation',
       type: 'string',
-      render: ({value}) => <Detail>{value}</Detail>
+      render: ({value}: any) => <Detail>{value}</Detail>
     }
   ]
 

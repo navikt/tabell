@@ -66,9 +66,6 @@ const FirstCell =  <CustomItem extends Item = Item> ({
           )
           : null
         }
-        {item.parentKey && (
-          <div style={{marginRight: '2rem'}}>&nbsp;</div>
-        )}
         {selectable && !item.selectDisabled && (
           <Checkbox
             id={id + '-Checkbox'}
@@ -82,11 +79,9 @@ const FirstCell =  <CustomItem extends Item = Item> ({
           </Checkbox>
         )}
         {item.parentKey && (
-          <>
-            <HorizontalSeparatorDiv size='0.5'/>
+          <div style={{marginLeft: '2.5rem', marginRight: '0.3rem'}}>
             <Connected/>
-            <HorizontalSeparatorDiv size='0.3'/>
-          </>
+          </div>
         )}
         {item.hasSubrows && (
           <>
@@ -104,7 +99,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               {item.openSubrows
                 ? subrowsIcon === 'merge'
                   ? <Merge/>
-                  : sort.order === 'asc'
+                  : sort.order !== 'asc'
                     ? <ExpandFilled/>
                     : <CollapseFilled/>
                 : subrowsIcon === 'merge'

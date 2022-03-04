@@ -176,7 +176,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
 
   let sortedItems: Array<CustomItem> = filteredItems
   if (_sort.order === 'asc' || _sort.order === 'desc') {
-    const sortColumn: Column<CustomItem, CustomContext> | undefined = _.find(columns, _c => _c.id === _sort.column)
+    const sortColumn: Column<CustomItem, CustomContext, any> | undefined = _.find(columns, _c => _c.id === _sort.column)
     if (!_.isUndefined(sortColumn)) {
       filteredItems.forEach((item, index) => {
         const sortKey = getStringFromCellFor(sortColumn!, item, 'sort')

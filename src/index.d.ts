@@ -48,16 +48,16 @@ export interface RenderOptions<CustomItem extends Item = Item, CustomContext ext
   context: CustomContext | undefined
 }
 
-export interface ColumnValidation {
+export interface ColumnValidation<CustomContext extends Context = Context> {
   mandatory?: boolean | ((c: CustomContext) => boolean)
   message: string,
   test: string | ((value: any) => boolean)
 }
 
-export interface ColumnEdit {
-  render?: (o: RenderEditableOptions<CustomContext>) => JSX.Element | undefined
+export interface ColumnEdit<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
+  render?: (o: RenderEditableOptions<CustomItem, CustomContext, CustomType>) => JSX.Element | undefined
   transform?: (s: CustomType) => CustomType
-  validation?: Array<ColumnValidation>
+  validation?: Array<ColumnValidation<CustomContext>>
   placeholder?: string
   defaultValue?: CustomType
 }
@@ -65,8 +65,8 @@ export interface ColumnEdit {
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
   align?: ColumnAlign
   dateFormat?: string
-  add ?: ColumnEdit,
-  edit ?: ColumnEdit,
+  add ?: ColumnEdit<CustomItem, CustomContext, CustomType>,
+  edit ?: ColumnEdit<CustomItem, CustomContext, CustomType>,
   id: string
   label: string
   needle?: (item: CustomItem) => string
@@ -79,7 +79,7 @@ export type Order = 'none' | 'asc' | 'desc'
 export type SortOrder = {[k: string]: Order}
 
 export interface Sort {
-  column: string
+  column: stringColumn
   order: Order
 }
 
@@ -145,7 +145,7 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
   setSort: (s: Sort) => void
 }
 
-export interface TableRowProps<CustomItem, CustomContext> {
+export interface TableRowProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   beforeRowEdited?: (item: CustomItem, context: CustomContext) => ItemErrors | undefined
   editingRow: CustomItem | undefined
   setEditingRow: (item: CustomItem) => void
@@ -186,7 +186,7 @@ export interface TableFooterProps {
   numberOfVisibleItems: number
 }
 
-export interface HeaderFilterProps<CustomItem, CustomContext> {
+export interface HeaderFilterProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   id: string
   columns: Array<Column<CustomItem, CustomContext>>
   filter: TextFilters
@@ -198,7 +198,7 @@ export interface HeaderCategoriesProps {
   categories: Array<Category>
 }
 
-export interface AddRowProps<CustomItem, CustomContext> {
+export interface AddRowProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   beforeRowAdded?: (values: NewRowValues, context: CustomContext) => ItemErrors | undefined
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
@@ -209,7 +209,7 @@ export interface AddRowProps<CustomItem, CustomContext> {
   onRowsChanged ?: (items: Array<CustomItem>) => void
 }
 
-export interface FirstCellProps<CustomItem> {
+export interface FirstCellProps<CustomItem extends Item = Item> {
   flaggable: boolean
   item: CustomItem
   items: Array<CustomItem>
@@ -222,7 +222,7 @@ export interface FirstCellProps<CustomItem> {
   onRowSelectChange ?: (items: Array<CustomItem>) => void
 }
 
-export interface CellProps<CustomItem, CustomContext> {
+export interface CellProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
   column: Column<CustomItem, CustomContext>
   context: CustomContext
   editingRow: CustomItem | undefined
@@ -239,9 +239,7 @@ export interface CellProps<CustomItem, CustomContext> {
   resetEditingRow: (key: string) => void
 }
 
-declare const Table: <
-  CustomItem extends Item = Item,
-  CustomContext extends Context = Context
->(props: TableProps<CustomItem, CustomContext>) => JSX.Element
+declare const Table: <CustomItem extends Item = Item, CustomContext extends Context = Context>
+  (props: TableProps<CustomItem, CustomContext>) => JSX.Element
 
 export default Table
