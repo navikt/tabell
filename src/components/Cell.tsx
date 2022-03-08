@@ -53,6 +53,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         : (
           <Input
             style={{marginTop: '0px'}}
+            key={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input-' + (moment(editingRow![column.id]).format('DD.MM.YYYY') ?? '') + '-key'}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
             error={error?.[column.id]}
@@ -208,6 +209,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           <Input
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
+            key={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input-' + (value ?? '') + '-key'}
             className='tabell__edit-input'
             error={error && error[column.id]}
             label=''
