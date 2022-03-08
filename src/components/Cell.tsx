@@ -53,7 +53,6 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         : (
           <Input
             style={{marginTop: '0px'}}
-            key={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input-' + (moment(editingRow![column.id]).format('DD.MM.YYYY') ?? '') + '-key'}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
             className='tabell__edit-input'
             error={error?.[column.id]}
@@ -190,7 +189,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
 
   /** Renders the row as default string */
   const renderRowAsDefault = (item: CustomItem, column: Column<CustomItem, CustomContext>, error: any, editing: boolean): JSX.Element | undefined => {
-    const value: any = item[column.id]
+
     if (editing) {
       return column.edit?.render
         ? column.edit.render({
@@ -209,21 +208,21 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           <Input
             style={{marginTop: '0px'}}
             id={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input'}
-            key={'tabell-' + id + '__item-' + item.key + '__column-' + column.id + '__edit-input-' + (value ?? '') + '-key'}
             className='tabell__edit-input'
             error={error && error[column.id]}
             label=''
             hideLabel
             placeholder={column.edit?.placeholder}
-            value={value ?? ''}
+            value={editingRow![column.id] ?? ''}
             onEnterPress={(newText: string) => {
               const editedRow: CustomItem = handleEditRowChange({ [column.id]: newText })
               saveEditedRow(editedRow)
             }}
-            onChanged={(newText: string) => handleEditRowChange({[column.id]: newText})}
+            onChanged={(newText: string) => handleEditRowChange({ [column.id]: newText })}
           />
         )
     } else {
+      const value: any = item[column.id]
       return _.isFunction(column.render)
         ? column.render({item, value, context})
         : labels[column.id] && labels[column.id]![value]

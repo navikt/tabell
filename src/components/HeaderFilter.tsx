@@ -33,7 +33,6 @@ const HeaderFilter = <CustomItem extends Item = Item, CustomContext extends Cont
                 style={{marginTop: '0px'}}
                 className='tabell__sort-input'
                 id={id + '-Cell-' + column.id + '-Input'}
-                key={id + '-Cell-' + column.id + '-Input-key'}
                 label=''
                 value={filter[column.id] || ''}
                 onEnterPress={(e: string) => handleFilterChange(column, e)}

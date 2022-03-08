@@ -176,7 +176,6 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                       id={id + '-Column-' + column.id + '-Input'}
                       className={'tabell__edit-input ' + (!addedFocusRef ? 'input-focus' : '')}
                       label=''
-                      key={id + '-Column-' + column.id + '-Input-' + (_newRowValues[column.id] ?? '') + '-key'}
                       placeholder={column.add?.placeholder}
                       value={_newRowValues[column.id] ?? ''}
                       error={_errors[column.id]}

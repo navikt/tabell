@@ -201,8 +201,8 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
           setEditingRow={setEditingRow}
           resetEditingRow={resetEditingRow}
           editable={editable}
-          id={rowId + '-Cell-' + column.id}
-          key={rowId + '-Cell-' + column.id + '-key'}
+          id={rowId + '-Cell-' + column.id  + (editing ? '-Edit-' + editingRow?.[column.id] : '')}
+          key={rowId + '-Cell-' + column.id + (editing ? '-Edit-' + editingRow?.[column.id] : '') +  '-key'}
           item={item}
           labels={labels}
           sortable={sortable}

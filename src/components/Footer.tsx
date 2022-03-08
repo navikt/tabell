@@ -28,7 +28,7 @@ const Footer: React.FC<TableFooterProps> = ({
   }
 
   return (
-    <FlexCenterSpacedDiv id={id} key={id + '-key'}>
+    <FlexCenterSpacedDiv id={id}>
       {summary && !loading
         ? (
           <>

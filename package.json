@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "3.3.5",
+  "version": "3.4.0",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
