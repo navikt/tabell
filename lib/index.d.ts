@@ -8,6 +8,8 @@ export type TextFilters = {[k in string]: any}
 
 export type NewRowValues = {[k in string]: any}
 
+export type ChangedRowValues = {[k in string]: any}
+
 export interface Item extends ItemBase {
   disabled ?: boolean
   error ?: ItemErrors
@@ -37,9 +39,9 @@ export interface RenderEditableOptions<CustomItem extends Item = Item, CustomCon
   value?: CustomType
   item?: CustomItem
   error?: string | undefined
-  setValues: (entries: {[k in string]: any}) => void,
+  setValues: (changedValues: ChangedRowValues) => void,
   values: {[k in string]: CustomType}
-  onEnter: (entries: {[k in string]: any}) => void
+  onEnter: (changedValues: ChangedRowValues) => void
 }
 
 export interface RenderOptions<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
@@ -89,7 +91,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   allowNewRows?: boolean,
   animatable?: boolean
   beforeRowAdded?: (values: NewRowValues, context: CustomContext) => ItemErrors | undefined
-  beforeRowEdited?: (item: CustomItem, context: CustomContext) => ItemErrors | undefined
+  beforeRowEdited?: (item: CustomItem, context?: CustomContext, changedRowValues?: ChangedRowValues) => ItemErrors | undefined
   categories?: Array<Category>
   className?: string
   context?: CustomContext
@@ -146,7 +148,7 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
 }
 
 export interface TableRowProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
-  beforeRowEdited?: (item: CustomItem, context: CustomContext) => ItemErrors | undefined
+  beforeRowEdited?: (item: CustomItem, context?: CustomContext, changedRowValues?: ChangedRowValues) => ItemErrors | undefined
   editingRow: CustomItem | undefined
   setEditingRow: (item: CustomItem) => void
   resetEditingRow: (key: string) => void
@@ -227,9 +229,9 @@ export interface CellProps<CustomItem extends Item = Item, CustomContext extends
   context: CustomContext
   editingRow: CustomItem | undefined
   editable: boolean
-  handleEditRowChange: (entries: {[k in string]: any}) => CustomItem
+  handleEditRowChange: (changedValues: ChangedRowValues) => CustomItem
   handleRowDeleted: (item: CustomItem) => void
-  saveEditedRow: (editedRow: CustomItem | undefined) => void
+  saveEditedRow: (editedRow?: CustomItem, changedRowValues?: ChangedRowValues) => void
   item: CustomItem
   id: string
   labels: Labels

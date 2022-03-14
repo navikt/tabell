@@ -47,7 +47,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           setValues: handleEditRowChange,
           onEnter: (entries) => {
             const editedRow: CustomItem = handleEditRowChange(entries)
-            saveEditedRow(editedRow)
+            saveEditedRow(editedRow, entries)
           }
         })
         : (
@@ -61,10 +61,11 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
             placeholder={column.edit?.placeholder}
             value={moment(editingRow![column.id]).format('DD.MM.YYYY') ?? ''}
             onEnterPress={(newText: string) => {
-              const editedRow: CustomItem = handleEditRowChange({
+              const entries = {
                 [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
-              })
-              saveEditedRow(editedRow)
+              }
+              const editedRow: CustomItem = handleEditRowChange(entries)
+              saveEditedRow(editedRow, entries)
             }}
             onChanged={(newText: string) => handleEditRowChange({
               [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
@@ -100,7 +101,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           setValues: handleEditRowChange,
           onEnter: (entries) => {
             const editedRow: CustomItem = handleEditRowChange(entries)
-            saveEditedRow(editedRow)
+            saveEditedRow(editedRow, entries)
           }
         })
         : (<span>You have to set a edit render function for object</span>)
@@ -123,7 +124,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              saveEditedRow(undefined)
+              saveEditedRow()
             }}
           >
             <Tooltip label={labels.saveChanges!}>
@@ -201,7 +202,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
           setValues: handleEditRowChange,
           onEnter: (entries) => {
             const editedRow: CustomItem = handleEditRowChange(entries)
-            saveEditedRow(editedRow)
+            saveEditedRow(editedRow, entries)
           }
         })
         : (
@@ -215,8 +216,9 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
             placeholder={column.edit?.placeholder}
             value={editingRow![column.id] ?? ''}
             onEnterPress={(newText: string) => {
-              const editedRow: CustomItem = handleEditRowChange({ [column.id]: newText })
-              saveEditedRow(editedRow)
+              const entries = { [column.id]: newText }
+              const editedRow: CustomItem = handleEditRowChange(entries)
+              saveEditedRow(editedRow, entries)
             }}
             onChanged={(newText: string) => handleEditRowChange({ [column.id]: newText })}
           />

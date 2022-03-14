@@ -45,7 +45,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     return newEditingRow
   }
 
-  const saveEditedRow = (editedRow: CustomItem | undefined): void => {
+  const saveEditedRow = (editedRow: CustomItem | undefined, changedEntries: {[k in string]: any } | undefined): void => {
     let allValidated: boolean = true
     const errors: ItemErrors = {}
     // if we have the editedRow changes, use it; if not (for example, clicking save button), use the editingRow version.
@@ -111,7 +111,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     }
 
     if (_.isFunction(beforeRowEdited)) {
-      const errors: ItemErrors | undefined = beforeRowEdited(newEditingRow, context)
+      const errors: ItemErrors | undefined = beforeRowEdited(newEditingRow, context, changedEntries)
       if (!_.isUndefined(errors)) {
         newEditingRow.error = errors
         setEditingRow(newEditingRow)
