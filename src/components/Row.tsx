@@ -1,6 +1,6 @@
 import { Table } from '@navikt/ds-react'
 import classNames from 'classnames'
-import { Item, Context, TableRowProps, ItemErrors } from '../index.d'
+import { Item, Context, TableRowProps, ItemErrors, ChangedRowValues } from '../index.d'
 import _ from 'lodash'
 import React from 'react'
 import FirstCell from './FirstCell'
@@ -45,11 +45,22 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     return newEditingRow
   }
 
-  const saveEditedRow = (editedRow: CustomItem | undefined, changedEntries: {[k in string]: any } | undefined): void => {
+  const diffObjects = (obj1: any, obj2: any) => {
+    let res: any = {}
+    Object.keys(obj1).forEach(key => {
+      if (!_.isEqual(obj1[key], obj2[key])) {
+        res[key] = obj1[key]
+      }
+    })
+    return res
+  }
+
+  const saveEditedRow = (editedRow: CustomItem | undefined, changedRowValues: ChangedRowValues | undefined): void => {
     let allValidated: boolean = true
     const errors: ItemErrors = {}
     // if we have the editedRow changes, use it; if not (for example, clicking save button), use the editingRow version.
     const newEditingRow: CustomItem = !_.isUndefined(editedRow) ? editedRow : _.cloneDeep(editingRow) as CustomItem
+    const newChangedEntries: ChangedRowValues  = !_.isUndefined(changedRowValues) ? changedRowValues : diffObjects(editingRow, item)
 
     columns.forEach((column) => {
       let isColumnValid: boolean = true
@@ -111,7 +122,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     }
 
     if (_.isFunction(beforeRowEdited)) {
-      const errors: ItemErrors | undefined = beforeRowEdited(newEditingRow, context, changedEntries)
+      const errors: ItemErrors | undefined = beforeRowEdited(newEditingRow, context, newChangedEntries)
       if (!_.isUndefined(errors)) {
         newEditingRow.error = errors
         setEditingRow(newEditingRow)
