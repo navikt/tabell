@@ -116,6 +116,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   pagination?: boolean
   searchable?: boolean
   selectable?: boolean
+  showHeader ?: boolean
   showSelectAll ?: boolean
   skipItemUpdates ?: boolean
   size ?: 'medium' | 'small' | undefined

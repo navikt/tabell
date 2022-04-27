@@ -44,6 +44,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   pagination = true,
   searchable = true,
   selectable = false,
+  showHeader = true,
   showSelectAll = true,
   skipItemUpdates = false,
   size = 'medium',
@@ -232,26 +233,28 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           width={fullWidth ? '100%' : 'fit-content'}
           className='tabell tabell__table'
         >
-          <Header<CustomItem, CustomContext>
-            categories={categories}
-            columns={columns}
-            flaggable={flaggable}
-            flagIkon={flagIkon}
-            filter={_filter}
-            setFilter={setFilter}
-            id={id + '-Header'}
-            items={_items}
-            labels={_labels}
-            onRowSelectChange={onRowSelectChange}
-            searchable={searchable}
-            selectable={selectable}
-            setSort={setSort}
-            setItems={setItems}
-            showSelectAll={showSelectAll}
-            sort={_sort}
-            sortable={sortable}
-            onColumnSort={onColumnSort}
-          />
+          {showHeader && (
+            <Header<CustomItem, CustomContext>
+              categories={categories}
+              columns={columns}
+              flaggable={flaggable}
+              flagIkon={flagIkon}
+              filter={_filter}
+              setFilter={setFilter}
+              id={id + '-Header'}
+              items={_items}
+              labels={_labels}
+              onRowSelectChange={onRowSelectChange}
+              searchable={searchable}
+              selectable={selectable}
+              setSort={setSort}
+              setItems={setItems}
+              showSelectAll={showSelectAll}
+              sort={_sort}
+              sortable={sortable}
+              onColumnSort={onColumnSort}
+            />
+          )}
           <Table.Body
             className={classNames({ striped })}
           >

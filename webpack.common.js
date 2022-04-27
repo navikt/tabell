@@ -90,6 +90,12 @@ module.exports = {
       amd: '@navikt/ds-css',
       root: '@navikt/ds-css'
     },
+    '@navikt/hoykontrast': {
+      commonjs: '@navikt/hoykontrast',
+      commonjs2: '@navikt/hoykontrast',
+      amd: '@navikt/hoykontrast',
+      root: '@navikt/hoykontrast'
+    },
     classnames: {
       commonjs: 'classnames',
       commonjs2: 'classnames',
@@ -113,12 +119,6 @@ module.exports = {
       commonjs2: "moment",
       amd: "moment",
       root: "moment"
-    },
-    'nav-hoykontrast': {
-      commonjs: 'nav-hoykontrast',
-      commonjs2: 'nav-hoykontrast',
-      amd: 'nav-hoykontrast',
-      root: 'nav-hoykontrast'
     },
     react: {
       commonjs: 'react',

@@ -1,10 +1,13 @@
-import Enzyme, { shallow, render, mount } from 'enzyme'
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 import { act } from 'react-dom/test-utils'
 import 'jest-styled-components'
+import {render, fireEvent, screen, getNodeText} from '@testing-library/react'
 import crypto from 'crypto'
 
-Enzyme.configure({ adapter: new Adapter() });
+(global as any).screen = screen;
+(global as any).render = render;
+(global as any).getNodeText = getNodeText;
+(global as any).fireEvent = fireEvent;
+(global as any).act = act;
 
 (global as any).crypto = crypto
 Object.defineProperty(global, 'crypto', {
@@ -12,8 +15,3 @@ Object.defineProperty(global, 'crypto', {
     getRandomValues: (arr: any) => crypto.randomBytes(arr.length)
   }
 });
-
-(global as any).shallow = shallow;
-(global as any).render = render;
-(global as any).mount = mount;
-(global as any).act = act

@@ -1,4 +1,4 @@
-import { mount, ReactWrapper } from 'enzyme'
+import { render } from '@testing-library/react'
 import React from 'react'
 import Table from './Table'
 import { WideTable } from './Styles'
@@ -11,7 +11,7 @@ type MockObject = {
 }
 
 describe('Table', () => {
-  let wrapper: ReactWrapper
+  let wrapper: any
   const initialMockProps: TableProps = {
     columns: [
       { id: 'string', label: 'ui:string', type: 'string' },
@@ -64,7 +64,7 @@ describe('Table', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(<Table {...initialMockProps} />)
+    wrapper = render(<Table {...initialMockProps} />)
   })
 
   afterEach(() => {
@@ -77,7 +77,7 @@ describe('Table', () => {
   })
 
   it('Renders: Not sortable', () => {
-    wrapper = mount(<Table {...initialMockProps} sortable={false} />)
+    wrapper = render(<Table {...initialMockProps} sortable={false} />)
     expect(wrapper.find('thead tr th').last().exists('a')).toBeFalsy()
   })
 
