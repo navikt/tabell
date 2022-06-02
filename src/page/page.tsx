@@ -103,7 +103,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   }
 
   let items: Array<Item> = [
-    { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true, flag: true },
+    { key: '01', name: 'Anna', date: new Date(1970, 2, 4), type: 'Analyst', selected: true, flag: true, editDisabled: true },
     { key: '02', name: 'Bernard', date: new Date(1980, 4, 8), type: 'Bookkeeper', disabled: true },
     { key: '03', hasSubrows: true, openSubrows: false, name: 'Claire', date: new Date(1972, 6, 12), type: 'CEO' },
     { key: '03_01', parentKey: '03', name: 'Charles', date: new Date(1970, 2, 4), type: 'co-CEO', selected: true },

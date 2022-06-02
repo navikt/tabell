@@ -283,7 +283,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 sort={_sort}
                 labels={_labels}
                 flaggable={flaggable}
-                editable={editable}
+                editable={editable && !item.editDisabled}
                 sortable={sortable}
                 animatable={animatable}
                 id={id + '-Row-' + item.key}

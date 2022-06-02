@@ -19,6 +19,7 @@ export interface Item extends ItemBase {
   key: string
   parentKey ?: string
   openSubrows ?: boolean
+  editDisabled ?: boolean
   selected ?: boolean
   selectDisabled ?: boolean
   selectLabel ?: string
