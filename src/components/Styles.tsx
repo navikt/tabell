@@ -8,7 +8,7 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   .tabell .tabell__td,
   .tabell .tabell__th {
     padding: inherit;
-    vertical-align: middle;
+    vertical-align: baseline;
     &.center {
       text-align: center
     }
