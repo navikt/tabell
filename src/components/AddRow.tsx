@@ -50,6 +50,16 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
     // first, let's validate
     let allValidated: boolean = true
 
+    let errors: ItemErrors = {}
+
+    if (_.isFunction(beforeRowAdded)) {
+      const errors: ItemErrors | undefined = beforeRowAdded(_newRowValues, _context)
+      if (!_.isUndefined(errors)) {
+        setErrors(errors)
+        return
+      }
+    }
+
     columns.forEach((column) => {
       let isColumnValid: boolean = true
       let errorMessage: string | undefined = undefined
@@ -94,23 +104,13 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
       allValidated = allValidated && isColumnValid
 
       if (!isColumnValid) {
-        setErrors({
-          ..._errors,
-          [column.id]: (errorMessage ?? labels.error)
-        })
+        errors[column.id] = (errorMessage ?? labels.error)
       }
     })
 
     if (!allValidated) {
+      setErrors(errors)
       return
-    }
-
-    if (_.isFunction(beforeRowAdded)) {
-      const errors: ItemErrors | undefined = beforeRowAdded(_newRowValues, _context)
-      if (!_.isUndefined(errors)) {
-        setErrors(errors)
-        return
-      }
     }
 
     // validated, we will add a new Item then
