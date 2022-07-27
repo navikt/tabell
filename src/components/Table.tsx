@@ -66,7 +66,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         openSubrows[item.key] = item.openSubrows
       }
       if (!Object.prototype.hasOwnProperty.call(item, 'visible')) {
-        if (item.parentKey) {
+        if (item.parentKey && Object.prototype.hasOwnProperty.call(openSubrows, item.parentKey)) {
           item.visible = openSubrows[item.parentKey].openSubrows
         } else {
           item.visible = true
