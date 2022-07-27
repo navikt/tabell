@@ -59,7 +59,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
     return items.map(item => {
-      if (item.hasSubrows) {
+      if (!!item && item.hasSubrows) {
         if (!Object.prototype.hasOwnProperty.call(item, 'openSubrows')) {
           item.openSubrows = false
         }
