@@ -41,6 +41,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   onRowDoubleClicked = undefined,
   onRowsChanged = undefined,
   onRowSelectChange = undefined,
+  onRowEdit = undefined,
+  onResetRowEdit = undefined,
   pagination = true,
   searchable = true,
   selectable = false,
@@ -89,6 +91,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const [_editingRows, _setEditingRows] = useState<{[k in string]: CustomItem}>({})
 
   const setEditingRow = (item: CustomItem) => {
+    if(onRowEdit){
+      onRowEdit(item)
+    }
     _setEditingRows({
       ..._editingRows,
       [item.key]: item
@@ -96,6 +101,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   }
 
   const resetEditingRow = (key: string) => {
+    if(onResetRowEdit){
+      onResetRowEdit(key)
+    }
     const editingRows = _.cloneDeep(_editingRows)
     delete editingRows[key]
     _setEditingRows(editingRows)

@@ -260,6 +260,15 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             striped={striped}
             summary={summary}
             subrowsIcon={subrowsIcon as 'arrow' | 'merge' | undefined}
+            onRowEdit={(item) => {
+              console.log('onRowEdit called with ', item)
+              return undefined
+            }}
+            onResetRowEdit={(key) => {
+              console.log('onResetRowEdit called with ', key)
+              return undefined
+            }}
+
           />
           <VerticalSeparatorDiv size='2'/>
           <SyntaxHighlighter language='javascript' style={_highContrast ? dark : light}>
@@ -510,6 +519,20 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
                 <Table.DataCell><code>function</code></Table.DataCell>
                 <Table.DataCell>false</Table.DataCell>
                 <Table.DataCell>Callback function when selection mode of at least one row changes. The table items are returned as param</Table.DataCell>
+                <Table.DataCell>-</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.DataCell>onRowEdit</Table.DataCell>
+                <Table.DataCell><code>function</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Callback function when editing one row. The row item is returned as param</Table.DataCell>
+                <Table.DataCell>-</Table.DataCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.DataCell>onResetRowEdit</Table.DataCell>
+                <Table.DataCell><code>function</code></Table.DataCell>
+                <Table.DataCell>false</Table.DataCell>
+                <Table.DataCell>Callback function when resetting editing of one row. The row key is returned as param</Table.DataCell>
                 <Table.DataCell>-</Table.DataCell>
               </Table.Row>
               <Table.Row>

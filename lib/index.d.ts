@@ -114,6 +114,8 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   onRowDoubleClicked ?: (item: CustomItem) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
   onRowSelectChange ?: (items: Array<CustomItem>) => void
+  onRowEdit ?: (item: CustomItem) => void
+  onResetRowEdit ?: (key: string) => void
   pagination?: boolean
   searchable?: boolean
   selectable?: boolean
