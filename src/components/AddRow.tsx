@@ -57,7 +57,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         column.add.reference[refName].current.value = ''
       }
     })
-    resetRowValues(columns)
+    setNewRowValues(resetRowValues(columns))
   }
 
   const saveAddedRow = (_context: CustomContext, newRowValues: NewRowValues): void => {
