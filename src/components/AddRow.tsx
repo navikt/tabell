@@ -52,11 +52,12 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   const resetAddRow = (columns: Array<Column<CustomItem, CustomContext>>, id: any) => {
     columns.forEach((column: Column<CustomItem, CustomContext>) => {
       if(column.add && column.add.reference){
-        console.log(id)
+        console.log(id, column.add.reference)
         const refName = Object.keys(column.add.reference)[0]
         column.add.reference[refName].current.value = ''
       }
     })
+    resetRowValues(columns)
   }
 
   const saveAddedRow = (_context: CustomContext, newRowValues: NewRowValues): void => {
