@@ -63,6 +63,7 @@ export interface ColumnEdit<CustomItem extends Item = Item, CustomContext extend
   validation?: Array<ColumnValidation<CustomContext>>
   placeholder?: string
   defaultValue?: CustomType
+  reference?: any
 }
 
 export interface Column<CustomItem extends Item = Item, CustomContext extends Context = Context, CustomType = any> {
@@ -117,6 +118,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   onRowEdit ?: (item: CustomItem) => void
   onResetRowEdit ?: (key: string) => void
   pagination?: boolean
+  showResetButtonAddRow?: boolean
   searchable?: boolean
   selectable?: boolean
   showHeader ?: boolean
@@ -213,6 +215,7 @@ export interface AddRowProps<CustomItem extends Item = Item, CustomContext exten
   items: Array<CustomItem>
   setItems: (items: Array<CustomItem>) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
+  showResetButtonAddRow?: boolean
 }
 
 export interface FirstCellProps<CustomItem extends Item = Item> {

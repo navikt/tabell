@@ -54,7 +54,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   sortable = true,
   subrowsIcon = 'arrow',
   striped = true,
-  summary = false
+  summary = false,
+  showResetButtonAddRow = false
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
 
   /** fill out openSubrows and visible values if they are not in item */
@@ -276,6 +277,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 items={_items}
                 setItems={setItems}
                 onRowsChanged={onRowsChanged}
+                showResetButtonAddRow={showResetButtonAddRow}
               />
             )}
             {pageItems.map((item, index) => (

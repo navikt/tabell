@@ -7,6 +7,8 @@ import { AddRowProps, Column, Context, Item, ItemErrors, NewRowValues } from '..
 import React, { useState } from 'react'
 import Save from 'resources/Save'
 import classNames from 'classnames'
+import {HorizontalSeparatorDiv, FlexStartDiv} from "@navikt/hoykontrast";
+import {Cancel} from "@navikt/ds-icons";
 
 const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowAdded,
@@ -16,7 +18,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   id,
   items,
   setItems,
-  onRowsChanged
+  onRowsChanged,
+  showResetButtonAddRow
 }: AddRowProps<CustomItem, CustomContext>): JSX.Element => {
 
   let addedFocusRef = false
@@ -44,6 +47,16 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
     })
     setNewRowValues(newRowValues)
     return newRowValues
+  }
+
+  const resetAddRow = (columns: Array<Column<CustomItem, CustomContext>>, id: any) => {
+    columns.forEach((column: Column<CustomItem, CustomContext>) => {
+      if(column.add && column.add.reference){
+        console.log(id)
+        const refName = Object.keys(column.add.reference)[0]
+        column.add.reference[refName].current.value = ''
+      }
+    })
   }
 
   const saveAddedRow = (_context: CustomContext, newRowValues: NewRowValues): void => {
@@ -196,19 +209,40 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         } else {
           return (
             <Table.DataCell key={column.id}>
-              <Button
-                size="small"
-                variant="secondary"
-                onClick={(e: any) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  saveAddedRow(context, _newRowValues)
-                }}
-              >
-                <Tooltip label={labels.addLabel!}>
-                  <Save/>
-                </Tooltip>
-              </Button>
+              <FlexStartDiv className='tabell__buttons'>
+                <Button
+                  size="small"
+                  variant="secondary"
+                  onClick={(e: any) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    saveAddedRow(context, _newRowValues)
+                  }}
+                >
+                  <Tooltip label={labels.addLabel!}>
+                    <Save/>
+                  </Tooltip>
+                </Button>
+                {showResetButtonAddRow &&
+                    <>
+                      <HorizontalSeparatorDiv size='0.5'/>
+                      <Button
+                          variant="secondary"
+                          size="small"
+                          aria-label={labels.cancelChanges}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            resetAddRow(columns, id)
+                          }}
+                      >
+                        <Tooltip label={labels.cancelChanges!}>
+                          <Cancel width='24' height='24'/>
+                        </Tooltip>
+                      </Button>
+                    </>
+                }
+              </FlexStartDiv>
             </Table.DataCell>
           )
         }
