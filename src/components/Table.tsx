@@ -55,7 +55,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   subrowsIcon = 'arrow',
   striped = true,
   summary = false,
-  showResetButtonAddRow = false
+  showResetButtonAddRow = false,
+  onResetRowAdd = undefined
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
 
   /** fill out openSubrows and visible values if they are not in item */
@@ -278,6 +279,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
                 setItems={setItems}
                 onRowsChanged={onRowsChanged}
                 showResetButtonAddRow={showResetButtonAddRow}
+                onResetRowAdd={onResetRowAdd}
               />
             )}
             {pageItems.map((item, index) => (

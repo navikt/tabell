@@ -117,6 +117,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   onRowSelectChange ?: (items: Array<CustomItem>) => void
   onRowEdit ?: (item: CustomItem) => void
   onResetRowEdit ?: (key: string) => void
+  onResetRowAdd?: () => void
   pagination?: boolean
   showResetButtonAddRow?: boolean
   searchable?: boolean
@@ -216,6 +217,7 @@ export interface AddRowProps<CustomItem extends Item = Item, CustomContext exten
   setItems: (items: Array<CustomItem>) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
   showResetButtonAddRow?: boolean
+  onResetRowAdd?: () => void
 }
 
 export interface FirstCellProps<CustomItem extends Item = Item> {

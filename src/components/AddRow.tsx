@@ -19,7 +19,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   items,
   setItems,
   onRowsChanged,
-  showResetButtonAddRow
+  showResetButtonAddRow,
+  onResetRowAdd
 }: AddRowProps<CustomItem, CustomContext>): JSX.Element => {
 
   let addedFocusRef = false
@@ -58,6 +59,9 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
       }
     })
     setNewRowValues(resetRowValues(columns))
+    if(_.isFunction(onResetRowAdd)){
+      onResetRowAdd()
+    }
   }
 
   const saveAddedRow = (_context: CustomContext, newRowValues: NewRowValues): void => {

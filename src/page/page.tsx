@@ -268,7 +268,11 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               console.log('onResetRowEdit called with ', key)
               return undefined
             }}
-
+            showResetButtonAddRow={true}
+            onResetRowAdd={() => {
+              console.log("RESET")
+              return undefined
+            }}
           />
           <VerticalSeparatorDiv size='2'/>
           <SyntaxHighlighter language='javascript' style={_highContrast ? dark : light}>
