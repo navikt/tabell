@@ -21,7 +21,6 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
   flaggable,
   editable,
   animatable,
-  sortable,
   id,
   selectable,
   onRowClicked,
@@ -216,8 +215,6 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
           key={rowId + '-Cell-' + column.id + (editing ? '-Edit-' + editingRow?.[column.id] : '') +  '-key'}
           item={item}
           labels={labels}
-          sortable={sortable}
-          sort={sort}
           handleEditRowChange={handleEditRowChange}
           handleRowDeleted={handleRowDeleted}
           saveEditedRow={saveEditedRow}
