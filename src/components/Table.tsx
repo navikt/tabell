@@ -1,10 +1,10 @@
-import { Loader, Table } from '@navikt/ds-react'
+import { Loader, Table, SortState} from '@navikt/ds-react'
 import classNames from 'classnames'
-import { TextFilters, Column, Context, Item, Labels, Sort, TableProps } from 'index.d'
+import { TextFilters, Column, Context, Item, Labels, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
 import moment from 'moment'
-import 'nav-frontend-tabell-style/dist/main.css'
+
 import PT from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -22,7 +22,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   beforeRowEdited = undefined,
   categories = undefined,
   className = undefined,
-  coloredSelectedRow = true,
   columns = [],
   context = {} as CustomContext,
   editable = false,
@@ -50,7 +49,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   showSelectAll = true,
   skipItemUpdates = false,
   size = 'medium',
-  sort = { column: '', order: 'none' },
+  sort = { orderBy: '', direction: 'none' },
   sortable = true,
   subrowsIcon = 'arrow',
   striped = true,
@@ -82,7 +81,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   /** Row items */
   const [_items, _setItems] = useState<Array<CustomItem>>(() => preProcessItems(items))
   /** Current sort */
-  const [_sort, setSort] = useState<Sort>(sort)
+  const [_sort, setSort] = useState<SortState | undefined>(sort);
   /** Current pagination value */
   const [_currentPage, _setCurrentPage] = useState<number>(initialPage)
   /** Table labels */
@@ -186,8 +185,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   })
 
   let sortedItems: Array<CustomItem> = filteredItems
-  if (_sort.order === 'asc' || _sort.order === 'desc') {
-    const sortColumn: Column<CustomItem, CustomContext, any> | undefined = _.find(columns, _c => _c.id === _sort.column)
+  if (_sort && (_sort?.direction === 'ascending' || _sort.direction === 'descending')) {
+    const sortColumn: Column<CustomItem, CustomContext, any> | undefined = _.find(columns, _c => _c.id === _sort.orderBy)
     if (!_.isUndefined(sortColumn)) {
       filteredItems.forEach((item, index) => {
         const sortKey = getStringFromCellFor(sortColumn!, item, 'sort')
@@ -202,7 +201,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       })
     }
     sortedItems = filteredItems.sort((a: CustomItem, b: CustomItem) =>
-      _sort.order === 'asc' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
+      _sort.direction === 'ascending' ? a.sortKey!.localeCompare(b.sortKey!) : b.sortKey!.localeCompare(a.sortKey!)
     )
   }
 
@@ -219,11 +218,35 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }, [skipItemUpdates, items])
 
+  const handleSort = (sortKey:any) => {
+
+    if (_.isFunction(onColumnSort)) {
+      onColumnSort({
+        orderBy: sortKey,
+        direction:
+            _sort && sortKey === _sort.orderBy && _sort.direction === "ascending"
+                ? "descending"
+                : "ascending",
+      })
+    }
+
+    setSort(
+  _sort && sortKey === _sort.orderBy && _sort.direction === "descending"
+      ? undefined
+      : {
+          orderBy: sortKey,
+          direction:
+            _sort && sortKey === _sort.orderBy && _sort.direction === "ascending"
+                ? "descending"
+                : "ascending",
+        }
+    );
+  };
+
   return (
     <TableDiv
       style={{width: fullWidth ? '100%' : 'fit-content'}}
       className={classNames(className, {error})}
-      coloredSelectedRow={coloredSelectedRow}
     >
       {error && (
         <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
@@ -243,6 +266,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           width={fullWidth ? '100%' : 'fit-content'}
           className='tabell tabell__table'
           zebraStripes={striped}
+          sort={_sort}
+          onSortChange={(sortKey) => handleSort(sortKey)}
         >
           {showHeader && (
             <Header<CustomItem, CustomContext>
@@ -258,12 +283,9 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               onRowSelectChange={onRowSelectChange}
               searchable={searchable}
               selectable={selectable}
-              setSort={setSort}
               setItems={setItems}
               showSelectAll={showSelectAll}
-              sort={_sort}
               sortable={sortable}
-              onColumnSort={onColumnSort}
             />
           )}
           <Table.Body>

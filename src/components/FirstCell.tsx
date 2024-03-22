@@ -99,7 +99,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               {item.openSubrows
                 ? subrowsIcon === 'merge'
                   ? <Merge/>
-                  : sort.order !== 'asc'
+                  : sort && sort.direction !== 'ascending'
                     ? <ExpandFilled/>
                     : <CollapseFilled/>
                 : subrowsIcon === 'merge'

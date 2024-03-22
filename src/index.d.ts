@@ -1,3 +1,5 @@
+import { SortState} from '@navikt/ds-react'
+
 export type ItemBase = {[k in string]? : any}
 
 export type ItemErrors = {[k: string] : string | undefined}
@@ -78,7 +80,7 @@ export interface Column<CustomItem extends Item = Item, CustomContext extends Co
   type: string
 }
 
-export type Order = 'none' | 'asc' | 'desc'
+export type Order = 'none' | 'ascending' | 'descending'
 
 export type SortOrder = {[k: string]: Order}
 
@@ -110,7 +112,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   itemsPerPage?: number
   labels?: Labels
   loading?: boolean
-  onColumnSort ?: (s: Sort) => void
+  onColumnSort ?: (s: SortState) => void
   onRowClicked ?: (item: CustomItem) => void
   onRowDoubleClicked ?: (item: CustomItem) => void
   onRowsChanged ?: (items: Array<CustomItem>) => void
@@ -127,7 +129,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   skipItemUpdates ?: boolean
   size ?: 'medium' | 'small' | undefined
   sortable?: boolean
-  sort?: Sort
+  sort?: SortState
   striped?: boolean
   summary?: boolean
   subrowsIcon ?: 'arrow' | 'merge'
@@ -147,11 +149,8 @@ export interface TableHeaderProps<CustomItem, CustomContext> {
   sortable ?: boolean
   showSelectAll ?: boolean
   id: string
-  onColumnSort ?: (s: Sort) => void
   onRowSelectChange ?: (items: Array<CustomItem>) => void
   setItems: (items: Array<CustomItem>) => void
-  sort: Sort
-  setSort: (s: Sort) => void
 }
 
 export interface TableRowProps<CustomItem extends Item = Item, CustomContext extends Context = Context> {
@@ -164,7 +163,7 @@ export interface TableRowProps<CustomItem extends Item = Item, CustomContext ext
   items: Array<CustomItem>
   columns: Array<Column<CustomItem, CustomContext>>
   context?: CustomContext
-  sort: Sort
+  sort: SortState | undefined
   labels: Labels
   flaggable: boolean
   id: string
@@ -227,7 +226,7 @@ export interface FirstCellProps<CustomItem extends Item = Item> {
   labels: Labels
   id: string
   selectable: boolean
-  sort: Sort
+  sort: SortState | undefined
   subrowsIcon: 'arrow' | 'merge' | undefined
   setItems: (items: Array<CustomItem>) => void
   onRowSelectChange ?: (items: Array<CustomItem>) => void
@@ -244,8 +243,6 @@ export interface CellProps<CustomItem extends Item = Item, CustomContext extends
   item: CustomItem
   id: string
   labels: Labels
-  sortable: boolean
-  sort: Sort
   setEditingRow: (c: CustomItem) => void
   resetEditingRow: (key: string) => void
 }

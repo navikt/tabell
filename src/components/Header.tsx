@@ -1,11 +1,10 @@
 import { Bookmark } from '@navikt/ds-icons'
-import { Button, Checkbox, Table } from '@navikt/ds-react'
+import { Checkbox, Table } from '@navikt/ds-react'
 import { FlexCenterDiv } from '@navikt/hoykontrast'
 import Tooltip from '@navikt/tooltip'
-import classNames from 'classnames'
 import { BlueText, FilterIcon } from 'components/Styles'
 import _ from 'lodash'
-import { Column, Context, Item, TableHeaderProps, SortOrder } from '../index.d'
+import { Context, Item, TableHeaderProps } from '../index.d'
 import React, { useState } from 'react'
 import Filter from 'resources/Filter'
 import HeaderCategories from './HeaderCategories'
@@ -23,50 +22,16 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
   sortable,
   showSelectAll,
   id,
-  onColumnSort,
   onRowSelectChange,
   items,
   setItems,
   setFilter,
-  sort,
-  setSort
  }: TableHeaderProps<CustomItem, CustomContext>) => {
 
   /** State of select all checkbox */
   const [_checkAll, _setCheckAll] = useState<boolean>(false)
   /** show/hide filter */
   const [_seeFilters, _setSeeFilters] = useState<boolean>(false)
-
-  const ariaSortLabel: any = {
-    asc: 'ascending',
-    desc: 'descending',
-    none: 'none'
-  }
-
-  /** order on which sort switches over */
-  const sortOrder: SortOrder = {
-    none: 'asc',
-    asc: 'desc',
-    desc: 'none'
-  }
-
-  /** get class for header sort */
-  const sortClass = (column: Column<CustomItem, CustomContext>): string => {
-    if (!sortable) { return ''}
-    return sort.column === column.id ? 'tabell__th--sortert-' + sort.order : ''
-  }
-
-  /** get new rows with a sort change */
-  const handleSortColumn = (column: Column<CustomItem, CustomContext>): void => {
-    if (!sortable) { return }
-    const newSortOrder = sortOrder[sort.order]
-    const newSort = { column: column.id, order: newSortOrder }
-
-    if (_.isFunction(onColumnSort)) {
-      onColumnSort(newSort)
-    }
-    setSort(newSort)
-  }
 
   const _onCheckAllClicked = (e: React.ChangeEvent<HTMLInputElement>) => {
     _setCheckAll(e.target.checked)
@@ -90,7 +55,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
           categories={categories}/>
         )}
       <Table.Row className='tabell__header'>
-        <Table.HeaderCell style={{ width: 1 }}>
+        <Table.ColumnHeader style={{ width: 1 }}>
           <FlexCenterDiv>
             {flaggable
               ? flagIkon ?? (
@@ -134,31 +99,16 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
               </Tooltip>
             )}
           </FlexCenterDiv>
-        </Table.HeaderCell>
+        </Table.ColumnHeader>
         {columns.map((column) => {
           const _filter: string = filter[column.id] ? filter[column.id].toLowerCase() : ''
           return (
-            <Table.HeaderCell
-              role='columnheader'
-              aria-sort={sort.column === column.id ? ariaSortLabel[sort.order] : 'none'}
-              key={'th-' + column.id}
-              className={classNames('header', sortClass(column), {buttons: column.type === 'buttons'})}
+            <Table.ColumnHeader
+              sortKey={column.id}
+              sortable={column.type === "buttons" ? false : sortable}
             >
-              {sortable && column.label
-                ? (
-                  <Button
-                    size='small'
-                    onClick={(e: any) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      handleSortColumn(column)
-                    }}
-                  >
-                    {column.label + (_filter ? ' (' + _filter + ')' : '')}
-                  </Button>
-                )
-                : column.label + (_filter ? ' (' + _filter + ')' : '')}
-            </Table.HeaderCell>
+                {column.label + (_filter ? ' (' + _filter + ')' : '')}
+            </Table.ColumnHeader>
           )
         })}
       </Table.Row>

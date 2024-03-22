@@ -2,7 +2,6 @@ import { Cancel, Delete, Edit } from '@navikt/ds-icons'
 import { BodyLong, Button, Popover, Table } from '@navikt/ds-react'
 import { FlexStartDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
 import Tooltip from '@navikt/tooltip'
-import classNames from 'classnames'
 import Input from 'components/Input'
 import { Context, CellProps, Item, Column } from '../index.d'
 import _ from 'lodash'
@@ -21,8 +20,6 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   item,
   id,
   labels,
-  sortable,
-  sort,
   setEditingRow,
   resetEditingRow
 }: CellProps<CustomItem, CustomContext>) => {
@@ -273,9 +270,6 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   return (
     <Table.DataCell
       id={id}
-      className={classNames(column.align ?? '', {
-        'tabell__td--sortert': sortable && sort.column === column.id,
-      })}
     >
       {content}
     </Table.DataCell>
