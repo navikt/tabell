@@ -242,6 +242,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           cellSpacing='0'
           width={fullWidth ? '100%' : 'fit-content'}
           className='tabell tabell__table'
+          zebraStripes={striped}
         >
           {showHeader && (
             <Header<CustomItem, CustomContext>
@@ -265,9 +266,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               onColumnSort={onColumnSort}
             />
           )}
-          <Table.Body
-            className={classNames({ striped })}
-          >
+          <Table.Body>
             {editable && allowNewRows && (
               <AddRow
                 id={id + '-AddRow'}
