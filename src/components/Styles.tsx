@@ -2,7 +2,11 @@ import styled  from 'styled-components'
 import { Table } from '@navikt/ds-react'
 
 export const TableDiv = styled.div`
-
+  &.error {
+    border-color: var(--a-border-danger) !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+  }
 `
 export const ContentDiv = styled.div`
   position: relative;
