@@ -38,16 +38,13 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     padding: 0rem 0.2rem !important;
     width: 100% !important;
     display: contents;
-    color: var(--navds-semantic-color-interaction-primary-hover);
+    color: var(--a-surface-action-hover);
   }
   tbody tr button.expandingButton {
     padding: 0.2rem;
   }
-  tr.tabell__tr--valgt td {
-    background: ${({coloredSelectedRow}) => coloredSelectedRow ? 'var(--navds-semantic-color-focus-inverted)' : 'inherit'};
-  }
   &.error {
-    border-color: var(--navds-tag-color-error-border) !important;
+    border-color: var(--a-border-danger) !important;
     border-width: 3px !important;
     border-style: solid !important;
   }
@@ -56,14 +53,6 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
   }
   thead th.noborder {
      border-bottom: none !important;
-  }
-  tbody.striped {  
-    tr:nth-child(odd) {
-      background: var(--navds-semantic-color-canvas-background);
-    }
-    tr:nth-child(even) {
-      background: var(--navds-semantic-color-component-background-light);  
-    }
   }
   &__subcell {
     display: flex;
@@ -88,25 +77,25 @@ export const TableDiv = styled.div<{coloredSelectedRow: boolean}>`
     animation: ${slideInFromLeft(20)} 0.2s forwards;
   }
   tbody tr:hover:not(.tabell__tr--disabled) td {
-    background: var(--navds-semantic-color-interaction-primary-hover-subtle) !important;
+    background: var(--a-surface-action-subtle-hover) !important;
   }
   .tabell__tr--disabled {
-    background: var(--navds-semantic-color-component-background-alternate) !important;
-    color: var(--navds-semantic-color-text) !important;
+    background: var(--a-surface-subtle) !important;
+    color: var(--a-text-default) !important;
     * {
-      color: var(--navds-semantic-color-text) !important;
+      color: var(--a-text-default) !important;
     }
   }
 
   .tabell thead th button, .tabell .tabell__thead th button, .tabell thead .tabell__th button, .tabell .tabell__thead .tabell__th button {
     display: flex;
-    color: var(--navds-semantic-color-interaction-primary) !important;
+    color: var(--a-surface-action) !important;
     &:hover:not(:disabled) {
-      color: var(--navds-semantic-color-interaction-primary) !important;
-      border-color: var(--navds-semantic-color-interaction-primary) !important;
+      color: var(--a-surface-action) !important;
+      border-color: var(--a-surface-action) !important;
     }
     &:focus {
-      box-shadow: 0 0 0 3px var(--navds-semantic-color-focus) !important;
+      box-shadow: 0 0 0 3px var(--a-border-focus) !important;
     } 
   }
 `

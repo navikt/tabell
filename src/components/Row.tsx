@@ -188,9 +188,9 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
         slideAnimate: animatable,
         tabell__edit: editing,
         clickable: _.isFunction(onRowClicked),
-        'tabell__tr--valgt': selectable && item.selected,
         'tabell__tr--disabled': item.disabled
       })}
+      selected={selectable && item.selected}
     >
       <FirstCell
         flaggable={flaggable}
