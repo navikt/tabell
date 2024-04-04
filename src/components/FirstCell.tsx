@@ -1,7 +1,6 @@
-import { Bookmark, CollapseFilled, ExpandFilled, NextFilled } from '@navikt/ds-icons'
-import { Button, Checkbox, Table } from '@navikt/ds-react'
+import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
+import { Button, Checkbox, Table, Tooltip } from '@navikt/ds-react'
 import { FlexCenterDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
-import Tooltip from '@navikt/tooltip'
 import _ from 'lodash'
 import React from 'react'
 import Connected from 'resources/Connected'
@@ -60,8 +59,8 @@ const FirstCell =  <CustomItem extends Item = Item> ({
       <FlexCenterDiv>
         {flaggable
           ? (
-            <Tooltip label={(item.flagLabel ?? labels.flagged)!}>
-              {item.flagIkon ?? <Bookmark style={{width: '30px', height: '24px', visibility: item.flag ? 'inherit' : 'hidden' }} />}
+            <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
+              {item.flagIkon ?? <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
             </Tooltip>
           )
           : null
@@ -100,15 +99,15 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 ? subrowsIcon === 'merge'
                   ? <Merge/>
                   : sort && sort.direction !== 'ascending'
-                    ? <ExpandFilled/>
-                    : <CollapseFilled/>
+                    ? <ChevronDownIcon/>
+                    : <ChevronUpIcon/>
                 : subrowsIcon === 'merge'
                   ? (
-                    <Tooltip label={labels.merged!}>
+                    <Tooltip content={labels.merged!}>
                       <Merge/>
                     </Tooltip>
                   )
-                  : <NextFilled/>
+                  : <ChevronRightIcon/>
               }
             </Button>
             <HorizontalSeparatorDiv size='0.3'/>

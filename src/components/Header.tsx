@@ -1,12 +1,10 @@
-import { Bookmark } from '@navikt/ds-icons'
-import { Checkbox, Table } from '@navikt/ds-react'
+import { BookmarkIcon, FunnelIcon } from '@navikt/aksel-icons'
+import { Checkbox, Table, Tooltip } from '@navikt/ds-react'
 import { FlexCenterDiv } from '@navikt/hoykontrast'
-import Tooltip from '@navikt/tooltip'
 import { BlueText, FilterIcon } from 'components/Styles'
 import _ from 'lodash'
 import { Context, Item, TableHeaderProps } from '../index.d'
 import React, { useState } from 'react'
-import Filter from 'resources/Filter'
 import HeaderCategories from './HeaderCategories'
 import HeaderFilter from './HeaderFilter'
 
@@ -59,8 +57,8 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
           <FlexCenterDiv>
             {flaggable
               ? flagIkon ?? (
-              <Tooltip label={labels.flagAll!}>
-                <Bookmark style={{width: '30px', height: '24px' }} />
+              <Tooltip content={labels.flagAll!}>
+                <BookmarkIcon width="30" height="30"/>
               </Tooltip>
             )
               : null
@@ -68,7 +66,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
             {selectable && (
               <div className='selectall'>
                 {showSelectAll ? (
-                  <Tooltip label={labels.selectAll!}>
+                  <Tooltip content={labels.selectAll!}>
                     <Checkbox
                       key={'tabell__checkAll-checkbox-id-' + id + showSelectAll}
                       hideLabel
@@ -87,14 +85,14 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
               </div>
             )}
             {searchable && (
-              <Tooltip label={labels.filter!}>
+              <Tooltip content={labels.filter!}>
                 <FilterIcon
                   role='button'
                   aria-pressed={_seeFilters}
                   className='tabell___seefilters-icon'
                   id='tabell__seefilters-icon-id'
                   onClick={() => _setSeeFilters(!_seeFilters)}>
-                  <Filter/>
+                  <FunnelIcon width={30} height={30}/>
                 </FilterIcon>
               </Tooltip>
             )}
@@ -105,7 +103,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
           return (
             <Table.ColumnHeader
               sortKey={column.id}
-              sortable={column.type === "buttons" ? false : sortable}
+              sortable={column.label && column.type !== "buttons" ? sortable : false}
             >
                 {column.label + (_filter ? ' (' + _filter + ')' : '')}
             </Table.ColumnHeader>

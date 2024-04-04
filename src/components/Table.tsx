@@ -340,6 +340,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           selectable={selectable}
           pagination={pagination}
           labels={_labels}
+          totalNumberOfItems={items.length}
           itemsPerPage={itemsPerPage}
           currentPage={_currentPage}
           setCurrentPage={_setCurrentPage}

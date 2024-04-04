@@ -1,14 +1,11 @@
-import { Button, Table } from '@navikt/ds-react'
-import Tooltip from '@navikt/tooltip'
+import { Button, Table, Tooltip } from '@navikt/ds-react'
 import Input from 'components/Input'
 import _ from 'lodash'
 import md5 from 'md5'
 import { AddRowProps, Column, Context, Item, ItemErrors, NewRowValues } from '../index.d'
 import React, { useState } from 'react'
-import Save from 'resources/Save'
-import classNames from 'classnames'
 import {HorizontalSeparatorDiv, FlexStartDiv} from "@navikt/hoykontrast";
-import {Cancel} from "@navikt/ds-icons";
+import {ArrowUndoIcon, FloppydiskIcon} from "@navikt/aksel-icons";
 
 const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowAdded,
@@ -175,7 +172,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         if (column.type !== 'buttons') {
           const content: JSX.Element = (
             <Table.DataCell
-              className={classNames(column.align ?? '')}
+              align={column.align}
               id={id + '-Column-' + column.id}
               key={id + '-Column-' + column.id + '-key'}
             >
@@ -228,8 +225,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                     saveAddedRow(context, _newRowValues)
                   }}
                 >
-                  <Tooltip label={labels.addLabel!}>
-                    <Save/>
+                  <Tooltip content={labels.addLabel!}>
+                    <FloppydiskIcon width='24' height='24'/>
                   </Tooltip>
                 </Button>
                 {showResetButtonAddRow &&
@@ -245,8 +242,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                             resetAddRow(columns, id)
                           }}
                       >
-                        <Tooltip label={labels.cancelChanges!}>
-                          <Cancel width='24' height='24'/>
+                        <Tooltip content={labels.cancelChanges!}>
+                          <ArrowUndoIcon width='24' height='24'/>
                         </Tooltip>
                       </Button>
                     </>

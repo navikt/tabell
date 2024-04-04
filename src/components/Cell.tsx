@@ -1,13 +1,11 @@
-import { Cancel, Delete, Edit } from '@navikt/ds-icons'
-import { BodyLong, Button, Popover, Table } from '@navikt/ds-react'
+import { ArrowUndoIcon, TrashIcon, PencilIcon, FloppydiskIcon } from '@navikt/aksel-icons'
+import { BodyLong, Button, Popover, Table, Tooltip} from '@navikt/ds-react'
 import { FlexStartDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
-import Tooltip from '@navikt/tooltip'
 import Input from 'components/Input'
 import { Context, CellProps, Item, Column } from '../index.d'
 import _ from 'lodash'
 import moment from 'moment'
 import React, { useState } from 'react'
-import Save from 'resources/Save'
 
 const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
   column,
@@ -124,8 +122,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               saveEditedRow()
             }}
           >
-            <Tooltip label={labels.saveChanges!}>
-              <Save/>
+            <Tooltip content={labels.saveChanges!}>
+              <FloppydiskIcon width='24' height='24'/>
             </Tooltip>
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
@@ -139,8 +137,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               resetEditingRow(item.key)
             }}
           >
-            <Tooltip label={labels.cancelChanges!}>
-              <Cancel width='24' height='24' />
+            <Tooltip content={labels.cancelChanges!}>
+              <ArrowUndoIcon width='24' height='24' />
             </Tooltip>
           </Button>
         </FlexStartDiv>
@@ -158,8 +156,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               setEditingRow(item)
             }}
           >
-            <Tooltip label={labels.edit!}>
-              <Edit />
+            <Tooltip content={labels.edit!}>
+              <PencilIcon width='24' height='24'/>
             </Tooltip>
           </Button>
           <HorizontalSeparatorDiv size='0.5' />
@@ -176,8 +174,8 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               }
             }}
           >
-            <Tooltip label={labels.delete!}>
-              <Delete />
+            <Tooltip content={labels.delete!}>
+              <TrashIcon width='24' height='24'/>
             </Tooltip>
           </Button>
         </FlexStartDiv>
@@ -270,6 +268,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   return (
     <Table.DataCell
       id={id}
+      align={column.align}
     >
       {content}
     </Table.DataCell>

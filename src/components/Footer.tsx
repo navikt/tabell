@@ -15,6 +15,7 @@ const Footer: React.FC<TableFooterProps> = ({
   selectable,
   pagination,
   loading,
+  totalNumberOfItems,
   itemsPerPage = 10,
   currentPage,
   setCurrentPage,
@@ -70,7 +71,7 @@ const Footer: React.FC<TableFooterProps> = ({
             <div />
           </>
         )}
-      {pagination && !loading
+      {pagination && !loading && (totalNumberOfItems ? totalNumberOfItems >= itemsPerPage : true)
         ? (
           <Pagination
               page={currentPage}

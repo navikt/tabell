@@ -2,6 +2,13 @@ import styled  from 'styled-components'
 import { Table } from '@navikt/ds-react'
 
 export const TableDiv = styled.div`
+  .tabell thead th {
+    border-bottom: 1px solid rgba(0, 0, 0, .55);
+  }
+  
+  thead th.noborder {
+    border-bottom: none !important;
+  }
   &.error {
     border-color: var(--a-border-danger) !important;
     border-width: 3px !important;
