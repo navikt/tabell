@@ -181,6 +181,7 @@ export interface TableRowProps<CustomItem extends Item = Item, CustomContext ext
 
 export interface TableFooterProps {
   id: string
+  totalNumberOfItems?: number
   itemsPerPage?: number
   labels: Labels
   loading?: boolean
