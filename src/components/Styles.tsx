@@ -9,6 +9,10 @@ export const TableDiv = styled.div`
   thead th.noborder {
     border-bottom: none !important;
   }
+  tr:not(:hover) div.tabell__buttons,
+  tr.tabell__tr--disabled div.tabell__buttons {
+    visibility: hidden;
+  }
   &.error {
     border-color: var(--a-border-danger) !important;
     border-width: 3px !important;
