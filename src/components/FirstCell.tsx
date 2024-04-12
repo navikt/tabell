@@ -1,4 +1,4 @@
-import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
+import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
 import { Button, Checkbox, Table, Tooltip } from '@navikt/ds-react'
 import { FlexCenterDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
 import _ from 'lodash'
@@ -6,6 +6,11 @@ import React from 'react'
 import Connected from 'resources/Connected'
 import Merge from 'resources/Merge'
 import { Item, FirstCellProps } from '../index.d'
+import styled from 'styled-components'
+
+const FlaggableDiv = styled.div`
+  padding: 0 0.5rem;
+`
 
 const FirstCell =  <CustomItem extends Item = Item> ({
   flaggable,
@@ -51,14 +56,20 @@ const FirstCell =  <CustomItem extends Item = Item> ({
     setItems(newItems)
   }
 
-  console.log(flaggable)
-  
   return (
     <Table.DataCell
       id={id}
       title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
     >
       <FlexCenterDiv>
+        {flaggable
+          ? (
+            <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
+              {item.flagIkon ? <FlaggableDiv>{item.flagIkon}</FlaggableDiv>: <FlaggableDiv><BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} /></FlaggableDiv>}
+            </Tooltip>
+          )
+            : null
+        }
         {selectable && !item.selectDisabled && (
           <Checkbox
             id={id + '-Checkbox'}

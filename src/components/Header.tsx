@@ -1,4 +1,4 @@
-import { FunnelIcon } from '@navikt/aksel-icons'
+import { BookmarkIcon, FunnelIcon } from '@navikt/aksel-icons'
 import { Checkbox, Table, Tooltip } from '@navikt/ds-react'
 import { FlexCenterDiv } from '@navikt/hoykontrast'
 import { BlueText, FilterIcon } from 'components/Styles'
@@ -7,6 +7,11 @@ import { Context, Item, TableHeaderProps } from '../index.d'
 import React, { useState } from 'react'
 import HeaderCategories from './HeaderCategories'
 import HeaderFilter from './HeaderFilter'
+import styled from "styled-components";
+
+const FlaggableDiv = styled.div`
+  padding: 0 0.5rem;
+`
 
 const Header = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   categories,
@@ -45,9 +50,6 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
     }
   }
 
-    console.log(flaggable)
-    console.log(flagIkon)
-
   return (
     <Table.Header>
       {categories && (
@@ -58,6 +60,14 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
       <Table.Row className='tabell__header'>
         <Table.ColumnHeader style={{ width: 1 }}>
           <FlexCenterDiv>
+            {flaggable
+              ? flagIkon ?? (
+              <Tooltip content={labels.flagAll!}>
+                <FlaggableDiv><BookmarkIcon width="30" height="30"/></FlaggableDiv>
+              </Tooltip>
+            )
+              : null
+            }
             {selectable && (
               <div className='selectall'>
                 {showSelectAll ? (
