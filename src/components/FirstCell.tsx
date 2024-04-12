@@ -1,4 +1,4 @@
-import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
+import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
 import { Button, Checkbox, Table, Tooltip } from '@navikt/ds-react'
 import { FlexCenterDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
 import _ from 'lodash'
@@ -51,20 +51,14 @@ const FirstCell =  <CustomItem extends Item = Item> ({
     setItems(newItems)
   }
 
+  console.log(flaggable)
+  
   return (
     <Table.DataCell
       id={id}
       title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
     >
       <FlexCenterDiv>
-        {flaggable
-          ? (
-            <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
-              {item.flagIkon ?? <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
-            </Tooltip>
-          )
-          : null
-        }
         {selectable && !item.selectDisabled && (
           <Checkbox
             id={id + '-Checkbox'}
