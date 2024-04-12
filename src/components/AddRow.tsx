@@ -9,6 +9,7 @@ import {ArrowUndoIcon, FloppydiskIcon} from "@navikt/aksel-icons";
 
 const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowAdded,
+  flaggable,
   columns,
   context = {} as CustomContext,
   labels,
@@ -167,6 +168,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
       key={id + '-key'}
       className='tabell__edit'
     >
+
+      {flaggable && <Table.DataCell />}
       <Table.DataCell />
       {columns.map((column: Column<CustomItem, CustomContext>) => {
         if (column.type !== 'buttons') {

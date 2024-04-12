@@ -218,6 +218,7 @@ export interface AddRowProps<CustomItem extends Item = Item, CustomContext exten
   onRowsChanged ?: (items: Array<CustomItem>) => void
   showResetButtonAddRow?: boolean
   onResetRowAdd?: () => void
+  flaggable?: boolean
 }
 
 export interface FirstCellProps<CustomItem extends Item = Item> {

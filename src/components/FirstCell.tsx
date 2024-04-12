@@ -6,11 +6,6 @@ import React from 'react'
 import Connected from 'resources/Connected'
 import Merge from 'resources/Merge'
 import { Item, FirstCellProps } from '../index.d'
-import styled from 'styled-components'
-
-const FlaggableDiv = styled.div`
-  padding: 0 0.5rem;
-`
 
 const FirstCell =  <CustomItem extends Item = Item> ({
   flaggable,
@@ -57,69 +52,79 @@ const FirstCell =  <CustomItem extends Item = Item> ({
   }
 
   return (
-    <Table.DataCell
-      id={id}
-      title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
-    >
-      <FlexCenterDiv>
+      <>
         {flaggable
-          ? (
-            <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
-              {item.flagIkon ? <FlaggableDiv>{item.flagIkon}</FlaggableDiv>: <FlaggableDiv><BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} /></FlaggableDiv>}
-            </Tooltip>
-          )
-            : null
-        }
-        {selectable && !item.selectDisabled && (
-          <Checkbox
-            id={id + '-Checkbox'}
-            key={id + '-Checkbox-' + (!!item.selected) + '-key'}
-            data-test-id={id + '-Checkbox'}
-            disabled={item.disabled ?? false}
-            hideLabel
-            checked={!!item.selected}
-            onChange={() => onCheckClicked(item)}
-          >
-          </Checkbox>
-        )}
-        {item.parentKey && (
-          <div style={{marginLeft: '2.5rem', marginRight: '0.3rem'}}>
-            <Connected/>
-          </div>
-        )}
-        {item.hasSubrows && (
-          <>
-            <HorizontalSeparatorDiv size='0.3'/>
-            <Button
-              size="small"
-              className='expandingButton'
-              variant={item.openSubrows ? "primary" : "tertiary"}
-              onClick={(e) => {
-                e.stopPropagation()
-                e.preventDefault()
-                toggleSubRowOpen(item)
-              }}
-            >
-              {item.openSubrows
-                ? subrowsIcon === 'merge'
-                  ? <Merge/>
-                  : sort && sort.direction !== 'ascending'
-                    ? <ChevronDownIcon/>
-                    : <ChevronUpIcon/>
-                : subrowsIcon === 'merge'
-                  ? (
-                    <Tooltip content={labels.merged!}>
-                      <Merge/>
+            ? (
+                <Table.DataCell
+                    id={id+'-flag'}
+                    title={(item.flagLabel ?? labels.flagged)!}
+                >
+                  <FlexCenterDiv>
+                    <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
+                      {item.flagIkon ? <div>{item.flagIkon}</div>: <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
                     </Tooltip>
-                  )
-                  : <ChevronRightIcon/>
-              }
-            </Button>
-            <HorizontalSeparatorDiv size='0.3'/>
-          </>
-        )}
-      </FlexCenterDiv>
-    </Table.DataCell>
+                  </FlexCenterDiv>
+                </Table.DataCell>
+              )
+            :
+            null
+          }
+        <Table.DataCell
+          id={id}
+          title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
+        >
+          <FlexCenterDiv>
+            {selectable && !item.selectDisabled && (
+              <Checkbox
+                id={id + '-Checkbox'}
+                key={id + '-Checkbox-' + (!!item.selected) + '-key'}
+                data-test-id={id + '-Checkbox'}
+                disabled={item.disabled ?? false}
+                hideLabel
+                checked={!!item.selected}
+                onChange={() => onCheckClicked(item)}
+              >
+              </Checkbox>
+            )}
+            {item.parentKey && (
+              <div style={{marginLeft: '2.5rem', marginRight: '0.3rem'}}>
+                <Connected/>
+              </div>
+            )}
+            {item.hasSubrows && (
+              <>
+                <HorizontalSeparatorDiv size='0.3'/>
+                <Button
+                  size="small"
+                  className='expandingButton'
+                  variant={item.openSubrows ? "primary" : "tertiary"}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    toggleSubRowOpen(item)
+                  }}
+                >
+                  {item.openSubrows
+                    ? subrowsIcon === 'merge'
+                      ? <Merge/>
+                      : sort && sort.direction !== 'ascending'
+                        ? <ChevronDownIcon/>
+                        : <ChevronUpIcon/>
+                    : subrowsIcon === 'merge'
+                      ? (
+                        <Tooltip content={labels.merged!}>
+                          <Merge/>
+                        </Tooltip>
+                      )
+                      : <ChevronRightIcon/>
+                  }
+                </Button>
+                <HorizontalSeparatorDiv size='0.3'/>
+              </>
+            )}
+          </FlexCenterDiv>
+        </Table.DataCell>
+      </>
   )
 }
 

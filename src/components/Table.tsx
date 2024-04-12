@@ -293,6 +293,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               <AddRow
                 id={id + '-AddRow'}
                 beforeRowAdded={beforeRowAdded}
+                flaggable={flaggable}
                 columns={columns}
                 context={context}
                 labels={_labels}
