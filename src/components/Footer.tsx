@@ -32,6 +32,8 @@ const Footer: React.FC<TableFooterProps> = ({
     return template
   }
 
+  const noOfPages = Math.ceil(numberOfVisibleItems / itemsPerPage)
+
   return (
     <PaddedFlexCenterSpacedDiv id={id}>
       {summary && !loading
@@ -71,12 +73,12 @@ const Footer: React.FC<TableFooterProps> = ({
             <div />
           </>
         )}
-      {pagination && !loading && (totalNumberOfItems ? totalNumberOfItems >= itemsPerPage : true)
+      {pagination && !loading && (totalNumberOfItems ? totalNumberOfItems > itemsPerPage : true) && noOfPages > 0
         ? (
           <Pagination
               page={currentPage}
               onPageChange={(page) => setCurrentPage(page)}
-              count={Math.ceil(numberOfVisibleItems / itemsPerPage)}
+              count={noOfPages}
               size="small"
           />
         )
