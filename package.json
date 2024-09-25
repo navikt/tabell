@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
@@ -33,8 +33,8 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@navikt/ds-css": "^6.x",
-    "@navikt/ds-react": "^6.x",
+    "@navikt/ds-css": "^7.x",
+    "@navikt/ds-react": "^7.x",
     "@navikt/fnrvalidator": "^1.3.0",
     "@navikt/hoykontrast": "^4.0.1",
     "@testing-library/jest-dom": "^5.16.5",
