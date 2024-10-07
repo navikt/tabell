@@ -7,14 +7,14 @@
   "homepage": ".",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "react-scripts build",
+    "build": "vite build",
     "dist": "npm run dist:prod",
     "dist:prod": "rm -rf ./lib && webpack --config webpack.prod.js",
     "dist:dev": "rm -rf ./lib && webpack --config webpack.dev.js",
     "lint": "standardx 'src/*.ts*'",
     "lint:fix": "standardx 'src/*.ts*' --fix",
     "npx": "npx npm-force-resolutions",
-    "start": "react-scripts start",
+    "start": "vite",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --updateSnapshot --watchAll=false",
     "test:coverage": "react-scripts test --coverage  --watchAll=false"
@@ -149,5 +149,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.8",
+    "vite-tsconfig-paths": "^5.0.1"
+  },
+  "type": "module"
 }
