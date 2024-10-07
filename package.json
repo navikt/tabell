@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.js",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
@@ -15,9 +15,9 @@
     "lint:fix": "standardx 'src/*.ts*' --fix",
     "npx": "npx npm-force-resolutions",
     "start": "vite",
-    "test": "react-scripts test",
-    "test:ci": "react-scripts test --updateSnapshot --watchAll=false",
-    "test:coverage": "react-scripts test --coverage  --watchAll=false"
+    "test": "jest",
+    "test:ci": "jest --updateSnapshot --watchAll=false",
+    "test:coverage": "jest --coverage  --watchAll=false"
   },
   "peerDependencies": {
     "@navikt/ds-css": "^7.x",
@@ -62,7 +62,6 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "standardx": "^7.0.0",
     "styled-components": "^5.3.5",
