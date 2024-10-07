@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src/",
     "target": "ESNext",
-    "types": ["vite/client", "jest"],
+    "types": ["vite/client", "jest", "node"],
     "lib": [
       "dom",
       "dom.iterable",
