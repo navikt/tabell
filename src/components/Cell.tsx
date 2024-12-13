@@ -1,6 +1,5 @@
 import { ArrowUndoIcon, TrashIcon, PencilIcon, FloppydiskIcon } from '@navikt/aksel-icons'
-import { BodyLong, Button, Popover, Table, Tooltip} from '@navikt/ds-react'
-import { FlexStartDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
+import {BodyLong, Button, HStack, Popover, Table, Tooltip} from '@navikt/ds-react'
 import Input from 'components/Input'
 import { Context, CellProps, Item, Column } from '../index.d'
 import _ from 'lodash'
@@ -111,7 +110,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
   const renderButtons = (item: CustomItem, editing: boolean): JSX.Element => {
     if (editing) {
       return (
-        <FlexStartDiv className='tabell__buttons'>
+        <HStack gap="2" className='tabell__buttons'>
           <Button
             variant="secondary"
             size="small"
@@ -126,7 +125,6 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               <FloppydiskIcon width='24' height='24'/>
             </Tooltip>
           </Button>
-          <HorizontalSeparatorDiv size='0.5' />
           <Button
             variant="secondary"
             size="small"
@@ -141,11 +139,11 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               <ArrowUndoIcon width='24' height='24' />
             </Tooltip>
           </Button>
-        </FlexStartDiv>
+        </HStack>
       )
     } else {
       return (
-        <FlexStartDiv className='tabell__buttons'>
+        <HStack gap="2" className='tabell__buttons'>
           <Button
             variant="secondary"
             size="small"
@@ -160,7 +158,6 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               <PencilIcon width='24' height='24'/>
             </Tooltip>
           </Button>
-          <HorizontalSeparatorDiv size='0.5' />
           <Button
             variant="secondary"
             size="small"
@@ -178,7 +175,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
               <TrashIcon width='24' height='24'/>
             </Tooltip>
           </Button>
-        </FlexStartDiv>
+        </HStack>
       )
     }
   }

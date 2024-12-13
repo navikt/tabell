@@ -1,12 +1,6 @@
-import { Pagination, BodyLong } from '@navikt/ds-react'
-import { FlexCenterSpacedDiv } from '@navikt/hoykontrast'
+import {Pagination, BodyLong, HStack} from '@navikt/ds-react'
 import { TableFooterProps } from '../index.d'
 import React from 'react'
-import styled from "styled-components";
-
-const PaddedFlexCenterSpacedDiv = styled(FlexCenterSpacedDiv)`
- padding-top: 1rem;
-`
 
 const Footer: React.FC<TableFooterProps> = ({
   id,
@@ -35,7 +29,7 @@ const Footer: React.FC<TableFooterProps> = ({
   const noOfPages = Math.ceil(numberOfVisibleItems / itemsPerPage)
 
   return (
-    <PaddedFlexCenterSpacedDiv id={id}>
+    <HStack paddingBlock="4" justify="space-between" align="center" id={id}>
       {summary && !loading
         ? (
           <>
@@ -76,16 +70,16 @@ const Footer: React.FC<TableFooterProps> = ({
       {pagination && !loading && (totalNumberOfItems ? totalNumberOfItems > itemsPerPage : true) && noOfPages > 0
         ? (
           <Pagination
-              page={currentPage}
-              onPageChange={(page) => setCurrentPage(page)}
-              count={noOfPages}
-              size="small"
+            page={currentPage}
+            onPageChange={(page) => setCurrentPage(page)}
+            count={noOfPages}
+            size="small"
           />
         )
         : (
           <div />
         )}
-    </PaddedFlexCenterSpacedDiv>
+    </HStack>
   )
 
 }

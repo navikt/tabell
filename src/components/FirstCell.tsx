@@ -1,6 +1,5 @@
 import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
-import { Button, Checkbox, Table, Tooltip } from '@navikt/ds-react'
-import { FlexCenterDiv, HorizontalSeparatorDiv } from '@navikt/hoykontrast'
+import {Button, Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
 import _ from 'lodash'
 import React from 'react'
 import Connected from 'resources/Connected'
@@ -8,16 +7,16 @@ import Merge from 'resources/Merge'
 import { Item, FirstCellProps } from '../index.d'
 
 const FirstCell =  <CustomItem extends Item = Item> ({
-  flaggable,
-  item,
-  items,
-  labels,
-  id,
-  selectable,
-  sort,
-  subrowsIcon,
-  setItems,
-  onRowSelectChange
+ flaggable,
+ item,
+ items,
+ labels,
+ id,
+ selectable,
+ sort,
+ subrowsIcon,
+ setItems,
+ onRowSelectChange
 }: FirstCellProps<CustomItem>): JSX.Element => {
 
   /** selects one item */
@@ -51,30 +50,46 @@ const FirstCell =  <CustomItem extends Item = Item> ({
     setItems(newItems)
   }
 
+  const ButtonIcon = () => {
+    if(item.openSubrows){
+      if(subrowsIcon === 'merge'){
+        return <Merge/>
+      } else if (sort && sort.direction !== 'ascending') {
+        return <ChevronDownIcon/>
+      } else {
+        return <ChevronUpIcon/>
+      }
+    } else {
+      if(subrowsIcon === 'merge'){
+        return <Merge/>
+      } else {
+        return <ChevronRightIcon/>
+      }
+    }
+  }
+
   return (
       <>
         {flaggable
-            ? (
-                <Table.DataCell
-                    id={id+'-flag'}
-                    title={(item.flagLabel ?? labels.flagged)!}
-                >
-                  <FlexCenterDiv>
-                    <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
-                      {item.flagIkon ? <div>{item.flagIkon}</div>: <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
-                    </Tooltip>
-                  </FlexCenterDiv>
-                </Table.DataCell>
-              )
-            :
-            null
-          }
+          ? (
+              <Table.DataCell
+                  id={id+'-flag'}
+                  title={(item.flagLabel ?? labels.flagged)!}
+              >
+                <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
+                  {item.flagIkon ? <div>{item.flagIkon}</div>: <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
+                </Tooltip>
+              </Table.DataCell>
+          )
+          :
+          null
+        }
         <Table.DataCell
           id={id}
           title={selectable && !item.selectDisabled ? (item.selectLabel ?? 'Velg ' + item.key) : ''}
         >
-          <FlexCenterDiv>
-            {selectable && !item.selectDisabled && (
+          <HStack align={'center'} gap="1" wrap={false}>
+            {selectable && !item.selectDiHSsabled && (
               <Checkbox
                 id={id + '-Checkbox'}
                 key={id + '-Checkbox-' + (!!item.selected) + '-key'}
@@ -92,37 +107,19 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               </div>
             )}
             {item.hasSubrows && (
-              <>
-                <HorizontalSeparatorDiv size='0.3'/>
-                <Button
-                  size="small"
-                  className='expandingButton'
-                  variant={item.openSubrows ? "primary" : "tertiary"}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    e.preventDefault()
-                    toggleSubRowOpen(item)
-                  }}
-                >
-                  {item.openSubrows
-                    ? subrowsIcon === 'merge'
-                      ? <Merge/>
-                      : sort && sort.direction !== 'ascending'
-                        ? <ChevronDownIcon/>
-                        : <ChevronUpIcon/>
-                    : subrowsIcon === 'merge'
-                      ? (
-                        <Tooltip content={labels.merged!}>
-                          <Merge/>
-                        </Tooltip>
-                      )
-                      : <ChevronRightIcon/>
-                  }
-                </Button>
-                <HorizontalSeparatorDiv size='0.3'/>
-              </>
+              <Button
+                size="small"
+                className='expandingButton'
+                variant={item.openSubrows ? "primary" : "tertiary"}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  e.preventDefault()
+                  toggleSubRowOpen(item)
+                }}
+                icon={<ButtonIcon/>}
+              />
             )}
-          </FlexCenterDiv>
+          </HStack>
         </Table.DataCell>
       </>
   )

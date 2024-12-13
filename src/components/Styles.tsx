@@ -37,7 +37,6 @@ export const WideTable = styled(Table)<{size: 'small' | 'medium', cellSpacing: s
   width: ${({width}) => width};
 `
 export const FilterIcon = styled.div`
-  margin-left: 0.5rem;
   cursor: pointer;
 `
 export const CenterTh = styled.th`

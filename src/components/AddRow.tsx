@@ -1,13 +1,12 @@
-import { Button, Table, Tooltip } from '@navikt/ds-react'
+import {Button, HStack, Table, Tooltip} from '@navikt/ds-react'
 import Input from 'components/Input'
 import _ from 'lodash'
 import md5 from 'md5'
-import { AddRowProps, Column, Context, Item, ItemErrors, NewRowValues } from '../index.d'
-import React, { useState } from 'react'
-import {HorizontalSeparatorDiv, FlexStartDiv} from "@navikt/hoykontrast";
+import {AddRowProps, Column, Context, Item, ItemErrors, NewRowValues} from '../index.d'
+import React, {useState} from 'react'
 import {ArrowUndoIcon, FloppydiskIcon} from "@navikt/aksel-icons";
 
-const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
+const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
   beforeRowAdded,
   flaggable,
   columns,
@@ -39,7 +38,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
   const [_errors, setErrors] = useState<any>({})
 
   /** handle any change made to cells in the add row */
-  const handleNewRowChange = (entries: {[k in string]: any}): NewRowValues => {
+  const handleNewRowChange = (entries: { [k in string]: any }): NewRowValues => {
     const newRowValues = _.cloneDeep(_newRowValues)
     Object.keys(entries).forEach(key => {
       newRowValues[key] = entries[key]
@@ -50,14 +49,14 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
 
   const resetAddRow = (columns: Array<Column<CustomItem, CustomContext>>, id: any) => {
     columns.forEach((column: Column<CustomItem, CustomContext>) => {
-      if(column.add && column.add.reference){
+      if (column.add && column.add.reference) {
         console.log(id, column.add.reference)
         const refName = Object.keys(column.add.reference)[0]
         column.add.reference[refName].current.value = ''
       }
     })
     setNewRowValues(resetRowValues(columns))
-    if(_.isFunction(onResetRowAdd)){
+    if (_.isFunction(onResetRowAdd)) {
       onResetRowAdd()
     }
   }
@@ -169,8 +168,8 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
       className='tabell__edit'
     >
 
-      {flaggable && <Table.DataCell />}
-      <Table.DataCell />
+      {flaggable && <Table.DataCell/>}
+      <Table.DataCell/>
       {columns.map((column: Column<CustomItem, CustomContext>) => {
         if (column.type !== 'buttons') {
           const content: JSX.Element = (
@@ -202,10 +201,10 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                       value={_newRowValues[column.id] ?? ''}
                       error={_errors[column.id]}
                       onEnterPress={(e: string) => {
-                        const newRowValues: NewRowValues = handleNewRowChange({ [column.id]: e })
+                        const newRowValues: NewRowValues = handleNewRowChange({[column.id]: e})
                         saveAddedRow(context, newRowValues)
                       }}
-                      onChanged={(e: string) => handleNewRowChange({ [column.id]: e })}
+                      onChanged={(e: string) => handleNewRowChange({[column.id]: e})}
                     />
                   )
               }
@@ -218,7 +217,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         } else {
           return (
             <Table.DataCell key={column.id}>
-              <FlexStartDiv className='tabell__buttons'>
+              <HStack gap="2" className='tabell__buttons'>
                 <Button
                   size="small"
                   variant="secondary"
@@ -233,25 +232,24 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
                   </Tooltip>
                 </Button>
                 {showResetButtonAddRow &&
-                    <>
-                      <HorizontalSeparatorDiv size='0.5'/>
-                      <Button
-                          variant="secondary"
-                          size="small"
-                          aria-label={labels.cancelChanges}
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            resetAddRow(columns, id)
-                          }}
-                      >
-                        <Tooltip content={labels.cancelChanges!}>
-                          <ArrowUndoIcon width='24' height='24'/>
-                        </Tooltip>
-                      </Button>
-                    </>
+                  <>
+                    <Button
+                      variant="secondary"
+                      size="small"
+                      aria-label={labels.cancelChanges}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        resetAddRow(columns, id)
+                      }}
+                    >
+                      <Tooltip content={labels.cancelChanges!}>
+                        <ArrowUndoIcon width='24' height='24'/>
+                      </Tooltip>
+                    </Button>
+                  </>
                 }
-              </FlexStartDiv>
+              </HStack>
             </Table.DataCell>
           )
         }

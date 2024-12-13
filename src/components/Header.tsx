@@ -1,14 +1,13 @@
-import { BookmarkIcon, FunnelIcon } from '@navikt/aksel-icons'
-import { Checkbox, Table, Tooltip } from '@navikt/ds-react'
-import { FlexCenterDiv } from '@navikt/hoykontrast'
-import { BlueText, FilterIcon } from 'components/Styles'
+import {BookmarkIcon, FunnelIcon} from '@navikt/aksel-icons'
+import {Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
+import {BlueText, FilterIcon} from 'components/Styles'
 import _ from 'lodash'
-import { Context, Item, TableHeaderProps } from '../index.d'
-import React, { useState } from 'react'
+import {Context, Item, TableHeaderProps} from '../index.d'
+import React, {useState} from 'react'
 import HeaderCategories from './HeaderCategories'
 import HeaderFilter from './HeaderFilter'
 
-const Header = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
+const Header = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
   categories,
   columns,
   flaggable,
@@ -23,8 +22,8 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
   onRowSelectChange,
   items,
   setItems,
-  setFilter,
- }: TableHeaderProps<CustomItem, CustomContext>) => {
+  setFilter
+}: TableHeaderProps<CustomItem, CustomContext>) => {
 
   /** State of select all checkbox */
   const [_checkAll, _setCheckAll] = useState<boolean>(false)
@@ -41,7 +40,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
 
     setItems(newItems)
     if (_.isFunction(onRowSelectChange)) {
-      onRowSelectChange(_.filter(newItems,(item) => (item.selected && !item.hasSubrows)) as Array<CustomItem>)
+      onRowSelectChange(_.filter(newItems, (item) => (item.selected && !item.hasSubrows)) as Array<CustomItem>)
     }
   }
 
@@ -51,24 +50,23 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
         <HeaderCategories
           id={id}
           categories={categories}/>
-        )}
+      )}
       <Table.Row className='tabell__header'>
-          {flaggable
-              ? (
-                  <Table.ColumnHeader style={{ width: 1, textAlign: 'center' }}>
-                      {flagIkon ?? (
-                          <Tooltip content={labels.flagAll!}>
-                              <BookmarkIcon width="30" height="30"/>
-                          </Tooltip>
-                      )}
-                  </Table.ColumnHeader>
-              )
-              :
-              null
-          }
-
-        <Table.ColumnHeader style={{ width: 1 }}>
-          <FlexCenterDiv>
+        {flaggable
+          ? (
+            <Table.ColumnHeader style={{width: 1, textAlign: 'center'}}>
+              {flagIkon ?? (
+                <Tooltip content={labels.flagAll!}>
+                  <BookmarkIcon width="30" height="30"/>
+                </Tooltip>
+              )}
+            </Table.ColumnHeader>
+          )
+          :
+          null
+        }
+        <Table.ColumnHeader style={{width: 1}}>
+          <HStack style={{alignItems: "center"}}>
             {selectable && (
               <div className='selectall'>
                 {showSelectAll ? (
@@ -102,7 +100,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
                 </FilterIcon>
               </Tooltip>
             )}
-          </FlexCenterDiv>
+          </HStack>
         </Table.ColumnHeader>
         {columns.map((column) => {
           const _filter: string = filter[column.id] ? filter[column.id].toLowerCase() : ''
@@ -111,7 +109,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
               sortKey={column.id}
               sortable={column.label && column.type !== "buttons" ? sortable : false}
             >
-                {column.label + (_filter ? ' (' + _filter + ')' : '')}
+              {column.label + (_filter ? ' (' + _filter + ')' : '')}
             </Table.ColumnHeader>
           )
         })}
@@ -129,6 +127,3 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
 }
 
 export default Header
-
-
-
