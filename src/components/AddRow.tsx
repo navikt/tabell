@@ -217,7 +217,7 @@ const AddRow = <CustomItem extends Item = Item, CustomContext extends Context = 
         } else {
           return (
             <Table.DataCell key={column.id}>
-              <HStack gap="2" className='tabell__buttons'>
+              <HStack gap="2" className='tabell__buttons' wrap={false}>
                 <Button
                   size="small"
                   variant="secondary"

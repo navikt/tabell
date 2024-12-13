@@ -143,7 +143,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
       )
     } else {
       return (
-        <HStack gap="2" className='tabell__buttons'>
+        <HStack gap="2" className='tabell__buttons' wrap={false}>
           <Button
             variant="secondary"
             size="small"
