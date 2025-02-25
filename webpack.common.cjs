@@ -10,8 +10,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: '[name].cjs',
+    chunkFilename: '[name].cjs',
     libraryTarget: 'umd',
     publicPath: '/lib/',
     umdNamedDefine: true
