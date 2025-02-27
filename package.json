@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.cjs",
-  "version": "6.1.6",
+  "version": "6.1.7",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
@@ -48,6 +48,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.4",
     "@types/styled-components": "^5.1.26",
+    "@vitejs/plugin-react": "^4.3.2",
     "classnames": "^2.3.1",
     "copy-webpack-plugin": "^11.0.0",
     "inspectpack": "^4.7.1",
@@ -68,6 +69,8 @@
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
     "url-loader": "^4.1.1",
+    "vite": "^5.4.14",
+    "vite-tsconfig-paths": "^5.0.1",
     "webpack-cli": "^4.10.0",
     "webpack-stats-plugin": "^1.1.0"
   },
@@ -147,11 +150,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "^4.3.2",
-    "vite": "^5.4.14",
-    "vite-tsconfig-paths": "^5.0.1"
   },
   "type": "module"
 }
