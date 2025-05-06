@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.cjs",
-  "version": "6.1.19",
+  "version": "6.1.20",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
