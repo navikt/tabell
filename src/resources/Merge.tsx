@@ -1,3 +1,5 @@
+import React from "react";
+
 export default () => (
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width='20' height='20' viewBox="0 0 122.88 88.408" enable-background="new 0 0 122.88 88.408" xmlSpace="preserve">
   <g>
