@@ -24,6 +24,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   className = undefined,
   columns = [],
   context = {} as CustomContext,
+  currentPage = undefined,
+  setCurrentPage = undefined,
   editable = false,
   error = undefined,
   flaggable = false,
@@ -83,7 +85,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   /** Current sort */
   const [_sort, setSort] = useState<SortState | undefined>(sort);
   /** Current pagination value */
-  const [_currentPage, _setCurrentPage] = useState<number>(initialPage)
+  const [_currentPage, _setCurrentPage] = useState<number>(currentPage ? currentPage : initialPage)
   /** Table labels */
   const _labels: Labels = { ...defaultLabels, ...labels }
   /** Column filters */
@@ -344,7 +346,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           totalNumberOfItems={items.length}
           itemsPerPage={itemsPerPage}
           currentPage={_currentPage}
-          setCurrentPage={_setCurrentPage}
+          setCurrentPage={setCurrentPage ? setCurrentPage : _setCurrentPage}
           numberOfSelectedRows={numberOfSelectedRows}
           numberOfVisibleItems={numberOfVisibleItems}
         />
