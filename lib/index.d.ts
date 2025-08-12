@@ -101,6 +101,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   context?: CustomContext
   columns: Array<Column<CustomItem, CustomContext>>
   coloredSelectedRow ?: boolean
+  currentPage?: number
   editable?: boolean
   error?: string | undefined
   flaggable ?: boolean
@@ -121,6 +122,7 @@ export interface TableProps <CustomItem extends Item = Item, CustomContext exten
   onResetRowEdit ?: (key: string) => void
   onResetRowAdd?: () => void
   pagination?: boolean
+  setCurrentPage?: (currentPage: number) => void
   showResetButtonAddRow?: boolean
   searchable?: boolean
   selectable?: boolean
