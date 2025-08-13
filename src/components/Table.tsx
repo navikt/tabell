@@ -220,6 +220,12 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     }
   }, [skipItemUpdates, items])
 
+  useEffect(() => {
+    if (currentPage) {
+      _setCurrentPage(currentPage)
+    }
+  }, [currentPage])
+
   const handleSort = (sortKey:any) => {
 
     if (_.isFunction(onColumnSort)) {
