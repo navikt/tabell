@@ -251,13 +251,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
     );
   };
 
-  console.log("totalNumberOfItems={items.length fra table.tsx i tabell-pakken" + items.length)
-  console.log("itemsPerPage fra table.tsx i tabell-pakken" + itemsPerPage)
-  console.log("_currentPage fra table.tsx i tabell-pakken" + _currentPage)
-  console.log("setCurrentPage fra table.tsx i tabell-pakken" + setCurrentPage)
-  console.log("_setCurrentPage fra table.tsx i tabell-pakken" + _setCurrentPage)
-  console.log("numberOfSelectedRows fra table.tsx i tabell-pakken" + numberOfSelectedRows)
-  console.log("numberOfVisibleItems fra table.tsx i tabell-pakken" + numberOfVisibleItems)
   return (
     <TableDiv
       style={{width: fullWidth ? '100%' : 'fit-content'}}
