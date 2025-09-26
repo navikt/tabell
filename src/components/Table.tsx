@@ -63,21 +63,25 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   /** fill out openSubrows and visible values if they are not in item */
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
+    console.log("Table items:", items)
     return items.map(item => {
-      if (!!item && item.hasSubrows) {
-        if (!Object.prototype.hasOwnProperty.call(item, 'openSubrows')) {
-          item.openSubrows = false
+      // Clone the item to avoid mutating the original
+      const processedItem = { ...item }
+
+      if (!!processedItem && processedItem.hasSubrows) {
+        if (!Object.prototype.hasOwnProperty.call(processedItem, 'openSubrows')) {
+          processedItem.openSubrows = false
         }
-        openSubrows[item.key] = item.openSubrows
+        openSubrows[processedItem.key] = processedItem.openSubrows
       }
-      if (!Object.prototype.hasOwnProperty.call(item, 'visible')) {
-        if (item.parentKey && Object.prototype.hasOwnProperty.call(openSubrows, item.parentKey)) {
-          item.visible = openSubrows[item.parentKey].openSubrows
+      if (!Object.prototype.hasOwnProperty.call(processedItem, 'visible')) {
+        if (processedItem.parentKey && Object.prototype.hasOwnProperty.call(openSubrows, processedItem.parentKey)) {
+          processedItem.visible = openSubrows[processedItem.parentKey].openSubrows
         } else {
-          item.visible = true
+          processedItem.visible = true
         }
       }
-      return item
+      return processedItem
     })
   }
   /** Row items */
