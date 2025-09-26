@@ -90,19 +90,16 @@ const FirstCell =  <CustomItem extends Item = Item> ({
         >
           <HStack align={'center'} gap="1" wrap={false}>
             {selectable && !item.selectDiHSsabled && (
-                <>
-                  <Checkbox
-                    id={id + '-Checkbox'}
-                    key={id + '-Checkbox-' + (!!item.selected) + '-key'}
-                    data-test-id={id + '-Checkbox'}
-                    disabled={item.disabled ?? false}
-                    hideLabel
-                    checked={!!item.selected}
-                    onChange={() => onCheckClicked(item)}
-                  >
-                  </Checkbox>
-                  **{item.rowError ? "rowError" : "noError"}**
-                </>
+              <Checkbox
+                id={id + '-Checkbox'}
+                key={id + '-Checkbox-' + (!!item.selected) + '-key'}
+                data-test-id={id + '-Checkbox'}
+                disabled={item.disabled ?? false}
+                hideLabel
+                checked={!!item.selected}
+                onChange={() => onCheckClicked(item)}
+              >
+              </Checkbox>
             )}
             {item.parentKey && (
               <div style={{marginLeft: '2.5rem', marginRight: '0.3rem'}}>
