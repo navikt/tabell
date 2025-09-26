@@ -63,7 +63,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   /** fill out openSubrows and visible values if they are not in item */
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
-    console.log("Table items:", items)
+    console.log("Original table items:", items)
     return items.map(item => {
       // Clone the item to avoid mutating the original
       const processedItem = { ...item }
@@ -81,6 +81,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           processedItem.visible = true
         }
       }
+      console.log("processed item:", processedItem)
       return processedItem
     })
   }
