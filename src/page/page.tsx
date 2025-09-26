@@ -64,6 +64,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
   const [summary, setSummary] = useState(true)
   const [size, setSize] = useState<'medium' | 'small' | undefined> ('medium')
   const [subrowsIcon, setSubrowsIcon] = useState<string>('arrow')
+  const [hasRowError, setHasRowError] = useState<boolean>(false)
 
   useEffect(() => {
     if (!(highContrast === undefined || highContrast === null)) {
@@ -100,18 +101,18 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
     { key: '03_01', parentKey: '03', name: 'Charles', date: new Date(1970, 2, 4), type: 'co-CEO', selected: true },
     { key: '03_02', parentKey: '03', name: 'Chad', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
     { key: '03_03', parentKey: '03', name: 'Christine', date: new Date(1970, 2, 4), type: 'co-CEO', selected: false },
-    { key: '04', name: 'Daniel', date: new Date(1946, 2, 24), type: 'Developer' },
+    { key: '04', name: 'Daniel', date: new Date(1946, 2, 24), type: 'Developer', rowError: hasRowError},
     { key: '05', name: 'Emma', date: new Date(1947, 7, 1), type: 'Economist', selected: true },
     { key: '06', name: 'Frank', date: new Date(1978, 11, 14), type: 'Freelancer' },
     { key: '07', name: 'Gwyneth', date: new Date(1992, 1, 4), type: 'Geographer' },
-    { key: '08', name: 'Howard', date: new Date(2001, 9, 19), type: 'HR head', disabled: true },
+    { key: '08', name: 'Howard', date: new Date(2001, 9, 19), type: 'HR head', disabled: true},
     { key: '09', name: 'Iva', date: new Date(1925, 6, 12), type: 'Investor', selected: true },
     { key: '10', name: 'John', date: new Date(1994, 3, 2), type: 'Journalist' },
     { key: '11', name: 'Karen', date: new Date(1999, 9, 22), type: 'Knowledge engineer' },
     { key: '12', name: 'Leonard', date: new Date(1991, 10, 26), type: 'Lawyer' },
     { key: '13', name: 'Mary', date: new Date(1962, 10, 25), type: 'Marketing' },
     { key: '14', name: 'Neville', date: new Date(1983, 1, 22), type: 'Nurse' },
-    { key: '15', name: 'Olivia', date: new Date(1992, 7, 2), type: 'Operations manager', selected: true },
+    { key: '15', name: 'Olivia', date: new Date(1992, 7, 2), type: 'Operations manager', selected: true},
     { key: '16', name: 'Peter', date: new Date(1927, 6, 13), type: 'Project manager' },
     { key: '17', name: 'Quincey', date: new Date(1965, 3, 11), type: 'Quality control' },
     { key: '18', name: 'Ronald', date: new Date(1982, 8, 18), type: 'Realtor', disabled: true },
@@ -189,6 +190,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             </SmallSelect>
             <Checkbox checked={striped} onChange={() => setStriped(!striped)} >Striped table</Checkbox>
             <Checkbox checked={summary} onChange={() => setSummary(!summary)} >Add summary</Checkbox>
+            <Checkbox checked={hasRowError} onChange={() => setHasRowError(!hasRowError)} >Add row error</Checkbox>
           </div>
         </HStack>
         <MarginTable

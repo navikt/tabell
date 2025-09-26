@@ -27,6 +27,7 @@ export interface Item extends ItemBase {
   selectLabel ?: string
   sortKey ?: string
   visible ?: boolean
+  rowError?: boolean
 }
 
 export interface Category {
