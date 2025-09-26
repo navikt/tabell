@@ -5,7 +5,6 @@ import _ from 'lodash'
 import React from 'react'
 import FirstCell from './FirstCell'
 import Cell from './Cell'
-import styles from './Row.module.css'
 
 const Row = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   beforeRowEdited = undefined,
@@ -170,7 +169,7 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
     <Table.Row
       id={rowId}
       aria-selected={selectable && item.selected === true}
-      style={{ animationDelay: (animationDelay * index) + 's' }}
+      style={{ animationDelay: (animationDelay * index) + 's', backgroundColor: item.rowError ? "var(--a-surface-danger-subtle)": "" }}
       onClick={(e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -185,7 +184,6 @@ const Row = <CustomItem extends Item = Item, CustomContext extends Context = Con
         }
       }}
       className={classNames({
-        [styles.rowError]: item.rowError,
         slideAnimate: animatable,
         tabell__edit: editing,
         clickable: _.isFunction(onRowClicked),
