@@ -64,23 +64,20 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
     return items.map(item => {
-      // Clone the item to avoid mutating the original
-      const processedItem = { ...item }
-
-      if (!!processedItem && processedItem.hasSubrows) {
-        if (!Object.prototype.hasOwnProperty.call(processedItem, 'openSubrows')) {
-          processedItem.openSubrows = false
+      if (!!item && item.hasSubrows) {
+        if (!Object.prototype.hasOwnProperty.call(item, 'openSubrows')) {
+          item.openSubrows = false
         }
-        openSubrows[processedItem.key] = processedItem.openSubrows
+        openSubrows[item.key] = item.openSubrows
       }
-      if (!Object.prototype.hasOwnProperty.call(processedItem, 'visible')) {
-        if (processedItem.parentKey && Object.prototype.hasOwnProperty.call(openSubrows, processedItem.parentKey)) {
-          processedItem.visible = openSubrows[processedItem.parentKey].openSubrows
+      if (!Object.prototype.hasOwnProperty.call(item, 'visible')) {
+        if (item.parentKey && Object.prototype.hasOwnProperty.call(openSubrows, item.parentKey)) {
+          item.visible = openSubrows[item.parentKey].openSubrows
         } else {
-          processedItem.visible = true
+          item.visible = true
         }
       }
-      return processedItem
+      return item
     })
   }
   /** Row items */
