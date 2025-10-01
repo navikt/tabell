@@ -120,7 +120,10 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               />
             )}
             {item.isMergedRow && !item.hasSubrows && (
-              <Box paddingInline="4 0">
+              <Box
+                paddingBlock="2 0"
+                paddingInline="4 0"
+              >
                 <Merge/>
               </Box>
             )}
