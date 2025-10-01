@@ -1,5 +1,5 @@
 import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
-import {Button, Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
+import {Box, Button, Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
 import _ from 'lodash'
 import React from 'react'
 import Connected from 'resources/Connected'
@@ -120,7 +120,9 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               />
             )}
             {item.isMergedRow && !item.hasSubrows && (
-              <Merge/>
+              <Box padding="4">
+                <Merge/>
+              </Box>
             )}
           </HStack>
         </Table.DataCell>
