@@ -28,6 +28,7 @@ export interface Item extends ItemBase {
   sortKey ?: string
   visible ?: boolean
   rowError?: boolean
+  isMergedRow?: boolean
 }
 
 export interface Category {

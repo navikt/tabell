@@ -106,7 +106,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 <Connected/>
               </div>
             )}
-            {item.hasSubrows && (
+            {(item.hasSubrows || item.isMergedRow) && (
               <Button
                 size="small"
                 className='expandingButton'
