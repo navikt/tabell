@@ -119,7 +119,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 icon={<ButtonIcon/>}
               />
             )}
-            {item.isMergedRow && (
+            {item.isMergedRow && item.hasSubrows && (
               <Merge/>
             )}
           </HStack>
