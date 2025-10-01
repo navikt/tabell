@@ -106,7 +106,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 <Connected/>
               </div>
             )}
-            {(item.hasSubrows || item.isMergedRow) && (
+            {item.hasSubrows && (
               <Button
                 size="small"
                 className='expandingButton'
@@ -118,6 +118,9 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 }}
                 icon={<ButtonIcon/>}
               />
+            )}
+            {item.isMergedRow && (
+              <Merge/>
             )}
           </HStack>
         </Table.DataCell>
