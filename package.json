@@ -62,7 +62,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-syntax-highlighter": "^15.5.0",
+    "react-syntax-highlighter": "^16.1.0",
     "standardx": "^7.0.0",
     "style-loader": "^4.0.0",
     "styled-components": "^5.3.5",
