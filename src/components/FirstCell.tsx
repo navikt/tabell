@@ -1,4 +1,4 @@
-import { BookmarkIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
+import { BookmarkIcon, InformationSquareIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from '@navikt/aksel-icons'
 import {Box, Button, Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
 import _ from 'lodash'
 import React from 'react'
@@ -77,7 +77,21 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                   title={(item.flagLabel ?? labels.flagged)!}
               >
                 <Tooltip content={(item.flagLabel ?? labels.flagged)!}>
-                  {item.flagIkon ? <div>{item.flagIkon}</div>: <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />}
+                  {
+                    item.flagIkon ?
+                    (
+                      item.flagIkon === "InformationSquareIcon" ?
+                      (
+                        <Box
+                          paddingInline="1 0"
+                        >
+                          <InformationSquareIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
+                        </Box>
+                      ):
+                      <div>{item.flagIkon}</div>
+                    ) :
+                    <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
+                  }
                 </Tooltip>
               </Table.DataCell>
           )
