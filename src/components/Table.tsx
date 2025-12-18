@@ -7,7 +7,6 @@ import moment from 'moment'
 
 import PT from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import { renderToString } from 'react-dom/server'
 import AddRow from './AddRow'
 import Footer from './Footer'
 import Header from './Header'
@@ -143,17 +142,15 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         break
       default: {
         if (_.isFunction(column.needle) && _.isString(column.needle(item[column.id]))) {
+          // Use custom needle function if provided - recommended for columns with custom render functions
           cellAsString = column.needle(item[column.id]).toLowerCase()
+        } else if (_.isFunction(column.render)) {
+          // For columns with custom render functions, fall back to raw value
+          // Note: Previously used renderToString which caused React 18/19 compatibility issues.
+          // If filtering/sorting doesn't work as expected, provide a `needle` function for this column.
+          cellAsString = item[column.id]?.toString()?.toLowerCase() ?? ''
         } else {
-          if (_.isFunction(column.render)) {
-            cellAsString = renderToString(column.render({
-              item,
-              value: item[column.id],
-              context
-            }) as JSX.Element).toLowerCase()
-          } else {
-            cellAsString = item[column.id]?.toString()?.toLowerCase() ?? ''
-          }
+          cellAsString = item[column.id]?.toString()?.toLowerCase() ?? ''
         }
         break
       }
