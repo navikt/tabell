@@ -1,3 +1,14 @@
-webpack.*
-.gitignore
 coverage
+node_modules
+.github
+.idea
+.gitignore
+bumpFetchApi.sh
+config.js
+jest.config.js
+tsconfig.json
+vite.config.ts
+vite-env.d.ts
+vitest.config.ts
+vitest-setup.ts
+webpack.*
