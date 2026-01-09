@@ -1,6 +1,9 @@
+build
 coverage
+dist
 node_modules
 .github
+.env
 .idea
 .gitignore
 bumpFetchApi.sh
