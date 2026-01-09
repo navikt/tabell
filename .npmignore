@@ -6,7 +6,7 @@ node_modules
 .env
 .idea
 .gitignore
-bumpFetchApi.sh
+bumpTabell.sh
 config.js
 jest.config.js
 tsconfig.json
