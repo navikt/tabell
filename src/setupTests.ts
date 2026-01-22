@@ -2,6 +2,7 @@ import { act } from 'react-dom/test-utils'
 import 'jest-styled-components'
 import {render, fireEvent, screen, getNodeText} from '@testing-library/react'
 import crypto from 'crypto'
+import '@testing-library/jest-dom';
 
 (global as any).screen = screen;
 (global as any).render = render;
