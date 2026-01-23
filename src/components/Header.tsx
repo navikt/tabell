@@ -1,6 +1,6 @@
 import {BookmarkIcon, FunnelIcon} from '@navikt/aksel-icons'
 import {Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
-import {BlueText, FilterIcon} from 'components/Styles'
+import {BlueText, FilterIcon} from './Styles'
 import _ from 'lodash'
 import {Context, Item, TableHeaderProps} from '../index.d'
 import React, {useState} from 'react'

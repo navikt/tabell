@@ -1,6 +1,6 @@
 import { Table } from '@navikt/ds-react'
 import classNames from 'classnames'
-import { CenterTh } from 'components/Styles'
+import { CenterTh } from './Styles'
 import { HeaderCategoriesProps, Category } from '../index.d'
 import React from 'react'
 

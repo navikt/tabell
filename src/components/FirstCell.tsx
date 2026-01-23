@@ -2,8 +2,8 @@ import { BookmarkIcon, InformationSquareIcon, ChevronUpIcon, ChevronDownIcon, Ch
 import {Box, Button, Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
 import _ from 'lodash'
 import React from 'react'
-import Connected from 'resources/Connected'
-import Merge from 'resources/Merge'
+import Connected from '../resources/Connected'
+import Merge from '../resources/Merge'
 import { Item, FirstCellProps } from '../index.d'
 
 const FirstCell =  <CustomItem extends Item = Item> ({

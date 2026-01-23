@@ -1,5 +1,5 @@
 import {Button, HStack, Table, Tooltip} from '@navikt/ds-react'
-import Input from 'components/Input'
+import Input from './Input'
 import _ from 'lodash'
 import md5 from 'md5'
 import {AddRowProps, Column, Context, Item, ItemErrors, NewRowValues} from '../index.d'

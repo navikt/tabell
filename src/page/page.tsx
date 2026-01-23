@@ -7,7 +7,7 @@ import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 import dark from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
 import styled, { createGlobalStyle } from 'styled-components'
-import NavTable from 'components/Table'
+import NavTable from '../components/Table'
 import { Column, Item } from 'index.d'
 import '@navikt/ds-css'
 
@@ -37,7 +37,7 @@ const FlexDiv = styled.div`
 `
 const MarginTable = styled(NavTable)`
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;  
+  margin-bottom: 1.5rem;
   width: 100%;
 `
 

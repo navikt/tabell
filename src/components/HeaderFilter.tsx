@@ -1,6 +1,6 @@
 import { Table } from '@navikt/ds-react'
 import classNames from 'classnames'
-import Input from 'components/Input'
+import Input from './Input'
 import { Column, Context, HeaderFilterProps, Item } from '../index.d'
 import React from 'react'
 

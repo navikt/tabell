@@ -1,6 +1,6 @@
 import { ArrowUndoIcon, TrashIcon, PencilIcon, FloppydiskIcon } from '@navikt/aksel-icons'
 import {BodyLong, Button, HStack, Popover, Table, Tooltip} from '@navikt/ds-react'
-import Input from 'components/Input'
+import Input from './Input'
 import { Context, CellProps, Item, Column } from '../index.d'
 import _ from 'lodash'
 import moment from 'moment'
