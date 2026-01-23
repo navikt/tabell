@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@navikt/ds-css": "7.36.0",
-    "@navikt/ds-react": "7.36.0",
+    "@navikt/ds-react": "7.40.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.1",
     "@types/classnames": "2.3.1",
