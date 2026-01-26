@@ -66,15 +66,15 @@ describe('Table', () => {
     expect(container).not.toBeEmptyDOMElement();
   })
 
-/*  it('Renders: Not sortable', () => {
-    wrapper = render(<Table {...initialMockProps} sortable={false} />)
-    expect(wrapper.find('thead tr th').last().exists('a')).toBeFalsy()
-  })*/
+  it('Renders: Not sortable', () => {
+    render(<Table {...initialMockProps} sortable={false} />)
+    expect(document.querySelector('.navds-table__sort-button')).toBeNull()
+  })
 
-    it('Has proper HTML structure: loading', () => {
-      const { container } = render(<Table {...initialMockProps} />)
-      expect((container.querySelectorAll('.tabell__table')).length).toBeGreaterThan(0);
-    })
+  it('Has proper HTML structure: loading', () => {
+    const { container } = render(<Table {...initialMockProps} />)
+    expect((container.querySelectorAll('.tabell__table')).length).toBeGreaterThan(0);
+  })
 
   it('Sort order ascending', () => {
     render(<Table {...initialMockProps} />)
@@ -103,53 +103,62 @@ describe('Table', () => {
     expect(firstBodyRow).toHaveAttribute('id', 'test-Row-11');
   })
 
-      it('onCheckAllClicked triggered', () => {
-        (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-        render(<Table {...initialMockProps} />)
+  it('onCheckAllClicked triggered', () => {
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
+    render(<Table {...initialMockProps} />)
 
-        fireEvent.click(document.querySelector('.tabell__checkAll-checkbox input')!);
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item: Item) => ({
-          ...item,
-          selected: true
-        })));
+    fireEvent.click(document.querySelector('.tabell__checkAll-checkbox input')!);
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(initialMockProps.items!.map((item: Item) => ({
+      ...item,
+      selected: true
+    })));
 
-        fireEvent.click(document.querySelector('.tabell__checkAll-checkbox input')!);
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
-      })
-  /*
-      it('onCheckClicked triggered to select and deselect', () => {
-        (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-        wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
-          [{ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true }]
-        )
-        wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
-      })
+    fireEvent.click(document.querySelector('.tabell__checkAll-checkbox input')!);
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
+  })
 
-      it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
-        (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-        expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
-        wrapper.find('input[data-test-id="tabell-test__row-select-01"]').hostNodes().first().simulate('change', { target: { checked: true } })
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-          { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true }
-        ])
-        wrapper.find('input[data-test-id="tabell-test__row-select-02"]').hostNodes().first().simulate('change', { target: { checked: true } })
-        expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
-          { key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, sortKey: 'object 01', visible: true },
-          { key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, sortKey: 'object 02', visible: true }
-        ])
-      })
+  it('onCheckClicked triggered to select and deselect', () => {
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
+    render(<Table {...initialMockProps} />)
 
-      it('handlefilterChange()', () => {
-        (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
-        wrapper.find('.tabell___seefilters-icon').hostNodes().simulate('click')
-        wrapper.update()
-        const filterBox = wrapper.find('.tabell__sort-input input').hostNodes().first()
-        filterBox.simulate('change', { target: { value: 'String 07' } })
-        filterBox.simulate('blur')
-        wrapper.update()
-        expect(wrapper.find('tbody tr').length).toEqual(1)
-        expect(wrapper.find('tbody tr').render().text()).toEqual(['String 07', '07/02/2020', 'Object 07'].join(''))
-      })*/
+    fireEvent.click(screen.getByTestId('test-Row-01-FirstCell-Checkbox'));
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith(
+      [expect.objectContaining({ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true })]
+     )
+
+    fireEvent.click(screen.getByTestId('test-Row-01-FirstCell-Checkbox'));
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([])
+  })
+
+  it('should return one in onRowSelectChange if one row is selected, return two if another row is selected', () => {
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
+    render(<Table {...initialMockProps} />)
+
+    expect(initialMockProps.onRowSelectChange).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByTestId('test-Row-01-FirstCell-Checkbox'));
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
+      expect.objectContaining({ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true })
+    ])
+
+    fireEvent.click(screen.getByTestId('test-Row-02-FirstCell-Checkbox'));
+    expect(initialMockProps.onRowSelectChange).toHaveBeenCalledWith([
+      expect.objectContaining({ key: '01', selected: true, string: 'String 01', date: new Date(2020, 1, 1), object: { label: 'Object 01' }, visible: true }),
+      expect.objectContaining({ key: '02', selected: true, string: 'String 02', date: new Date(2020, 1, 2), object: { label: 'Object 02' }, visible: true })
+    ])
+  })
+
+  it('handlefilterChange()', () => {
+    (initialMockProps.onRowSelectChange as jest.Mock).mockReset()
+    const { container } = render(<Table {...initialMockProps} />)
+
+    fireEvent.click(document.querySelector('.tabell___seefilters-icon'),);
+    expect((container.querySelectorAll('.tabell__table')).length)
+
+    fireEvent.change(screen.getByTestId('test-Header-Filter-Cell-string-Input'), { target: { value: 'String 07' } })
+    fireEvent.blur(screen.getByTestId('test-Header-Filter-Cell-string-Input'))
+    expect(document.querySelectorAll('tbody tr')).toHaveLength(1);
+    expect(screen.queryByText('Object 07')).toBeInTheDocument();
+    expect(screen.queryByText('Object 01')).not.toBeInTheDocument();
+  })
 })

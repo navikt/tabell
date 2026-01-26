@@ -107,7 +107,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
               <Checkbox
                 id={id + '-Checkbox'}
                 key={id + '-Checkbox-' + (!!item.selected) + '-key'}
-                data-test-id={id + '-Checkbox'}
+                data-testid={id + '-Checkbox'}
                 disabled={item.disabled ?? false}
                 hideLabel
                 checked={!!item.selected}
