@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { TextFilters, Column, Context, Item, Labels, TableProps } from 'index.d'
 import _ from 'lodash'
 import md5 from 'md5'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 import PT from 'prop-types'
 import React, { useEffect, useState } from 'react'
@@ -123,7 +123,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       case 'date':
         if (_for === 'filter') {
           if (column.dateFormat) {
-            cellAsString = moment(item[column.id]).format(column.dateFormat)
+            cellAsString = dayjs(item[column.id]).format(column.dateFormat)
           } else {
             cellAsString = !_.isNil(item[column.id])
               ? item[column.id].toLocaleDateString
@@ -135,7 +135,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
         if (_for === 'sort') {
           cellAsString = !_.isNil(item[column.id])
             ? item[column.id].getTime
-              ? '' + moment(item[column.id]).format('YYYYMMDD')
+              ? '' + dayjs(item[column.id]).format('YYYYMMDD')
               : item[column.id].toString()
             : ''
         }

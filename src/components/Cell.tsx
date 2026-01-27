@@ -3,7 +3,7 @@ import {BodyLong, Button, HStack, Popover, Table, Tooltip} from '@navikt/ds-reac
 import Input from './Input'
 import { Context, CellProps, Item, Column } from '../index.d'
 import _ from 'lodash'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import React, { useState } from 'react'
 
 const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
@@ -53,16 +53,16 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
             label='date'
             hideLabel
             placeholder={column.edit?.placeholder}
-            value={moment(editingRow![column.id]).format('DD.MM.YYYY') ?? ''}
+            value={dayjs(editingRow![column.id]).format('DD.MM.YYYY') ?? ''}
             onEnterPress={(newText: string) => {
               const entries = {
-                [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
+                [column.id]: dayjs(newText, 'DD.MM.YYYY').toDate()
               }
               const editedRow: CustomItem = handleEditRowChange(entries)
               saveEditedRow(editedRow, entries)
             }}
             onChanged={(newText: string) => handleEditRowChange({
-              [column.id]: moment(newText, 'DD.MM.YYYY').toDate()
+              [column.id]: dayjs(newText, 'DD.MM.YYYY').toDate()
             })}
           />
         )
@@ -72,7 +72,7 @@ const Cell = <CustomItem extends Item = Item, CustomContext extends Context = Co
         : (
           <BodyLong>
             {column.dateFormat
-              ? moment(value).format(column.dateFormat)
+              ? dayjs(value).format(column.dateFormat)
               : _.isFunction(value?.toLocaleDateString)
                 ? value.toLocaleDateString()
                 : value?.toString()}

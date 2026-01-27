@@ -108,12 +108,6 @@ module.exports = {
       amd: "md5",
       root: "md5"
     },
-    moment: {
-      commonjs: "moment",
-      commonjs2: "moment",
-      amd: "moment",
-      root: "moment"
-    },
     react: {
       commonjs: 'react',
       commonjs2: 'react',
