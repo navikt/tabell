@@ -6,6 +6,8 @@
 
    CUSTOM_COMMIT_MESSAGE=$1
 
+        git pull
+
         echo "Updating $package..."
 
         if ! command -v jq >/dev/null 2>&1; then
@@ -29,7 +31,9 @@
         # Update the version in package.json
         jq --arg newver "$new_version" '.version = $newver' package.json > tmp.json && mv tmp.json package.json
 
+        rm -rf node_modules
         npm install
+        npm run test
         npm run build
         npm run dist
 
