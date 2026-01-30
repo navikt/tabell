@@ -33,7 +33,12 @@
 
         rm -rf node_modules
         npm install
-        npm run test
+
+        if ! npm run test; then
+          echo "Tests failed. Aborting..."
+          exit 1
+        fi
+
         npm run build
         npm run dist
 
