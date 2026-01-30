@@ -11,8 +11,6 @@
     "dist": "npm run dist:prod",
     "dist:prod": "rm -rf ./lib && webpack --config webpack.prod.cjs",
     "dist:dev": "rm -rf ./lib && webpack --config webpack.dev.cjs",
-    "lint": "standardx 'src/*.ts*'",
-    "lint:fix": "standardx 'src/*.ts*' --fix",
     "npx": "npx npm-force-resolutions",
     "start": "vite",
     "test": "jest test",
@@ -64,7 +62,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "16.1.0",
-    "standardx": "7.0.0",
     "style-loader": "4.0.0",
     "styled-components": "5.3.5",
     "svg-url-loader": "7.1.1",
@@ -81,66 +78,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/navikt/tabell.git"
-  },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "sourceType": "module"
-    },
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "plugin:jsx-a11y/recommended"
-    ],
-    "rules": {
-      "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": "off",
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
-  },
-  "standardx": {
-    "globals": [
-      "Blob",
-      "File",
-      "XMLHttpRequest",
-      "HTMLButtonElement",
-      "HTMLCanvasElement",
-      "HTMLElement",
-      "HTMLInputElement",
-      "FileReader",
-      "ReactDOM",
-      "WebSocket",
-      "act",
-      "fetch",
-      "describe",
-      "it",
-      "beforeAll",
-      "afterAll",
-      "beforeEach",
-      "afterEach",
-      "expect",
-      "shallow",
-      "mount",
-      "render",
-      "renderer",
-      "jest",
-      "JSX"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ],
-    "ignore": [
-      "build/**/*.js",
-      "public/**/*.js",
-      "node_modules/**/*.js",
-      "build/**/*.tsx",
-      "public/**/*.tsx",
-      "node_modules/**/*.tsx",
-      "src/**/*.snap"
-    ]
   },
   "browserslist": {
     "production": [
