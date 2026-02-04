@@ -1,0 +1,45 @@
+.TableDiv {}
+
+.TableDiv thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, .55);
+}
+
+.TableDiv thead th[class~="noborder"] {
+  border-bottom: none !important;
+}
+
+.TableDiv tr:not(:hover) div[class~="tabell__buttons"],
+.TableDiv tr[class~="tabell__tr--disabled"] div[class~="tabell__buttons"] {
+  visibility: hidden;
+}
+
+.TableDiv [class~="error"] {
+  border-color: var(--a-border-danger) !important;
+  border-width: 3px !important;
+  border-style: solid !important;
+}
+
+.ContentDiv {
+  position: relative;
+}
+
+.LoadingDiv {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fitWidth {
+  width: fit-content;
+}
+

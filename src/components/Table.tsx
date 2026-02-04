@@ -11,8 +11,8 @@ import AddRow from './AddRow'
 import Footer from './Footer'
 import Header from './Header'
 import Row from './Row'
-import { ContentDiv, LoadingDiv, TableDiv, WideTable } from './Styles'
 import defaultLabels from './Table.labels'
+import styles from './Table.module.css'
 
 const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
@@ -245,27 +245,28 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   };
 
   return (
-    <TableDiv
+    <div
       style={{width: fullWidth ? '100%' : 'fit-content'}}
-      className={classNames(className, {error})}
+      className={classNames(className, styles.TableDiv, {error})}
     >
       {error && (
         <div role='alert' aria-live='assertive' className='navds-error-message navds-error-message--medium navds-label'>
           {error}
         </div>
       )}
-      <ContentDiv>
+      <div className={styles.ContentDiv}>
         {loading && (
-          <LoadingDiv>
+          <div className={styles.LoadingDiv}>
             <Loader size='2xlarge' />
-          </LoadingDiv>
+          </div>
         )}
-        <WideTable
+        <Table
           id={id}
           size={size}
           cellSpacing='0'
           width={fullWidth ? '100%' : 'fit-content'}
-          className='tabell tabell__table'
+          className={classNames('tabell tabell__table',
+            fullWidth ? styles.fullWidth : styles.fitWidth)}
           zebraStripes={striped}
           sort={_sort}
           onSortChange={(sortKey) => handleSort(sortKey)}
@@ -334,7 +335,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
               />
             ))}
           </Table.Body>
-        </WideTable>
+        </Table>
         <Footer
           id={id + '-Footer'}
           summary={summary}
@@ -349,8 +350,8 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
           numberOfSelectedRows={numberOfSelectedRows}
           numberOfVisibleItems={numberOfVisibleItems}
         />
-      </ContentDiv>
-    </TableDiv>
+      </div>
+    </div>
   )
 }
 
