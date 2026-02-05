@@ -5,7 +5,6 @@ import _ from 'lodash'
 import md5 from 'md5'
 import dayjs from 'dayjs'
 
-import PT from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import AddRow from './AddRow'
 import Footer from './Footer'
@@ -353,31 +352,6 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
       </div>
     </div>
   )
-}
-
-TableFC.propTypes = {
-  animatable: PT.bool,
-  className: PT.string,
-  categories: PT.array,
-  context: PT.object,
-  columns: PT.array.isRequired,
-  initialPage: PT.number,
-  items: PT.array,
-  itemsPerPage: PT.number,
-  labels: PT.any,
-  loading: PT.bool,
-  onColumnSort: PT.func,
-  onRowSelectChange: PT.func,
-  pagination: PT.bool,
-  searchable: PT.bool,
-  selectable: PT.bool,
-  sortable: PT.bool,
-  striped: PT.bool,
-  summary: PT.bool,
-  sort: PT.shape({
-    column: PT.string,
-    order: PT.oneOf(['', 'asc', 'desc'])
-  })
 }
 
 export default TableFC
