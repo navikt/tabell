@@ -111,6 +111,7 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
           const _filter: string = filter[column.id] ? filter[column.id].toLowerCase() : ''
           return (
             <Table.ColumnHeader
+              key={column.id}
               sortKey={column.id}
               sortable={column.label && column.type !== "buttons" ? sortable : false}
             >
