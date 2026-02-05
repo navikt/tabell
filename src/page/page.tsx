@@ -1,45 +1,17 @@
 import Input from 'components/Input'
 import React, { useEffect, useState } from 'react'
 import Mustache from 'mustache'
-import {Detail, Checkbox, Link, Select, BodyLong, Heading, Table, VStack, HStack} from '@navikt/ds-react'
+import {Detail, Checkbox, Select, BodyLong, Heading, Table, VStack, HStack} from '@navikt/ds-react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 import dark from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
-import styled, { createGlobalStyle } from 'styled-components'
 import NavTable from '../components/Table'
 import { Column, Item } from 'index.d'
 import '@navikt/ds-css'
+import styles from './page.module.css'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    color: var(--navds-color-text-primary);
-    background-color: var(--navds-semantic-color-canvas-background);
-    line-height: 1.42857143;
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-  }
-`
-const SmallDiv = styled.div`
-  width: 33%;
-  margin-right: 1rem;
-`
-const SmallSelect = styled(Select)`
-  width: 33%;
-  margin-right: 1rem;
-`
-const FlexDiv = styled.div`
-  display: flex;
-`
-const MarginTable = styled(NavTable)`
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-`
 
 const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
 
@@ -133,7 +105,6 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
 
   return (
     <>
-      <GlobalStyle />
       <VStack gap="4" padding="8">
         <Heading size="medium">
           Table Sorter
@@ -160,7 +131,8 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               value={flagIkon}
               onChanged={setFlagIkon}
             />
-            <SmallSelect
+            <Select
+              className={styles.SmallSelect}
               label='Number of items per page'
               value={itemsPerPage}
               onChange={(e: any) => setItemsPerPage(parseInt(e.target.value, 10))}
@@ -170,7 +142,7 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
               <option>10</option>
               <option>20</option>
               <option>50</option>
-            </SmallSelect>
+            </Select>
             <Checkbox checked={loading} onChange={() => setLoading(!loading)} >Loading table</Checkbox>
             <Checkbox checked={pagination} onChange={() => setPagination(!pagination)} >Add pagination</Checkbox>
             <Checkbox checked={searchable} onChange={() => setSearchable(!searchable)} >Searchable table</Checkbox>
@@ -180,20 +152,22 @@ const Page: React.FC<any> = ({ highContrast }: any): JSX.Element => {
             <Checkbox checked={showSelectAll} onChange={() => setShowSelectAll(!showSelectAll)} >Show 'select all' checkbox</Checkbox>
             <Checkbox checked={size === 'small'} onChange={() => setSize(size === 'small' ? 'medium' : 'small')}>Switch to small size</Checkbox>
             <Checkbox checked={sortable} onChange={() => setSortable(!sortable)} >Sortable table</Checkbox>
-            <SmallSelect
+            <Select
+              className={styles.SmallSelect}
               label='Subrows Icon'
               value={subrowsIcon}
               onChange={(e: any) => setSubrowsIcon(e.target.value)}
             >
               <option>arrow</option>
               <option>merge</option>
-            </SmallSelect>
+            </Select>
             <Checkbox checked={striped} onChange={() => setStriped(!striped)} >Striped table</Checkbox>
             <Checkbox checked={summary} onChange={() => setSummary(!summary)} >Add summary</Checkbox>
             <Checkbox checked={hasRowError} onChange={() => setHasRowError(!hasRowError)} >Add row error</Checkbox>
           </div>
         </HStack>
-        <MarginTable
+        <NavTable
+          className = {styles.MarginTable}
           id='Employees-Table'
           columns={columns}
           items={readyItems}

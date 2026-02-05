@@ -1,5 +1,4 @@
 import { act } from 'react-dom/test-utils'
-import 'jest-styled-components'
 import {render, fireEvent, screen, getNodeText} from '@testing-library/react'
 import crypto from 'crypto'
 import '@testing-library/jest-dom';

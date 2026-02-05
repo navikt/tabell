@@ -1,0 +1,21 @@
+:global body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: var(--navds-color-text-primary);
+  background-color: var(--navds-semantic-color-canvas-background);
+  line-height: 1.42857143;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+.SmallSelect {
+  width: 33%;
+  margin-right: 1rem;
+}
+
+.MarginTable {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
