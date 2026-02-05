@@ -1,8 +1,8 @@
 import { Table } from '@navikt/ds-react'
 import classNames from 'classnames'
-import { CenterTh } from './Styles'
 import { HeaderCategoriesProps, Category } from '../index.d'
 import React from 'react'
+import styles from './HeaderCategories.module.css'
 
 const HeaderCategories: React.FC<HeaderCategoriesProps> = ({
   id,
@@ -13,14 +13,14 @@ const HeaderCategories: React.FC<HeaderCategoriesProps> = ({
     <Table.Row>
       <Table.HeaderCell role='columnheader' className='noborder' />
       {categories.map((c: Category, index: number) => (
-        <CenterTh
+        <th
           id={id + '-Categories[' + index + ']-' + c.label}
           key={id + '-Categories[' + index + ']-' + c.label + '-key'}
           colSpan={c.colSpan}
-          className={classNames({ noborder: c.border === false })}
+          className={classNames(styles.CenterTh, { noborder: c.border === false })}
         >
           {c.label}
-        </CenterTh>
+        </th>
       ))}
     </Table.Row>
   )

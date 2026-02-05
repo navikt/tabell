@@ -1,11 +1,12 @@
 import {BookmarkIcon, FunnelIcon} from '@navikt/aksel-icons'
 import {Checkbox, HStack, Table, Tooltip} from '@navikt/ds-react'
-import {BlueText, FilterIcon} from './Styles'
 import _ from 'lodash'
 import {Context, Item, TableHeaderProps} from '../index.d'
 import React, {useState} from 'react'
 import HeaderCategories from './HeaderCategories'
 import HeaderFilter from './HeaderFilter'
+import styles from './Header.module.css'
+import classNames from "classnames";
 
 const Header = <CustomItem extends Item = Item, CustomContext extends Context = Context>({
   categories,
@@ -83,21 +84,25 @@ const Header = <CustomItem extends Item = Item, CustomContext extends Context = 
                     </Checkbox>
                   </Tooltip>
                 ) : (
-                  <BlueText>{labels.selectAllTitle}</BlueText>
+                  <div
+                    className={styles.BlueText}
+                  >
+                    {labels.selectAllTitle}
+                  </div>
                 )
                 }
               </div>
             )}
             {searchable && (
               <Tooltip content={labels.filter!}>
-                <FilterIcon
+                <div
                   role='button'
                   aria-pressed={_seeFilters}
-                  className='tabell___seefilters-icon'
+                  className={classNames(styles.FilterIcon, 'tabell___seefilters-icon')}
                   id='tabell__seefilters-icon-id'
                   onClick={() => _setSeeFilters(!_seeFilters)}>
                   <FunnelIcon width={30} height={30}/>
-                </FilterIcon>
+                </div>
               </Tooltip>
             )}
           </HStack>

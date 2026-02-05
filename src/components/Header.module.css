@@ -1,0 +1,8 @@
+.FilterIcon {
+  cursor: pointer;
+}
+
+.BlueText {
+  color: var(--navds-link-color-text);
+  font-weight: 400;
+}
