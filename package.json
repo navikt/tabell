@@ -55,7 +55,7 @@
     "peer-deps-externals-webpack-plugin": "1.0.4",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-normalize": "10.0.1",
-    "react": "18.2.0",
+    "react": "18.3.1",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "16.1.0",
     "style-loader": "4.0.0",
