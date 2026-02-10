@@ -29,7 +29,8 @@ module.exports = {
       verbose: true
     }),
     new MiniCssExtractPlugin({
-      filename: "tabellstyles.css"
+      filename: "[name].css",
+      chunkFilename: "[name].[id].css",
     }),
   ],
   module: {
