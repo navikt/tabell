@@ -50,6 +50,10 @@ module.exports = {
             options: {
               esModule: true,
               modules: {
+                exportOnlyLocals: false,
+                mode: "local",
+                namedExport: false,
+                auto: true,
                 localIdentName: "[local]_[hash:base64:5]",
               },
             },
