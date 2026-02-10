@@ -2,6 +2,7 @@ const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const { DuplicatesPlugin } = require("inspectpack/plugin")
 const { StatsWriterPlugin } = require("webpack-stats-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   entry: {
@@ -26,46 +27,75 @@ module.exports = {
     new DuplicatesPlugin({
       emitErrors: true,
       verbose: true
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: "tabellstyles.css"
+    }),
   ],
   module: {
-    rules: [{
-      test: /\.svg$/,
-      loader: 'svg-url-loader',
-      options: { noquotes: true }
-    },  {
-      test: /\.css$/,
-      use: ['css-loader']
-    }, {
-      test: /\.less$/,
-      use: ['ignore-loader']
-    }, {
-      test: /\.(png|jpe?g|gif)$/i,
-      use: [{
-        loader: 'url-loader',
-        options:{
-          limit: Infinity
+    rules:
+    [
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
+        options: { noquotes: true }
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[local]_[hash:base64:5]",
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: ['ignore-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [{
+          loader: 'url-loader',
+          options:{
+            limit: Infinity
+          }
+        }]
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components|build)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/transform-react-jsx',
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-proposal-export-namespace-from'
+            ]
+          }
         }
-      }]
-    }, {
-      test: /\.js$/,
-      exclude: /(node_modules|bower_components|build)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-          plugins: [
-            '@babel/transform-react-jsx',
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-export-namespace-from'
-          ]
-        }
+      },
+      {
+        test: /(?<!\.d)\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /(node_modules|bower_components|build)/
       }
-    }, {
-      test: /(?<!\.d)\.tsx?$/,
-      use: 'ts-loader',
-      exclude: /(node_modules|bower_components|build)/
-    }]
+    ]
   },
   resolve: {
     extensions: [ '.tsx', '.ts', '.jsx', '.js', '.json' ],
