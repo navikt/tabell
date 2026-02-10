@@ -2,7 +2,7 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.cjs",
-  "version": "11.0.21",
+  "version": "11.0.22",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
@@ -87,6 +87,8 @@
       "last 1 safari version"
     ]
   },
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "type": "module"
 }
