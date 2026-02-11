@@ -2,8 +2,12 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "module": "./lib/index.js",
-  "exports": { ".": { "import": "./lib/index.js" } },
-  "version": "11.0.27",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js"
+    }
+  },
+  "version": "11.0.28",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
