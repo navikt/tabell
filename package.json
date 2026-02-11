@@ -1,7 +1,8 @@
 {
   "name": "@navikt/tabell",
   "description": "Tabell",
-  "main": "lib/index.cjs",
+  "module": "./lib/index.js",
+  "exports": { ".": { "import": "./lib/index.js" } },
   "version": "11.0.27",
   "license": "MIT",
   "homepage": ".",

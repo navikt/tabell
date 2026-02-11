@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: '[name].cjs',
+    filename: '[name].js',
     chunkFilename: '[name].[id].js',
     library: { type: "module" },
     module: true,
