@@ -12,10 +12,13 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'lib'),
     filename: '[name].cjs',
-    chunkFilename: '[name].cjs',
-    libraryTarget: 'umd',
-    publicPath: '/lib/',
-    umdNamedDefine: true
+    chunkFilename: '[name].[id].js',
+    library: { type: "module" },
+    module: true,
+    environment: { module: true }
+  },
+  experiments: {
+    outputModule: true
   },
   plugins: [
     new CopyPlugin({
