@@ -111,5 +111,14 @@ module.exports = {
     modules: ['node_modules', './src/']
   },
   externalsType: 'module',
-  externals: ['@navikt/ds-react, @navikt/ds-icons, @navikt/ds-css, classnames, lodash, md5, react', 'react-dom']
+  externals: [
+    '@navikt/ds-react',
+    '@navikt/ds-icons',
+    '@navikt/ds-css',
+    'classnames',
+    'lodash',
+    'md5',
+    'react',
+    'react-dom'
+  ]
 }
