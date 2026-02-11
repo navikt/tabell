@@ -8,7 +8,7 @@
     },
     "./lib/*": "./lib/*"
   },
-  "version": "11.0.28",
+  "version": "11.0.29",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
