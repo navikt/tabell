@@ -13,6 +13,8 @@ import Row from './Row'
 import defaultLabels from './Table.labels'
 import styles from './Table.module.css'
 
+console.log("Table.module.css: ", styles);
+
 const TableFC = <CustomItem extends Item = Item, CustomContext extends Context = Context> ({
   allowNewRows = false,
   animatable = true,
