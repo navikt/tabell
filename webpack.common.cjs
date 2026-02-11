@@ -110,54 +110,6 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.jsx', '.js', '.json' ],
     modules: ['node_modules', './src/']
   },
-  externals: {
-    '@navikt/ds-react': {
-      commonjs: '@navikt/ds-react',
-      commonjs2: '@navikt/ds-react',
-      amd: '@navikt/ds-react',
-      root: '@navikt/ds-react'
-    },
-    '@navikt/ds-icons': {
-      commonjs: '@navikt/ds-icons',
-      commonjs2: '@navikt/ds-icons',
-      amd: '@navikt/ds-icons',
-      root: '@navikt/ds-icons'
-    },
-    '@navikt/ds-css': {
-      commonjs: '@navikt/ds-css',
-      commonjs2: '@navikt/ds-css',
-      amd: '@navikt/ds-css',
-      root: '@navikt/ds-css'
-    },
-    classnames: {
-      commonjs: 'classnames',
-      commonjs2: 'classnames',
-      amd: 'classnames',
-      root: 'classnames'
-    },
-    lodash: {
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      amd: 'lodash',
-      root: '_'
-    },
-    md5: {
-      commonjs: "md5",
-      commonjs2: "md5",
-      amd: "md5",
-      root: "md5"
-    },
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React'
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM'
-    },
-  }
+  externalsType: 'module',
+  externals: ['@navikt/ds-react, @navikt/ds-icons, @navikt/ds-css, classnames, lodash, md5, react', 'react-dom']
 }
