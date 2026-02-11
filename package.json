@@ -5,7 +5,8 @@
   "exports": {
     ".": {
       "import": "./lib/index.js"
-    }
+    },
+    "./lib/*": "./lib/*"
   },
   "version": "11.0.28",
   "license": "MIT",
