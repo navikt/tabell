@@ -29,8 +29,8 @@ module.exports = {
       verbose: true
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[name].[id].css",
+      filename: "index.css",
+      chunkFilename: "index.css",
     }),
   ],
   module: {
