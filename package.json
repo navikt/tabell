@@ -99,6 +99,5 @@
   "sideEffects": [
     "**/*.css",
     "**/*.module.css"
-  ],
-  "type": "module"
+  ]
 }
