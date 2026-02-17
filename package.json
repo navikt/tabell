@@ -1,12 +1,11 @@
 {
   "name": "@navikt/tabell",
   "description": "Tabell",
-  "module": "./lib/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
   "exports": {
-    ".": {
-      "import": "./lib/index.js"
-    },
-    "./lib/*": "./lib/*"
+    "import": "./lib/index.js",
+    "require": "./lib/index.cjs"
   },
   "version": "12.0.0",
   "license": "MIT",

@@ -13,9 +13,6 @@ module.exports = {
     path: path.join(__dirname, 'lib'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
-    library: { type: "module" },
-    module: true,
-    environment: { module: true }
   },
   experiments: {
     outputModule: true
