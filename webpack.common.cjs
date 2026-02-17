@@ -10,11 +10,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: '[name].js',
-    chunkFilename: '[name].[id].js',
-  },
-  experiments: {
-    outputModule: true
+    filename: 'index.cjs',
+    libraryTarget: 'commonjs2',
   },
   plugins: [
     new CopyPlugin({
@@ -29,7 +26,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "index.css",
-      chunkFilename: "index.css",
     }),
   ],
   module: {
@@ -107,7 +103,6 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.jsx', '.js', '.json' ],
     modules: ['node_modules', './src/']
   },
-  externalsType: 'module',
   externals: [
     '@navikt/ds-react',
     '@navikt/ds-icons',

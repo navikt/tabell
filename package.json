@@ -2,13 +2,8 @@
   "name": "@navikt/tabell",
   "description": "Tabell",
   "main": "lib/index.cjs",
-  "module": "lib/index.js",
   "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.cjs",
-      "types": "./lib/index.d.ts"
-    },
+    ".": "./lib/index.cjs",
     "./lib/index.css": "./lib/index.css"
   },
   "version": "12.0.5",
