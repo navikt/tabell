@@ -60,7 +60,7 @@ const TableFC = <CustomItem extends Item = Item, CustomContext extends Context =
   onResetRowAdd = undefined
 }: TableProps<CustomItem, CustomContext>): JSX.Element => {
 
-  /** fill out openSubrows and visible values if they are not in item */
+  /** fill out openSubrows and visible values if they are not in item - test */
   const preProcessItems = (items: Array<CustomItem>): Array<CustomItem> => {
     const openSubrows = {} as any
     return items.map(item => {
