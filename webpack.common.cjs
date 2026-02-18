@@ -2,7 +2,6 @@ const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const { DuplicatesPlugin } = require("inspectpack/plugin")
 const { StatsWriterPlugin } = require("webpack-stats-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   entry: {
@@ -27,9 +26,6 @@ module.exports = {
       emitErrors: true,
       verbose: true
     }),
-    new MiniCssExtractPlugin({
-      filename: "index.css",
-    }),
   ],
   module: {
     rules:
@@ -42,7 +38,7 @@ module.exports = {
       {
         test: /\.module\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          "style-loader",
           {
             loader: "css-loader",
             options: {
@@ -63,7 +59,7 @@ module.exports = {
         test: /\.css$/,
         exclude: /\.module\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          "style-loader",
           "css-loader",
         ],
       },
