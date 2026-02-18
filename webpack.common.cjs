@@ -10,8 +10,11 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: 'index.cjs',
-    libraryTarget: 'commonjs2',
+    filename: 'index.js',
+    libraryTarget: 'module',
+  },
+  experiments: {
+    outputModule: true,
   },
   plugins: [
     new CopyPlugin({
