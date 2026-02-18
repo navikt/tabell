@@ -1,7 +1,7 @@
 {
   "name": "@navikt/tabell",
   "description": "Tabell",
-  "version": "13.0.5",
+  "version": "13.0.6",
   "main": "lib/index.cjs",
   "module": "lib/index.js",
   "exports": {
