@@ -15,7 +15,7 @@
   "scripts": {
     "build": "vite build",
     "dist": "npm run dist:prod",
-    "dist:prod": "rm -rf ./lib && webpack --config webpack.prod.cjs",
+    "dist:prod": "rm -rf ./lib && webpack --config webpack.prod.cjs && webpack --config webpack.prod.cjs.cjs",
     "dist:dev": "rm -rf ./lib && webpack --config webpack.dev.cjs",
     "npx": "npx npm-force-resolutions",
     "start": "vite",
