@@ -1,13 +1,14 @@
 {
   "name": "@navikt/tabell",
   "description": "Tabell",
+  "version": "13.0.3",
   "main": "lib/index.cjs",
   "module": "lib/index.js",
   "exports": {
     "import": "./lib/index.js",
     "require": "./lib/index.cjs"
   },
-  "version": "13.0.3",
+  "style": "lib/index.css",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
