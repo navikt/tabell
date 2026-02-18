@@ -6,7 +6,7 @@
     ".": "./lib/index.cjs",
     "./lib/index.css": "./lib/index.css"
   },
-  "version": "13.0.1",
+  "version": "13.0.2",
   "license": "MIT",
   "homepage": ".",
   "types": "lib/index.d.ts",
