@@ -1,7 +1,6 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const { DuplicatesPlugin } = require("inspectpack/plugin")
-const { StatsWriterPlugin } = require("webpack-stats-plugin")
 
 module.exports = {
   entry: {
@@ -107,6 +106,7 @@ module.exports = {
     '@navikt/ds-icons',
     '@navikt/ds-css',
     'classnames',
+    'dayjs',
     'lodash',
     'md5',
     'react',
