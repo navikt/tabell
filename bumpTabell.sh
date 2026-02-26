@@ -21,7 +21,7 @@
             continue
         fi
 
-        # Get and increment the "version" field (patch bump)
+        # Get and increment the version field (patch bump)
         current_version=$(jq -r '.version' package.json)
         current_version_without_wip="${current_version%-wip}"
         IFS='.' read -r major minor patch <<< "$current_version_without_wip"
