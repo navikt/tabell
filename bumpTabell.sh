@@ -46,4 +46,9 @@
         git commit -m "U - New version $CUSTOM_COMMIT_MESSAGE"
         git push
 
-        npm publish
+        if "$2" == "w" ; then
+          npm publish --tag wip
+        else
+          npm publish
+        fi
+
