@@ -23,12 +23,13 @@
 
         # Get and increment the "version" field (patch bump)
         current_version=$(jq -r '.version' package.json)
-        IFS='.' read -r major minor patch <<< "$current_version"
+        current_version_without_wip="${current_version%-wip}"
+        IFS='.' read -r major minor patch <<< "$current_version_without_wip"
         new_patch=$((patch + 1))
         new_version="$major.$minor.$new_patch"
 
         if [ "$2" = "w" ]; then
-          new_version="$new_version-wip"
+          new_version="${new_version}-wip"
         fi
 
         echo "Bumping version from $current_version to $new_version..."
