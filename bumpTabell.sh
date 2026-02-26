@@ -47,7 +47,7 @@
         git push
 
         if "$2" == "w" ; then
-          npm publish --tag wip
+          npm publish --tag <wip>
         else
           npm publish
         fi
