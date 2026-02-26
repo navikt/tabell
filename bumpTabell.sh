@@ -26,6 +26,11 @@
         IFS='.' read -r major minor patch <<< "$current_version"
         new_patch=$((patch + 1))
         new_version="$major.$minor.$new_patch"
+
+        if [ "$2" = "w" ]; then
+          new_version="$new_version-wip"
+        fi
+
         echo "Bumping version from $current_version to $new_version..."
 
         # Update the version in package.json
@@ -46,8 +51,8 @@
         git commit -m "U - New version $CUSTOM_COMMIT_MESSAGE"
         git push
 
-        if "$2" == "w" ; then
-          npm publish --tag <wip>
+        if [ "$2" = "w" ]; then
+          npm publish --tag wip
         else
           npm publish
         fi
