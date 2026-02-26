@@ -28,7 +28,7 @@
         new_patch=$((patch + 1))
         new_version="$major.$minor.$new_patch"
 
-        if [ "$2" = "w" ]; then
+        if [ "$2" = "wip" ]; then
           new_version="${new_version}-wip"
         fi
 
@@ -52,7 +52,7 @@
         git commit -m "U - New version $CUSTOM_COMMIT_MESSAGE"
         git push
 
-        if [ "$2" = "w" ]; then
+        if [ "$2" = "wip" ]; then
           npm publish --tag wip
         else
           npm publish
