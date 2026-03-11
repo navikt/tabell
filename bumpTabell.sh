@@ -26,17 +26,14 @@
         current_version_without_wip="${current_version%-wip}"
         IFS='.' read -r major minor patch <<< "$current_version_without_wip"
 
-        if [[ "$current_version" == *"-wip" && "$2" != "wip" ]]; then
+        if [ "$2" = "wip" ]; then
+          new_patch=$((patch + 1))
+          new_version="$major.$minor.$new_patch"
+          new_version="${new_version}-wip"
+        else
           new_minor=$((minor + 1))
           new_patch=0
           new_version="$major.$new_minor.$new_patch"
-        else
-          new_patch=$((patch + 1))
-          new_version="$major.$minor.$new_patch"
-        fi
-
-        if [ "$2" = "wip" ]; then
-          new_version="${new_version}-wip"
         fi
 
         echo "Bumping version from $current_version to $new_version..."
