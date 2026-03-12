@@ -30,6 +30,11 @@
           new_patch=$((patch + 1))
           new_version="$major.$minor.$new_patch"
           new_version="${new_version}-wip"
+        elif [ "$2" = "maj" ]; then
+          new_major=$((major + 1))
+          new_minor=0
+          new_patch=0
+          new_version="$new_major.$new_minor.$new_patch"
         else
           new_minor=$((minor + 1))
           new_patch=0
