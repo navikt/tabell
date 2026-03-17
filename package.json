@@ -41,7 +41,6 @@
     "@navikt/ds-react": "7.40.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
-    "@types/classnames": "2.3.4",
     "@types/jest": "28.1.8",
     "@types/lodash": "4.17.24",
     "@types/md5": "2.3.6",
