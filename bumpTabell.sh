@@ -36,7 +36,7 @@ if [ "$2" = "major" ]; then
     new_major=$((major + 1))
     new_minor=0
     new_patch=0
-    new_version="$new_major.$new_minor.$new_patch-wip"
+    new_version="$new_major.$new_minor.$new_patch-wip1"
   else
     new_major=$((major + 1))
     new_minor=0
@@ -47,7 +47,7 @@ elif [ "$2" = "minor" ]; then
   if [ "$3" = "wip" ]; then
     new_minor=$((minor + 1))
     new_patch=0
-    new_version="$major.$new_minor.$new_patch-wip"
+    new_version="$major.$new_minor.$new_patch-wip1"
   else
     new_minor=$((minor + 1))
     new_patch=0
@@ -55,26 +55,18 @@ elif [ "$2" = "minor" ]; then
   fi
 elif [ "$2" = "patch" ]; then
   if [ "$3" = "wip" ]; then
-    if [[ "$current_version" == *"-wip"* ]]; then
-      new_version="${current_version_without_wip}-wip$((current_wip + 1))"
-    else
       new_patch=$((patch + 1))
-      new_version="$major.$minor.$new_patch-wip$((current_wip + 1))"
-    fi
+      new_version="$major.$minor.$new_patch-wip1"
   else
-    if [[ "$current_version" == *"-wip"* ]]; then
-    new_version=$current_version_without_wip
-    else
       new_patch=$((patch + 1))
       new_version="$major.$minor.$new_patch"
-    fi
   fi
 elif [ "$2" = "wip" ]; then
   if [[ "$current_version" == *"-wip"* ]]; then
     new_version="${current_version_without_wip}-wip$((current_wip + 1))"
   else
     new_patch=$((patch + 1))
-    new_version="$major.$minor.$new_patch-wip$((current_wip + 1))"
+    new_version="$major.$minor.$new_patch-wip1"
   fi
 else
   if [[ "$current_version" == *"-wip"* ]]; then
