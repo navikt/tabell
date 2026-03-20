@@ -1,7 +1,7 @@
 {
   "name": "@navikt/tabell",
   "description": "Tabell",
-  "version": "29.4.0",
+  "version": "29.5.0-wip1",
   "license": "MIT",
   "main": "lib/index.cjs",
   "module": "lib/index.js",
