@@ -43,7 +43,7 @@ elif [ "$2" = "major" ]; then
     new_major=$((major + 1))
     new_minor=0
     new_patch=0
-    new_version="$new_major.$new_minor.$new_patch-wip$((current_wip + 1))"
+    new_version="$new_major.$new_minor.$new_patch-wip"
   else
     new_major=$((major + 1))
     new_minor=0
@@ -54,7 +54,7 @@ elif [ "$2" = "minor" ]; then
   if [ "$3" = "wip" ]; then
     new_minor=$((minor + 1))
     new_patch=0
-    new_version="$major.$new_minor.$new_patch-wip$((current_wip + 1))"
+    new_version="$major.$new_minor.$new_patch-wip"
   else
     new_minor=$((minor + 1))
     new_patch=0
