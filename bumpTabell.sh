@@ -1,4 +1,3 @@
-
     if [ -z "$1" ]; then
         echo "Usage: bumpPackage"
         return 1
@@ -23,30 +22,58 @@
 
         # Get and increment the version field (patch bump)
         current_version=$(jq -r '.version' package.json)
-        current_version_without_wip="${current_version%-wip}"
+        current_version_without_wip="${current_version%-wip*}"
         IFS='.' read -r major minor patch <<< "$current_version_without_wip"
 
-        if [ "$2" = "wip" ]; then
-          new_patch=$((patch + 1))
-          new_version="$major.$minor.$new_patch"
-          new_version="${new_version}-wip"
-        elif [ "$2" = "major" ]; then
-          new_major=$((major + 1))
-          new_minor=0
-          new_patch=0
-          new_version="$new_major.$new_minor.$new_patch"
-        elif [ "$2" = "minor" ]; then
-          new_minor=$((minor + 1))
-          new_patch=0
-          new_version="$major.$new_minor.$new_patch"
+        # Extract the wip counter if present (wip → 1, wip2 → 2, wip3 → 3, etc.)
+        if [[ "$current_version" == *"-wip"* ]]; then
+            IS_WIP=true
+            # Strip everything up to and including the last dash: "1.1.1-wip2" → "wip2"
+            wip_suffix="${current_version##*-}"
+            # Strip the "wip" prefix: "wip2" → "2", "wip" → ""
+            wip_ending="${wip_suffix#wip}"
+            # Use 1 as default if empty (i.e., just "-wip" with no number)
+            current_wip="${wip_ending:-1}"
         else
-          if [[ "$current_version" == *"-wip" ]]; then
+            IS_WIP=false
+            current_wip=0
+        fi
+
+        if [ "$2" = "wip" ]; then
+          new_version="${current_version_without_wip}-wip$((current_wip + 1))"
+        elif [ "$2" = "major" ]; then
+          if [ "$3" = "wip" ]; then
+            new_major=$((major + 1))
+            new_minor=0
+            new_patch=0
+            new_version="$new_major.$new_minor.$new_patch-wip$((current_wip + 1))"
+          else
+            new_major=$((major + 1))
+            new_minor=0
+            new_patch=0
+            new_version="$new_major.$new_minor.$new_patch"
+          fi
+        elif [ "$2" = "minor" ]; then
+          if [ "$3" = "wip" ]; then
+            new_minor=$((minor + 1))
+            new_patch=0
+            new_version="$major.$new_minor.$new_patch-wip$((current_wip + 1))"
+          else
             new_minor=$((minor + 1))
             new_patch=0
             new_version="$major.$new_minor.$new_patch"
-          else
+          fi
+        else
+          if [ "$3" = "wip" ]; then
             new_patch=$((patch + 1))
-            new_version="$major.$minor.$new_patch"
+            new_version="$major.$minor.$new_patch-wip$((current_wip + 1))"
+          else
+            if [[ "$current_version" == *"-wip"* ]]; then
+            new_version=$current_version_without_wip
+            else
+              new_patch=$((patch + 1))
+              new_version="$major.$minor.$new_patch"
+            fi
           fi
         fi
 
@@ -75,4 +102,5 @@
         else
           npm publish
         fi
+
 
