@@ -110,6 +110,8 @@ module.exports = {
     'lodash',
     'md5',
     'react',
-    'react-dom'
+    'react-dom',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime'
   ]
 }
