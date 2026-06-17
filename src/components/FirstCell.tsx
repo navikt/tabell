@@ -85,12 +85,12 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                         <Box
                           paddingInline="1 0"
                         >
-                          <InformationSquareIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
+                          <InformationSquareIcon width="30" height="30 " style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
                         </Box>
                       ):
                       <div>{item.flagIkon}</div>
                     ) :
-                    <BookmarkIcon width="30" height="30 "style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
+                    <BookmarkIcon width="30" height="30 " style={{visibility: item.flag ? 'inherit' : 'hidden' }} />
                   }
                 </Tooltip>
               </Table.DataCell>
@@ -113,6 +113,7 @@ const FirstCell =  <CustomItem extends Item = Item> ({
                 checked={!!item.selected}
                 onChange={() => onCheckClicked(item)}
               >
+                {item.selectLabel ?? 'Velg ' + item.key}
               </Checkbox>
             )}
             {item.parentKey && (
