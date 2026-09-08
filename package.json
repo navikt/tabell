@@ -52,7 +52,7 @@
     "@vitejs/plugin-react": "6.1.1",
     "classnames": "2.5.1",
     "copy-webpack-plugin": "14.0.0",
-    "css-loader": "7.1.4",
+    "css-loader": "7.1.5",
     "dayjs": "1.11.23",
     "identity-obj-proxy": "^3.0.0",
     "inspectpack": "4.7.1",
