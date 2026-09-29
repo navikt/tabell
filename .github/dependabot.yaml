@@ -25,7 +25,3 @@ updates:
     commit-message:
       prefix: "dependabot-bump"
       include: "scope"
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - "version-update:semver-major"
