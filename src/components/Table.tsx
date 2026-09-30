@@ -1,6 +1,6 @@
 import { Loader, Table, SortState} from '@navikt/ds-react'
 import classNames from 'classnames'
-import { TextFilters, Column, Context, Item, Labels, TableProps } from 'index.d'
+import { TextFilters, Column, Context, Item, Labels, TableProps } from '../index.d'
 import _ from 'lodash'
 import md5 from 'md5'
 import dayjs from 'dayjs'

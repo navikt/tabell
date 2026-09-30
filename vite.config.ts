@@ -5,9 +5,6 @@ export default defineConfig({
     // depending on your application, base can also be "/"
     base: '',
     plugins: [react()],
-    resolve: {
-        tsconfigPaths: true,
-    },
     server: {
         // this ensures that the browser opens upon server start
         open: true,

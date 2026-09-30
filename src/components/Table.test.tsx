@@ -1,7 +1,7 @@
 import {screen, render, fireEvent, within} from '@testing-library/react'
 import React from 'react'
 import Table from './Table'
-import { Item, TableProps } from 'index.d'
+import { Item, TableProps } from '../index.d'
 
 jest.mock('md5', () => ('mock-md5'))
 

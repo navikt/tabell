@@ -1,4 +1,4 @@
-import Input from 'components/Input'
+import Input from '../components/Input'
 import React, { useEffect, useState } from 'react'
 import Mustache from 'mustache'
 import {Detail, Checkbox, Select, BodyLong, Heading, Table, VStack, HStack} from '@navikt/ds-react'
@@ -7,8 +7,8 @@ import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 import dark from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
 import light from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
 import NavTable from '../components/Table'
-import { Column, Item } from 'index.d'
-import '@navikt/ds-css'
+import { Column, Item } from '../index.d'
+import '@navikt/ds-css/dist/index.css'
 import styles from './page.module.css'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)

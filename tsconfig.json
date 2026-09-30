@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src/",
+    "rootDir": ".",
     "target": "ESNext",
     "types": ["vite/client", "jest", "node"],
     "lib": [
